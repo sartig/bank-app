@@ -1,0 +1,20 @@
+2024-02-26 11:03:02 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarting - Starting CreditCardProjectApplicationTests using Java 17.0.9 with PID 26556 (started by Mill in C:\Users\Mill\Desktop\FDM\ProjectWeek\main)
+2024-02-26 11:03:02 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 11:03:02 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 11:03:02 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
+2024-02-26 11:03:03 [INFO ] --- [main] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 11:03:03 [INFO ] --- [main] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 11:03:03 [INFO ] --- [main] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 11:03:03 [INFO ] --- [main] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 11:03:03 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 11:03:04 [INFO ] --- [main] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d1cfe4
+2024-02-26 11:03:04 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 11:03:04 [WARN ] --- [main] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 11:03:04 [INFO ] --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 11:03:04 [INFO ] --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 11:03:04 [WARN ] --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 11:03:04 [WARN ] --- [main] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 11:03:05 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarted - Started CreditCardProjectApplicationTests in 2.953 seconds (process running for 3.847)
+2024-02-26 11:03:05 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 11:03:05 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 11:03:05 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
