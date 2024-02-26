@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #121212;
+}
+
+.top-nav .logo {
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #344055;
+    color: white;
+    padding: 0.5rem 1rem;
+
+    text-decoration: none;
+}
+
+.top-nav nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between; /* Use justify-content instead of space-between */
+    padding: 0; /* Reset padding to ensure alignment */
+}
+
+.top-nav nav ul li {
+    margin: 0.5rem;
+}
+
+.top-nav nav ul li button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #344055;
+    color: white; /* Make button text color white */
+    cursor: pointer; /* Change cursor to pointer when hovering over the buttons */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 60px); /* Assuming top nav is 60px */
+}
+
+.content {
+    text-align: center;
+}
+
+.logo-box {
+    margin-bottom: 2rem;
+    /* Add styles here TODO */
+}
+
+.form-fields {
+    margin-bottom: 2rem;
+    /* Add styles for your form fields here */
+}
+.action-buttons button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    /* Add additional button styles here */
+}
