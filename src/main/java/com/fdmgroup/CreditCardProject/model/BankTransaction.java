@@ -36,6 +36,13 @@ public class BankTransaction extends Transaction{
 	private BankAccount bankAccount;
 	
 	/**
+     * The credit card associated with this bank transaction.
+     */
+    @ManyToOne
+    @JoinColumn(name = "creditCardId")
+    private CreditCard creditCard;
+	
+	/**
      * Default constructor for BankTransaction.
      * Creates an instance with default values.
      */
