@@ -9,5 +9,5 @@ import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 public class BankAccountService {
 
 	@Autowired
-	private BankAccountRepository bankAccountRepository;
+	private BankAccountRepository bankAccountRepo;
 }
