@@ -12,7 +12,7 @@ public class CreditCardProjectApplication {
 	
 	public static void main(String[] args) {
 		System.setProperty("log4j.configurationFile","classpath:log4j2.xml");
-		log.info("Booting Up OrderWebsite Application...");
+		log.info("Booting Up Credit Card Project Application...");
 		SpringApplication.run(CreditCardProjectApplication.class, args);
 	}
 
