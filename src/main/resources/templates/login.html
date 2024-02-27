@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
@@ -18,7 +18,6 @@
         <h2 class="error" th:if="${param.error}" th:text="${param.error}"></h2>
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
-
         <div class="action-buttons">
         <button type="submit" class="purple-button">Login</button>
         <button type="button" class="white-button" onclick="window.location.href='/index'">Back</button>

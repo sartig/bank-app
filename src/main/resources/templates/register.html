@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,9 @@
             <img src="/svg/iconblack.svg" alt="Icon" width="150" height="150">
         </div>
         <h2 style="font-size: 34px; color: #121212;">User Registration</h2>
-        <h2 style="color: orange;"><p th:text="${unsuccessfulMessage}"></p></h2>
-        <input type="text" th:field="*{username}" placeholder="Username" required>
-        <input type="password" th:field="*{password}" placeholder="Password" required>
+        <h2 th:if="${unsuccessfulMessage}" style="color: orange;" th:text="${unsuccessfulMessage}"></h2>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
         <div class="action-buttons">
         <button type="submit" class="purple-button">Register</button>
         <button type="button" class="white-button" onclick="window.location.href='/index'">Back</button>
