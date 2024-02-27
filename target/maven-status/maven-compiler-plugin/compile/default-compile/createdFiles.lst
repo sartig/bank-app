@@ -1,6 +1,0 @@
-controller\UserController.class
-service\UserService.class
-com\fdmgroup\CreditCardProject\CreditCardProjectApplication.class
-repository\UserRepository.class
-model\User.class
-controller\RegistrationController.class

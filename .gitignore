@@ -30,6 +30,8 @@ build/
 ### VS Code ###
 .vscode/
 
+/target/
+
 ### Java ###
 *.class
 *.jar
@@ -47,4 +49,4 @@ __MACOSX
 
 ### Bin ###
 /bin/
-src/main/resources/application.properties
+

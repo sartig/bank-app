@@ -1,27 +1,30 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import com.fdmgroup.CreditCardProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.repository.UserRepository;
 
 import java.util.Optional;
 
 @Service
 public class UserService {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	public boolean registerUser(User user) {
-		Optional<User> userOptional = userRepository.findByUsername(user.getUsername());
 
-		if(userOptional.isEmpty()) {
-			userRepository.save(user);
-			return true;
-		} else {
-			return false;
-		}
+	@Autowired
+	private UserRepository userRepo;
+	
+	public void registerUser(User user) {
+		// validation and logic here
+		userRepo.save(user);
 	}
+
+    public boolean verifyUser(String username, String password) {
+		Optional<User> user = userRepo.findByUsername(username);
+		if(user.isEmpty()){
+			return false;
+		}else{
+			return user.get().getPassword().equals(password);
+		}
+    }
 }

@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
+    <style>
+    
+    </style>
 </head>
 <body>
-    <h2>User Registration</h2>
-
-    <form method="post" action="register" th:object="${user}">
-        <input type="text" th:field="*{username}" placeholder="Username" required>
-        <input type="password" th:field="*{password}" placeholder="Password" required>
-        <input type="text" th:field="*{firstName}" placeholder="First Name" required>
-        <input type="text" th:field="*{lastName}" placeholder="Last Name" required>
-        <input type="text" th:field="*{phone}" placeholder="Phone" required>
-        <input type="text" th:field="*{creditCardNumber}" placeholder="Credit Card Number" required>
-        <input type="text" th:field="*{creditCardExpiration}" placeholder="Credit Card Expiration" required>
-        <input type="text" th:field="*{creditCardCVV}" placeholder="Credit Card CVV" required>
-        <input type="submit" value="Register">
-    </form>
-
+    <div class="container">
+        <h2>User Registration</h2>
+        
+        <form method="post" action="register" th:object="${user}">
+            <input type="text" th:field="*{username}" placeholder="Username" required>
+            <input type="password" th:field="*{password}" placeholder="Password" required>
+            <input type="submit" value="Register">
+        </form>
+        
+    </div>
 </body>
 </html>
