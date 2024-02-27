@@ -47,7 +47,7 @@ public class CreditCard extends Account{
 	/**
      * The rewards profile associated with the credit card.
      */
-	@OneToOne(mappedBy = "creditCard", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private RewardsProfile rewardProfile;
 	
 	/**

@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -19,7 +20,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "`Credit Card Transaction`")
-public class CreditCardTransaction extends Transaction{
+public class CreditCardTransaction extends Transaction {
 	/**
      * The store information related to the credit card transaction.
      */
@@ -29,7 +30,7 @@ public class CreditCardTransaction extends Transaction{
 	/**
      * The merchant category code associated with the credit card transaction.
      */
-	@ManyToOne
+	@OneToOne
     @JoinColumn(name = "merchantCategoryCodeId")
 	private MerchantCategoryCode merchantCategoryCode;
 	
