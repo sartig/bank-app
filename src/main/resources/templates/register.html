@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h2>User Registration</h2>
-        
+        <h2 style="color: orange;"><p th:text="${unsuccessfulMessage}"></p></h2>
         <form method="post" action="register" th:object="${user}">
             <input type="text" th:field="*{username}" placeholder="Username" required>
             <input type="password" th:field="*{password}" placeholder="Password" required>

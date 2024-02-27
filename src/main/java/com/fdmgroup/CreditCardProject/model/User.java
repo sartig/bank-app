@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,7 +34,7 @@ public class User {
 	/**
      * The username of the user.
      */
-	@Column(name = "username")
+	@Column(name = "username", unique = true)
 	private String username;
 	
 	/**
@@ -122,5 +123,23 @@ public class User {
 	public long getUserId() {
 		return userId;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(userId, password, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return userId == other.userId && Objects.equals(password, other.password) && Objects.equals(username, other.username);
+	}
+
 
 }

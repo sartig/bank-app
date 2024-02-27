@@ -14,18 +14,18 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String defaultPage() {
+        return "index";
+    }
+    @GetMapping("/index")
+    public String indexPage() {
+        return "index";
+    }
     @GetMapping("/login")
     public String showLoginForm() {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String verifyUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        if (userService.verifyUser(username, password)) {
-            session.setAttribute("current_user", username);
-            return "index";
-        }
-        return "login";
-    }
 
 }

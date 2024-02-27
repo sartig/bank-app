@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.model.User;
@@ -12,15 +13,24 @@ import java.util.Optional;
 public class UserService {
 
 	@Autowired
-	private UserRepository userRepo;
-	
-	public void registerUser(User user) {
-		// validation and logic here
-		userRepo.save(user);
+	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserRepository userRepository;
+
+	public boolean registerUser(String username, String password) {//throws EmailExistsException {
+		if(userRepository.existsByUsername(username)) {
+			return false;
+		}
+
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(passwordEncoder.encode(password));
+		userRepository.save(user);
+		return true;
 	}
 
     public boolean verifyUser(String username, String password) {
-		Optional<User> user = userRepo.findByUsername(username);
+		Optional<User> user = userRepository.findByUsername(username);
 		if(user.isEmpty()){
 			return false;
 		}else{
