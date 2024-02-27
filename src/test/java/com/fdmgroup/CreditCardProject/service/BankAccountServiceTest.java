@@ -19,6 +19,9 @@ public class BankAccountServiceTest {
 	@MockBean
     private BankAccountRepository bankAccountRepo;
 
+	@MockBean
+	BankAccount bankAccountMock;
+	
     @Autowired
     private BankAccountService bankAccountService;
 
@@ -29,16 +32,16 @@ public class BankAccountServiceTest {
         double doubleTest = random.nextDouble();
     	
     	// Act
-        BankAccount mockBankAccount = new BankAccount();
-        mockBankAccount.setCurrentBalance(doubleTest);
+        bankAccountMock.setCurrentBalance(doubleTest);
 
         // Assert
-        Mockito.when(bankAccountRepo.findByBankAccountId(longTest)).thenReturn(Optional.of(mockBankAccount));
+        Mockito.when(bankAccountRepo.findByBankAccountId(longTest)).thenReturn(Optional.of(bankAccountMock));
+        Mockito.when(bankAccountMock.getCurrentBalance()).thenReturn(doubleTest);
         double result = bankAccountService.getAccountBalanceByBankAccountId(longTest);
 
         // Assess
         Mockito.verify(bankAccountRepo).findByBankAccountId(longTest);
-        assertEquals(doubleTest, result, 0.0);
+        assertEquals(doubleTest, result,0.0);
     }
 
     @Test
@@ -54,6 +57,6 @@ public class BankAccountServiceTest {
 
         // Assess
         Mockito.verify(bankAccountRepo).findByBankAccountId(longTest);
-        assertEquals(0.0, result, 0.000);
+        assertEquals(0.0, result, 0.0);
     }
 }
