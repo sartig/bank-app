@@ -3,13 +3,13 @@ package com.fdmgroup.CreditCardProject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+//@Controller
 
 public class DashboardController {
 
-    @GetMapping("/")
-    public String goToIndex() {
-        return "dashboard";
-    }
+//    @GetMapping("/")
+//    public String goToIndex() {
+//        return "dashboard";
+//    }
 
 }

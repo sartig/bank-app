@@ -8,22 +8,12 @@
 <body>
 <!--TO BE EDITED-->
 <!--<h2 style="color: orange;"><p th:text="${successMessage}"></p></h2>-->
-
-    <header class="top-nav">
-        <a href="#" class="logo">Logo</a>
-        <nav>
-            <ul>
-                <li><button>Button</button></li>
-                <li><button>Button</button></li>
-            </ul>
-        </nav>
-    </header>
+    <div th:include="navbar :: navbar"></div>
     <div class="container">
         <div class="content">
             <div class="logo-box">
                 <!-- <img src="https://via.placeholder.com/150" alt="Logo"> -->
             </div>
-
             <div class="action-buttons">
                 <a href="login"><button>Log In</button></a>
                 <a href="register"><button>Sign Up</button></a>

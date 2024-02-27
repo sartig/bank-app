@@ -22586,3 +22586,860 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [login
 2024-02-27 14:40:33 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-02-27 14:40:33 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
 2024-02-27 14:40:33 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 14:51:30 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarting - Starting CreditCardProjectApplicationTests using Java 17.0.10 with PID 53700 (started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 14:51:30 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 14:51:30 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 14:51:30 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 33 ms. Found 7 JPA repository interfaces.
+2024-02-27 14:51:30 [INFO ] --- [main] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 14:51:30 [INFO ] --- [main] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 14:51:30 [INFO ] --- [main] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 14:51:31 [INFO ] --- [main] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 14:51:31 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 14:51:31 [INFO ] --- [main] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@370a8b6e
+2024-02-27 14:51:31 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 14:51:31 [WARN ] --- [main] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 14:51:31 [INFO ] --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 14:51:31 [INFO ] --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:51:32 [WARN ] --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 14:51:32 [INFO ] --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 14:51:32 [WARN ] --- [main] o.s.w.c.s.GenericWebApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+2024-02-27 14:51:32 [INFO ] --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:51:32 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 14:51:32 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 14:51:32 [INFO ] --- [main] o.s.b.a.l.ConditionEvaluationReportLogger.logMessage - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-02-27 14:51:32 [ERROR] --- [main] o.s.boot.SpringApplication.reportFailure - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: java.lang.RuntimeException: Could not postProcess org.springframework.security.config.annotation.web.builders.WebSecurity@25af1dbf of type class org.springframework.security.config.annotation.web.builders.WebSecurity
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:69)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.setFilterChainProxySecurityConfigurer(WebSecurityConfiguration.java:148)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:853)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	... 95 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospectorRequestTransformer': Cannot resolve reference to bean 'mvcHandlerMappingIntrospector' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:203)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:224)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$1.getIfUnique(DefaultListableBeanFactory.java:438)
+	at org.springframework.security.config.annotation.web.builders.WebSecurity.setApplicationContext(WebSecurity.java:397)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:110)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:85)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:412)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:65)
+	... 103 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 125 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:665)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1385)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:368)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:130)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 132 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 145 common frames omitted
+2024-02-27 14:51:32 [WARN ] --- [main] o.s.test.context.TestContextManager.prepareTestInstance - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.fdmgroup.CreditCardProject.CreditCardProjectApplicationTests@507187c1]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@978475b testClass = com.fdmgroup.CreditCardProject.CreditCardProjectApplicationTests, locations = [], classes = [com.fdmgroup.CreditCardProject.CreditCardProjectApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@4f0f2942, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@69504ae9, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2d0399f4, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@5e3f861, org.springframework.boot.test.context.SpringBootTestAnnotation@b2dc3482], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	... 73 common frames omitted
+Caused by: java.lang.RuntimeException: Could not postProcess org.springframework.security.config.annotation.web.builders.WebSecurity@25af1dbf of type class org.springframework.security.config.annotation.web.builders.WebSecurity
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:69)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.setFilterChainProxySecurityConfigurer(WebSecurityConfiguration.java:148)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:853)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	... 95 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospectorRequestTransformer': Cannot resolve reference to bean 'mvcHandlerMappingIntrospector' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:203)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:224)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$1.getIfUnique(DefaultListableBeanFactory.java:438)
+	at org.springframework.security.config.annotation.web.builders.WebSecurity.setApplicationContext(WebSecurity.java:397)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:110)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:85)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:412)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:65)
+	... 103 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 125 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:665)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1385)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:368)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:130)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 132 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 145 common frames omitted
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 34972 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 14:52:34 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 40 ms. Found 7 JPA repository interfaces.
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 947 ms
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a61b7eb
+2024-02-27 14:52:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 14:52:36 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 14:52:36 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 14:52:36 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:52:36 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 14:52:37 [WARN ] --- [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Stopping service [Tomcat]
+2024-02-27 14:52:37 [INFO ] --- [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger.logMessage - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-02-27 14:52:37 [ERROR] --- [restartedMain] o.s.boot.SpringApplication.reportFailure - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.fdmgroup.CreditCardProject.CreditCardProjectApplication.main(CreditCardProjectApplication.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.RuntimeException: Could not postProcess org.springframework.security.config.annotation.web.builders.WebSecurity@7aac34a4 of type class org.springframework.security.config.annotation.web.builders.WebSecurity
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:69)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.setFilterChainProxySecurityConfigurer(WebSecurityConfiguration.java:148)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:853)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	... 22 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospectorRequestTransformer': Cannot resolve reference to bean 'mvcHandlerMappingIntrospector' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:203)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:224)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$1.getIfUnique(DefaultListableBeanFactory.java:438)
+	at org.springframework.security.config.annotation.web.builders.WebSecurity.setApplicationContext(WebSecurity.java:397)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:110)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:85)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:412)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:65)
+	... 30 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 52 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:665)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1385)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:368)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:130)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 59 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 72 common frames omitted
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 16740 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 14:53:12 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 41 ms. Found 7 JPA repository interfaces.
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 942 ms
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 14:53:13 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e7cfae2
+2024-02-27 14:53:14 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 14:53:14 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 14:53:14 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 14:53:14 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:53:14 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 14:53:15 [WARN ] --- [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Stopping service [Tomcat]
+2024-02-27 14:53:15 [INFO ] --- [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger.logMessage - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-02-27 14:53:15 [ERROR] --- [restartedMain] o.s.boot.SpringApplication.reportFailure - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.fdmgroup.CreditCardProject.CreditCardProjectApplication.main(CreditCardProjectApplication.java:16)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.RuntimeException: Could not postProcess org.springframework.security.config.annotation.web.builders.WebSecurity@303c0172 of type class org.springframework.security.config.annotation.web.builders.WebSecurity
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:69)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration.setFilterChainProxySecurityConfigurer(WebSecurityConfiguration.java:148)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:853)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:508)
+	... 22 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospectorRequestTransformer': Cannot resolve reference to bean 'mvcHandlerMappingIntrospector' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:685)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:203)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:224)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory$1.getIfUnique(DefaultListableBeanFactory.java:438)
+	at org.springframework.security.config.annotation.web.builders.WebSecurity.setApplicationContext(WebSecurity.java:397)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:110)
+	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:85)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:412)
+	at org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor.postProcess(AutowireBeanFactoryObjectPostProcessor.java:65)
+	... 30 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 52 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:665)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1385)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:368)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:130)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 59 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dashboardController' method 
+com.fdmgroup.CreditCardProject.DashboardController#goToIndex()
+to {GET [/]}: There is already 'userController' bean method
+com.fdmgroup.CreditCardProject.controller.UserController#defaultPage() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 72 common frames omitted
+2024-02-27 14:55:44 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 42236 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 14:55:44 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 14:55:44 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 14:55:44 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 39 ms. Found 7 JPA repository interfaces.
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 942 ms
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 14:55:45 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 14:55:46 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cebb9b4
+2024-02-27 14:55:46 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 14:55:46 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 14:55:46 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 14:55:46 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 14:55:47 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@29eb18f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@101b7cbe, org.springframework.security.web.context.SecurityContextHolderFilter@5898297d, org.springframework.web.filter.CorsFilter@301dafb2, org.springframework.security.web.authentication.logout.LogoutFilter@7adc6d05, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5a031204, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6d19a7e8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@29234ec0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@613c8251, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49acb6c6, org.springframework.security.web.access.ExceptionTranslationFilter@521d1cec, org.springframework.security.web.access.intercept.AuthorizationFilter@38c95d46]
+2024-02-27 14:55:47 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/static/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/static/**']
+2024-02-27 14:55:47 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/css/**']
+2024-02-27 14:55:47 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/js/**']
+2024-02-27 14:55:47 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/images/**']
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-27 14:55:47 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 3.592 seconds (process running for 3.849)
+2024-02-27 14:55:59 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-27 14:55:59 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-27 14:55:59 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+2024-02-27 15:00:38 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:00:38 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 15:00:38 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 15:00:39 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 26180 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 15:00:39 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 15:00:39 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 15:00:39 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 15:00:39 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 39 ms. Found 7 JPA repository interfaces.
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 955 ms
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 15:00:40 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 15:00:41 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23b88fb0
+2024-02-27 15:00:41 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 15:00:41 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 15:00:41 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 15:00:41 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:00:42 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@64127222, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c7a7411, org.springframework.security.web.context.SecurityContextHolderFilter@7a8fbc8e, org.springframework.web.filter.CorsFilter@306a7553, org.springframework.security.web.authentication.logout.LogoutFilter@346abfd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2e600465, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@58d2e3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@453e4bdc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4633e723, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43ec9cb4, org.springframework.security.web.access.ExceptionTranslationFilter@6b689119, org.springframework.security.web.access.intercept.AuthorizationFilter@1512afe8]
+2024-02-27 15:00:42 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/static/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/static/**']
+2024-02-27 15:00:42 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/css/**']
+2024-02-27 15:00:42 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/js/**']
+2024-02-27 15:00:42 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/images/**']
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-27 15:00:42 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 3.531 seconds (process running for 3.782)
+2024-02-27 15:00:43 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-27 15:00:43 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-27 15:00:43 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
+2024-02-27 15:00:44 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:00:44 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:11 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:02:11 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 15:02:11 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 15:02:12 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 55244 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 15:02:12 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 15:02:12 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 15:02:12 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 38 ms. Found 7 JPA repository interfaces.
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 916 ms
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 15:02:13 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b39f400
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 15:02:14 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 15:02:14 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:02:15 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@656c3d9c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6893dc62, org.springframework.security.web.context.SecurityContextHolderFilter@4bfc7065, org.springframework.web.filter.CorsFilter@3e510e91, org.springframework.security.web.authentication.logout.LogoutFilter@c0b1d8b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3268e280, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1e491baa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@221fb0ec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@559876b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4bd6ed9d, org.springframework.security.web.access.ExceptionTranslationFilter@2bad20e2, org.springframework.security.web.access.intercept.AuthorizationFilter@5a0e868c]
+2024-02-27 15:02:15 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/static/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/static/**']
+2024-02-27 15:02:15 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/css/**']
+2024-02-27 15:02:15 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/js/**']
+2024-02-27 15:02:15 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/images/**']
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-27 15:02:15 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 3.412 seconds (process running for 3.672)
+2024-02-27 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-27 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-27 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
+2024-02-27 15:02:18 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:18 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:19 [WARN ] --- [http-nio-9001-exec-5] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-5][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:19 [WARN ] --- [http-nio-9001-exec-5] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-5][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:20 [WARN ] --- [http-nio-9001-exec-9] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-9][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:02:20 [WARN ] --- [http-nio-9001-exec-9] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-9][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:04:34 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:04:34 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-27 15:04:34 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-27 15:05:31 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 34060 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-27 15:05:31 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-27 15:05:31 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-27 15:05:31 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 40 ms. Found 7 JPA repository interfaces.
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-27 15:05:32 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 935 ms
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2bf38014
+2024-02-27 15:05:33 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-27 15:05:33 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-27 15:05:34 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping.<init> - Adding welcome page template: index
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e3ad7f7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c10c4f6, org.springframework.security.web.context.SecurityContextHolderFilter@62db60a0, org.springframework.web.filter.CorsFilter@58130f32, org.springframework.security.web.authentication.logout.LogoutFilter@71b1836b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@60d53493, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@42fec937, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ba9ef41, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@9b20df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ffb9d29, org.springframework.security.web.access.ExceptionTranslationFilter@557ef3e0, org.springframework.security.web.access.intercept.AuthorizationFilter@622fe6e5]
+2024-02-27 15:05:34 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/static/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/static/**']
+2024-02-27 15:05:34 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/css/**']
+2024-02-27 15:05:34 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/js/**']
+2024-02-27 15:05:34 [WARN ] --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity.performBuild - You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-02-27 15:05:34 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will not secure Mvc [pattern='/images/**']
+2024-02-27 15:05:35 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-27 15:05:35 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-27 15:05:35 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 3.382 seconds (process running for 3.661)
+2024-02-27 15:05:37 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-27 15:05:37 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-27 15:05:37 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
+2024-02-27 15:05:37 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:05:37 [WARN ] --- [http-nio-9001-exec-1] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-1][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:05:40 [WARN ] --- [http-nio-9001-exec-3] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-3][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:05:40 [WARN ] --- [http-nio-9001-exec-3] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-3][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-02-27 15:05:41 [WARN ] --- [http-nio-9001-exec-9] o.t.s.p.StandardIncludeTagProcessor.doProcess - [THYMELEAF][http-nio-9001-exec-9][index] Deprecated attribute {th:include,data-th-include} found in template index, line 11, col 10. Please use {th:insert,data-th-insert} instead, this deprecated attribute will be removed in future versions of Thymeleaf.
+2024-02-27 15:05:41 [WARN ] --- [http-nio-9001-exec-9] o.t.s.p.AbstractStandardFragmentInsertionTagProcessor.computeFragment - [THYMELEAF][http-nio-9001-exec-9][index] Deprecated unwrapped fragment expression "navbar :: navbar" found in template index, line 11, col 10. Please use the complete syntax of fragment expressions instead ("~{navbar :: navbar}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
