@@ -39,10 +39,5 @@ public class RegistrationController {
 		}
 	}
 
-	@GetMapping("/home")
-	public String homePage(@AuthenticationPrincipal AuthUser principal) {
-		System.out.println(principal.getUsername());
-		return "home";
-	}
 
 }
