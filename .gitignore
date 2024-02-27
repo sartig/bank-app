@@ -30,6 +30,8 @@ build/
 ### VS Code ###
 .vscode/
 
+/target/
+
 ### Java ###
 *.class
 *.jar
@@ -47,4 +49,8 @@ __MACOSX
 
 ### Bin ###
 /bin/
+<<<<<<< HEAD
 src/main/resources/application.properties
+=======
+
+>>>>>>> origin/CCA31_Registration
