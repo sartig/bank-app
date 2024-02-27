@@ -39,19 +39,6 @@ public class RewardsProfile {
 	@Column(name = "conversionPercentage")
 	private double conversionPercentage;
 	
-	/**
-     * The credit card associated with the reward profile.
-     */
-    @OneToOne
-    @JoinColumn(name = "creditCardId")
-    private CreditCard creditCard;
-	
-    /**
-     * The list of valid merchant category codes for rewards.
-     */
-    @OneToMany(mappedBy = "rewardsProfile", cascade = CascadeType.ALL)
-	private List<MerchantCategoryCode> validCategories;
-	
     /**
      * Default constructor for creating a RewardsProfile instance.
      */
@@ -75,21 +62,6 @@ public class RewardsProfile {
 		this.conversionPercentage = conversionPercentage;
 	}
 
-	/**
-     * Get the list of valid merchant category codes for rewards.
-     * @return The list of valid merchant category codes.
-     */
-	public List<MerchantCategoryCode> getValidCategories() {
-		return validCategories;
-	}
-
-	/**
-     * Set the list of valid merchant category codes for rewards.
-     * @param validCategories The list of valid merchant category codes to set.
-     */
-	public void setValidCategories(List<MerchantCategoryCode> validCategories) {
-		this.validCategories = validCategories;
-	}
 
 	/**
      * Get the unique identifier for the rewards profile.
