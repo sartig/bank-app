@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
+	
+<head xmlns:th="http://www.thymeleaf.org">
     <title>Deposit Money</title>
     <script>
         function validateAmount() {
@@ -13,27 +14,239 @@
             return true;
         }
     </script>
+    
+    
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: 100%;
+            font-family: Inter;
+        }
+
+        .separate-line {
+            border-top: 1px solid #fff;
+            margin: 10px 0;
+        }
+
+        .content {
+            width: calc(100vw - 300px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .page-top-container {
+            height: 85px;
+            width: 100%;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .content-container {
+            width: 1044px;
+            height: calc(100vh - 85px);
+        }
+
+        .title {
+            margin-block: 25px;
+        }
+
+        .page-title {
+            font-family: Inter;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 40px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: -0.01em;
+            text-align: left;
+            color: #5B6776;
+        }
+
+        .info-container {
+            width: 1044px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .bank-account-container,
+        .credit-card-container {
+            width: 510px;
+
+        }
+
+        .bank-account-info,
+        .credit-card-info {
+            height: 100px;
+            border-radius: 6px;
+            border: 1px solid lightgrey;
+            margin-bottom: 15px;
+            padding: 14px;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 32px;
+            text-align: left;
+        }
+
+        .balance {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-block: 8px;
+            font-size: 20px;
+
+        }
+
+        .amount {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 40px;
+            text-align: right;
+        }
+        
+        .left-menu {
+		    background-color: #080325;
+		    color: #fff;
+		    width: 300px;
+		    height: 100%;
+		    position: fix;
+		    z-index: 1;
+		    border-right: 1px solid black;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: space-between;
+		}
+		
+		.left-menu-top {
+		    height: 85px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+		
+		.left-menu-top>img {
+		    height: 60px;
+		}
+		
+		.left-menu-mid {
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    align-items: center;
+		}
+		
+		.left-menu-button,
+		.left-menu-title {
+		    width: 75%;
+		    display: flex;
+		    flex-direction: row;
+		    align-items: center;
+		    padding: 20px;
+		}
+		
+		.left-menu-title {
+		    padding-bottom: 10px;
+		}
+		
+		
+		.left-menu-sub-button {
+		    width: 75%;
+		    display: flex;
+		    flex-direction: row;
+		    align-items: center;
+		    text-indent: 30px;
+		    text-align: left;
+		    padding: 10px;
+		}
+		
+		.left-menu-button:hover {
+		    background-color: #191A38;
+		}
+		
+		.left-menu-sub-button:hover {
+		    background-color: #191A38;
+		}
+		
+		.left-menu-button>i,
+		.left-menu-title>i {
+		    width: 25%;
+		    font-size: 24px;
+		}
+		
+		.left-menu-button-text {
+		    font-size: 18px;
+		    font-weight: 400;
+		}
+		
+		.left-menu-sub-button-text {
+		    font-size: 14px;
+		    font-weight: 400;
+		}
+		
+		.left-menu-bot {
+		    height: 150px;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+        
+        
+    </style>
+    
 </head>
+
 <body>
-    <h2>Bank Account - Deposit/Withdraw Money</h2>
-    <form action="/deposit" method="post" onsubmit="return validateAmount()">
-        <label for="amount">Amount:</label><br>
-        <input type="text" id="amount" name="amount" required><br><br>
-		<form>
-	        <label for="actions">Deposit/Withdraw</label><br><br>
-	        <select id="actions" name="actions">
-				<option value="" disabled selected>Select</option>
-	            <option value="deposit">Deposit</option>
-	            <option value="withdraw">Withdraw</option>
-	        </select>
-    	</form><br><br>
-    	<form>
-	        <label for="actions">Account</label><br><br>
-	        <select id="actions" name="actions">
-				<option value="" disabled selected>Select</option>
-	        </select>
-    	</form><br><br>
-        <button type="submit">Transfer</button>
-    </form>
+	<h2>Deposit/Withdraw</h2>
+	<h4>Easily deposit or withdraw funds online</h4>
+		<form action="/deposit" method="post" onsubmit="return validateAmount()">
+			<form>
+			        <label for="actions">Account</label><br><br>
+			        <select id="actions" name="actions">
+						<option value="" disabled selected>Bank Account 234242342</option>
+			        </select>
+		    </form><br><br>
+		    	
+			        <label for="amount">Amount:</label><br>
+			        <input type="text" id="amount" name="amount" required><br><br>
+			
+		    <form>
+			        <label for="actions">Deposit/Withdraw</label><br><br>
+			        <select id="actions" name="actions">
+						<option value="" disabled selected>Select</option>
+			            <option value="deposit">Deposit</option>
+			            <option value="withdraw">Withdraw</option>
+			        </select>
+		    </form><br><br>
+		    	
+		       <button type="submit">Send Request</button>
+		  </form>
 </body>
 </html>
