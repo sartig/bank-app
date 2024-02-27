@@ -41,13 +41,6 @@ public class MerchantCategoryCode {
 	private String categoryName;
 	
 	/**
-     * The reward profile associated with the merchant category code.
-     */
-    @ManyToOne
-    @JoinColumn(name = "rewardsProfileId")
-    private RewardsProfile rewardsProfile;
-	
-	/**
      * Default constructor for MerchantCategoryCode.
      * Creates an instance with default values.
      */
