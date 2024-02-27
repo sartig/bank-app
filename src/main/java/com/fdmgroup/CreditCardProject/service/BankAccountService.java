@@ -1,5 +1,7 @@
 package com.fdmgroup.CreditCardProject.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +40,19 @@ public class BankAccountService {
 			log.error("BankAccountServiceError: Could not obtain current balance of {} as it does not exist.",bankAccountId);
 			return 0.0;
 		}
+	}
+	
+	/**
+	 * Retrieves a list of bank account IDs associated with the given username.
+	 * @param username The username for which to fetch bank account IDs.
+	 * @return A list of bank account IDs associated with the specified username.
+	 */
+	public List<Long> getBankAccountIdByUsername(String username){
+		List<Long> bankAccountIds = new ArrayList<>();
+		for (BankAccount b:bankAccountRepo.findByUsername(username)) {
+			bankAccountIds.add(b.getAccountId());
+		}
+		return bankAccountIds;
 	}
 	
 }

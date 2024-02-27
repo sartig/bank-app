@@ -1523,6 +1523,7 @@ com.fdmgroup.CreditCardProject.controller.BankAccountController#goToIndex() mapp
 2024-02-27 13:49:08 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
 2024-02-27 13:49:08 [INFO ] --- [main] o.s.b.a.l.ConditionEvaluationReportLogger.logMessage - 
 
+<<<<<<< HEAD
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2024-02-27 13:49:09 [ERROR] --- [main] o.s.boot.SpringApplication.reportFailure - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'dashboardController' method 
@@ -1860,3 +1861,204 @@ java.lang.IllegalStateException: ApplicationContext failure threshold (1) exceed
 2024-02-27 13:50:13 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-02-27 13:50:13 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
 2024-02-27 13:50:13 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+=======
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-26 10:47:12 [INFO ] --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a76b847, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6781adf2, org.springframework.security.web.context.SecurityContextHolderFilter@700a04d2, org.springframework.security.web.header.HeaderWriterFilter@5c0dd441, org.springframework.web.filter.CorsFilter@11e17cc1, org.springframework.security.web.csrf.CsrfFilter@6c4c517, org.springframework.security.web.authentication.logout.LogoutFilter@2d282958, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@24e8b08, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@695b5df5, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7fc8b98d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6e4000f0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50469bb9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b462500, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8382b3, org.springframework.security.web.access.ExceptionTranslationFilter@3577df9e, org.springframework.security.web.access.intercept.AuthorizationFilter@74ab2e3d]
+2024-02-26 10:47:12 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 10:47:12 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 10:47:12 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 0.315 seconds (process running for 202.101)
+2024-02-26 10:47:12 [INFO ] --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener.onApplicationEvent - Condition evaluation unchanged
+2024-02-26 10:47:42 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarting - Starting CreditCardProjectApplicationTests using Java 17.0.9 with PID 45984 (started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject)
+2024-02-26 10:47:42 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 10:47:42 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 10:47:42 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2024-02-26 10:47:42 [INFO ] --- [main] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 10:47:42 [INFO ] --- [main] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 10:47:42 [INFO ] --- [main] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 10:47:43 [INFO ] --- [main] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 10:47:43 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 10:47:43 [INFO ] --- [main] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40a8a26f
+2024-02-26 10:47:43 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 10:47:43 [WARN ] --- [main] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 10:47:43 [INFO ] --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 10:47:43 [INFO ] --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:47:43 [WARN ] --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 10:47:44 [WARN ] --- [main] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 10:47:44 [WARN ] --- [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword - 
+
+Using generated security password: 865ad62d-7f48-4d9b-ab9e-a99d32e0ebbd
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-02-26 10:47:44 [INFO ] --- [main] o.s.s.web.DefaultSecurityFilterChain.<init> - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1cda75be, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2213854b, org.springframework.security.web.context.SecurityContextHolderFilter@3c2188f, org.springframework.security.web.header.HeaderWriterFilter@2979c6ef, org.springframework.web.filter.CorsFilter@7b1d2f65, org.springframework.security.web.csrf.CsrfFilter@5e66733b, org.springframework.security.web.authentication.logout.LogoutFilter@6fd2acf5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1e18876d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@ba27ce6, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@33bd9ac3, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3c5044fa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a094f90, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b5623b4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c857e8f, org.springframework.security.web.access.ExceptionTranslationFilter@137d04d8, org.springframework.security.web.access.intercept.AuthorizationFilter@70f76276]
+2024-02-26 10:47:44 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarted - Started CreditCardProjectApplicationTests in 2.333 seconds (process running for 2.905)
+2024-02-26 10:47:44 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:47:44 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 10:47:44 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-26 10:48:23 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarting - Starting CreditCardProjectApplicationTests using Java 17.0.9 with PID 27500 (started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject)
+2024-02-26 10:48:23 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 10:48:24 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 10:48:24 [INFO ] --- [main] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2024-02-26 10:48:24 [INFO ] --- [main] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 10:48:24 [INFO ] --- [main] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 10:48:24 [INFO ] --- [main] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 10:48:24 [INFO ] --- [main] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 10:48:24 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 10:48:24 [INFO ] --- [main] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48e74764
+2024-02-26 10:48:24 [INFO ] --- [main] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 10:48:25 [WARN ] --- [main] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 10:48:25 [INFO ] --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 10:48:25 [INFO ] --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:48:25 [WARN ] --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 10:48:25 [WARN ] --- [main] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 10:48:25 [INFO ] --- [main] c.f.C.CreditCardProjectApplicationTests.logStarted - Started CreditCardProjectApplicationTests in 2.096 seconds (process running for 2.651)
+2024-02-26 10:48:26 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:48:26 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 10:48:26 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-26 10:48:33 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.9 with PID 41184 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject)
+2024-02-26 10:48:33 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 10:48:33 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-26 10:48:33 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-26 10:48:34 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 805 ms
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@23ee954a
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 10:48:35 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 10:48:35 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:48:35 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 10:48:35 [WARN ] --- [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 10:48:36 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 10:48:36 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 10:48:36 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 2.38 seconds (process running for 2.646)
+2024-02-26 10:48:46 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-26 10:48:46 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-26 10:48:46 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
+2024-02-26 10:50:55 [INFO ] --- [File Watcher] o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.onApplicationEvent - Restarting due to 5 class path changes (0 additions, 3 deletions, 2 modifications)
+2024-02-26 10:50:55 [INFO ] --- [Thread-5] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:50:55 [INFO ] --- [Thread-5] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 10:50:55 [INFO ] --- [Thread-5] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.9 with PID 41184 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\CreditCardProject)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces.
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 181 ms
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-2 - Starting...
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a8a0e7e
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-2 - Start completed.
+2024-02-26 10:50:56 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 10:50:56 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 10:50:56 [WARN ] --- [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 0.354 seconds (process running for 142.92)
+2024-02-26 10:50:56 [INFO ] --- [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener.onApplicationEvent - Condition evaluation unchanged
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.10 with PID 39748 (C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject\target\classes started by admin in C:\Users\admin\Documents\EclipseWorkspace\Temp\creditcardproject)
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 11:01:52 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 899 ms
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@254b93e4
+2024-02-26 11:01:53 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 11:01:53 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 11:01:54 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 11:01:54 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 11:01:54 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 11:01:54 [WARN ] --- [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 11:01:54 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 11:01:54 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 11:01:54 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 2.469 seconds (process running for 3.056)
+2024-02-26 11:06:52 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 11:06:52 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 11:06:52 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-26 13:15:11 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.9 with PID 9844 (/Users/sheikhumarbanafe/eclipse-workspace/creditcardproject/target/classes started by sheikhumarbanafe in /Users/sheikhumarbanafe/eclipse-workspace/creditcardproject)
+2024-02-26 13:15:11 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 13:15:11 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-26 13:15:11 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 16 ms. Found 0 JPA repository interfaces.
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-26 13:15:12 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1786 ms
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2035c7df
+2024-02-26 13:15:13 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 13:15:14 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 13:15:14 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 13:15:14 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 13:15:14 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 13:15:14 [WARN ] --- [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 13:15:15 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 13:15:15 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 13:15:15 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 4.444 seconds (process running for 5.001)
+2024-02-26 14:55:05 [WARN ] --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool.run - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h6m13s744ms).
+2024-02-26 14:59:57 [INFO ] --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 14:59:57 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+2024-02-26 14:59:57 [INFO ] --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+2024-02-26 15:02:07 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarting - Starting CreditCardProjectApplication using Java 17.0.9 with PID 10036 (/Users/sheikhumarbanafe/eclipse-workspace/creditcardproject/target/classes started by sheikhumarbanafe in /Users/sheikhumarbanafe/eclipse-workspace/creditcardproject)
+2024-02-26 15:02:07 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-02-26 15:02:07 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-26 15:02:07 [INFO ] --- [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 15 ms. Found 0 JPA repository interfaces.
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 9001 (http)
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+2024-02-26 15:02:08 [INFO ] --- [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1429 ms
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2035c7df
+2024-02-26 15:02:09 [INFO ] --- [restartedMain] com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+2024-02-26 15:02:09 [WARN ] --- [restartedMain] org.hibernate.orm.deprecation.constructDialect - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-26 15:02:10 [INFO ] --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-26 15:02:10 [INFO ] --- [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-26 15:02:10 [WARN ] --- [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-26 15:02:10 [WARN ] --- [restartedMain] o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration.checkTemplateLocationExists - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-26 15:02:10 [INFO ] --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer.startServer - LiveReload server is running on port 35729
+2024-02-26 15:02:10 [INFO ] --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 9001 (http) with context path ''
+2024-02-26 15:02:10 [INFO ] --- [restartedMain] c.f.C.CreditCardProjectApplication.logStarted - Started CreditCardProjectApplication in 3.811 seconds (process running for 4.334)
+2024-02-26 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-26 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+2024-02-26 15:02:18 [INFO ] --- [http-nio-9001-exec-1] o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 1 ms
+>>>>>>> e20994c8e81257515c6932ceb6bbe455ea0179ad
