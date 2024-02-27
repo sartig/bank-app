@@ -174,7 +174,6 @@
 		    padding-bottom: 10px;
 		}
 		
-		
 		.left-menu-sub-button {
 		    width: 75%;
 		    display: flex;
@@ -217,15 +216,18 @@
 		    align-items: center;
 		}
 
-        
-        
     </style>
     
 </head>
 
 <body>
-	<h2>Deposit/Withdraw</h2>
-	<h4>Easily deposit or withdraw funds online</h4>
+	<div class="page-title">
+		<h2>Deposit/Withdraw</h2>
+	</div>
+	
+	<div class="page-subtitle">
+		<h4>Easily deposit or withdraw funds online</h4>
+	</div>
 		<form action="/deposit" method="post" onsubmit="return validateAmount()">
 			<form>
 			        <label for="actions">Account</label><br><br>
