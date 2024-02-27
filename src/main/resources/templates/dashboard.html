@@ -1,82 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">       
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-	</head>
-	<body>			
-		<div class="main-container">
-			<div class="left-menu">
-				<div>
-					<div class="left-menu-top">
-						<img src="/icon.svg">
-					</div>
-	
-					<div class="left-menu-mid">
-						<div class="left-menu-button">
-							<i class="fas fa-home"></i>
-							<div class="left-menu-button-text">Dashboard</div>
-						</div>
-	
-						<div class="left-menu-button">
-							<i class="fas fa-money-bill"></i>
-							<div class="left-menu-button-text">Bank Account</div>
-						</div>
-	
-						<div class="left-menu-button">
-							<i class="far fa-credit-card"></i>
-							<div class="left-menu-button-text">Credit Card</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="left-menu-bot">
-					<div class="left-menu-button">
-						<i class="fas fa-user"></i>
-						<div class="left-menu-button-text">Profile</div>
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+	<div class="main-container">
+		
+		<div th:include="navbar :: navbar"></div>
+
+		<div class="content">
+			<div class="page-top-container"> </div>
+			<div class="container">
+				<div class="content-container">
+					<div class="title">
+						<div class="page-title">Dashboard</div>
+						<div class="page-subtitle">Summary Information</div>
 					</div>
 
-					<div class="left-menu-button">
-						<i class="fas fa-door-open"></i>
-						<div class="left-menu-button-text">Logout</div>
-					</div>
-				</div>
-			</div>
-				
-			
-			<div class="content">
-				<div class="page-top-container">  </div>
-				<div class="container">
-					<div class="content-container">
-						<div class="title">
-							<div class="page-title">Dashboard</div>
-							<div class="page-subtitle">Summary Information</div>
-						</div>
+					<div class="info-container">
 
-						<div class="info-container">
-							
-							<div class="bank-account-container">
-								<div class="bank-account-info">
-									<div class="account-number">
-										Bank Account 8472698563
-									</div>
-									<div class="balance">
-										<div>Balance</div> 	<div class="amount">$123</div>
-									</div>
+						<div class="bank-account-container">
+							<div class="bank-account-info">
+								<div class="account-number">
+									Bank Account 1234567890
+								</div>
+								<div class="balance">
+									<div>Balance</div>
+									<div class="amount">$123.45</div>
 								</div>
 							</div>
+							<div class="bank-account-info">
+								<div class="account-number">
+									Bank Account 123456
+								</div>
+								<div class="balance">
+									<div>Balance</div>
+									<div class="amount">$234.56</div>
+								</div>
+							</div>
+							<div class="bank-account-info">
+								<div class="account-number">
+									Bank Account 8472698563
+								</div>
+								<div class="balance">
+									<div>Balance</div>
+									<div class="amount">$10101.01</div>
+								</div>
+							</div>
+						</div>
 
-							<div class="credit-card-container">
-								<div class="credit-card-info">
-									<div class="account-number">
-										Bank Account 8472698563
-									</div>
-									<div class="balance">
-										<div>Available Balance</div> 	<div class="amount">$123</div>
-									</div>
+						<div class="credit-card-container">
+							<div class="credit-card-info">
+								<div class="account-number">
+									Credit Card 1111-2222-3333-4444
+								</div>
+								<div class="balance">
+									<div>Remaining Balance</div>
+									<div class="amount">$1234.56</div>
+								</div>
+							</div>
+							<div class="credit-card-info">
+								<div class="account-number">
+									Credit Card 1234-4321-1234-4321
+								</div>
+								<div class="balance">
+									<div>Remaining Balance</div>
+									<div class="amount">$2345.67</div>
 								</div>
 							</div>
 						</div>
@@ -84,5 +79,7 @@
 				</div>
 			</div>
 		</div>
-  </body>
+	</div>
+</body>
+
 </html>
