@@ -32,9 +32,11 @@ public class RegistrationController {
 
 		if (userService.registerUser(username, password)) {
 			redirectAttributes.addFlashAttribute("successMessage","Registration for " + username + " successful.");
+			redirectAttributes.addFlashAttribute("successMessage2","Please Proceed to Login.");
+
 			return "redirect:/index";
 		} else {
-			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Registration Error! Please try again.");
+			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Registration Error! Possible Username is already in used! Please try again.");
 			return "redirect:/register";
 		}
 	}

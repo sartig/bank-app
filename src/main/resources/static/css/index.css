@@ -18,7 +18,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 20vh;
 }
 
 .top-nav{
@@ -80,58 +80,15 @@ body {
     /* Add styles for your form fields here */
 }
 
-.login-button {
-    width: 120px;
-    height: 60px;
-    top: -606px;
-    left: 1518px;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 1000px;
-    gap: 8px;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    background: #4F46E5;
-    color: #FFFFFF; /* Text color */
-    font-family: Inter;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: -0.02em;
+
+.svg-container {
+    margin-top: 150px;
     text-align: center;
-    margin-right: 20px;
-    transition: background-color 0.3s;
 }
-.login-button:hover {
-    background-color: #473FCE;
-    }
-
-.signup-button {
-    background: #FFFFFF;
-    font-family: Inter;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: -0.02em;
-    text-align: center;
-    width: 120px;
-    height: 60px;
-    border: none;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border: 1px solid #E2E8F0;
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 1000px;
-    gap: 8px;
-    margin-right: 20px;
-    color: #79808A;
-    transition: background-color 0.3s;
-}
-
-.signup-button:hover {
-    background-color: #F8FAFC;
-
-
-
-
-
+.flash-message {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding */
+    margin-bottom: 15px; /* Bottom margin */
+    border-radius: 5px; /* Rounded corners */
 }

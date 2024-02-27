@@ -37,5 +37,10 @@ public class UserController {
         System.out.println(principal.getUsername());
         return "home";
     }
-
+    @GetMapping("/logout-success")
+    public String logoutSuccess(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+        redirectAttributes.addFlashAttribute("logoutMessage2", "See you again!");
+        return "redirect:/index";
+    }
 }

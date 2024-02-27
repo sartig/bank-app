@@ -19,6 +19,8 @@ import org.springframework.security.config.Customizer;
 
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -62,8 +64,9 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/index")
-                        .permitAll())
+                        .logoutSuccessUrl("/logout-success")
+                        .permitAll()
+                )
                 .httpBasic(Customizer.withDefaults())
                 .headers(AbstractHttpConfigurer::disable);
         return http.build();
