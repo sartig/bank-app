@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
  * @version 1.0
  * @since 2022-02-20
  */
+@Entity
 public abstract class Account {
 	/**
      * The unique identifier for the account.
@@ -19,25 +21,25 @@ public abstract class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "accountId")
-	private long accountId;
+	protected long accountId;
 	
 	/**
      * The identifier of the owner of the account.
      */
 	@Column(name = "ownerId")
-	private long ownerId;
+	protected long ownerId;
 	
 	/**
      * The account number associated with this account.
      */
 	@Column(name = "accountNumber")
-	private String accountNumber;
+	protected String accountNumber;
 	
 	/**
      * The current balance of the account.
      */
 	@Column(name = "currentBalance")
-	private double currentBalance;
+	protected double currentBalance;
 	
 	/**
      * Default constructor for Account.

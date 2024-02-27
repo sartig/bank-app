@@ -3,6 +3,7 @@ package com.fdmgroup.CreditCardProject.model;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ import jakarta.persistence.Id;
  * @version 1.0
  * @since 2022-02-20
  */
+@Entity
 public abstract class Transaction {
 	/**
      * The unique identifier for the transaction.
@@ -22,25 +24,25 @@ public abstract class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transactionId")
-	private long transactionId;
+	protected long transactionId;
 	
 	/**
      * The identifier of the account from which the transaction is made.
      */
 	@Column(name = "accountFromId")
-	private long accountFromId;
+	protected long accountFromId;
 	
 	/**
      * The date of the transaction.
      */
 	@Column(name = "date")
-	private Date date;
+	protected Date date;
 	
 	/**
     * The amount involved in the transaction.
     */
 	@Column(name = "amount")
-	private double amount;
+	protected double amount;
 	
 	/**
      * Default constructor for Transaction.
