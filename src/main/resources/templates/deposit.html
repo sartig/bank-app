@@ -19,7 +19,20 @@
     <form action="/deposit" method="post" onsubmit="return validateAmount()">
         <label for="amount">Amount:</label><br>
         <input type="text" id="amount" name="amount" required><br><br>
-
+		<form>
+	        <label for="actions">Deposit/Withdraw</label><br><br>
+	        <select id="actions" name="actions">
+				<option value="" disabled selected>Select</option>
+	            <option value="deposit">Deposit</option>
+	            <option value="withdraw">Withdraw</option>
+	        </select>
+    	</form><br><br>
+    	<form>
+	        <label for="actions">Account</label><br><br>
+	        <select id="actions" name="actions">
+				<option value="" disabled selected>Select</option>
+	        </select>
+    	</form><br><br>
         <button type="submit">Transfer</button>
     </form>
 </body>
