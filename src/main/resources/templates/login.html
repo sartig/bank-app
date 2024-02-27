@@ -6,7 +6,9 @@
 </head>
 <body>
 <div class="container">
-    <h2>Login?</h2>
+    <h2>Login Page</h2>
+<!--    Change location for error message-->
+    <h2 style="color: red;" th:if="${param.error}" th:text="${param.error}"></h2>
     <form method="post" action="login">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>

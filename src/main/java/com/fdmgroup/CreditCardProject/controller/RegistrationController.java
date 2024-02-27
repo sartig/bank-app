@@ -31,11 +31,11 @@ public class RegistrationController {
 	public String registerUser(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
 
 		if (userService.registerUser(username, password)) {
-
-			return "redirect:/login";
+			redirectAttributes.addFlashAttribute("successMessage","Registration for " + username + " successful.");
+			return "redirect:/index";
 		} else {
-			redirectAttributes.addFlashAttribute("successMessage", "Registration successful! Please log in.");
-			return "redirect:/login";
+			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Registration Error! Please try again.");
+			return "redirect:/register";
 		}
 	}
 
