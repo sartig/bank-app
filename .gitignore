@@ -1,8 +1,6 @@
 HELP.md
-/target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -45,7 +43,8 @@ __MACOSX
 /application.properties
 
 ### Logs ###
-/logs/
+*.log
 
 ### Bin ###
 /bin/
+src/main/resources/application.properties
