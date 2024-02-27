@@ -32,10 +32,10 @@ public class BankAccountService {
 	public double getAccountBalanceByBankAccountId(long bankAccountId) {
 		Optional<BankAccount> bankAccount = bankAccountRepo.findByBankAccountId(bankAccountId);
 		if (bankAccount.isPresent()) {
-			log.info("BankAccountServiceSuccess: The current balance of {} was obtained from {}.".formatted(bankAccount.get().getCurrentBalance(),bankAccountId));
+			log.info("BankAccountServiceSuccess: The current balance of {} was obtained from {}.",bankAccount.get().getCurrentBalance(),bankAccountId);
 			return bankAccount.get().getCurrentBalance();
 		}else {
-			log.error("BankAccountServiceError: Could not obtain current balance of {} as it does not exist.".formatted(bankAccountId));
+			log.error("BankAccountServiceError: Could not obtain current balance of {} as it does not exist.",bankAccountId);
 			return 0.0;
 		}
 	}

@@ -31,10 +31,7 @@ public class BankAccountServiceTest {
         long longTest = random.nextLong();
         double doubleTest = random.nextDouble();
     	
-    	// Act
-        bankAccountMock.setCurrentBalance(doubleTest);
-
-        // Assert
+        // Act
         Mockito.when(bankAccountRepo.findByBankAccountId(longTest)).thenReturn(Optional.of(bankAccountMock));
         Mockito.when(bankAccountMock.getCurrentBalance()).thenReturn(doubleTest);
         double result = bankAccountService.getAccountBalanceByBankAccountId(longTest);
