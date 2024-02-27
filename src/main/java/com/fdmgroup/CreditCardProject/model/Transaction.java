@@ -3,10 +3,10 @@ package com.fdmgroup.CreditCardProject.model;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 
 /**
@@ -16,7 +16,7 @@ import jakarta.persistence.Id;
  * @version 1.0
  * @since 2022-02-20
  */
-@Entity
+@MappedSuperclass
 public abstract class Transaction {
 	/**
      * The unique identifier for the transaction.
