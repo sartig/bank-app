@@ -8,7 +8,14 @@
 <body>
 <!--TO BE EDITED-->
 <!--<h2 style="color: orange;"><p th:text="${successMessage}"></p></h2>-->
-    <div th:include="navbar :: navbar"></div>
+
+    <header class="top-nav">
+        <a href="#" class="logo">Logo</a>
+        <nav>
+        </nav>
+    </header>
+<!--include navbar-->
+    <div th:insert="~{navbar :: navbar}"></div>
     <div class="container">
         <div class="content">
             <div class="logo-box">
