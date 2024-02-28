@@ -1,5 +1,9 @@
 package com.fdmgroup.CreditCardProject.controller;
 
+import com.fdmgroup.CreditCardProject.model.BankAccount;
+import com.fdmgroup.CreditCardProject.model.CreditCard;
+import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
+import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +20,10 @@ public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BankAccountRepository bankAccountRepository;
+	@Autowired
+	private CreditCardRepository creditCardRepository;
 
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
@@ -32,6 +40,20 @@ public class RegistrationController {
 		}
 
 		if (userService.registerUser(username, password)) {
+			User user = userService.getUserByUsername(username);
+
+			// Create a new BankAccount for the user
+			BankAccount bankAccount = new BankAccount();
+			bankAccount.setUser(user);
+			bankAccountRepository.save(bankAccount);
+
+			// Create a new CreditCardAccount for the user
+			CreditCard creditCard = new CreditCard();
+			creditCard.setUser(user);
+			creditCard.setMonthlyDueDate((byte) 1); // Set default monthly due date
+			creditCard.setSpendingLimit(500); // Set default spending limit
+			creditCardRepository.save(creditCard);
+
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
 			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");
 
