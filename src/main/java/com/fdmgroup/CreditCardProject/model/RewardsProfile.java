@@ -29,8 +29,12 @@ public class RewardsProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "rewardProfileId")
-	private long rewardProfileId;
-	
+	private Long rewardProfileId;
+
+	public void setRewardProfileId(long rewardProfileId) {
+		this.rewardProfileId = rewardProfileId;
+	}
+
 	/**
      * The conversion percentage used to calculate rewards.
      */
