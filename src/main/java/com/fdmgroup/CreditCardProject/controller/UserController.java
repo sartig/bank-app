@@ -34,7 +34,7 @@ public class UserController {
 
     @GetMapping("/home")
     public String homePage(@AuthenticationPrincipal AuthUser principal) {
-        System.out.println(principal.getUsername());
+        System.out.println(principal.getUsername()); //get username of current user
         return "home";
     }
     @GetMapping("/logout-success")

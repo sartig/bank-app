@@ -19,6 +19,7 @@
         <h2 th:if="${unsuccessfulMessage}" style="color: orange;" th:text="${unsuccessfulMessage}"></h2>
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
         <div class="action-buttons">
         <button type="submit" class="purple-button">Register</button>
         <button type="button" class="white-button" onclick="window.location.href='/index'">Back</button>
