@@ -19,13 +19,19 @@
             }
             return true;
         }
+        
+        function capitalizeFirstLetter(string) {
+        	return string.charAt(0).toUpperCase() + string.slice(1);
+    	}
 
         function showConfirmation() {
             var account = document.getElementById("account").value;
             var amount = document.getElementById("amount").value;
             var action = document.getElementById("actions").value;
 
-            var confirmationMessage = "Transaction confirmation\n\nAccount: " + account + "\nAmount: " + amount + "\nAction: " + action;
+			action = capitalizeFirstLetter(action);
+			
+            var confirmationMessage = "Transaction confirmation\n\nAccount: " + account + "\nAmount: " + amount + "\nDeposit/Withdraw: " + action;
 
             if (confirm(confirmationMessage)) {
                 
@@ -33,6 +39,8 @@
                 
             }
         }
+        
+        
     </script>
 </head>
 
