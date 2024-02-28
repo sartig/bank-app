@@ -45,7 +45,15 @@
 						
 						<div class="transaction-confirmation-box">
 							<h3>Transaction Confirmation</h3>
-							
+							<form action="/deposit" method="post" onsubmit="return validateAmount()">
+								<label for="account">Account</label><br>Bank Account 234242342<br><br>
+								
+								<label for="amount">Amount</label><br><br>$0.00<br><br>
+	
+								<label for="actions">Deposit/Withdraw</label><br><br>Deposit<br><br>
+	
+								<button type="button">Confirm</button>
+							</form>
 							
 						</div>				
 					</div>
