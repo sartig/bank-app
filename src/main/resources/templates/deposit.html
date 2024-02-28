@@ -66,14 +66,17 @@
 					<div class="centered-box">
 						<form action="/deposit" method="post" onsubmit="return validateAmount()">
 							<label for="account">Account</label><br>
-							<input type="text" id="account" name="account" required><br><br>
+							<input type="text" id="account" name="account" placeholder="Bank Account 234242342" value="Bank Account 234242342" 
+									style="background-color: lightgrey; color: black;" required><br><br>
+
+
 
 							<label for="amount">Amount</label><br><br>
-							<input type="text" id="amount" name="amount"><br><br>
+							<input type="text" id="amount" name="amount" placeholder="$123,456,789.00"><br><br>
 
 							<label for="actions">Deposit/Withdraw</label><br><br>
 							<select id="actions" name="actions">
-								<option value="" disabled selected>Select</option>
+								<option value="select" disabled selected>Select</option>
 								<option value="deposit">Deposit</option>
 								<option value="withdraw">Withdraw</option>
 							</select><br><br>
