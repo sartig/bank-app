@@ -27,15 +27,24 @@
 
                     <div class="bank-account-container">
                         <div class="bank-account-info"  th:each="bankAccount : ${user.bankAccounts}">
-                            <div class="account-number" th:text="'Account Number ' + ${bankAccount.accountNumber}">
-                            </div>
+                            <div class="account-number" th:text="'Account Number ' + ${bankAccount.accountNumber}"> </div>
                             <div class="balance">
                                 <div>Balance</div>
-                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"> </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- <div class="credit-card-container">
+                        <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
+                            <div class="account-number" th:text="'Credit Card ' + ${creditCard.accountNumber}">
+                            </div>
+                            <div class="balance">
+                                <div>Remaining Balance</div>
+                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="credit-card-container">
                         <div class="credit-card-info">
                             <div class="account-number">
