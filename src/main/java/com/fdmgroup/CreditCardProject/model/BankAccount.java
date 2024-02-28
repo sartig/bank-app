@@ -31,10 +31,6 @@ public class BankAccount extends Account {
 	/**
      * The user associated with this bank account.
      */
-	@ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
-	
 	/**
      * Default constructor for BankAccount.
      * Creates an instance with default values.
@@ -70,5 +66,16 @@ public class BankAccount extends Account {
 	public void setTransactionHistory(List<BankTransaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
 	}
-	
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

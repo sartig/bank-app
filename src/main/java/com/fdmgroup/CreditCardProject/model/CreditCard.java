@@ -136,5 +136,15 @@ public class CreditCard extends Account{
 	public void setRewardProfile(RewardsProfile rewardProfile) {
 		this.rewardProfile = rewardProfile;
 	}
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
