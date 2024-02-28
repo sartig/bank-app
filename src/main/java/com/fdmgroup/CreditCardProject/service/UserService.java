@@ -21,7 +21,6 @@ public class UserService {
 		if(userRepository.existsByUsername(username)) {
 			return false;
 		}
-
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(passwordEncoder.encode(password));
@@ -29,12 +28,4 @@ public class UserService {
 		return true;
 	}
 
-    public boolean verifyUser(String username, String password) {
-		Optional<User> user = userRepository.findByUsername(username);
-		if(user.isEmpty()){
-			return false;
-		}else{
-			return user.get().getPassword().equals(password);
-		}
-    }
 }
