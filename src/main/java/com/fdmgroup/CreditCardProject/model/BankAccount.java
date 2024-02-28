@@ -2,12 +2,7 @@ package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * Represents a bank account entity, extending the base class Account.
@@ -21,6 +16,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "`BankAccount`")
 public class BankAccount extends Account {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "bankAccountId")
+	private long bankAccountId;
 	
 	 /**
      * The transaction history associated with this bank account.

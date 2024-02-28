@@ -2,11 +2,7 @@ package com.fdmgroup.CreditCardProject.model;
 
 import java.sql.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 /**
@@ -21,7 +17,13 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "`BankTransaction`")
 public class BankTransaction extends Transaction{
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "bankTransactionId")
+	private long bankTransactionId;
+
+
 	/**
      * The identifier of the account to which the transaction is made.
      */

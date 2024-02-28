@@ -2,12 +2,7 @@ package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * Represents a credit card account with associated transaction history,
@@ -19,6 +14,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "`Credit Card`")
 public class CreditCard extends Account{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "creditCardId")
+	private long creditCardId;
 	/**
      * The due date for monthly payments.
      */
