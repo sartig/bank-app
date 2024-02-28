@@ -11,39 +11,49 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     
     <script>
-        function validateAmount() {
-	        var amount = document.getElementById("amount").value;
-	        
-	        if (amount === "" || amount < 1) {
-	            alert("Value of currency entered must be at least 1");
-	            return false;
-	        }
-	        
-	        return true;
+    function validateAmount() {
+	    var amount = document.getElementById("amount").value;
+	
+	    if (amount === "") {
+	        alert("Please enter a value for the amount.");
+	        return false;
 	    }
-        
-        function capitalizeFirstLetter(string) {
-        	return string.charAt(0).toUpperCase() + string.slice(1);
-    	}
+	
+	    if (isNaN(amount)) {
+	        alert("Please enter a valid number for the amount.");
+	        return false;
+	    }
+	
+	    if (parseFloat(amount) < 1) {
+	        alert("Value of currency entered must be at least 1.");
+	        return false;
+	    }
+	
+	    return true;
+	}
 
-        function showConfirmation() {
-            var account = document.getElementById("account").value;
-            var amount = document.getElementById("amount").value;
-            var action = document.getElementById("actions").value;
 
-			action = capitalizeFirstLetter(action);
-			
-            var confirmationMessage = "Transaction confirmation\n\nAccount: 234242342" + "\nAmount: " + amount + "\nDeposit/Withdraw: " + action;
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
-            if (confirm(confirmationMessage)) {
-                
-            } else {
-                
-            }
+    function showConfirmation() {
+        var account = document.getElementById("account").value;
+        var amount = document.getElementById("amount").value;
+        var action = document.getElementById("actions").value;
+
+        action = capitalizeFirstLetter(action);
+
+        var confirmationMessage = "Transaction confirmation\n\nAccount: 234242342" + "\nAmount: " + amount + "\nDeposit/Withdraw: " + action;
+
+        if (confirm(confirmationMessage)) {
+
+        } else {
+
         }
-        
-        
-    </script>
+    }
+</script>
+
 </head>
 
 <body>

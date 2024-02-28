@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class DepositController {
 
-	/**
-	 * Goes to the Deposit page
-	 * 
-	 * @return name of the deposit page
-	 */
 	@GetMapping("/deposit/{accountId}")
 	public String goToDepositPage(@PathVariable String accountId, Model model) {
 
@@ -26,18 +21,18 @@ public class DepositController {
 		return "deposit";
 	}
 	
-	/**
-	 * NOTE: To be removed.
-	 * Goes to the Deposit page
-	 * 
-	 * @return name of the deposit page
-	 */
 	@GetMapping("/deposit")
 	public String goToDepositPage() {
 		return "deposit";
 	}
 
+	@GetMapping("/transactionConfirmation")
+	public String goToTransactionConfirmationPage() {
+		return "transactionConfirmation";
+	}
+	
 	@PostMapping("/deposit/{accountId}")
+	
 	public String handleDepositRequest(@PathVariable String accountId, @RequestParam String amount,
 			@RequestParam String actions, Model model) {
 		if (actions.equals("withdraw")) {
