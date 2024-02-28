@@ -15,12 +15,26 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "`BankAccount`")
-public class BankAccount extends Account {
-
+public class BankAccount {
+	/**
+     * The unique identifier for the account.
+     */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "bankAccountId")
-	private long bankAccountId;
+	private long accountId;
+	
+	/**
+     * The account number associated with this account.
+     */
+	@Column(name = "accountNumber")
+	private String accountNumber;
+	
+	/**
+     * The current balance of the account.
+     */
+	@Column(name = "currentBalance")
+	private double currentBalance;
 	
 	 /**
      * The transaction history associated with this bank account.
@@ -49,12 +63,20 @@ public class BankAccount extends Account {
      * @param accountNumber  The account number of the bank account.
      * @param currentBalance The current balance of the bank account.
      */
-	public BankAccount(long ownerId, String accountNumber, double currentBalance) {
-		setOwnerId(ownerId);
+	public BankAccount(User user, String accountNumber, double currentBalance) {
+		setUser(user);
 		setAccountNumber(accountNumber);
 		setCurrentBalance(currentBalance);
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	/**
      * Gets the transaction history associated with this bank account.
      * @return The list of bank transactions in the transaction history.
@@ -69,6 +91,46 @@ public class BankAccount extends Account {
      */
 	public void setTransactionHistory(List<BankTransaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
+	}
+
+	/**
+     * Gets the account number associated with this account.
+     * @return The accountNumber.
+     */
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	/**
+     * Sets the account number associated with this account.
+     * @param accountNumber The accountNumber to set.
+     */
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	/**
+     * Gets the current balance of the account.
+     * @return The currentBalance.
+     */
+	public double getCurrentBalance() {
+		return currentBalance;
+	}
+
+	/**
+     * Sets the current balance of the account.
+     * @param currentBalance The currentBalance to set.
+     */
+	public void setCurrentBalance(double currentBalance) {
+		this.currentBalance = currentBalance;
+	}
+
+	/**
+     * Gets the unique identifier for the account.
+     * @return The accountId.
+     */
+	public long getAccountId() {
+		return accountId;
 	}
 	
 }
