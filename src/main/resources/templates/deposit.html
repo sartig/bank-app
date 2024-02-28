@@ -5,55 +5,10 @@
     
     <div th:replace="navbar :: head"></div>
 	<meta charset="UTF-8">
-	<title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     
-    <script>
-    function validateAmount() {
-	    var amount = document.getElementById("amount").value;
-	
-	    if (amount === "") {
-	        alert("Please enter a value for the amount.");
-	        return false;
-	    }
-	
-	    if (isNaN(amount)) {
-	        alert("Please enter a valid number for the amount.");
-	        return false;
-	    }
-	
-	    if (parseFloat(amount) < 1) {
-	        alert("Value of currency entered must be at least 1.");
-	        return false;
-	    }
-	
-	    return true;
-	}
-
-
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    function showConfirmation() {
-        var account = document.getElementById("account").value;
-        var amount = document.getElementById("amount").value;
-        var action = document.getElementById("actions").value;
-
-        action = capitalizeFirstLetter(action);
-
-        var confirmationMessage = "Transaction confirmation\n\nAccount: 234242342" + "\nAmount: " + amount + "\nDeposit/Withdraw: " + action;
-
-        if (confirm(confirmationMessage)) {
-
-        } else {
-
-        }
-    }
-</script>
-
 </head>
 
 <body>
@@ -79,9 +34,6 @@
 							<input type="text" id="account" name="account" placeholder="Bank Account 234242342" 
        							style="background-color: lightgrey; color: black;" disabled><br><br>
 
-
-
-
 							<label for="amount">Amount</label><br><br>
 							<input type="text" id="amount" name="amount" placeholder="$0.00"><br><br>
 
@@ -92,25 +44,12 @@
 								<option value="withdraw">Withdraw</option>
 							</select><br><br>
 
-							<button type="button" onclick="showConfirmation()">Send Request</button>
+							<button type="button">Send Request</button>
 						</form>
 					</div>					
 				</div>
 			</div>
 		</div>
-		
-        <!-- Modal for Transaction Confirmation -->
-        <div id="modal" style="display: none;">
-            <h2>Transaction Confirmation</h2>
-            <p>Account: <span id="modalAccount"></span></p>
-            <p>Amount: <span id="modalAmount"></span></p>
-            <p>Action: <span id="modalAction"></span></p>
-
-            <button onclick="">Confirm</button>
-            <button onclick="">Cancel</button>
-        </div>
-
-    </div>
 
 </body>
 </html>
