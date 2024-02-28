@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -33,8 +34,13 @@ public class UserController {
 
     @GetMapping("/home")
     public String homePage(@AuthenticationPrincipal AuthUser principal) {
-        System.out.println(principal.getUsername());
+        System.out.println(principal.getUsername()); //get username of current user
         return "home";
     }
-
+    @GetMapping("/logout-success")
+    public String logoutSuccess(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+        redirectAttributes.addFlashAttribute("logoutMessage2", "See you again!");
+        return "redirect:/index";
+    }
 }

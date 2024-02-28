@@ -28,14 +28,21 @@ public class RegistrationController {
 	}
 
 	@PostMapping("/register")
-	public String registerUser(@RequestParam String username, @RequestParam String password, RedirectAttributes redirectAttributes) {
+	public String registerUser(@RequestParam String username, @RequestParam String password, @RequestParam String confirmPassword, RedirectAttributes redirectAttributes) {
+
+		if (!password.equals(confirmPassword)) {
+			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Passwords do not match. Please try again.");
+			return "redirect:/register";
+		}
 
 		if (userService.registerUser(username, password)) {
+			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
+			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");
 
-			return "redirect:/login";
+			return "redirect:/index";
 		} else {
-			redirectAttributes.addFlashAttribute("successMessage", "Registration successful! Please log in.");
-			return "redirect:/login";
+			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Registration Error! Possible Username is already in use! Please try again.");
+			return "redirect:/register";
 		}
 	}
 

@@ -1,40 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--    <div th:replace="navbar :: head"></div>-->
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}" type="text/css">
+    <title>Index Page</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-<!--TO BE EDITED-->
-<!--<h2 style="color: orange;"><p th:text="${successMessage}"></p></h2>-->
-
-    <header class="top-nav">
-        <a href="#" class="logo">Logo</a>
-        <nav>
-        </nav>
-    </header>
-<!--include navbar-->
-    <div th:insert="~{navbar :: navbar}"></div>
-    <div class="container">
+<div class="container">
         <div class="content">
-            <div class="logo-box">
-                <!-- <img src="https://via.placeholder.com/150" alt="Logo"> -->
+            <div class="svg-container">
+                <img src="/svg/iconblack.svg" alt="Icon" width="350" height="350">
             </div>
+            <h2 th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}" style="color: #4F46E5; font-size: 40px;">
+                Welcome to FDM Bank!
+            </h2>
+            <h2 th:text="${logoutMessage}" style="color: #4F46E5;"></h2>
+            <h2 th:text="${logoutMessage2}" style="color: #080325;"></h2>
+            <h2 th:text="${successMessage}" style="color: #4F46E5;"></h2>
+            <h2 th:text="${successMessage2}" style="color: #080325;"></h2>
             <div class="action-buttons">
-                <a href="login"><button>Log In</button></a>
-                <a href="register"><button>Sign Up</button></a>
+                <a href="login"><button class="purple-button">Login</button></a>
+                <a href="register"><button class="white-button">Sign Up</button></a>
             </div>
-
         </div>
-    </div>
-
-<!--
-container - for primary content
-logo box = to take care of the company logo which will ink to index
-action buttons = for login and sign up
-
--->
+</div>
 
 </body>
 </html>
+
+<!--    <div th:replace="navbar :: body"></div>-->
