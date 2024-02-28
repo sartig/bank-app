@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
+import java.util.Random;
 
 import jakarta.persistence.*;
 
@@ -54,9 +55,19 @@ public class BankAccount {
      * Creates an instance with default values.
      */
 	public BankAccount() {
-		super();
+		// Generate a random 16-digit account number
+		this.accountNumber = generateAccountNumber();
 	}
-	
+
+	private String generateAccountNumber() {
+		Random random = new Random();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 16; i++) {
+			sb.append(random.nextInt(10));
+		}
+		return sb.toString();
+	}
+
 	/**
      * Parameterized constructor for BankAccount.
      * @param ownerId        The identifier of the owner of the bank account.

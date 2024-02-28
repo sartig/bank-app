@@ -24,11 +24,7 @@ public class CreditCard {
 	@Column(name = "creditCardId")
 	private long accountId;
 
-	/**
-	 * The identifier of the owner of the account.
-	 */
-	@Column(name = "ownerId")
-	private long ownerId;
+
 
 	/**
 	 * The account number associated with this account.
@@ -169,23 +165,7 @@ public class CreditCard {
 		this.rewardProfile = rewardProfile;
 	}
 
-	/**
-	 * Gets the identifier of the owner of the account.
-	 * 
-	 * @return The ownerId.
-	 */
-	public long getOwnerId() {
-		return ownerId;
-	}
 
-	/**
-	 * Sets the identifier of the owner of the account.
-	 * 
-	 * @param ownerId The ownerId to set.
-	 */
-	public void setOwnerId(long ownerId) {
-		this.ownerId = ownerId;
-	}
 
 	/**
 	 * Gets the account number associated with this account.

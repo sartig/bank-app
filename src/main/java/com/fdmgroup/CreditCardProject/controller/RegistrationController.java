@@ -2,8 +2,10 @@ package com.fdmgroup.CreditCardProject.controller;
 
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
+import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
+import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ public class RegistrationController {
 	private BankAccountRepository bankAccountRepository;
 	@Autowired
 	private CreditCardRepository creditCardRepository;
+	@Autowired
+	private RewardsProfileRepository rewardsProfileRepository;
 
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
@@ -47,12 +51,26 @@ public class RegistrationController {
 			bankAccount.setUser(user);
 			bankAccountRepository.save(bankAccount);
 
-			// Create a new CreditCardAccount for the user
+			RewardsProfile rewardsProfile = new RewardsProfile();
+			rewardsProfile.setRewardProfileId(1);
+			rewardsProfileRepository.save(rewardsProfile);
+
 			CreditCard creditCard = new CreditCard();
 			creditCard.setUser(user);
-			creditCard.setMonthlyDueDate((byte) 1); // Set default monthly due date
-			creditCard.setSpendingLimit(500); // Set default spending limit
+			creditCard.setMonthlyDueDate((byte) 1);
+			creditCard.setSpendingLimit(500);
+			creditCard.setRewardProfile(rewardsProfile);// Associate the RewardsProfile with the CreditCard
+
+// Save the CreditCard entity
 			creditCardRepository.save(creditCard);
+
+
+//			// Create a new CreditCardAccount for the user
+//			CreditCard creditCard = new CreditCard();
+//			creditCard.setUser(user);
+//			creditCard.setMonthlyDueDate((byte) 1);
+//			creditCard.setSpendingLimit(500);
+//			creditCardRepository.save(creditCard);
 
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
 			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");
