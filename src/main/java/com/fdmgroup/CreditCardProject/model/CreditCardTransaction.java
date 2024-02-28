@@ -1,7 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.sql.Date;
-
 import jakarta.persistence.*;
 
 /**
