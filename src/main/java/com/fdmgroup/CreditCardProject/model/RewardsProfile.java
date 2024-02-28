@@ -39,17 +39,10 @@ public class RewardsProfile {
 	@Column(name = "conversionPercentage")
 	private double conversionPercentage;
 	
-	/**
-     * The credit card associated with the reward profile.
-     */
-    @OneToOne
-    @JoinColumn(name = "creditCardId")
-    private CreditCard creditCard;
-	
     /**
      * The list of valid merchant category codes for rewards.
      */
-    @OneToMany(mappedBy = "rewardsProfile", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
 	private List<MerchantCategoryCode> validCategories;
 	
     /**

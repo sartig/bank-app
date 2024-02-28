@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -39,13 +37,6 @@ public class MerchantCategoryCode {
      */
 	@Column(name = "categoryName")
 	private String categoryName;
-	
-	/**
-     * The reward profile associated with the merchant category code.
-     */
-    @ManyToOne
-    @JoinColumn(name = "rewardsProfileId")
-    private RewardsProfile rewardsProfile;
 	
 	/**
      * Default constructor for MerchantCategoryCode.
