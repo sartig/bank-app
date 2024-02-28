@@ -1,0 +1,83 @@
+body,
+
+.bank-account-container-main {
+    display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px 24px;
+	gap: 21px;
+	width: 1044px;
+	height: 160px;
+}
+
+.bank-account-container-main-accountId {
+    display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 16px;
+	width: 462px;
+	height: 32px;
+}
+
+.bank-account-container-main-accountbalance {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 0px;
+	gap: 21px;
+	width: 996px;
+	height: 40px;
+}
+
+.bank-account-button-container {
+    display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 0px;
+	width: 1044px;
+	height: 124px;
+}
+
+.bank-account-button-box {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 23px 274px;
+	gap: 14px;
+	width: 522px;
+	height: 124px;
+	border: 1px solid #E2E8F0;
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+}
+
+.bank-account-button {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+	gap: 4px;
+	width: 40px;
+	height: 40px;
+	background: #4F46E5;
+	border-radius: 1000px;
+}
+
+.bank-account-button-text {
+   	width: 71px;
+	height: 24px;
+	color: #4F46E5;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+
+
+
+

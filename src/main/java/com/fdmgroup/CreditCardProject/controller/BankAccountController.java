@@ -27,9 +27,11 @@ public class BankAccountController {
 	
 	@GetMapping("/bankaccount/{selectedBankAccountId}")
 	public String displayBankAccountBalance(@PathVariable long selectedBankAccountId, Model model) {
-		if (selectedBankAccountId != 0) {
+		long bankAccountId = selectedBankAccountId;
+		if (bankAccountId != 0) {
 			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountId(selectedBankAccountId);
-			model.addAttribute("bankAccountBalance", bankAccountBalance);	
+			model.addAttribute("bankAccountBalance", bankAccountBalance);
+			model.addAttribute("bankAccountId", bankAccountId);
 		}else {
 			model.addAttribute("bankAccountBalance", "N/A");
 		}
