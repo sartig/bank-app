@@ -15,4 +15,14 @@ public class DepositController {
 	public String goToDepositPage() {
 		return "deposit";
 	}
+	
+	@GetMapping("/deposit/receipt")
+	public String goToDepositReceiptPage() {
+		return "depositReceipt";
+	}
+	
+	@GetMapping("/dashboard")
+	public String dashboard() {
+		return "dashboard";
+	}
 }
