@@ -56,6 +56,7 @@ public class RegistrationController {
 			rewardsProfile.setRewardProfileId(1);
 			rewardsProfileRepository.save(rewardsProfile);
 
+
 // Retrieve the managed RewardsProfile instance from the database
 			RewardsProfile managedRewardsProfile = rewardsProfileRepository.findById(1L)
 					.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
