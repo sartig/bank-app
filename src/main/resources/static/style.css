@@ -29,7 +29,7 @@ html {
 .page-top-container {
     height: 85px;
     width: 100%;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid black;
 }
 
 .container {
@@ -117,12 +117,28 @@ html {
 }
 
 .centered-box {
-	width: 200px;
+	font-family: Inter;
+	width: 300px;
 	height: 300px;
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid black;
     padding: 40px;
+}
+
+button {
+	font-family: Inter;
+	width: 150px;
+    height: 50px;
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+}
+
+select {
+	width: 100%;
+    background-color: white;
+    color: black;
 }
