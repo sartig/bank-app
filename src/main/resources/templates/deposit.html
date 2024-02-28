@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-	
 <head xmlns:th="http://www.thymeleaf.org">
     <title>Deposit/Withdraw</title>
     
-    <div  th:replace="navbar :: head"></div>
+    <div th:replace="navbar :: head"></div>
 	<meta charset="UTF-8">
 	<title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
@@ -20,8 +19,21 @@
             }
             return true;
         }
+
+        function showConfirmation() {
+            var account = document.getElementById("account").value;
+            var amount = document.getElementById("amount").value;
+            var action = document.getElementById("actions").value;
+
+            var confirmationMessage = "Transaction confirmation\n\nAccount: " + account + "\nAmount: " + amount + "\nAction: " + action;
+
+            if (confirm(confirmationMessage)) {
+                
+            } else {
+                
+            }
+        }
     </script>
-    
 </head>
 
 <body>
@@ -43,33 +55,38 @@
 					
 					<div class="centered-box">
 						<form action="/deposit" method="post" onsubmit="return validateAmount()">
-							<label for="amount">Amount:</label><br>
-							        <input type="text" id="amount" name="amount" required><br><br>
-							     
-							
-						    <form>
-							        <label for="actions">Deposit/Withdraw</label><br><br>
-							        <select id="actions" name="actions">
-										<option value="" disabled selected>Select</option>
-							            <option value="deposit">Deposit</option>
-							            <option value="withdraw">Withdraw</option>
-							        </select>
-						    </form><br><br>
-						    
-						    <form>
-							        <label for="actions">Account</label><br><br>
-							        <select id="actions" name="actions">
-										<option value="" disabled selected>Select</option>
-							        </select>
-						    </form><br><br>
-						    	
-						    <button type="submit">Send Request</button>
-		  				</form>
-					</div>
-					
+							<label for="account">Account</label><br>
+							<input type="text" id="account" name="account" required><br><br>
+
+							<label for="amount">Amount</label><br><br>
+							<input type="text" id="amount" name="amount"><br><br>
+
+							<label for="actions">Deposit/Withdraw</label><br><br>
+							<select id="actions" name="actions">
+								<option value="" disabled selected>Select</option>
+								<option value="deposit">Deposit</option>
+								<option value="withdraw">Withdraw</option>
+							</select><br><br>
+
+							<button type="button" onclick="showConfirmation()">Send Request</button>
+						</form>
+					</div>					
 				</div>
 			</div>
 		</div>
-	</div>
+		
+        <!-- Modal for Transaction Confirmation -->
+        <div id="modal" style="display: none;">
+            <h2>Transaction Confirmation</h2>
+            <p>Account: <span id="modalAccount"></span></p>
+            <p>Amount: <span id="modalAmount"></span></p>
+            <p>Action: <span id="modalAction"></span></p>
+
+            <button onclick="">Confirm</button>
+            <button onclick="">Cancel</button>
+        </div>
+
+    </div>
+
 </body>
 </html>
