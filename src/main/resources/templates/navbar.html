@@ -11,7 +11,7 @@
 <body>
     <div th:fragment="body" class="navbar">
 
-        <div class="left-menu">
+        <div class="left-menu" th:object="${user}">
             <div>
                 <div class="left-menu-top">
                     <img src="/svg/icon.svg">
@@ -26,19 +26,9 @@
                         <i class="fas fa-money-bill"></i>
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
-                    <div class="left-menu-sub-button">
-                        <div class="left-menu-sub-button-text">
-                            1234567890
-                        </div>
-                    </div>
-                    <div class="left-menu-sub-button">
-                        <div class="left-menu-sub-button-text">
-                            123456
-                        </div>
-                    </div>
-                    <div class="left-menu-sub-button">
-                        <div class="left-menu-sub-button-text">
-                            8472698563
+                    <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
+                        <div class="left-menu-sub-button-text" th:text="${bankAccount.accountNumber}">
+                            
                         </div>
                     </div>
 
