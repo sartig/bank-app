@@ -6,6 +6,7 @@ import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,22 +56,18 @@ public class RegistrationController {
 			rewardsProfile.setRewardProfileId(1);
 			rewardsProfileRepository.save(rewardsProfile);
 
+
+// Retrieve the managed RewardsProfile instance from the database
+			RewardsProfile managedRewardsProfile = rewardsProfileRepository.findById(1L)
+					.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
+
+// Create a new CreditCardAccount for the user
 			CreditCard creditCard = new CreditCard();
 			creditCard.setUser(user);
 			creditCard.setMonthlyDueDate((byte) 1);
 			creditCard.setSpendingLimit(500);
-			creditCard.setRewardProfile(rewardsProfile);// Associate the RewardsProfile with the CreditCard
-
-// Save the CreditCard entity
+			creditCard.setRewardProfile(managedRewardsProfile); // Use the managed instance
 			creditCardRepository.save(creditCard);
-
-
-//			// Create a new CreditCardAccount for the user
-//			CreditCard creditCard = new CreditCard();
-//			creditCard.setUser(user);
-//			creditCard.setMonthlyDueDate((byte) 1);
-//			creditCard.setSpendingLimit(500);
-//			creditCardRepository.save(creditCard);
 
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
 			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");

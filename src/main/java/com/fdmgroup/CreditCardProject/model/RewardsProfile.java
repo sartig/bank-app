@@ -46,6 +46,9 @@ public class RewardsProfile {
      */
     @OneToMany(cascade = CascadeType.ALL)
 	private List<MerchantCategoryCode> validCategories;
+
+//	@OneToMany(mappedBy = "rewardsProfile", cascade = CascadeType.ALL)
+//	private List<CreditCard> creditCards;
 	
     /**
      * Default constructor for creating a RewardsProfile instance.
