@@ -32,31 +32,31 @@
 							Time
 						</div>
 						<div class="transaction-form-content">
-							08 Jan, 2024 00:00
+							<span th:text="${time}"></span>
 						</div>
 						<div class="transaction-form-title">
 							Transaction ID
 						</div>
 						<div class="transaction-form-content">
-							1234567889000000
+							<span th:text="${id}"></span>
 						</div>
 						<div class="transaction-form-title">
 							Source
 						</div>
 						<div class="transaction-form-content">
-							Cash
+							<span th:text="${source}"></span>
 						</div>
 						<div class="transaction-form-title">
 							Transaction Type
 						</div>
 						<div class="transaction-form-content">
-							Deposit
+							<span th:text="${type}"></span>
 						</div>
 						<div class="transaction-form-title">
 							Amount
 						</div>
 						<div class="transaction-form-content">
-							$123,456,789.00
+							<span th:text="'$' + ${#numbers.formatDecimal(amount,0,'COMMA',2,'POINT')}"></span>
 						</div>
 					</div>
 
