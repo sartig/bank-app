@@ -25,6 +25,17 @@ public class DepositController {
 		model.addAttribute("accountId", accountId);
 		return "deposit";
 	}
+	
+	/**
+	 * NOTE: To be removed.
+	 * Goes to the Deposit page
+	 * 
+	 * @return name of the deposit page
+	 */
+	@GetMapping("/deposit")
+	public String goToDepositPage() {
+		return "deposit";
+	}
 
 	@PostMapping("/deposit/{accountId}")
 	public String handleDepositRequest(@PathVariable String accountId, @RequestParam String amount,
