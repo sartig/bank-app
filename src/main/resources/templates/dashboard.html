@@ -14,9 +14,9 @@
 
     <div th:replace="navbar :: body"></div>
 
-    <div class="content">
+    <div class="content" th:object="${user}">
         <div class="page-top-container"> </div>
-        <div class="container">
+        <div class="container" >
             <div class="content-container">
                 <div class="title">
                     <div class="page-title">Dashboard</div>
@@ -26,31 +26,12 @@
                 <div class="info-container">
 
                     <div class="bank-account-container">
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 1234567890
+                        <div class="bank-account-info"  th:each="bankAccount : ${user.bankAccounts}">
+                            <div class="account-number" th:text="'Account Number ' + ${bankAccount.accountNumber}">
                             </div>
                             <div class="balance">
                                 <div>Balance</div>
-                                <div class="amount">$123.45</div>
-                            </div>
-                        </div>
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 123456
-                            </div>
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="amount">$234.56</div>
-                            </div>
-                        </div>
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 8472698563
-                            </div>
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="amount">$10101.01</div>
+                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
                             </div>
                         </div>
                     </div>
