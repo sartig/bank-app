@@ -1,72 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head xmlns:th="http://www.thymeleaf.org">
-    <title>Transaction Confirmation</title>
-    
+    <title>Transaction Confirmation</title>  
     <div th:replace="navbar :: head"></div>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
- 
-
 </head>
 
 <body>
+	<div class="transaction-confirmation-page-background">
+		<div class="main-container">
+			<div th:replace="navbar :: body"></div>
+			<div class="content">
+				<div class="page-top-container"> </div>
+				<div class="container">
+					<div class="content-container">
+						<div class="title">
+							<div class="page-title">Bank Account - Deposit/Withdraw</div>
+							<div class="page-subtitle">Easily deposit or withdraw funds online</div>
+						</div>
+						
+						<div class="page-below-title-container"></div>
+						<div class="centered-box">
+							<form action="/deposit" method="post" onsubmit="return validateAmount()">
+								<label for="account">Account</label><br>
+								<input type="text" id="account" name="account" placeholder="Bank Account 234242342" 
+	       							style="background-color: lightgrey; color: black;" disabled><br><br>
 	
-	<div class="main-container">
-		
-		<div th:replace="navbar :: body"></div>
-
-		<div class="content">
-			<div class="page-top-container"> </div>
-			<div class="container">
-				<div class="content-container">
-					<div class="title">
-						<div class="page-title">Bank Account - Deposit/Withdraw</div>
-						<div class="page-subtitle">Easily deposit or withdraw funds online</div>
+								<label for="amount">Amount</label><br><br>
+								<input type="text" id="amount" name="amount" placeholder="$0.00"><br><br>
+	
+								<label for="actions">Deposit/Withdraw</label><br><br>
+								<select id="actions" name="actions">
+									<option value="select" disabled selected>Select</option>
+									<option value="deposit">Deposit</option>
+									<option value="withdraw">Withdraw</option>
+								</select><br><br>
+	
+								<button type="button">Send Request</button>
+							</form>
+						</div>	
+						
+						<div class="transaction-confirmation-box"></div>				
 					</div>
-					
-					<div class="page-below-title-container"></div>
-					
-					<div class="centered-box">
-						<form action="/deposit" method="post" onsubmit="return validateAmount()">
-							<label for="account">Account</label><br>
-							<input type="text" id="account" name="account" placeholder="Bank Account 234242342" 
-       							style="background-color: lightgrey; color: black;" disabled><br><br>
-
-
-
-
-							<label for="amount">Amount</label><br><br>
-							<input type="text" id="amount" name="amount" placeholder="$0.00"><br><br>
-
-							<label for="actions">Deposit/Withdraw</label><br><br>
-							<select id="actions" name="actions">
-								<option value="select" disabled selected>Select</option>
-								<option value="deposit">Deposit</option>
-								<option value="withdraw">Withdraw</option>
-							</select><br><br>
-
-							<button type="button" onclick="showConfirmation()">Send Request</button>
-						</form>
-					</div>					
 				</div>
 			</div>
 		</div>
-		
-        <!-- Modal for Transaction Confirmation -->
-        <div id="modal" style="display: none;">
-            <h2>Transaction Confirmation</h2>
-            <p>Account: <span id="modalAccount"></span></p>
-            <p>Amount: <span id="modalAmount"></span></p>
-            <p>Action: <span id="modalAction"></span></p>
-
-            <button onclick="">Confirm</button>
-            <button onclick="">Cancel</button>
-        </div>
-
-    </div>
-
 </body>
 </html>
