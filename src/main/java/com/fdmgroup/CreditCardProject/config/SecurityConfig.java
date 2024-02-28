@@ -58,7 +58,7 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                         .failureHandler(authenticationFailureHandler()) // Set custom AuthenticationFailureHandler
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/dashboard", true)
                 )
                 .logout(logout -> logout
                         .invalidateHttpSession(true)

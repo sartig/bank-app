@@ -32,11 +32,6 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/home")
-    public String homePage(@AuthenticationPrincipal AuthUser principal) {
-        System.out.println(principal.getUsername()); //get username of current user
-        return "home";
-    }
     @GetMapping("/logout-success")
     public String logoutSuccess(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
