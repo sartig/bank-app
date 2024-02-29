@@ -28,7 +28,7 @@ public class BankAccount {
 	/**
      * The account number associated with this account.
      */
-	@Column(name = "accountNumber")
+	@Column(name = "accountNumber", unique = true)
 	private String accountNumber;
 	
 	/**
