@@ -37,12 +37,12 @@
     flex-direction: row;
     align-items: center;
     padding: 20px;
+    user-select: none;
 }
 
 .left-menu-title {
     padding-bottom: 10px;
 }
-
 
 .left-menu-sub-button {
     width: 75%;
@@ -54,12 +54,9 @@
     padding: 10px;
 }
 
-.left-menu-button:hover {
+.left-menu-button:hover,.left-menu-sub-button:hover {
     background-color: #191A38;
-}
-
-.left-menu-sub-button:hover {
-    background-color: #191A38;
+    cursor: pointer;
 }
 
 .left-menu-button>i,
