@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 
+import java.util.Optional;
+
 @Repository
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
 
-    CreditCard findByAccountNumber(String accountNumber);
+    Optional <CreditCard> findByAccountNumber(String accountNumber);
 }

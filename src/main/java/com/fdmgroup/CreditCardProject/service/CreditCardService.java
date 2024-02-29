@@ -42,7 +42,7 @@ public class CreditCardService {
 	}
 
 	private boolean isAccountNumberUnique(String accountNumber) {
-		return creditCardRepository.findByAccountNumber(accountNumber) == null;
+		return creditCardRepository.findByAccountNumber(accountNumber).isEmpty();
 	}
 
 	private String generateAccountNumber() {

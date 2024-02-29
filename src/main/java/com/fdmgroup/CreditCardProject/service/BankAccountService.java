@@ -30,7 +30,7 @@ public class BankAccountService {
 	}
 
 	private boolean isAccountNumberUnique(String accountNumber) {
-		return bankAccountRepository.findByAccountNumber(accountNumber) == null;
+		return bankAccountRepository.findByAccountNumber(accountNumber).isEmpty();
 	}
 
 	private String generateAccountNumber() {
