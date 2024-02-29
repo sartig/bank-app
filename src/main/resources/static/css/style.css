@@ -115,6 +115,10 @@ html {
 
 }
 
+.hoverable:hover {
+    color: blue;
+}
+
 .amount {
     font-size: 28px;
     font-weight: 300;
