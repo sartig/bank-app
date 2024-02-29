@@ -25,7 +25,14 @@ public class DepositController {
 	public String goToDepositPage() {
 		return "deposit";
 	}
-
+	
+	/*
+	@PostMapping("/deposit")
+	public String goToDepositPopup() {
+		return "depositPopup";
+	}
+	*/
+	
 	@GetMapping("/depositConfirmation")
 	public String goToDepositConfirmationPage() {
 		return "depositConfirmation";
