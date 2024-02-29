@@ -117,15 +117,33 @@ html {
 }
 
 .centered-box {
-	font-family: Inter;
-	width: 450px;
-	height: 300px;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid black;
-    padding: 40px;
+	/* Form */
+	
+	box-sizing: border-box;
+	
+	/* Auto layout */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 24px;
+	gap: 24px;
+	
+	position: absolute;
+	width: 620px;
+	height: 430px;
+	left: 560px;
+	top: 248px;
+	
+	/* Base/White */
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
 }
 
 button {
@@ -191,3 +209,226 @@ input[type="text"] {
     font-family: Inter;
 	background: rgba(0, 0, 0, 0.48);
 }
+
+.send-request-button {
+	/* Button */
+
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 12px 24px;
+	gap: 8px;
+	
+	width: 165px;
+	height: 48px;
+	
+	/* Violet/Main - 500 */
+	background: #4F46E5;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 1000px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 3;
+	flex-grow: 0;
+}
+
+.account {
+	/* Account */
+
+	width: 62px;
+	height: 24px;
+	
+	/* M/Regular */
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	/* identical to box height, or 150% */
+	letter-spacing: -0.01em;
+	
+	/* Neutral/90 */
+	color: #344055;
+	
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+}
+
+.account-box {
+	/* Selection/Button */
+
+	box-sizing: border-box;
+	
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 12px;
+	gap: 24px;
+	
+	width: 572px;
+	height: 51px;
+	
+	/* Neutral/30
+	
+	Pressed
+	*/
+	background: #EFF2F6;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.amount {
+	/* Amount */
+	width: 58px;
+	height: 24px;
+	
+	/* M/Regular */
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	/* identical to box height, or 150% */
+	letter-spacing: -0.01em;
+	
+	/* Neutral/90 */
+	color: #344055;
+	
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+}
+
+.amount-box {
+	/* Selection/Button */
+	
+	box-sizing: border-box;
+	
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 12px;
+	gap: 24px;
+	
+	width: 572px;
+	height: 51px;
+	
+	/* Neutral/10
+	
+	FFFFFF
+	*/
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.deposit-or-withdraw {
+	/* Frame 2 */
+
+	/* Auto layout */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 8px;
+	
+	width: 572px;
+	height: 83px;
+	
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 2;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.deposit-or-withdraw-options {
+	/* Selection/Button */
+
+	box-sizing: border-box;
+	
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 12px;
+	gap: 24px;
+	
+	width: 572px;
+	height: 51px;
+	
+	/* Neutral/10
+	
+	FFFFFF
+	*/
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	align-self: stretch;
+	flex-grow: 0;
+}
+
+.send-request-button {
+    /* Button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    width: 165px;
+    height: 48px;
+    background: #4F46E5;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 1000px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+

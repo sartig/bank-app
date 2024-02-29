@@ -20,7 +20,7 @@
                 return false;
             }
             
-            if (amount === '') {
+            if (amount === "") {
 				alert("Amount entered must not be empty.");
 				return false;
 			}
@@ -53,22 +53,21 @@
 					
 					<div class="centered-box">
 						<form action="/deposit" method="post" onsubmit="return validateAmount()">
-							<label for="account">Account</label><br>
-							<input type="text" id="account" name="account" placeholder="Bank Account 234242342" 
-       							style="background-color: lightgrey; color: black;" disabled><br><br>
+							<label for="account" class="account">Account<br></label>
+							<div class="account-box">Bank Account 234242342</div><br>
 
-							<label for="amount">Amount</label><br><br>
-							<input type="text" id="amount" name="amount" placeholder="$0.00"><br><br>
+							<label for="amount" class="amount">Amount</label><br>
+							<input type="text" class="amount-box" id="amount" name="amount" placeholder="$0.00"><br>
 
-							<label for="actions">Deposit/Withdraw</label><br><br>
-							<select id="actions" name="actions">
-								<option value="select" disabled selected>Select</option>
-								<option value="deposit">Deposit</option>
-								<option value="withdraw">Withdraw</option>
-							</select><br><br>
-
-							<button type="submit">Send Request</button>
+							<label for="actions">Deposit/Withdraw</label><br>
+							<select id="cars" class="deposit-or-withdraw-options">
+							  <option value="select" disabled>Select</option>
+							  <option value="deposit">Deposit</option>
+							  <option value="withdraw">Withdraw</option>
+							</select>
 						</form>
+						
+						<button type="button" class="send-request-button">Send Request</button>
 					</div>					
 				</div>
 			</div>
