@@ -19,7 +19,7 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String goToDashboard(@AuthenticationPrincipal AuthUser principal, Model model) {
-        User currentUser = userService.getUser(principal.getUsername());
+        User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         return "dashboard";
     }
