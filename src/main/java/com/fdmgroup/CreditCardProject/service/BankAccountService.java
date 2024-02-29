@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.model.BankAccount;
+import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
+import com.fdmgroup.CreditCardProject.repository.UserRepository;
 
 /**
  * Service class responsible for handling operations related to bank accounts.
@@ -23,6 +25,9 @@ public class BankAccountService {
 
 	@Autowired
 	private BankAccountRepository bankAccountRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	private static final Logger log = LogManager.getLogger(BankAccountService.class);
 	
@@ -49,8 +54,11 @@ public class BankAccountService {
 	 */
 	public List<Long> getBankAccountIdByUsername(String username){
 		List<Long> bankAccountIds = new ArrayList<>();
-		for (BankAccount b:bankAccountRepo.findByUsername(username)) {
-			bankAccountIds.add(b.getAccountId());
+		Optional<User> userOptional = userRepo.findByUsername(username);
+		if(userOptional.isPresent()) {
+			for (BankAccount b:userOptional.get().getBankAccounts()) {
+				bankAccountIds.add(b.getBankAccountId());
+			}
 		}
 		return bankAccountIds;
 	}

@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.fdmgroup.CreditCardProject.model.BankAccount;
+import com.fdmgroup.CreditCardProject.model.User;
 
 @Repository
 public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
 
-	public List<BankAccount> findByUsername(String username);
+	public List<BankAccount> findByUser(User user);
 	
 	public Optional<BankAccount> findByBankAccountId(long bankAccountId);
 }

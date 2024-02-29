@@ -22,7 +22,7 @@ public class BankAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "bankAccountId")
-	private long accountId;
+	private long bankAccountId;
 	
 	/**
      * The account number associated with this account.
@@ -129,8 +129,8 @@ public class BankAccount {
      * Gets the unique identifier for the account.
      * @return The accountId.
      */
-	public long getAccountId() {
-		return accountId;
+	public long getBankAccountId() {
+		return bankAccountId;
 	}
 	
 }
