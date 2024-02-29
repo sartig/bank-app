@@ -23,56 +23,47 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "`Reward Profile`")
 public class RewardsProfile {
-	/**
-     * The unique identifier for the rewards profile.
-     */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "rewardProfileId")
-	private long rewardProfileId;
-	
-	/**
-     * The conversion percentage used to calculate rewards.
-     */
+	@Column(name = "rewardProfileId", unique = true)
+	private Long rewardProfileId;
+
+
 	@Column(name = "conversionPercentage")
 	private double conversionPercentage;
-	
-    /**
-     * The list of valid merchant category codes for rewards.
-     */
+
     @OneToMany(cascade = CascadeType.ALL)
 	private List<MerchantCategoryCode> validCategories;
-	
-    /**
-     * Default constructor for creating a RewardsProfile instance.
-     */
-	public RewardsProfile() {
-		super();
-	}
 
-	/**
-     * Get the conversion percentage for rewards.
-     * @return The conversion percentage.
-     */
 	public double getConversionPercentage() {
 		return conversionPercentage;
 	}
 
-	/**
-     * Set the conversion percentage for rewards.
-     * @param conversionPercentage The conversion percentage to set.
-     */
 	public void setConversionPercentage(double conversionPercentage) {
 		this.conversionPercentage = conversionPercentage;
 	}
 
+	public List<MerchantCategoryCode> getValidCategories() {
+		return validCategories;
+	}
 
-	/**
-     * Get the unique identifier for the rewards profile.
-     * @return The reward profile identifier.
-     */
+	public void setValidCategories(List<MerchantCategoryCode> validCategories) {
+		this.validCategories = validCategories;
+	}
+
+	public RewardsProfile() {
+	}
+
+	public RewardsProfile(long rewardProfileId) {
+		this.rewardProfileId = rewardProfileId;
+
+
+	}
+
 	public long getRewardProfileId() {
 		return rewardProfileId;
 	}
-	
+
+
 }

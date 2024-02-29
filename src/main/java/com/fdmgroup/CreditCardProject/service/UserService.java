@@ -1,13 +1,12 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -27,5 +26,8 @@ public class UserService {
 		userRepository.save(user);
 		return true;
 	}
-
+	public User getUserByUsername(String username) throws UsernameNotFoundException {
+		return userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+	}
 }

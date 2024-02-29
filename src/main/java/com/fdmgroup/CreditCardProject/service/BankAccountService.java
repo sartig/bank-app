@@ -1,66 +1,44 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.fdmgroup.CreditCardProject.model.BankAccount;
+import com.fdmgroup.CreditCardProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.CreditCardProject.model.BankAccount;
-import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
-import com.fdmgroup.CreditCardProject.repository.UserRepository;
+import java.util.Random;
 
-/**
- * Service class responsible for handling operations related to bank accounts.
- * @author Danny
- * @version 1.0
- * @since 2024-02-27
- */
 @Service
 public class BankAccountService {
 
 	@Autowired
-	private BankAccountRepository bankAccountRepo;
-	
-	@Autowired
-	private UserRepository userRepo;
-	
-	private static final Logger log = LogManager.getLogger(BankAccountService.class);
-	
-	/**
-     * Retrieves the current balance of a bank account by its unique identifier.
-     * @param bankAccountId The unique identifier of the bank account.
-     * @return The current balance of the specified bank account, or 0.0 if the account does not exist.
-     */
-	public double getAccountBalanceByBankAccountId(long bankAccountId) {
-		Optional<BankAccount> bankAccount = bankAccountRepo.findByBankAccountId(bankAccountId);
-		if (bankAccount.isPresent()) {
-			log.info("BankAccountServiceSuccess: The current balance of {} was obtained from {}.",bankAccount.get().getCurrentBalance(),bankAccountId);
-			return bankAccount.get().getCurrentBalance();
-		}else {
-			log.error("BankAccountServiceError: Could not obtain current balance of {} as it does not exist.",bankAccountId);
-			return 0.0;
-		}
+	private BankAccountRepository bankAccountRepository;
+
+	public void createBankAccountForUser(User user) {
+		BankAccount bankAccount = new BankAccount();
+
+		String bankNumber;
+		do {
+			bankNumber = generateAccountNumber();
+		} while (!isAccountNumberUnique(bankNumber));
+
+		bankAccount.setAccountNumber(bankNumber);
+		bankAccount.setUser(user);
+		user.getBankAccounts().add(bankAccount);
+		bankAccountRepository.save(bankAccount);
 	}
-	
-	/**
-	 * Retrieves a list of bank account IDs associated with the given username.
-	 * @param username The username for which to fetch bank account IDs.
-	 * @return A list of bank account IDs associated with the specified username.
-	 */
-	public List<Long> getBankAccountIdByUsername(String username){
-		List<Long> bankAccountIds = new ArrayList<>();
-		Optional<User> userOptional = userRepo.findByUsername(username);
-		if(userOptional.isPresent()) {
-			for (BankAccount b:userOptional.get().getBankAccounts()) {
-				bankAccountIds.add(b.getBankAccountId());
-			}
-		}
-		return bankAccountIds;
+
+	private boolean isAccountNumberUnique(String accountNumber) {
+		return bankAccountRepository.findByAccountNumber(accountNumber).isEmpty();
 	}
-	
+
+	private String generateAccountNumber() {
+		Random random = new Random();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 16; i++) {
+			sb.append(random.nextInt(10));
+		}
+		return sb.toString();
+	}
 }
+

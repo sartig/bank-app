@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.User;
 
+import java.util.Optional;
+
 @Repository
 public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
 
-	public List<BankAccount> findByUser(User user);
-	
-	public Optional<BankAccount> findByBankAccountId(long bankAccountId);
+    Optional <BankAccount> findByAccountNumber(String accountNumber);
+
 }

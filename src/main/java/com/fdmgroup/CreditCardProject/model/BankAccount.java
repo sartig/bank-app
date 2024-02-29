@@ -16,6 +16,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "`BankAccount`")
 public class BankAccount {
+
 	/**
      * The unique identifier for the account.
      */
@@ -27,7 +28,7 @@ public class BankAccount {
 	/**
      * The account number associated with this account.
      */
-	@Column(name = "accountNumber")
+	@Column(name = "accountNumber", unique = true)
 	private String accountNumber;
 	
 	/**
@@ -56,10 +57,9 @@ public class BankAccount {
 	public BankAccount() {
 		super();
 	}
-	
+
 	/**
      * Parameterized constructor for BankAccount.
-     * @param ownerId        The identifier of the owner of the bank account.
      * @param accountNumber  The account number of the bank account.
      * @param currentBalance The current balance of the bank account.
      */
@@ -132,5 +132,6 @@ public class BankAccount {
 	public long getBankAccountId() {
 		return bankAccountId;
 	}
-	
+
+
 }
