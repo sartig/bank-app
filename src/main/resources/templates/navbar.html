@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="left-menu-mid">
-                    <div class="left-menu-button">
+                    <div class="left-menu-button" id="dashboard-button">
                         <i class="fas fa-home"></i>
                         <div class="left-menu-button-text">Dashboard</div>
                     </div>
@@ -52,6 +52,10 @@
                     <div class="left-menu-button-text">Logout</div>
                 </div>
                 <script>
+                    document.getElementById("dashboard-button").addEventListener("click", navigateToDashboard);
+                    function navigateToDashboard() {
+                        window.location.href = '/dashboard';
+                    }
                     function logout() {
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL
