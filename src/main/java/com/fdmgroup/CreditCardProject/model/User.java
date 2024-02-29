@@ -48,7 +48,18 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	@Column(name = "bankAccount")
 	private List<BankAccount> bankAccounts;
-	
+
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<CreditCard> creditCards;
+
+	public List<CreditCard> getCreditCards() {
+		return creditCards;
+	}
+
+	public void setCreditCards(List<CreditCard> creditCards) {
+		this.creditCards = creditCards;
+	}
+
 	/**
      * Default constructor for User.
      * Creates an instance with default values.
