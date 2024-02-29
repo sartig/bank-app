@@ -13,8 +13,12 @@ public class BankTransactionService {
 	@Autowired
 	private BankTransactionRepository bankTransactionRepo;
 
+	public void setBankTransactionRepository(BankTransactionRepository bankTransactionRepo) {
+		this.bankTransactionRepo = bankTransactionRepo;
+	}
+
 	public BankTransaction getTransactionById(String id) throws BankTransactionNotFoundException {
 		long longId = Long.parseLong(id);
-		return bankTransactionRepo.findById(longId).orElseThrow(() -> new BankTransactionNotFoundException());
+		return bankTransactionRepo.findById(longId).orElseThrow(BankTransactionNotFoundException::new);
 	}
 }

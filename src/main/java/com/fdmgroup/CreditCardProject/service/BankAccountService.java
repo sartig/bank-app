@@ -22,6 +22,14 @@ public class BankAccountService {
 	@Autowired
 	private BankTransactionRepository bankTransactionRepository;
 
+	public void setBankAccountRepository(BankAccountRepository bankAccountRepository) {
+		this.bankAccountRepository = bankAccountRepository;
+	}
+
+	public void setBankTransactionRepository(BankTransactionRepository bankTransactionRepository) {
+		this.bankTransactionRepository = bankTransactionRepository;
+	}
+
 	public void createBankAccountForUser(User user) {
 		BankAccount bankAccount = new BankAccount();
 
@@ -38,7 +46,7 @@ public class BankAccountService {
 
 	public long depositToAccount(String accountId, double amount) throws BankAccountNotFoundException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
-				.orElseThrow(() -> new BankAccountNotFoundException());
+				.orElseThrow(BankAccountNotFoundException::new);
 
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(amount, bankAccount.getAccountId()));
@@ -53,7 +61,7 @@ public class BankAccountService {
 
 	public String getUsernameOfAccountByAccountNumber(String accountNumber) throws BankAccountNotFoundException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountNumber)
-				.orElseThrow(() -> new BankAccountNotFoundException());
+				.orElseThrow(BankAccountNotFoundException::new);
 		return bankAccount.getUser().getUsername();
 	}
 

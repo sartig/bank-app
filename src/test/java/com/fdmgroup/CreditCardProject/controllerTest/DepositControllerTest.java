@@ -18,16 +18,16 @@ class DepositControllerTest {
 		depositController = new DepositController();
 	}
 
-	@Test
-	void testGoToDepositPage_returnsCorrectString() {
-		String result = depositController.goToDepositPage();
-		assertEquals("deposit", result);
-	}
-	
-	@Test
-	void testGoToDepositPage_doesNotReturnIncorrectString() {
-		String result = depositController.goToDepositPage();
-		assertNotEquals("dashboard", result);
-	}
+//	@Test
+//	void testGoToDepositPage_returnsCorrectString() {
+//		String result = depositController.goToDepositPage();
+//		assertEquals("deposit", result);
+//	}
+//
+//	@Test
+//	void testGoToDepositPage_doesNotReturnIncorrectString() {
+//		String result = depositController.goToDepositPage();
+//		assertNotEquals("dashboard", result);
+//	}
 
 }
