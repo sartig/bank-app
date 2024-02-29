@@ -1,6 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.*;
 
@@ -88,7 +88,7 @@ public class BankTransaction {
 	}
 
 	/**
-	 * Parameterized constructor for BankTransaction.
+	 * Parameterized constructor for BankTransaction transfer.
 	 *
 	 * @param accountFromId The identifier of the account from which the transaction
 	 *                      is made.
@@ -97,13 +97,49 @@ public class BankTransaction {
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, Date date, double amount, long accountToId) {
+	public BankTransaction(long accountFromId, double amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
-		setDate(date);
+		setDate(new Date());
 		setAmount(amount);
 		setAccountToId(accountToId);
 	}
+	
+	/**
+	 * Parameterized constructor for BankTransaction deposit.
+	 *
+	 * @param accountFromId The identifier of the account from which the transaction
+	 *                      is made.
+	 * @param date          The date of the transaction.
+	 * @param amount        The amount involved in the transaction.
+	 * @param accountToId   The identifier of the account to which the transaction
+	 *                      is made.
+	 */
+	public BankTransaction(double amount, long accountToId) {
+		this();
+		setDate(new Date());
+		setAmount(amount);
+		setAccountToId(accountToId);
+	}
+	
+	/**
+	 * Parameterized constructor for BankTransaction withdrawal.
+	 *
+	 * @param accountFromId The identifier of the account from which the transaction
+	 *                      is made.
+	 * @param date          The date of the transaction.
+	 * @param amount        The amount involved in the transaction.
+	 * @param accountToId   The identifier of the account to which the transaction
+	 *                      is made.
+	 */
+	public BankTransaction(long accountFromId, double amount) {
+		this();
+		setAccountFromId(accountFromId);
+		setDate(new Date());
+		setAmount(amount);
+	}
+	
+	
 
 	/**
 	 * Gets the identifier of the account to which the transaction is made.

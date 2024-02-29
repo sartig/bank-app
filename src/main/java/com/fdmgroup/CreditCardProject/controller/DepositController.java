@@ -3,6 +3,8 @@ package com.fdmgroup.CreditCardProject.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,58 +12,85 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
+import com.fdmgroup.CreditCardProject.model.AuthUser;
+import com.fdmgroup.CreditCardProject.model.BankTransaction;
+import com.fdmgroup.CreditCardProject.service.BankAccountService;
+import com.fdmgroup.CreditCardProject.service.BankTransactionService;
+import com.fdmgroup.CreditCardProject.service.UserService;
+
 @Controller
 public class DepositController {
 
-	@GetMapping("/deposit/{accountId}")
-	public String goToDepositPage(@PathVariable String accountId, Model model) {
+	@Autowired
+	BankAccountService bankAccountService;
 
-		// verify user is owner of account
-		model.addAttribute("accountId", accountId);
-		return "deposit";
-	}
-	
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	BankTransactionService bankTransactionService;
+
 	@GetMapping("/deposit")
-	public String goToDepositPage() {
+	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
+		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
+				.getAccountNumber();
+		model.addAttribute("accountId", accNumber);
 		return "deposit";
 	}
 
-	@GetMapping("/depositConfirmation")
-	public String goToDepositConfirmationPage() {
-		return "depositConfirmation";
-	}
-	
-	@PostMapping("/deposit/{accountId}")
-	public String handleDepositRequest(@PathVariable String accountId, @RequestParam String amount,
-			@RequestParam String actions, Model model) {
-		if (actions.equals("withdraw")) {
-			// handle withdraw later
+	@PostMapping("/deposit/confirm")
+	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+			@RequestParam String amount, @RequestParam String action) {
+
+		if (action.equals("withdraw")) {
+			// TODO: implement withdrawal
 			return "redirect:/deposit/" + accountId;
 		}
 
-		// do and validate transaction, get transaction id
+		// make sure account belongs to logged in user
+		try {
+			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
+				// account does not belong to user, return to dashboard
+				return "redirect:/dashboard";
+			}
 
-		long transactionId = 12345678909515l;
-		// actions (Deposit or Withdraw)
-		return "redirect:/deposit/receipt/" + transactionId;
+			double depositAmount = Double.parseDouble(amount);
+
+			long transactionId;
+			transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
+			return "redirect:/deposit/receipt/" + transactionId;
+
+		} catch (BankAccountNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/deposit/" + accountId;
+		}
+
 	}
 
 	@GetMapping("/deposit/receipt/{transactionId}")
 	public String goToDepositReceiptPage(@PathVariable String transactionId, Model model) {
-		model.addAttribute("id", transactionId);
-		Date transactionTime = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String formattedTimestamp = sdf.format(transactionTime);
-		String source = "Cash";
-		String transactionType = "Deposit";
-		long depositAmount = 123;
-		// deposit validation and handling
-		model.addAttribute("amount", depositAmount);
-		model.addAttribute("id", transactionId);
-		model.addAttribute("source", source);
-		model.addAttribute("time", formattedTimestamp);
-		model.addAttribute("type", transactionType);
-		// amount
-		return "depositReceipt";
+		try {
+			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
+			Date transactionTime = transaction.getDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String formattedTimestamp = sdf.format(transactionTime);
+			double depositAmount = transaction.getAmount();
+			String transactionType = "Deposit";
+			String source = "Cash";
+			model.addAttribute("id", transactionId);
+			model.addAttribute("amount", depositAmount);
+			model.addAttribute("id", transactionId);
+			model.addAttribute("source", source);
+			model.addAttribute("time", formattedTimestamp);
+			model.addAttribute("type", transactionType);
+			return "depositReceipt";
+		} catch (BankTransactionNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/dashboard";
+		}
 	}
 }

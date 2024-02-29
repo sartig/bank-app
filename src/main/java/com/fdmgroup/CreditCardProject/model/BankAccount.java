@@ -92,6 +92,10 @@ public class BankAccount {
 	public void setTransactionHistory(List<BankTransaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
 	}
+	
+	public void addTransactionHistory(BankTransaction transaction) {
+		getTransactionHistory().add(transaction);
+	}
 
 	/**
      * Gets the account number associated with this account.
