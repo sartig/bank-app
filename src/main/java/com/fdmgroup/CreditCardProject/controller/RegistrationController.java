@@ -1,13 +1,12 @@
 package com.fdmgroup.CreditCardProject.controller;
 
-import com.fdmgroup.CreditCardProject.model.AuthUser;
+
+import com.fdmgroup.CreditCardProject.service.BankAccountService;
+import com.fdmgroup.CreditCardProject.service.CreditCardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,6 +19,11 @@ public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BankAccountService bankAccountService;
+	@Autowired
+	private CreditCardService creditCardService;
+
 
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
@@ -36,6 +40,15 @@ public class RegistrationController {
 		}
 
 		if (userService.registerUser(username, password)) {
+			User user = userService.getUserByUsername(username);
+
+			// Create a new BankAccount for the user
+			bankAccountService.createBankAccountForUser(user);
+
+			// Create a new CreditCardAccount for the user
+			creditCardService.createCreditCardForUser(user);
+
+
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
 			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");
 
