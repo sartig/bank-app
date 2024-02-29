@@ -1,0 +1,94 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #121212;
+}
+
+.top-nav .logo {
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #344055;
+    color: white;
+    padding: 0.5rem 1rem;
+
+    text-decoration: none;
+}
+
+.top-nav nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between; /* Use justify-content instead of space-between */
+    padding: 0; /* Reset padding to ensure alignment */
+}
+
+.top-nav nav ul li {
+    margin: 0.5rem;
+}
+
+.top-nav nav ul li button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #344055;
+    color: white; /* Make button text color white */
+    cursor: pointer; /* Change cursor to pointer when hovering over the buttons */
+}
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Adjust to the desired height of the container */
+    }
+
+
+.logo-box {
+    margin-bottom: 2rem;
+    /* Add styles here TODO */
+}
+
+.form-fields {
+    margin-bottom: 2rem;
+    /* Add styles for your form fields here */
+}
+
+
+.svg-container {
+    margin-top: 150px;
+    text-align: center;
+}
+.flash-message {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding */
+    margin-bottom: 15px; /* Bottom margin */
+    border-radius: 5px; /* Rounded corners */
+}

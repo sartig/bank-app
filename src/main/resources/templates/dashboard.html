@@ -1,86 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<div  th:replace="navbar :: head"></div>
-	<meta charset="UTF-8">
-	<title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <div  th:replace="navbar :: head"></div>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 
 <body>
-	<div class="main-container">
-		
-		<div th:replace="navbar :: body"></div>
+<div class="main-container">
 
-		<div class="content">
-			<div class="page-top-container"> </div>
-			<div class="container">
-				<div class="content-container">
-					<div class="title">
-						<div class="page-title">Dashboard</div>
-						<div class="page-subtitle">Summary Information</div>
-					</div>
+    <div th:replace="navbar :: body"></div>
 
-					<div class="info-container">
+    <div class="content">
+        <div class="page-top-container"> </div>
+        <div class="container">
+            <div class="content-container">
+                <div class="title">
+                    <div class="page-title">Dashboard</div>
+                    <div class="page-subtitle">Summary Information</div>
+                </div>
 
-						<div class="bank-account-container">
-							<div class="bank-account-info">
-								<div class="account-number">
-									Bank Account 1234567890
-								</div>
-								<div class="balance">
-									<div>Balance</div>
-									<div class="amount">$123.45</div>
-								</div>
-							</div>
-							<div class="bank-account-info">
-								<div class="account-number">
-									Bank Account 123456
-								</div>
-								<div class="balance">
-									<div>Balance</div>
-									<div class="amount">$234.56</div>
-								</div>
-							</div>
-							<div class="bank-account-info">
-								<div class="account-number">
-									Bank Account 8472698563
-								</div>
-								<div class="balance">
-									<div>Balance</div>
-									<div class="amount">$10101.01</div>
-								</div>
-							</div>
-						</div>
+                <div class="info-container">
 
-						<div class="credit-card-container">
-							<div class="credit-card-info">
-								<div class="account-number">
-									Credit Card 1111-2222-3333-4444
-								</div>
-								<div class="balance">
-									<div>Remaining Balance</div>
-									<div class="amount">$1234.56</div>
-								</div>
-							</div>
-							<div class="credit-card-info">
-								<div class="account-number">
-									Credit Card 1234-4321-1234-4321
-								</div>
-								<div class="balance">
-									<div>Remaining Balance</div>
-									<div class="amount">$2345.67</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="bank-account-container">
+                        <div class="bank-account-info">
+                            <div class="account-number">
+                                Bank Account 1234567890
+                            </div>
+                            <div class="balance">
+                                <div>Balance</div>
+                                <div class="amount">$123.45</div>
+                            </div>
+                        </div>
+                        <div class="bank-account-info">
+                            <div class="account-number">
+                                Bank Account 123456
+                            </div>
+                            <div class="balance">
+                                <div>Balance</div>
+                                <div class="amount">$234.56</div>
+                            </div>
+                        </div>
+                        <div class="bank-account-info">
+                            <div class="account-number">
+                                Bank Account 8472698563
+                            </div>
+                            <div class="balance">
+                                <div>Balance</div>
+                                <div class="amount">$10101.01</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="credit-card-container">
+                        <div class="credit-card-info">
+                            <div class="account-number">
+                                Credit Card 1111-2222-3333-4444
+                            </div>
+                            <div class="balance">
+                                <div>Remaining Balance</div>
+                                <div class="amount">$1234.56</div>
+                            </div>
+                        </div>
+                        <div class="credit-card-info">
+                            <div class="account-number">
+                                Credit Card 1234-4321-1234-4321
+                            </div>
+                            <div class="balance">
+                                <div>Remaining Balance</div>
+                                <div class="amount">$2345.67</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
