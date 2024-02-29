@@ -167,10 +167,6 @@ select {
     color: black;
 }
 
-input[type="text"] {
-	width: 442px;
-}
-
 .transaction-confirmation-box {
 	/* Popup */
 	box-sizing: border-box;
