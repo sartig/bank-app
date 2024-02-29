@@ -11,28 +11,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:inline="javascript">
         $(document).ready(function() {
-            $(".account-number").click(function() {
+            $(".bankaccount-number").click(function() {
                 var accountNumberElement = $(this);
                 var fullAccountNumber = accountNumberElement.data("full-account-number");
                 var lastFourDigits = accountNumberElement.data("last-four-digits");
 
                 if (accountNumberElement.text().trim() === fullAccountNumber) {
-                    accountNumberElement.text("Account Number ************ - " + lastFourDigits);
+                    accountNumberElement.html("Bank Account ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>');
                 } else {
-                    accountNumberElement.text(fullAccountNumber);
+                    accountNumberElement.html(fullAccountNumber + ' <i class="fas fa-eye"></i>');
                 }
             });
         });
         $(document).ready(function() {
-            $(".account-number").click(function() {
+            $(".creditCard-number").click(function() {
                 var creditCardElement = $(this);
                 var fullCreditCard = creditCardElement.data("full-credit-number");
                 var lastFourDigits = creditCardElement.data("last-four-digits-credit");
 
                 if (creditCardElement.text().trim() === fullCreditCard) {
-                    creditCardElement.text("Credit Card ************ - " + lastFourDigits);
+                    creditCardElement.html("Credit Card ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>' );
                 } else {
-                    creditCardElement.text(fullCreditCard);
+                    creditCardElement.html(fullCreditCard + ' <i class="fas fa-eye"></i>' );
                 }
             });
         });
@@ -57,11 +57,14 @@
 
                     <div class="bank-account-container">
                         <div class="bank-account-info" th:each="bankAccount : ${user.bankAccounts}">
-                            <div class="account-number"
-                                 th:data-full-account-number="'Account Number ' + ${bankAccount.accountNumber}"
-                                 th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
-                                Account Number ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+                            <div class="bankaccount-number"
+                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
+                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
+                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+                                <i class="fas fa-eye"></i>
+
                             </div>
+                            
                             <div class="balance">
                                 <div>Balance</div>
                                 <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
@@ -71,10 +74,12 @@
 
                     <div class="credit-card-container">
                         <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
-                            <div class="account-number"
+                            <div class="creditCard-number"
                                 th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
                                 th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
                                 Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
+                                <i class="fas fa-eye"></i>
+
                             </div>
                             <div class="balance">
                                 <div>Remaining Balance</div>
