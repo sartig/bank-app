@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
 
-import java.util.Optional;
-
 @Service
 public class UserService {
 
@@ -28,7 +26,7 @@ public class UserService {
 		userRepository.save(user);
 		return true;
 	}
-	public User getUserByUsername(String username) {
+	public User getUserByUsername(String username) throws UsernameNotFoundException {
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 	}

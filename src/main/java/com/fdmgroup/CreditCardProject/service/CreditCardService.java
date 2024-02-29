@@ -20,7 +20,7 @@ public class CreditCardService {
 	@Autowired
 	private RewardsProfileRepository rewardsProfileRepository;
 
-	public void createCreditCardForUser(User user) {
+	public void createCreditCardForUser(User user) throws EntityNotFoundException {
 		CreditCard creditCard = new CreditCard();
 
 		String creditNumber;

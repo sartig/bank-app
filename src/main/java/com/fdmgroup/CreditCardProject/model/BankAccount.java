@@ -1,11 +1,8 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
-import java.util.Random;
 
-import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Represents a bank account entity, extending the base class Account.

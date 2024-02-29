@@ -1,7 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
-import java.util.Random;
 
 import jakarta.persistence.*;
 

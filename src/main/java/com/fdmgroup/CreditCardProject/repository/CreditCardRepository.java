@@ -1,6 +1,5 @@
 package com.fdmgroup.CreditCardProject.repository;
 
-import com.fdmgroup.CreditCardProject.model.BankAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
