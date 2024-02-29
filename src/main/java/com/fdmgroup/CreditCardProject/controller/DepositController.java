@@ -25,6 +25,11 @@ public class DepositController {
 	public String goToDepositPage() {
 		return "deposit";
 	}
+	
+	@PostMapping("/deposit")
+	public String goToTCPage() {
+		return "/transactionConfirmation";
+	}
 
 	@GetMapping("/transactionConfirmation")
 	public String goToTransactionConfirmationPage() {
@@ -32,7 +37,6 @@ public class DepositController {
 	}
 	
 	@PostMapping("/deposit/{accountId}")
-	
 	public String handleDepositRequest(@PathVariable String accountId, @RequestParam String amount,
 			@RequestParam String actions, Model model) {
 		if (actions.equals("withdraw")) {
