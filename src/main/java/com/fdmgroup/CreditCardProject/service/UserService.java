@@ -16,8 +16,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public boolean registerUser(String username, String password) {//throws EmailExistsException {
-		if(userRepository.existsByUsername(username)) {
+	public boolean registerUser(String username, String password) {// throws EmailExistsException {
+		if (userRepository.existsByUsername(username)) {
 			return false;
 		}
 		User user = new User();

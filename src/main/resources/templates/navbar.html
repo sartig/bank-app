@@ -9,68 +9,61 @@
 </head>
 
 <body>
-<div th:fragment="body">
-    <div class="navbar">
+    <div th:fragment="body" class="navbar">
 
-    <div class="left-menu">
-        <div>
-            <div class="left-menu-top">
-                <img src="/svg/icon.svg">
-            </div>
-
-            <div class="left-menu-mid">
-                <div class="left-menu-button">
-                    <i class="fas fa-home"></i>
-                    <div class="left-menu-button-text">Dashboard</div>
-                </div>
-                <div class="left-menu-title">
-                    <i class="fas fa-money-bill"></i>
-                    <div class="left-menu-button-text">Bank Account(s)</div>
-                </div>
-                <div th:each="accountNumber : ${bankAccountIds}">
-                	<div class="left-menu-sub-button">
-                    	<div class="left-menu-sub-button-text">
-					    	<a th:href="@{'/bankaccount/' + ${accountNumber}}" th:text="${accountNumber}"></a>
-						</div>
-                	</div>
+        <div class="left-menu" th:object="${user}">
+            <div>
+                <div class="left-menu-top">
+                    <img src="/svg/icon.svg">
                 </div>
 
-                <div class="left-menu-title">
-                    <i class="far fa-credit-card"></i>
-                    <div class="left-menu-button-text">Credit Card(s)</div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        1111-2222-3333-4444
+                <div class="left-menu-mid">
+                    <div class="left-menu-button" id="dashboard-button">
+                        <i class="fas fa-home"></i>
+                        <div class="left-menu-button-text">Dashboard</div>
                     </div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        1234-4321-1234-4321
+                    <div class="left-menu-title">
+                        <i class="fas fa-money-bill"></i>
+                        <div class="left-menu-button-text">Bank Account(s)</div>
+                    </div>
+                    <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">
+                            
+                        </div>
+                    </div>
+
+                    <div class="left-menu-title">
+                        <i class="far fa-credit-card"></i>
+                        <div class="left-menu-button-text">Credit Card(s)</div>
+                    </div>
+                    <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"> </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="left-menu-bot">
-            <div class="left-menu-button">
-                <i class="fas fa-user"></i>
-                <div class="left-menu-button-text">Profile</div>
-            </div>
+            <div class="left-menu-bot">
+                <div class="left-menu-text">
+                    <i class="fas fa-user"></i>
+                    <div class="left-menu-button-text" th:text="${user.username}"></div>
+                </div>
 
-            <div class="left-menu-button" onclick="logout()">
-                <i class="fas fa-door-open"></i>
-                <div class="left-menu-button-text">Logout</div>
+                <div class="left-menu-button" onclick="logout()">
+                    <i class="fas fa-door-open"></i>
+                    <div class="left-menu-button-text">Logout</div>
+                </div>
+                <script>
+                    document.getElementById("dashboard-button").addEventListener("click", navigateToDashboard);
+                    function navigateToDashboard() {
+                        window.location.href = '/dashboard';
+                    }
+                    function logout() {
+                        // Perform logout action
+                        window.location.href = '/logout'; // Redirect to logout URL
+                    }
+                </script>
             </div>
-            <script>
-                function logout() {
-                    // Perform logout action
-                    window.location.href = '/logout'; // Redirect to logout URL
-                }
-            </script>
         </div>
     </div>
-</div>
-</div>
 </body>
 
 </html>
