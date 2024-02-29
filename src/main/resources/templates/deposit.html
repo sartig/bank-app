@@ -12,26 +12,26 @@
     
     <script>
         function validateAmount() {
-            var amountInput = document.getElementById('amount');
-            var amountValue = amountInput.value;
-
-            if (parseFloat(amountValue) <= 0) {
-                alert("Amount must be a positive number.");
-                return false;
-            }
-            
-            if (amount === "") {
-				alert("Amount entered must not be empty.");
-				return false;
-			}
-
-            if (amountValue.split('.')[1] && amountValue.split('.')[1].length > 2) {
-                alert("Amount must have at most 2 decimal places.");
-                return false;
-            }
-
-            return true;
-        }
+	    var amountInput = document.getElementById('amount');
+	    var amountValue = amountInput.value;
+	
+	    if (parseFloat(amountValue) <= 0 || isNaN(parseFloat(amountValue))) {
+	        alert("Amount must be a positive number.");
+	        return false;
+	    }
+	
+	    if (amountValue === "") {
+	        alert("Amount entered must not be empty.");
+	        return false;
+	    }
+	
+	    if (amountValue.split('.')[1] && amountValue.split('.')[1].length > 2) {
+	        alert("Amount must have at most 2 decimal places.");
+	        return false;
+	    }
+	
+	    return true;
+	}
     </script>
 </head>
 <body>
@@ -56,7 +56,7 @@
 							<label for="account" class="account">Account<br></label>
 							<div class="account-box">Bank Account 234242342</div><br>
 
-							<label for="amount" class="amount">Amount</label><br>
+							<label for="amount" id="amount" class="amount">Amount</label><br>
 							<input type="text" class="amount-box" id="amount" name="amount" placeholder="$0.00"><br>
 
 							<label for="actions">Deposit/Withdraw</label><br>
@@ -65,9 +65,9 @@
 							  <option value="deposit">Deposit</option>
 							  <option value="withdraw">Withdraw</option>
 							</select>
+							
+							<button type="submit" class="send-request-button">Send Request</button>
 						</form>
-						
-						<button type="button" class="send-request-button">Send Request</button>
 					</div>					
 				</div>
 			</div>
