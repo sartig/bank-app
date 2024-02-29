@@ -6,6 +6,8 @@ import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
+import com.fdmgroup.CreditCardProject.service.BankAccountService;
+import com.fdmgroup.CreditCardProject.service.CreditCardService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +26,10 @@ public class RegistrationController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private BankAccountRepository bankAccountRepository;
+	private BankAccountService bankAccountService;
 	@Autowired
-	private CreditCardRepository creditCardRepository;
-	@Autowired
-	private RewardsProfileRepository rewardsProfileRepository;
+	private CreditCardService creditCardService;
+
 
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
@@ -48,26 +49,11 @@ public class RegistrationController {
 			User user = userService.getUserByUsername(username);
 
 			// Create a new BankAccount for the user
-			BankAccount bankAccount = new BankAccount();
-			bankAccount.setUser(user);
-			bankAccountRepository.save(bankAccount);
+			bankAccountService.createBankAccountForUser(user);
 
-			RewardsProfile rewardsProfile = new RewardsProfile();
-			rewardsProfile.setRewardProfileId(1);
-			rewardsProfileRepository.save(rewardsProfile);
+			// Create a new CreditCardAccount for the user
+			creditCardService.createCreditCardForUser(user);
 
-
-// Retrieve the managed RewardsProfile instance from the database
-			RewardsProfile managedRewardsProfile = rewardsProfileRepository.findById(1L)
-					.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
-
-// Create a new CreditCardAccount for the user
-			CreditCard creditCard = new CreditCard();
-			creditCard.setUser(user);
-			creditCard.setMonthlyDueDate((byte) 1);
-			creditCard.setSpendingLimit(500);
-			creditCard.setRewardProfile(managedRewardsProfile); // Use the managed instance
-			creditCardRepository.save(creditCard);
 
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
 			redirectAttributes.addFlashAttribute("successMessage2", "Please Proceed to Login.");

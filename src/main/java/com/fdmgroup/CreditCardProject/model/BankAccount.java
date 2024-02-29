@@ -3,7 +3,9 @@ package com.fdmgroup.CreditCardProject.model;
 import java.util.List;
 import java.util.Random;
 
+import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Represents a bank account entity, extending the base class Account.
@@ -17,6 +19,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "`BankAccount`")
 public class BankAccount {
+
 	/**
      * The unique identifier for the account.
      */
@@ -55,22 +58,11 @@ public class BankAccount {
      * Creates an instance with default values.
      */
 	public BankAccount() {
-		// Generate a random 16-digit account number
-		this.accountNumber = generateAccountNumber();
-	}
-
-	private String generateAccountNumber() {
-		Random random = new Random();
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 16; i++) {
-			sb.append(random.nextInt(10));
-		}
-		return sb.toString();
+		super();
 	}
 
 	/**
      * Parameterized constructor for BankAccount.
-     * @param ownerId        The identifier of the owner of the bank account.
      * @param accountNumber  The account number of the bank account.
      * @param currentBalance The current balance of the bank account.
      */

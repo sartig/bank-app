@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,10 +49,10 @@ public class User {
      */
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	@Column(name = "bankAccount")
-	private List<BankAccount> bankAccounts;
+	private List<BankAccount> bankAccounts = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-	private List<CreditCard> creditCards;
+	private List<CreditCard> creditCards = new ArrayList<>();
 
 	public List<CreditCard> getCreditCards() {
 		return creditCards;
