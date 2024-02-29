@@ -27,7 +27,7 @@
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
                     <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
-                        <div class="left-menu-sub-button-text" th:text="${bankAccount.accountNumber}">
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">
                             
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="left-menu-button-text">Credit Card(s)</div>
                     </div>
                     <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
-                        <div class="left-menu-sub-button-text" th:text="${creditCard.accountNumber}"> </div>
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"> </div>
                     </div>
                 </div>
             </div>
