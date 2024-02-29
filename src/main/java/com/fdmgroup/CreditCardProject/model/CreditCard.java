@@ -24,16 +24,23 @@ public class CreditCard {
 	@Column(name = "creditCardId")
 	private long accountId;
 
-	/**
-	 * The identifier of the owner of the account.
-	 */
-	@Column(name = "ownerId")
-	private long ownerId;
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	/**
 	 * The account number associated with this account.
 	 */
-	@Column(name = "accountNumber")
+	@Column(name = "accountNumber", unique = true)
 	private String accountNumber;
 
 	/**
@@ -69,13 +76,15 @@ public class CreditCard {
 	/**
 	 * The rewards profile associated with the credit card.
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private RewardsProfile rewardProfile;
 
 	/**
 	 * Default constructor for creating a CreditCard instance.
 	 */
+
 	public CreditCard() {
+		// Generate a random 16-digit account number
 		super();
 	}
 
@@ -169,23 +178,7 @@ public class CreditCard {
 		this.rewardProfile = rewardProfile;
 	}
 
-	/**
-	 * Gets the identifier of the owner of the account.
-	 * 
-	 * @return The ownerId.
-	 */
-	public long getOwnerId() {
-		return ownerId;
-	}
 
-	/**
-	 * Sets the identifier of the owner of the account.
-	 * 
-	 * @param ownerId The ownerId to set.
-	 */
-	public void setOwnerId(long ownerId) {
-		this.ownerId = ownerId;
-	}
 
 	/**
 	 * Gets the account number associated with this account.
@@ -231,5 +224,6 @@ public class CreditCard {
 	public long getAccountId() {
 		return accountId;
 	}
+
 
 }

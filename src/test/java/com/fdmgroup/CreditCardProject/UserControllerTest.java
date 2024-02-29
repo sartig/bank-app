@@ -66,6 +66,14 @@ public class UserControllerTest {
                 .andExpect(status().isFound()) // Redirection status code (302)
                 .andExpect(redirectedUrl("/register"));
     }
+//    test when user already exists
+    @Test
+    public void testRegisterFailureUserExists() throws Exception {
+        when(userService.registerUser("newUser", "1234")).thenReturn(false);
+        mockMvc.perform(post("/register").param("username", "newUser").param("password", "1234").param("confirmPassword", "1234"))
+                .andExpect(status().isFound()) // Redirection status code (302)
+                .andExpect(redirectedUrl("/register"));
+    }
 
 
 
