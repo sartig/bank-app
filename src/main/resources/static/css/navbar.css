@@ -30,7 +30,8 @@
 }
 
 .left-menu-button,
-.left-menu-title {
+.left-menu-title,
+.left-menu-text {
     width: 75%;
     display: flex;
     flex-direction: row;
@@ -62,7 +63,8 @@
 }
 
 .left-menu-button>i,
-.left-menu-title>i {
+.left-menu-title>i,
+.left-menu-text>i {
     width: 25%;
     font-size: 24px;
 }
