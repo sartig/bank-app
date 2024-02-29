@@ -86,17 +86,9 @@ public class CreditCard {
 
 	public CreditCard() {
 		// Generate a random 16-digit account number
-		this.accountNumber = generateAccountNumber();
+		super();
 	}
 
-	private String generateAccountNumber() {
-		Random random = new Random();
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 16; i++) {
-			sb.append(random.nextInt(10));
-		}
-		return sb.toString();
-	}
 	/**
 	 * Get the monthly due date for payments.
 	 * 
