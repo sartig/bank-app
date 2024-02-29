@@ -28,12 +28,12 @@ public class DepositController {
 	
 	@PostMapping("/deposit")
 	public String goToTCPage() {
-		return "/transactionConfirmation";
+		return "/depositConfirmation";
 	}
 
-	@GetMapping("/transactionConfirmation")
-	public String goToTransactionConfirmationPage() {
-		return "transactionConfirmation";
+	@GetMapping("/depositConfirmation")
+	public String goToDepositConfirmationPage() {
+		return "depositConfirmation";
 	}
 	
 	@PostMapping("/deposit/{accountId}")
