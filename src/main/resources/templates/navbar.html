@@ -27,8 +27,8 @@
                     <i class="fas fa-money-bill"></i>
                     <div class="left-menu-button-text">Bank Account(s)</div>
                 </div>
-                <div class="left-menu-sub-button">
-                	<div th:each="accountNumber : ${bankAccountIds}">
+                <div th:each="accountNumber : ${bankAccountIds}">
+                	<div class="left-menu-sub-button">
                     	<div class="left-menu-sub-button-text">
 					    	<a th:href="@{'/bankaccount/' + ${accountNumber}}" th:text="${accountNumber}"></a>
 						</div>
