@@ -73,6 +73,7 @@
     background-color: transparent;
     box-shadow: none;
     color: inherit;
+    font-size: inherit;
 }
 
 .left-menu-button-text {
