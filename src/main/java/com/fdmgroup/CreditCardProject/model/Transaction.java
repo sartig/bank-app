@@ -6,7 +6,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
 
 
 /**
@@ -16,7 +15,7 @@ import jakarta.persistence.MappedSuperclass;
  * @version 1.0
  * @since 2022-02-20
  */
-@MappedSuperclass
+
 public abstract class Transaction {
 	/**
      * The unique identifier for the transaction.
@@ -24,25 +23,25 @@ public abstract class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transactionId")
-	protected long transactionId;
+	private long transactionId;
 	
 	/**
      * The identifier of the account from which the transaction is made.
      */
 	@Column(name = "accountFromId")
-	protected long accountFromId;
+	private long accountFromId;
 	
 	/**
      * The date of the transaction.
      */
 	@Column(name = "date")
-	protected Date date;
+	private Date date;
 	
 	/**
     * The amount involved in the transaction.
     */
 	@Column(name = "amount")
-	protected double amount;
+	private double amount;
 	
 	/**
      * Default constructor for Transaction.

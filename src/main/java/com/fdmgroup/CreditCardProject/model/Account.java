@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
 
 /**
  * An abstract class representing an account.
@@ -13,7 +12,7 @@ import jakarta.persistence.MappedSuperclass;
  * @version 1.0
  * @since 2022-02-20
  */
-@MappedSuperclass
+
 public abstract class Account {
 	/**
      * The unique identifier for the account.
@@ -21,25 +20,25 @@ public abstract class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "accountId")
-	protected long accountId;
+	private long accountId;
 	
 	/**
      * The identifier of the owner of the account.
      */
 	@Column(name = "ownerId")
-	protected long ownerId;
+	private long ownerId;
 	
 	/**
      * The account number associated with this account.
      */
 	@Column(name = "accountNumber")
-	protected String accountNumber;
+	private String accountNumber;
 	
 	/**
      * The current balance of the account.
      */
 	@Column(name = "currentBalance")
-	protected double currentBalance;
+	private double currentBalance;
 	
 	/**
      * Default constructor for Account.

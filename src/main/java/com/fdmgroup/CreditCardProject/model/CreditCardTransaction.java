@@ -55,10 +55,9 @@ public class CreditCardTransaction {
 	private String storeInfo;
 
 	/**
-<<<<<<< HEAD
      * The merchant category code associated with the credit card transaction.
      */
-	@OneToOne
+	@ManyToOne
     @JoinColumn(name = "merchantCategoryCodeId")
 	private MerchantCategoryCode merchantCategoryCode;
 
