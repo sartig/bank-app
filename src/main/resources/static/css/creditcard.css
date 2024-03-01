@@ -121,7 +121,13 @@ html {
 }
 
 .hoverable:hover {
-    color: blue;
+    color: #4F46E5;
+    padding-left: 16px;
+}
+
+.hoverable {
+    color: #64748B;
+    padding-left: 16px;
 }
 
 .amount {
