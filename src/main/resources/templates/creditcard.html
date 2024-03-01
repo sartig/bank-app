@@ -42,7 +42,7 @@
                 <!-- Credit Card Info -->
                 <div class="info-container">
                     <div class="credit-card-container">
-                        <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
+                        <div class="credit-card-info">
                             <div class="creditCard-number"
                             th:data-full-account-number="'Credit Card ' + ${creditCard.accountNumber}"
                             th:data-last-four-digits="${#strings.substring(creditCard.accountNumber, 12, 16)}">

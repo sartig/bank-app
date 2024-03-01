@@ -6,6 +6,13 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script>
+        function submitCreditCardForm(event, index) {
+            event.stopPropagation();
+            var form = document.getElementsByName("cc-form")[index];
+            form.submit();
+        }
+    </script>
 </head>
 
 <body>
@@ -36,8 +43,11 @@
                         <i class="far fa-credit-card"></i>
                         <div class="left-menu-button-text">Credit Card(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
-                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}" onclick="creditcard()"></div>
+                    <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
+                        <form name="cc-form" method="post" action="/creditcard">
+                            <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
+                            <button class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -63,10 +73,6 @@
                     
                     function dashboard() {
                     	window.location.href = '/dashboard';
-                    }
-                    
-                    function creditcard() {
-                    	window.location.href = '/creditcard';
                     }
                 </script>
             </div>

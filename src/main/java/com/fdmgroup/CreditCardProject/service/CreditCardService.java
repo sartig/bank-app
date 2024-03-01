@@ -55,4 +55,8 @@ public class CreditCardService {
 		}
 		return sb.toString();
 	}
+	
+	public CreditCard getCardByNumber(String number) {
+		return creditCardRepository.findByAccountNumber(number).orElseThrow(EntityNotFoundException::new);
+	}
 }
