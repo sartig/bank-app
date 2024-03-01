@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import jakarta.persistence.*;
@@ -45,7 +46,7 @@ public class CreditCardTransaction {
 	 * The amount involved in the transaction.
 	 */
 	@Column(name = "amount")
-	private double amount;
+	private BigDecimal amount;
 
 	/**
 	 * The store information related to the credit card transaction.
@@ -84,7 +85,7 @@ public class CreditCardTransaction {
 	/**
 	 * Parameterized constructor for CreditCardTransaction.
 	 *
-	 * @param accountFromId          The account ID associated with the transaction.
+	 * @param creditCard          The credit card associated with the transaction.
 	 * @param date                   The date of the transaction.
 	 * @param amount                 The amount of the transaction.
 	 * @param storeInfo              The store information related to the
@@ -95,15 +96,15 @@ public class CreditCardTransaction {
 	 * @param originalCurrencyAmount The original currency amount of the
 	 *                               transaction.
 	 */
-	public CreditCardTransaction(CreditCard creditCard, Date date, double amount, String storeInfo,
-			MerchantCategoryCode merchantCategoryCode, String originalCurrency, double originalCurrencyAmount) {
+	public CreditCardTransaction(CreditCard creditCard, Date date, BigDecimal amount, String storeInfo,
+			MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
 		super();
 		setCreditCard(creditCard);
 		setDate(date);
 		setAmount(amount);
 		setStoreInfo(storeInfo);
 		setMerchantCategoryCode(merchantCategoryCode);
-		setOriginalCurrencyCode(originalCurrency);
+		setOriginalCurrencyCode(originalCurrencyCode);
 		setOriginalCurrencyAmount(originalCurrencyAmount);
 	}
 
@@ -214,7 +215,7 @@ public class CreditCardTransaction {
 	 * 
 	 * @return The amount.
 	 */
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
@@ -223,7 +224,7 @@ public class CreditCardTransaction {
 	 * 
 	 * @param amount The amount to set.
 	 */
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 

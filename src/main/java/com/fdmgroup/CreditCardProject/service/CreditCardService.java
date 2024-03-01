@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 @Service
@@ -31,7 +32,8 @@ public class CreditCardService {
 		creditCard.setAccountNumber(creditNumber);
 		creditCard.setUser(user);
 		creditCard.setMonthlyDueDate((byte) 1);
-		creditCard.setSpendingLimit(500);
+		creditCard.setSpendingLimit(BigDecimal.valueOf(5000));
+		creditCard.setCurrentBalance(BigDecimal.ZERO);
 
 		// Set the reward profile for the credit card
 		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(1L)

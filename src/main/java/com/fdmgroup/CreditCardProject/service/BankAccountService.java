@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,15 +29,13 @@ public class BankAccountService {
 	private static final Logger log = LogManager.getLogger(BankAccountService.class);
 	
 	public void createBankAccountForUser(User user) {
-		BankAccount bankAccount = new BankAccount();
 
 		String bankNumber;
 		do {
 			bankNumber = generateAccountNumber();
 		} while (!isAccountNumberUnique(bankNumber));
 
-		bankAccount.setAccountNumber(bankNumber);
-		bankAccount.setUser(user);
+		BankAccount bankAccount = new BankAccount(user, bankNumber, BigDecimal.ZERO);
 		user.getBankAccounts().add(bankAccount);
 		bankAccountRepository.save(bankAccount);
 	}
@@ -59,14 +58,14 @@ public class BankAccountService {
      * @param bankAccountId The unique identifier of the bank account.
      * @return The current balance of the specified bank account, or 0.0 if the account does not exist.
      */
-	public double getAccountBalanceByBankAccountNumber(String bankAccountNumber) {
+	public BigDecimal getAccountBalanceByBankAccountNumber(String bankAccountNumber) {
 		Optional<BankAccount> bankAccount = bankAccountRepository.findByAccountNumber(bankAccountNumber);
 		if (bankAccount.isPresent()) {
 			log.info("BankAccountServiceSuccess: The current balance of {} was obtained from {}.",bankAccount.get().getCurrentBalance(),bankAccountNumber);
 			return bankAccount.get().getCurrentBalance();
 		}else {
 			log.error("BankAccountServiceError: Could not obtain current balance of {} as it does not exist.",bankAccountNumber);
-			return 0.0;
+			return BigDecimal.ZERO;
 		}
 	}
 

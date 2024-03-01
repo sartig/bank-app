@@ -1,6 +1,5 @@
 package com.fdmgroup.CreditCardProject.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class BankAccountController {
 	public String displayBankAccountBalance(@PathVariable String selectedBankAccountId, Model model) {
 		String bankAccountId = selectedBankAccountId;
 		if (bankAccountId.length() != 0) {
-			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(selectedBankAccountId);
+			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(selectedBankAccountId).doubleValue();
 			model.addAttribute("bankAccountBalance", bankAccountBalance);
 			model.addAttribute("bankAccountId", bankAccountId);
 		}else {
