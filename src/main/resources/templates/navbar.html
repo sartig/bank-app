@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="left-menu-mid">
-                    <div class="left-menu-button">
+                    <div class="left-menu-button" onclick="dashboard()">
                         <i class="fas fa-home"></i>
                         <div class="left-menu-button-text">Dashboard</div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="left-menu-button-text">Credit Card(s)</div>
                     </div>
                     <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
-                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"> </div>
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}" onclick="creditcard()"></div>
                     </div>
                 </div>
             </div>
@@ -55,6 +55,14 @@
                     function logout() {
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL
+                    }
+                    
+                    function dashboard() {
+                    	window.location.href = '/dashboard';
+                    }
+                    
+                    function creditcard() {
+                    	window.location.href = '/creditcard';
                     }
                 </script>
             </div>
