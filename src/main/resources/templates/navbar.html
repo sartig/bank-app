@@ -33,24 +33,26 @@
                         <i class="fas fa-money-bill"></i>
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}" th:onclick="|submitForm(event, '${status.index}'')|">
+                    <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}"
+                        th:onclick="|submitForm(event, '${status.index}'')|">
                         <form method="post" action="/bankaccount">
                             <input th:value="${bankAccount.accountNumber}" name="selectedBankAccountNumber" hidden>
-                            <button class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
+                            <button class="left-menu-sub-button-text"
+                                th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
                         </form>
-                    	<!-- <a th:href="@{'/bankaccount'}">
+                        <!-- <a th:href="@{'/bankaccount'}">
                         	<div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">     
                         </a> -->
-                        </div>
                     </div>
+                </div>
 
-                    <div class="left-menu-title">
-                        <i class="far fa-credit-card"></i>
-                        <div class="left-menu-button-text">Credit Card(s)</div>
-                    </div>
-                    <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
-                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"> </div>
-                    </div>
+                <div class="left-menu-title">
+                    <i class="far fa-credit-card"></i>
+                    <div class="left-menu-button-text">Credit Card(s)</div>
+                </div>
+                <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}">
+                    <div class="left-menu-sub-button-text"
+                        th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"> </div>
                 </div>
             </div>
             <div class="left-menu-bot">
@@ -76,6 +78,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
