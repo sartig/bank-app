@@ -12,7 +12,7 @@
 
     <script>
         function validateAmount() {
-		    var amountInput = document.getElementById('amount');
+		    var amountInput = document.getElementById('amountValue');
 		    var amountValue = amountInput.value;
 			
 			// 1. Verify input is a float and more than 0
@@ -29,6 +29,22 @@
 
 		    return true;
 		}
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function updateModalAmount() {
+            var amountInput = document.getElementById('amountValue');
+            var amountValue = amountInput.value;
+            var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
+            var accountMessage = document.querySelector('.account-box').innerText;
+            
+            document.getElementById('modal-amount').innerText = amountValue;
+            document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
+            document.getElementById('modal-account').innerText = accountMessage;
+
+        }
     </script>
 </head>
 <body>
@@ -45,43 +61,43 @@
                     </div>
                     <div class="page-below-title-container"></div>
                     <div class="centered-box">
-                        <!-- Updated button to trigger the modal without form submission -->
-                        <button type="button" class="send-request-button" onclick="document.getElementById('modal-toggle').checked = true;">Send Request</button>
+                        
+                        <button type="button" class="send-request-button" onclick="if(validateAmount()) { updateModalAmount(); document.getElementById('modal-toggle').checked = true; }">Send Request</button>
 
-                        <!-- Modal structure -->
+                        <!-- Modal to display after customer enters valid amount and clicks send request button -->
                         <input type="checkbox" id="modal-toggle" hidden>
                         <div class="modal">
                             <label for="modal-toggle" class="modal-overlay"></label>
                             <div class="modal-content">
                                 <h3>Transaction Confirmation</h3>
 							    <form action="/deposit">
-							        <label for="account">Account</label><br>Bank Account 234242342<br><br>
+							        <label for="account">Account</label><br><span id="modal-account">Bank Account 234242342</span><br><br>
 							        
-							        <label for="amount">Amount</label><br><br>$0.00<br><br>
+							        <label for="amount">Amount</label><br><br>$<span id="modal-amount">0.00</span><br><br>
 							
-							        <label for="actions">Deposit/Withdraw</label><br><br>Deposit<br><br>
+							        <label for="actions">Deposit/Withdraw</label><br><br><span id="modal-action">Deposit</span><br><br>
 							    </form>
                             </div>
                         </div>
 
-                        <!-- Existing form content -->
+
+
                         <form action="/deposit" method="post" onsubmit="return validateAmount()" id="amountForm">
                             <label for="account" class="account">Account<br></label>
                             <div class="account-box">Bank Account 234242342</div><br>
 
-                            <label for="amount" id="amountLabel" class="amount">Amount</label><br>
-							<input type="text" class="amount-box" id="amount" name="amount" placeholder="$0.00"><br>
+                            <label for="amount" class="amount">Amount</label><br>
+							<input type="text" class="amount-box" id="amountValue" name="amount" placeholder="$0.00"><br>
 
 
                             <label for="actions">Deposit/Withdraw</label><br>
-                            <select id="cars" class="deposit-or-withdraw-options">
+                            <select class="deposit-or-withdraw-options">
                                 <option value="select" disabled>Select</option>
                                 <option value="deposit">Deposit</option>
                                 <option value="withdraw">Withdraw</option>
                             </select>
 
-                            <!-- Existing submit button with type "button" to prevent form submission -->
-                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { document.querySelector('.modal').style.display = 'block'; }">Send Request</button>
+                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { updateModalAmount(); document.querySelector('.modal').style.display = 'block'; }">Send Request</button>
 
                         </form>
 
