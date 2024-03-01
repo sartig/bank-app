@@ -23,8 +23,8 @@
 					</div>
 		
 				<div class="bank-account-container-main">
-					<div class="bank-account-container-main-accountId" th:text="'Bank Account' + ${bankAccountNumber}">
-					<div class="bank-account-container-main-accountbalance" th:text="'Balance' + ${bank}">
+					<div class="bank-account-container-main-accountId" th:text="'Bank Account' + ${bankAccount.accountNumber}">
+					<div class="bank-account-container-main-accountbalance" th:text="'Balance' + ${bankAccount.currentBalance}">
 				</div>
 				
 				<div class="bank-account-button-container">

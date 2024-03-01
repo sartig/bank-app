@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
@@ -24,24 +26,24 @@ public class BankAccountController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/bankaccount")
-	public String userBankAccount(HttpSession session,Model model) {
+	@PostMapping("/bankaccount")
+	public String userBankAccount(@PathVariable String selectedBankAccountNumber, HttpSession session,Model model) {
 		String username = (String) session.getAttribute("current_user");
 		Optional<User> userOptional = userRepository.findByUsername(username);
 		if (userOptional.isPresent()) {
-			List<String> bankAccountIds = bankAccountService.getBankAccountIdsByUsername(userOptional.get().getUsername());
-			model.addAttribute("bankAccountIds", bankAccountIds);	
+			BankAccount bankAccount = bankAccountService.getBankAccountByBankAccountNumber(selectedBankAccountNumber);
+			model.addAttribute("bankAccountIds", bankAccount);	
 		}
 		
 		return "bankaccount";
 	}
 	
-	@GetMapping("/bankaccount/{selectedBankAccountNumber}")
-	public String displayBankAccountBalance(@PathVariable String selectedBankAccountNumber, Model model) {
-		String bankAccountNumber = selectedBankAccountNumber;
-		if (bankAccountNumber.length() != 0) {
-			BankAccount bankAccount = bankAccountService.get
-			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(bankAccountNumber);
+	@Deprecated
+	@GetMapping("/bankaccount/{selectedBankAccountId}")
+	public String displayBankAccountBalance(@PathVariable String selectedBankAccountId, Model model) {
+		String bankAccountId = selectedBankAccountId;
+		if (bankAccountId.length() != 0) {
+			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(selectedBankAccountId);
 			model.addAttribute("bankAccountBalance", bankAccountBalance);
 			model.addAttribute("bankAccountId", bankAccountId);
 		}else {

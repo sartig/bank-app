@@ -87,9 +87,9 @@ public class BankAccountService {
 	}
 	
 	/**
-	 * Retrieves a list of bank account IDs associated with the given username.
-	 * @param username The username for which to fetch bank account IDs.
-	 * @return A list of bank account IDs associated with the specified username.
+	 * Retrieves a bank account associated with the given bank account number.
+	 * @param bankaccountNumber The bank account number for which to fetch bank account.
+	 * @return A bank account associated with the specified bank account number.
 	 */
 	public BankAccount getBankAccountByBankAccountNumber(String bankAccountNumber){
 		return bankAccountRepository.findByAccountNumber(bankAccountNumber).get();

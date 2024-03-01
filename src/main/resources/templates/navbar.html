@@ -27,7 +27,7 @@
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
                     <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
-                    	<a th:href="@{'/bankaccount/' + ${bankAccount.accountNumber}}">
+                    	<a th:href="@{'/bankaccount'}">
                         	<div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">     
                         </a>
                         </div>
