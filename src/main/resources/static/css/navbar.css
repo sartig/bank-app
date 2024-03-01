@@ -30,18 +30,19 @@
 }
 
 .left-menu-button,
-.left-menu-title {
+.left-menu-title,
+.left-menu-text {
     width: 75%;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px;
+    user-select: none;
 }
 
 .left-menu-title {
     padding-bottom: 10px;
 }
-
 
 .left-menu-sub-button {
     width: 75%;
@@ -53,18 +54,26 @@
     padding: 10px;
 }
 
-.left-menu-button:hover {
+.left-menu-button:hover,
+.left-menu-sub-button:hover,
+.left-menu-sub-button>form>button:hover {
     background-color: #191A38;
-}
-
-.left-menu-sub-button:hover {
-    background-color: #191A38;
+    cursor: pointer;
 }
 
 .left-menu-button>i,
-.left-menu-title>i {
+.left-menu-title>i,
+.left-menu-text>i {
     width: 25%;
     font-size: 24px;
+}
+
+.left-menu-sub-button>form>button {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    font-size: inherit;
 }
 
 .left-menu-button-text {

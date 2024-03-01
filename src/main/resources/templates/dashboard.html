@@ -11,28 +11,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:inline="javascript">
         $(document).ready(function() {
-            $(".bankaccount-number").click(function() {
-                var accountNumberElement = $(this);
+            $(document).on("click", ".bankaccount-number i", function() {
+                var iconElementBank = $(this);
+                var accountNumberElement = iconElementBank.parent();
                 var fullAccountNumber = accountNumberElement.data("full-account-number");
                 var lastFourDigits = accountNumberElement.data("last-four-digits");
 
                 if (accountNumberElement.text().trim() === fullAccountNumber) {
-                    accountNumberElement.html("Bank Account ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>');
+                    accountNumberElement.html("Bank Account ************ - " + lastFourDigits + ' <i class="fas fa-eye hoverable"></i>');
                 } else {
-                    accountNumberElement.html(fullAccountNumber + ' <i class="fas fa-eye"></i>');
-                }
+                    accountNumberElement.html(fullAccountNumber + ' <i class="fas fa-eye-slash hoverable"></i>');
+                } 
+
             });
         });
         $(document).ready(function() {
-            $(".creditCard-number").click(function() {
-                var creditCardElement = $(this);
+            $(document).on("click", ".creditCard-number i", function() {
+                var iconElement = $(this);
+                var creditCardElement = iconElement.parent();
                 var fullCreditCard = creditCardElement.data("full-credit-number");
                 var lastFourDigits = creditCardElement.data("last-four-digits-credit");
 
                 if (creditCardElement.text().trim() === fullCreditCard) {
-                    creditCardElement.html("Credit Card ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>' );
+                    creditCardElement.html("Credit Card ************ - " + lastFourDigits + ' <i class="fas fa-eye hoverable"></i>' );
                 } else {
-                    creditCardElement.html(fullCreditCard + ' <i class="fas fa-eye"></i>' );
+                    creditCardElement.html(fullCreditCard + ' <i class="fas fa-eye-slash creditCard-number hoverable"></i>' );
                 }
             });
         });
@@ -61,7 +64,7 @@
                             th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
                             th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
                                 Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye hoverable"></i>
 
                             </div>
                             
@@ -78,7 +81,7 @@
                                 th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
                                 th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
                                 Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye creditCard-number hoverable"></i>
 
                             </div>
                             <div class="balance">

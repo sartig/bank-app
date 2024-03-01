@@ -80,13 +80,14 @@ html {
 
 .bank-account-container,
 .credit-card-container {
-    width: 510px;
+    width: 1044px;
 
 }
 
 .bank-account-info,
 .credit-card-info {
-    height: 100px;
+    display: flex;
+    flex-direction: column;
     border-radius: 6px;
     border: 1px solid lightgrey;
     margin-bottom: 15px;
@@ -102,22 +103,25 @@ html {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
-.balance {
+
+
+
+.balance, .available-balance, .limit, .bills, .minimum-payment, .due-date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-block: 8px;
+    font-weight: 600;
     font-size: 20px;
-
+    line-height: 30px;
 }
 
 .hoverable:hover {
     color: blue;
-    cursor: pointer;
 }
 
 .amount {
@@ -185,38 +189,178 @@ html {
  color: #4F46E5;
  }
 
-
-input[type="text"][name="username"],
-input[type="password"][name="password"],
-input[type="text"][name="password"],
-input[type="password"][name="confirmPassword"],
-input[type="text"][name="confirmPassword"] {
-    /*padding: 12px 24px;*/
-    border-radius: 1000px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 1px 2px 0px #1018280D;
-    gap: 8px;
-    border: 1px solid transparent;
-    outline: none;
+ .divider { 
+	background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+	width:996px;
+	height:1px;
 }
 
-input[type="text"][name="username"]:focus,
-input[type="password"][name="password"]:focus,
-input[type="text"][name="password"]:focus,
-input[type="password"][name="confirmPassword"]:focus,
-input[type="text"][name="confirmPassword"]:focus{
-    background: #FFFFFF;
-    border:solid #4F46E5;
-    box-shadow: 0px 1px 2px 0px #1018280D;
+.icon-button-box{
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 23px 274px;
+gap: 14px;
+background: #F7F8FD;
+border: 1px solid #E2E8F0;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 6px;
+}
+.icon-button-box:hover {
+    background: #EFF2F6; /* Change to the desired color */
+}
+.icon-button-box:hover .icon-button{
+    background: #473FCE; /* Change to the desired color */
+}
+.icon-button-box:hover .icon-button-text{
+    color: #473FCE; /* Change to the desired color */
+}
+
+
+.icon-button{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px;
+gap: 4px;
+width: 40px;
+height: 40px;
+background: #4F46E5;
+border-radius: 1000px;
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+
+.icon-button-text{
+    /* Pay Bills */
+
+width: 70px;
+height: 24px;
+
+/* L/Semibold */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+/* identical to box height, or 133% */
+letter-spacing: -0.02em;
+
+/* Violet/Main - 500 */
+color: #4F46E5;
+}
+
+.plus-svg{
+    color: #fff;
+}
+
+.transactions{
+    width: 100%;
+}
+
+.transactions-head { 
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+height:56px;
+padding: 0px 16px;
+left: 0px;
+top: 0px;
+background: #F8FAFC;
+border-bottom: 1px solid #E2E8F0;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.head-time, .head-id{
+width: 21%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.head-description, .head-type{
+width: 23.5%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.head-amount{
+width: 11%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.transactions-body{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #344055;
 
 }
 
-input[type="text"][name="username"]:hover,
-input[type="password"][name="password"]:hover,
-input[type="text"][name="password"]:hover,
-input[type="password"][name="confirmPassword"]:hover,
-input[type="text"][name="confirmPassword"]:hover {
-    background: #F8FAFC;
-    box-shadow: 0px 1px 2px 0px #1018280D;
+.body-row{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+height: 64px;
 }
 
+.body-time, .body-id{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 21%;
+height: 64px;
+background: #FFFFFF;
+}
+
+.body-description, .body-type{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 23.5%;
+height: 64px;
+background: #FFFFFF;
+}
+
+.body-amount{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 11%;
+height: 64px;
+background: #FFFFFF;
+}
