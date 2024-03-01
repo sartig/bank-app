@@ -14,9 +14,9 @@
             $(document).on("click", ".creditCard-number i", function() {
                 var iconElement = $(this);
                 var creditCardElement = iconElement.parent();
-                var fullCreditCard = creditCardElement.data("full-credit-number");
-                var lastFourDigits = creditCardElement.data("last-four-digits-credit");
-
+                var fullCreditCard = creditCardElement.data("full-account-number");
+                var lastFourDigits = creditCardElement.data("last-four-digits");
+                
                 if (creditCardElement.text().trim() === fullCreditCard) {
                     creditCardElement.html("Credit Card ************ - " + lastFourDigits + ' <i class="fas fa-eye hoverable"></i>' );
                 } else {
