@@ -6,6 +6,13 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script>
+        function submitForm(event, index) {
+            event.stopPropagation();
+            var form = document.getElementsByTagName('form')[index];
+            form.submit();
+        }
+    </script>
 </head>
 
 <body>
@@ -26,10 +33,14 @@
                         <i class="fas fa-money-bill"></i>
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
-                    	<a th:href="@{'/bankaccount'}">
+                    <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}" th:onclick="|submitForm(event, '${status.index}'')|">
+                        <form method="post" action="/bankaccount">
+                            <input th:value="${bankAccount.accountNumber}" name="selectedBankAccountNumber" hidden>
+                            <button class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
+                        </form>
+                    	<!-- <a th:href="@{'/bankaccount'}">
                         	<div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">     
-                        </a>
+                        </a> -->
                         </div>
                     </div>
 
