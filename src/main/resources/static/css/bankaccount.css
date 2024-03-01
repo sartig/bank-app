@@ -1,71 +1,195 @@
-.bankaccount-page-balance-box{
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 16px 24px;
-	gap: 21px;
+.info-container {
+    width: 1044px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.bankaccount-balance-label{
-	display: inline-block;
-	width: 30%;  
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 32px;
-	align-items: center;
+.bank-account-container{
+    width: 1044px;
 }
 
-.bankaccount-balance {
-	display: inline-block;
-    width: 70%; 
-    font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 32px;
-	text-align: right;
-	letter-spacing: -0.024em;
+.amount {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 40px;
+    text-align: right;
 }
 
-.bankaccount-page-button-box{
+.bank-account-info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    border: 1px solid lightgrey;
+    margin-bottom: 15px;
+    padding: 14px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: left;
+}
+
+.icon-button-box{
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: row;
-	align-items: flex-start;
-	padding: 0px;
-}
-
-.bankaccount-page-navigation-button{
-	display: inline-block;
-	flex-direction: column;
 	align-items: center;
-	padding: 10px 12.5% ;
+	padding: 23px;
 	gap: 14px;
-	
+	background: #F7F8FD;
+	border: 1px solid #E2E8F0;
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
 }
 
-.bank-account-button {
-    display: flex;
-    width:20px;
-    height:20px;
+.icon-button-box:hover {
+    background: #EFF2F6; /* Change to the desired color */
+}
+
+.icon-button-container:hover .icon-button{
+    background: #473FCE; /* Change to the desired color */
+}
+
+.icon-button-container:hover .icon-button-text{
+    color: #473FCE; /* Change to the desired color */
+}
+
+.icon-button-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon-button{
+	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	padding: 12px;
 	gap: 4px;
+	width: 40px;
+	height: 40px;
 	background: #4F46E5;
-	color: #FFFFFF;
 	border-radius: 1000px;
 	
+	flex: none;
+	order: 0;
+	flex-grow: 0;
 }
 
+.icon-button-text{
 
-.bank-account-button-text {
-	display:flex
-	color: #4F46E5;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 600;
-	font-size: 12px;
-	line-height: 24px;
+/* L/Semibold */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+/* identical to box height, or 133% */
+letter-spacing: -0.02em;
+
+/* Violet/Main - 500 */
+color: #4F46E5;
+}
+
+.transactions-head { 
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+height:56px;
+padding: 0px 16px;
+left: 0px;
+top: 0px;
+background: #F8FAFC;
+border-bottom: 1px solid #E2E8F0;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.head-time, .head-id{
+width: 21%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.head-description, .head-type{
+width: 23.5%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.head-amount{
+width: 11%;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.transactions-body{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #344055;
+
+}
+
+.body-row{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+height: 64px;
+}
+
+.body-time, .body-id{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 21%;
+height: 64px;
+background: #FFFFFF;
+}
+
+.body-description, .body-type{
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 23.5%;
+height: 64px;
+background: #FFFFFF;
+}
+
+.body-amount{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px 16px;
+gap: 4px;
+width: 11%;
+height: 64px;
+background: #FFFFFF;
 }

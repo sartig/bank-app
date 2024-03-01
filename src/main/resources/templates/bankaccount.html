@@ -23,28 +23,66 @@
 						<div class="page-title">Bank Accounts</div>
 						<div class="page-subtitle">Keep track of your finances</div>
 					</div>
-					<div class="bankaccount-page-balance-box">
-						<div class="bankaccount-number" th:text="'Bank Account   ' + ${bankAccount.accountNumber}"></div>
-						<div style="width:100%">	
-							<div class="bankaccount-balance-label" th:text="Balance"> </div> 
-							<div class = "bankaccount-balance" th:text ="${bankAccount.currentBalance}"></div>
-						</div>
-					</div>
-					<div class="bankaccount-page-button-box">
-						<span class="bankaccount-page-navigation-button" th:href="@{/transfer}">
-							<div class="bank-account-button">+</div>
-							<div class="bank-account-button-text">Transfer</div>
-						</span>
-						<span class="bankaccount-page-navigation-button" th:href="@{/deposit}">
-							<div class="bank-account-button">+</div>
-							<div class="bank-account-button-text">Deposit</div>
-						</span>
-					</div>
-				</div>
+					
+			<!-- Bank Account Info -->
+                	<div class="info-container">
+	                	<div class="bank-account-container">
+							<div class="bank-account-info">
+								<div class="bankaccount-number" th:text="'Bank Account ' + ${bankAccount.accountNumber}">
+							</div>
+							<div>
+								<div class = "bankaccount-balance">Balance</div> 
+								<div class = "amount" th:text ="${bankAccount.currentBalance}"></div>
+	                		</div>
+						 </div>
+                    </div>
+                </div>
 				
-			</div>			
-		</div>
-	</div>
+			<!-- Navigation Buttons -->			
+			<div class = "icon-button-box">
+				<div style ="width:100%; text-align: center">
+					<a th:href="@{/transfer}">
+						<div class="icon-button-container" style="width:100%">
+							<div class = "icon-button"> 
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+									<path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+								</svg>
+							</div>
+						</div>
+						<div class = "icon-button-text">Transfer</div>
+					</a>
+				</div>
+				<div style ="width:100%; text-align: center">
+					<a th:href="@{/deposit}">
+							<div class="icon-button-container" style="width:100%">
+								<div class = "icon-button"> 
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+										<path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+									</svg>
+								</div>
+							</div>
+						<div class = "icon-button-text">Deposit/Withdraw</div>
+					</a>
+				</div>
+			</div>
+			
+			<!-- Bank Transactions -->
+                <div class="title">
+                    <div class="page-title"> Recent Transactions</div>
+                </div>
+                <div class="transactions">
+                    <div class="transactions-head">  
+                        <div class="head-time">Time</div>
+                        <div class="head-id">Transactions ID</div>
+                        <div class="head-description">Description</div>
+                        <div class="head-type">Transaction Type</div>
+                        <div class="head-amount">Amount</div>
+                    </div>
+	                <div class="transactions-body">
+	                        <div class="body-row"></div>
+	                </div>
+	          </div>
+	</div>	
 </body>
 </html>
 
