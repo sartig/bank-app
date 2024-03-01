@@ -97,6 +97,14 @@ html {
     text-align: left;
 }
 
+.bankaccount-number,
+.creditCard-number {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .balance {
     display: flex;
     flex-direction: row;
@@ -105,6 +113,11 @@ html {
     margin-block: 8px;
     font-size: 20px;
 
+}
+
+.hoverable:hover {
+    color: blue;
+    cursor: pointer;
 }
 
 .amount {

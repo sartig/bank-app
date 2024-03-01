@@ -31,28 +31,26 @@ public class BankAccountService {
 	}
 
 	public void createBankAccountForUser(User user) {
-		BankAccount bankAccount = new BankAccount();
 
 		String bankNumber;
 		do {
 			bankNumber = generateAccountNumber();
 		} while (!isAccountNumberUnique(bankNumber));
 
-		bankAccount.setAccountNumber(bankNumber);
-		bankAccount.setUser(user);
+		BankAccount bankAccount = new BankAccount(user, bankNumber, BigDecimal.ZERO);
 		user.getBankAccounts().add(bankAccount);
 		bankAccountRepository.save(bankAccount);
 	}
 
-	public long depositToAccount(String accountId, double amount) throws BankAccountNotFoundException {
+	public long depositToAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
 
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(amount, bankAccount.getAccountId()));
 
-		double currentBalance = bankAccount.getCurrentBalance();
-		double newBalance = BigDecimal.valueOf(amount).add(BigDecimal.valueOf(currentBalance)).doubleValue();
+		BigDecimal currentBalance = bankAccount.getCurrentBalance();
+		BigDecimal newBalance = amount.add(currentBalance);
 		bankAccount.setCurrentBalance(newBalance);
 		bankAccount.addTransactionHistory(transaction);
 		bankAccountRepository.save(bankAccount);
