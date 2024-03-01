@@ -34,6 +34,8 @@ public class DepositController {
 	@Autowired
 	BankTransactionService bankTransactionService;
 
+	// temporary method to get user's 1st bank account
+	// TODO: remove when bank account page is complete
 	@GetMapping("/deposit")
 	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
@@ -42,6 +44,27 @@ public class DepositController {
 				.getAccountNumber();
 		model.addAttribute("accountId", accNumber);
 		return "deposit";
+	}
+
+	@PostMapping("/deposit")
+	public String goToAccountDeposit(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+			Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
+		if (!bankAccountService.isAccountNumberValid(accountId)) {
+			return "redirect:/dashboard";
+		}
+		try {
+			if (bankAccountService.getUsernameOfAccountByAccountNumber(accountId).equals(currentUser.getUsername())) {
+				model.addAttribute("accountId", accountId);
+				return "deposit";
+			}
+		} catch (BankAccountNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/dashboard";
+
 	}
 
 	@PostMapping("/deposit/confirm")

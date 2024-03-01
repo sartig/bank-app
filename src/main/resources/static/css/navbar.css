@@ -54,7 +54,9 @@
     padding: 10px;
 }
 
-.left-menu-button:hover,.left-menu-sub-button:hover {
+.left-menu-button:hover,
+.left-menu-sub-button:hover,
+.left-menu-sub-button>form>button:hover {
     background-color: #191A38;
     cursor: pointer;
 }
@@ -64,6 +66,14 @@
 .left-menu-text>i {
     width: 25%;
     font-size: 24px;
+}
+
+.left-menu-sub-button>form>button {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    font-size: inherit;
 }
 
 .left-menu-button-text {
