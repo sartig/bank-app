@@ -2,6 +2,7 @@ package com.fdmgroup.CreditCardProject.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Random;
 
@@ -30,15 +31,16 @@ public class BankAccountServiceTest {
     	Random random = new Random();
         String longTest = random.toString();
         double doubleTest = random.nextDouble();
+        BigDecimal decimalTest = new BigDecimal(doubleTest);
     	
         // Act
         Mockito.when(bankAccountRepo.findByAccountNumber(longTest)).thenReturn(Optional.of(bankAccountMock));
-        Mockito.when(bankAccountMock.getCurrentBalance()).thenReturn(doubleTest);
-        double result = bankAccountService.getAccountBalanceByBankAccountNumber(longTest);
+        Mockito.when(bankAccountMock.getCurrentBalance()).thenReturn(decimalTest);
+        BigDecimal result = bankAccountService.getAccountBalanceByBankAccountNumber(longTest);
 
         // Assess
         Mockito.verify(bankAccountRepo).findByAccountNumber(longTest);
-        assertEquals(doubleTest, result,0.0);
+        assertEquals(decimalTest, result);
     }
 
     @Test
@@ -50,10 +52,11 @@ public class BankAccountServiceTest {
         Mockito.when(bankAccountRepo.findByAccountNumber(longTest)).thenReturn(Optional.empty());
 
         // Assert
-        double result = bankAccountService.getAccountBalanceByBankAccountNumber(longTest);
-
+        BigDecimal result = bankAccountService.getAccountBalanceByBankAccountNumber(longTest);
+        BigDecimal test = new BigDecimal(0.0);
+        
         // Assess
         Mockito.verify(bankAccountRepo).findByAccountNumber(longTest);
-        assertEquals(0.0, result, 0.0);
+        assertEquals(test, result);
     }
 }
