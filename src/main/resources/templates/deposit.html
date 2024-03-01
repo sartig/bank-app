@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/deposit.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    
+
     <script>
         function validateAmount() {
 		    var amountInput = document.getElementById('amount');
@@ -45,6 +45,19 @@
                     </div>
                     <div class="page-below-title-container"></div>
                     <div class="centered-box">
+                        <!-- Updated button to trigger the modal without form submission -->
+                        <button type="button" class="send-request-button" onclick="document.getElementById('modal-toggle').checked = true;">Send Request</button>
+
+                        <!-- Modal structure -->
+                        <input type="checkbox" id="modal-toggle" hidden>
+                        <div class="modal">
+                            <label for="modal-toggle" class="modal-overlay"></label>
+                            <div class="modal-content">
+                                Thank you
+                            </div>
+                        </div>
+
+                        <!-- Existing form content -->
                         <form action="/deposit" method="post" onsubmit="return validateAmount()" id="amountForm">
                             <label for="account" class="account">Account<br></label>
                             <div class="account-box">Bank Account 234242342</div><br>
@@ -59,9 +72,12 @@
                                 <option value="deposit">Deposit</option>
                                 <option value="withdraw">Withdraw</option>
                             </select>
-                            
-                            <button type="submit" class="send-request-button">Send Request</button>
+
+                            <!-- Existing submit button with type "button" to prevent form submission -->
+                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { document.querySelector('.modal').style.display = 'block'; }">Send Request</button>
+
                         </form>
+
                     </div>
                 </div>
             </div>
