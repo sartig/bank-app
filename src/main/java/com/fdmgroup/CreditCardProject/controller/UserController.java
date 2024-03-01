@@ -30,4 +30,5 @@ public class UserController {
         redirectAttributes.addFlashAttribute("logoutMessage2", "See you again!");
         return "redirect:/index";
     }
+
 }
