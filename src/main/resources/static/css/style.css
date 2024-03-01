@@ -97,6 +97,14 @@ html {
     text-align: left;
 }
 
+.bankaccount-number,
+.creditCard-number {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .balance {
     display: flex;
     flex-direction: row;

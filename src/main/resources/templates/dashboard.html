@@ -7,6 +7,36 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            $(".bankaccount-number").click(function() {
+                var accountNumberElement = $(this);
+                var fullAccountNumber = accountNumberElement.data("full-account-number");
+                var lastFourDigits = accountNumberElement.data("last-four-digits");
+
+                if (accountNumberElement.text().trim() === fullAccountNumber) {
+                    accountNumberElement.html("Bank Account ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>');
+                } else {
+                    accountNumberElement.html(fullAccountNumber + ' <i class="fas fa-eye"></i>');
+                }
+            });
+        });
+        $(document).ready(function() {
+            $(".creditCard-number").click(function() {
+                var creditCardElement = $(this);
+                var fullCreditCard = creditCardElement.data("full-credit-number");
+                var lastFourDigits = creditCardElement.data("last-four-digits-credit");
+
+                if (creditCardElement.text().trim() === fullCreditCard) {
+                    creditCardElement.html("Credit Card ************ - " + lastFourDigits + ' <i class="fas fa-eye"></i>' );
+                } else {
+                    creditCardElement.html(fullCreditCard + ' <i class="fas fa-eye"></i>' );
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -14,9 +44,9 @@
 
     <div th:replace="navbar :: body"></div>
 
-    <div class="content">
+    <div class="content" th:object="${user}">
         <div class="page-top-container"> </div>
-        <div class="container">
+        <div class="container" >
             <div class="content-container">
                 <div class="title">
                     <div class="page-title">Dashboard</div>
@@ -26,53 +56,34 @@
                 <div class="info-container">
 
                     <div class="bank-account-container">
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 1234567890
+                        <div class="bank-account-info" th:each="bankAccount : ${user.bankAccounts}">
+                            <div class="bankaccount-number"
+                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
+                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
+                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+                                <i class="fas fa-eye"></i>
+
                             </div>
+                            
                             <div class="balance">
                                 <div>Balance</div>
-                                <div class="amount">$123.45</div>
-                            </div>
-                        </div>
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 123456
-                            </div>
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="amount">$234.56</div>
-                            </div>
-                        </div>
-                        <div class="bank-account-info">
-                            <div class="account-number">
-                                Bank Account 8472698563
-                            </div>
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="amount">$10101.01</div>
+                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="credit-card-container">
-                        <div class="credit-card-info">
-gi                            <!-- make credit card numbers show only the last 4 digits for security-->
-                            <div class="account-number">
-                                Credit Card 1111-2222-3333-4444
+                        <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
+                            <div class="creditCard-number"
+                                th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
+                                th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
+                                Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
+                                <i class="fas fa-eye"></i>
+
                             </div>
                             <div class="balance">
                                 <div>Remaining Balance</div>
-                                <div class="amount">$1234.56</div>
-                            </div>
-                        </div>
-                        <div class="credit-card-info">
-                            <div class="account-number">
-                                Credit Card 1234-4321-1234-4321
-                            </div>
-                            <div class="balance">
-                                <div>Remaining Balance</div>
-                                <div class="amount">$2345.67</div>
+                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
                             </div>
                         </div>
                     </div>

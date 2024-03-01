@@ -9,76 +9,69 @@
 </head>
 
 <body>
-<div th:fragment="body">
-    <div class="navbar">
+    <div th:fragment="body" class="navbar">
 
-    <div class="left-menu">
-        <div>
-            <div class="left-menu-top">
-                <img src="/svg/icon.svg">
+        <div class="left-menu" th:object="${user}">
+            <div>
+                <div class="left-menu-top">
+                    <img src="/svg/icon.svg">
+                </div>
+
+                <div class="left-menu-mid">
+                    <div class="left-menu-button">
+                        <i class="fas fa-home"></i>
+                        <div class="left-menu-button-text">Dashboard</div>
+                    </div>
+                    <div class="left-menu-title">
+                        <i class="fas fa-money-bill"></i>
+                        <div class="left-menu-button-text">Bank Account(s)</div>
+                    </div>
+                    <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}" onclick="confirmTransaction()"></div>
+                        <script>
+                            function confirmTransaction() {
+                                // Ask user if they want to start a transaction
+                                var confirmTransaction = confirm("Do you want to start a transaction?");
+                                if (confirmTransaction) {
+                                    // Redirect to transaction page
+                                    window.location.href = '/transaction';
+                                }else {
+                                    // Do nothing
+                                }
+
+                            }
+                        </script>
+                    </div>
+
+                    <div class="left-menu-title">
+                        <i class="far fa-credit-card"></i>
+                        <div class="left-menu-button-text">Credit Card(s)</div>
+                    </div>
+                    <div class="left-menu-sub-button" th:each="creditCard : ${user.creditCards}"  onclick="logout()">
+                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></div>
+                    </div>
+
+                </div>
             </div>
-
-            <div class="left-menu-mid">
+            <div class="left-menu-bot">
                 <div class="left-menu-button">
-                    <i class="fas fa-home"></i>
-                    <div class="left-menu-button-text">Dashboard</div>
-                </div>
-                <div class="left-menu-title">
-                    <i class="fas fa-money-bill"></i>
-                    <div class="left-menu-button-text">Bank Account(s)</div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        1234567890
-                    </div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        123456
-                    </div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        8472698563
-                    </div>
+                    <i class="fas fa-user"></i>
+                    <div class="left-menu-button-text">Profile</div>
                 </div>
 
-                <div class="left-menu-title">
-                    <i class="far fa-credit-card"></i>
-                    <div class="left-menu-button-text">Credit Card(s)</div>
+                <div class="left-menu-button" onclick="logout()">
+                    <i class="fas fa-door-open"></i>
+                    <div class="left-menu-button-text">Logout</div>
                 </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        1111-2222-3333-4444
-                    </div>
-                </div>
-                <div class="left-menu-sub-button">
-                    <div class="left-menu-sub-button-text">
-                        1234-4321-1234-4321
-                    </div>
-                </div>
+                <script>
+                    function logout() {
+                        // Perform logout action
+                        window.location.href = '/logout'; // Redirect to logout URL
+                    }
+                </script>
             </div>
-        </div>
-        <div class="left-menu-bot">
-            <div class="left-menu-button">
-                <i class="fas fa-user"></i>
-                <div class="left-menu-button-text">Profile</div>
-            </div>
-
-            <div class="left-menu-button" onclick="logout()">
-                <i class="fas fa-door-open"></i>
-                <div class="left-menu-button-text">Logout</div>
-            </div>
-            <script>
-                function logout() {
-                    // Perform logout action
-                    window.location.href = '/logout'; // Redirect to logout URL
-                }
-            </script>
         </div>
     </div>
-</div>
-</div>
 </body>
 
 </html>

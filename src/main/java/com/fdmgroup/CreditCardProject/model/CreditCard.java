@@ -1,7 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.util.List;
-import java.util.Random;
 
 import jakarta.persistence.*;
 
@@ -25,6 +24,17 @@ public class CreditCard {
 	@Column(name = "creditCardId")
 	private long accountId;
 
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 
 	/**
@@ -75,17 +85,9 @@ public class CreditCard {
 
 	public CreditCard() {
 		// Generate a random 16-digit account number
-		this.accountNumber = generateAccountNumber();
+		super();
 	}
 
-	private String generateAccountNumber() {
-		Random random = new Random();
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 16; i++) {
-			sb.append(random.nextInt(10));
-		}
-		return sb.toString();
-	}
 	/**
 	 * Get the monthly due date for payments.
 	 * 
@@ -223,16 +225,7 @@ public class CreditCard {
 		return accountId;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
 
-	public User getUser() {
-		return user;
+	public void setBalance(int i) {
 	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }
