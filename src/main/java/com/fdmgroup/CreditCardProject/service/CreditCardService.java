@@ -31,7 +31,8 @@ public class CreditCardService {
 		creditCard.setAccountNumber(creditNumber);
 		creditCard.setUser(user);
 		creditCard.setMonthlyDueDate((byte) 1);
-		creditCard.setSpendingLimit(500);
+		creditCard.setSpendingLimit(5000);
+		creditCard.setCurrentBalance(5000);
 
 		// Set the reward profile for the credit card
 		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(1L)
