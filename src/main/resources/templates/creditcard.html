@@ -47,7 +47,7 @@
                             <div class="creditCard-number"
                             th:data-full-account-number="'Credit Card ' + ${creditCard.accountNumber}"
                             th:data-last-four-digits="${#strings.substring(creditCard.accountNumber, 12, 16)}">
-                                 ****-****-****-[[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
+                            Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
                                 <i class="fas fa-eye hoverable"></i>
                             </div>
                             <div class="available-balance">
@@ -73,6 +73,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Pay Bills icon Button -->
+                <div class = "icon-button-box">
+                    <div class = "icon-button"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+                            <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                          </svg>
+                    </div>
+                    <div class = "icon-button-text"> Pay bills </div>
                 </div>
             </div>
         </div>
