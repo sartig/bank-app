@@ -36,11 +36,12 @@ public class BankAccountController {
 		return "bankaccount";
 	}
 	
-	@GetMapping("/bankaccount/{selectedBankAccountId}")
-	public String displayBankAccountBalance(@PathVariable String selectedBankAccountId, Model model) {
-		String bankAccountId = selectedBankAccountId;
-		if (bankAccountId.length() != 0) {
-			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(selectedBankAccountId);
+	@GetMapping("/bankaccount/{selectedBankAccountNumber}")
+	public String displayBankAccountBalance(@PathVariable String selectedBankAccountNumber, Model model) {
+		String bankAccountNumber = selectedBankAccountNumber;
+		if (bankAccountNumber.length() != 0) {
+			BankAccount bankAccount = bankAccountService.get
+			double bankAccountBalance = bankAccountService.getAccountBalanceByBankAccountNumber(bankAccountNumber);
 			model.addAttribute("bankAccountBalance", bankAccountBalance);
 			model.addAttribute("bankAccountId", bankAccountId);
 		}else {
