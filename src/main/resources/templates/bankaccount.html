@@ -4,16 +4,18 @@
 	<div  th:replace="navbar :: head"></div>
 	<meta charset="UTF-8">
 	<title>Bank Accounts</title>
-	<link rel="stylesheet" type="text/css" href="/style.css">
-	<link rel="stylesheet" type="text/css" href="/bankaccount.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/svg/bankaccount.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 
 <body>
 	<div class="main-container">
+	
 		<div th:replace="navbar :: body"></div>
-		<div class="content">
+		
+		<div class="content" th:object="${bankAccount}">
 			<div class="page-top-container"> </div>
 			<div class="container">
 				<div class="content-container">
@@ -21,24 +23,28 @@
 						<div class="page-title">Bank Accounts</div>
 						<div class="page-subtitle">Keep track of your finances</div>
 					</div>
-		
-				<div class="bank-account-container-main">
-					<div class="bank-account-container-main-accountId" th:text="'Bank Account' + ${bankAccount.accountNumber}">
-					<div class="bank-account-container-main-accountbalance" th:text="'Balance' + ${bankAccount.currentBalance}">
+					<div class="bankaccount-page-balance-box">
+						<div class="bankaccount-number" th:text="'Bank Account   ' + ${bankAccount.accountNumber}"></div>
+						<div style="width:100%">	
+							<div class="bankaccount-balance-label" th:text="Balance"> </div> 
+							<div class = "bankaccount-balance" th:text ="${bankAccount.currentBalance}"></div>
+						</div>
+					</div>
+					<div class="bankaccount-page-button-box">
+						<span class="bankaccount-page-navigation-button" th:href="@{/transfer}">
+							<div class="bank-account-button">+</div>
+							<div class="bank-account-button-text">Transfer</div>
+						</span>
+						<span class="bankaccount-page-navigation-button" th:href="@{/deposit}">
+							<div class="bank-account-button">+</div>
+							<div class="bank-account-button-text">Deposit</div>
+						</span>
+					</div>
 				</div>
 				
-				<div class="bank-account-button-container">
-					<div class="bank-account-button-box">
-						<div class="bank-account-button" th:href="@{/transfer}"> </div>
-						<div class="bank-account-button-text>Transfer</div>
-					</div>
-					<div class="bank-account-button-box">
-						<div class="bank-account-button" th:href="@{/deposit}"> </div>
-						<div class="bank-account-button-text>Deposit/Withdraw</div>
-					</div>
-				</div>
 			</div>			
-		
+		</div>
+	</div>
 </body>
 </html>
 

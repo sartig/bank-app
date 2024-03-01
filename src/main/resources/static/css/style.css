@@ -220,3 +220,75 @@ input[type="text"][name="confirmPassword"]:hover {
     box-shadow: 0px 1px 2px 0px #1018280D;
 }
 
+.bankaccount-page-balance-box{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 16px 24px;
+	gap: 21px;
+}
+
+.bankaccount-balance-label{
+	display: inline-block;
+	width: 30%;  
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 32px;
+	align-items: center;
+}
+
+.bankaccount-balance {
+	display: inline-block;
+    width: 70%; 
+    font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 32px;
+	text-align: right;
+	letter-spacing: -0.024em;
+}
+
+.bankaccount-page-button-box{
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 0px;
+}
+
+.bankaccount-page-navigation-button{
+	display: inline-block;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 12.5% ;
+	gap: 14px;
+	
+}
+
+.bank-account-button {
+    display: flex;
+    width:20px;
+    height:20px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+	gap: 4px;
+	background: #4F46E5;
+	color: #FFFFFF;
+	border-radius: 1000px;
+	
+}
+
+
+.bank-account-button-text {
+	display:flex
+	color: #4F46E5;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 24px;
+
+

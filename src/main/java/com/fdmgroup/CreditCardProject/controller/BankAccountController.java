@@ -1,13 +1,16 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
-import com.fdmgroup.CreditCardProject.repository.UserRepository;
+import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.service.UserService;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 
 @Controller
@@ -17,18 +20,17 @@ public class BankAccountController {
 	private BankAccountService bankAccountService;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
 	@PostMapping("/bankaccount")
-	public String displayBankAccountDetails(@RequestParam String selectedBankAccountNumber, Model model) {
+	public String displayBankAccountDetails(@RequestParam String selectedBankAccountNumber,@AuthenticationPrincipal AuthUser principal, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
 		String bankAccountNumber = selectedBankAccountNumber;
 		if (bankAccountNumber.length() != 0) {
 			BankAccount bankAccount = bankAccountService.getBankAccountByBankAccountNumber(selectedBankAccountNumber);
-			model.addAttribute("bankAccountBalance", bankAccount.getCurrentBalance());
-			model.addAttribute("bankAccountId", bankAccount.getBankAccountId());
-		} else {
-			model.addAttribute("bankAccountBalance", "N/A");
+			model.addAttribute("bankAccount", bankAccount);
 		}
+        model.addAttribute("user", currentUser);
 		return "bankaccount";
 	}
 }
