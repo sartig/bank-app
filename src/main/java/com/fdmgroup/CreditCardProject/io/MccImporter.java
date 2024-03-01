@@ -18,7 +18,7 @@ public class MccImporter {
 
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	String fileSeparator = FileSystems.getDefault().getSeparator();
-	private static Logger logger = LogManager.getLogger(MccImporter.class);
+	private static final Logger logger = LogManager.getLogger(MccImporter.class);
 
 	public List<MerchantCategoryCode> loadMccCodes(String filePath) {
 		String properPath = filePath.replace("/", fileSeparator);
