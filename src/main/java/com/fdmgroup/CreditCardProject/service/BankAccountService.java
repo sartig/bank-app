@@ -58,8 +58,11 @@ public class BankAccountService {
 	}
 
 	public String getUsernameOfAccountByAccountNumber(String accountNumber) throws BankAccountNotFoundException {
-		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountNumber)
-				.orElseThrow(BankAccountNotFoundException::new);
+		if (!isAccountNumberValid(accountNumber)) {
+			throw new BankAccountNotFoundException();
+		}
+
+		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountNumber).get();
 		return bankAccount.getUser().getUsername();
 	}
 
@@ -74,5 +77,9 @@ public class BankAccountService {
 			sb.append(random.nextInt(10));
 		}
 		return sb.toString();
+	}
+
+	public boolean isAccountNumberValid(String accountNumber) {
+		return bankAccountRepository.findByAccountNumber(accountNumber).isPresent();
 	}
 }
