@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -35,7 +36,7 @@ public class BankAccount {
      * The current balance of the account.
      */
 	@Column(name = "currentBalance")
-	private double currentBalance;
+	private BigDecimal currentBalance;
 	
 	 /**
      * The transaction history associated with this bank account.
@@ -63,7 +64,7 @@ public class BankAccount {
      * @param accountNumber  The account number of the bank account.
      * @param currentBalance The current balance of the bank account.
      */
-	public BankAccount(User user, String accountNumber, double currentBalance) {
+	public BankAccount(User user, String accountNumber, BigDecimal currentBalance) {
 		setUser(user);
 		setAccountNumber(accountNumber);
 		setCurrentBalance(currentBalance);
@@ -117,7 +118,7 @@ public class BankAccount {
      * Gets the current balance of the account.
      * @return The currentBalance.
      */
-	public double getCurrentBalance() {
+	public BigDecimal getCurrentBalance() {
 		return currentBalance;
 	}
 
@@ -125,7 +126,7 @@ public class BankAccount {
      * Sets the current balance of the account.
      * @param currentBalance The currentBalance to set.
      */
-	public void setCurrentBalance(double currentBalance) {
+	public void setCurrentBalance(BigDecimal currentBalance) {
 		this.currentBalance = currentBalance;
 	}
 

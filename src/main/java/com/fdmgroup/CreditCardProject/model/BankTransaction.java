@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import jakarta.persistence.*;
@@ -41,7 +42,7 @@ public class BankTransaction {
 	 * The amount involved in the transaction.
 	 */
 	@Column(name = "amount")
-	private double amount;
+	private BigDecimal amount;
 
 	/**
 	 * The identifier of the account to which the transaction is made.
@@ -97,7 +98,7 @@ public class BankTransaction {
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, double amount, long accountToId) {
+	public BankTransaction(long accountFromId, Date date, BigDecimal amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
 		setDate(new Date());
@@ -115,7 +116,7 @@ public class BankTransaction {
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(double amount, long accountToId) {
+	public BankTransaction(BigDecimal amount, long accountToId) {
 		this();
 		setDate(new Date());
 		setAmount(amount);
@@ -133,7 +134,7 @@ public class BankTransaction {
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, double amount) {
+	public BankTransaction(long accountFromId, BigDecimal amount) {
 		this();
 		setAccountFromId(accountFromId);
 		setDate(new Date());
@@ -206,7 +207,7 @@ public class BankTransaction {
 	 * 
 	 * @return The amount.
 	 */
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
@@ -215,7 +216,7 @@ public class BankTransaction {
 	 * 
 	 * @param amount The amount to set.
 	 */
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	

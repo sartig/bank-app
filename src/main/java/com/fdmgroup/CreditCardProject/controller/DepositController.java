@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.controller;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,7 +57,7 @@ public class DepositController {
 				return "redirect:/dashboard";
 			}
 
-			double depositAmount = Double.parseDouble(amount);
+			BigDecimal depositAmount = new BigDecimal(amount);
 
 			long transactionId;
 			transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
@@ -77,7 +78,7 @@ public class DepositController {
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
-			double depositAmount = transaction.getAmount();
+			double depositAmount = transaction.getAmount().doubleValue();
 			String transactionType = "Deposit";
 			String source = "Cash";
 			model.addAttribute("id", transactionId);
