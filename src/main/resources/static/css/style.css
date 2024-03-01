@@ -117,6 +117,7 @@ html {
 
 .hoverable:hover {
     color: blue;
+    cursor: pointer;
 }
 
 .amount {

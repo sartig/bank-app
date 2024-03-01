@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 @Service
@@ -16,15 +17,13 @@ public class BankAccountService {
 	private BankAccountRepository bankAccountRepository;
 
 	public void createBankAccountForUser(User user) {
-		BankAccount bankAccount = new BankAccount();
 
 		String bankNumber;
 		do {
 			bankNumber = generateAccountNumber();
 		} while (!isAccountNumberUnique(bankNumber));
 
-		bankAccount.setAccountNumber(bankNumber);
-		bankAccount.setUser(user);
+		BankAccount bankAccount = new BankAccount(user, bankNumber, BigDecimal.ZERO);
 		user.getBankAccounts().add(bankAccount);
 		bankAccountRepository.save(bankAccount);
 	}

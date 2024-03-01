@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="left-menu-mid">
-                    <div class="left-menu-button" onclick="dashboard()">
+                    <div class="left-menu-button" id="dashboard-button">
                         <i class="fas fa-home"></i>
                         <div class="left-menu-button-text">Dashboard</div>
                     </div>
@@ -42,9 +42,9 @@
                 </div>
             </div>
             <div class="left-menu-bot">
-                <div class="left-menu-button">
+                <div class="left-menu-text">
                     <i class="fas fa-user"></i>
-                    <div class="left-menu-button-text">Profile</div>
+                    <div class="left-menu-button-text" th:text="${user.username}"></div>
                 </div>
 
                 <div class="left-menu-button" onclick="logout()">
@@ -52,6 +52,10 @@
                     <div class="left-menu-button-text">Logout</div>
                 </div>
                 <script>
+                    document.getElementById("dashboard-button").addEventListener("click", navigateToDashboard);
+                    function navigateToDashboard() {
+                        window.location.href = '/dashboard';
+                    }
                     function logout() {
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL

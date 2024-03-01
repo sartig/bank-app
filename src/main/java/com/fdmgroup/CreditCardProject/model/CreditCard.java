@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -47,7 +48,7 @@ public class CreditCard {
 	 * The current balance of the account.
 	 */
 	@Column(name = "currentBalance")
-	private double currentBalance;
+	private BigDecimal currentBalance;
 
 	/**
 	 * The due date for monthly payments.
@@ -59,7 +60,7 @@ public class CreditCard {
 	 * The spending limit for the credit card.
 	 */
 	@Column(name = "spendingLimit")
-	private long spendingLimit;
+	private BigDecimal spendingLimit;
 
 	/**
 	 * The transaction history of the credit card.
@@ -111,7 +112,7 @@ public class CreditCard {
 	 * 
 	 * @return The spending limit.
 	 */
-	public long getSpendingLimit() {
+	public BigDecimal getSpendingLimit() {
 		return spendingLimit;
 	}
 
@@ -120,7 +121,7 @@ public class CreditCard {
 	 * 
 	 * @param spendingLimit The spending limit to set.
 	 */
-	public void setSpendingLimit(long spendingLimit) {
+	public void setSpendingLimit(BigDecimal spendingLimit) {
 		this.spendingLimit = spendingLimit;
 	}
 
@@ -203,7 +204,7 @@ public class CreditCard {
 	 * 
 	 * @return The currentBalance.
 	 */
-	public double getCurrentBalance() {
+	public BigDecimal getCurrentBalance() {
 		return currentBalance;
 	}
 
@@ -212,7 +213,7 @@ public class CreditCard {
 	 * 
 	 * @param currentBalance The currentBalance to set.
 	 */
-	public void setCurrentBalance(double currentBalance) {
+	public void setCurrentBalance(BigDecimal currentBalance) {
 		this.currentBalance = currentBalance;
 	}
 
