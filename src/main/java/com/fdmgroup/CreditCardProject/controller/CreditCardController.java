@@ -28,7 +28,6 @@ public class CreditCardController {
         model.addAttribute("user", currentUser);
         CreditCard creditCard = creditCardService.getCardByNumber(creditCardNumber);
         model.addAttribute("creditCard", creditCard);
-        model.addAttribute("user", currentUser);
         return "creditcard";
     }
 }
