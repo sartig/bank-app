@@ -120,6 +120,7 @@ public class BankTransaction {
 		setDate(new Date());
 		setAmount(amount);
 		setAccountToId(accountToId);
+		setAccountFromId(-1);
 	}
 	
 	/**
@@ -137,6 +138,7 @@ public class BankTransaction {
 		setAccountFromId(accountFromId);
 		setDate(new Date());
 		setAmount(amount);
+		setAccountToId(-1);
 	}
 	
 	
@@ -215,6 +217,23 @@ public class BankTransaction {
 	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+	
+	public BankTransactionType getType() {
+		// from + -1 for to = withdrawal
+		// to = -1 for from = deposit
+		// both = transfer
+		// neither = invalid
+		if (getAccountFromId() < 0) {
+			if (getAccountToId() < 0) {
+				return BankTransactionType.INVALID;
+			}
+			return BankTransactionType.WITHDRAWAL;
+		}
+		if (getAccountToId() < 0) {
+			return BankTransactionType.DEPOSIT;
+		}
+		return BankTransactionType.INVALID;
 	}
 
 }
