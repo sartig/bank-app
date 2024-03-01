@@ -17,6 +17,7 @@ import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
+import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
@@ -35,6 +36,8 @@ public class DepositController {
 
 	@GetMapping("/deposit")
 	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
 		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
 				.getAccountNumber();
 		model.addAttribute("accountId", accNumber);
