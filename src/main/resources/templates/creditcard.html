@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="/css/creditcard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:inline="javascript">
         $(document).ready(function() {
@@ -40,7 +39,7 @@
                     <div class="page-title">Credit Cards</div>
                     <div class="page-subtitle">Keep track of your finances</div>
                 </div>
-
+                <!-- Credit Card Info -->
                 <div class="info-container">
                     <div class="credit-card-container">
                         <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
@@ -84,7 +83,47 @@
                     </div>
                     <div class = "icon-button-text"> Pay bills </div>
                 </div>
+
+                <!-- Transactions -->
+                <div class="title">
+                    <div class="page-title"> Recent Transactions</div>
+                </div>
+                <div class="transactions">
+                    <div class="transactions-head">  
+                        <div class="head-time">Time</div>
+                        <div class="head-id">Transactions ID</div>
+                        <div class="head-description">Description</div>
+                        <div class="head-type">Transaction Type</div>
+                        <div class="head-amount">Amount</div>
+                    </div>
+                    <div class="transactions-body">
+                        <div class="body-row">
+                            <div class="body-time">08 Jan, 2022 00:00</div>
+                            <div class="body-id">962296152</div>
+                            <div class="body-description">LAZADA</div>
+                            <div class="body-type">Purchase</div>
+                            <div class="body-amount">- $283.90</div>
+                        </div>
+                        <div class="body-row">
+                            <div class="body-time">08 Jan, 2022 00:00</div>
+                            <div class="body-id">962296152</div>
+                            <div class="body-description">LAZADA</div>
+                            <div class="body-type">Purchase</div>
+                            <div class="body-amount">- $283.90</div>
+                        </div>
+                        <div class="body-row">
+                            <div class="body-time">08 Jan, 2022 00:00</div>
+                            <div class="body-id">962296152</div>
+                            <div class="body-description">LAZADA</div>
+                            <div class="body-type">Purchase</div>
+                            <div class="body-amount">- $283.90</div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+
+
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ public class CreditCardController {
     private UserService userService;
 
     @GetMapping("/creditcard")
-    public String goToDashboard(@AuthenticationPrincipal AuthUser principal, Model model) {
+    public String gotoCreditCard(@AuthenticationPrincipal AuthUser principal, Model model) {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         return "creditcard";
