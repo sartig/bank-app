@@ -6,16 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import com.fdmgroup.CreditCardProject.controller.DepositController;
+import com.fdmgroup.CreditCardProject.controller.TransactionController;
 
 class DepositControllerTest {
 
 	@Mock
-	DepositController depositController;
+	TransactionController depositController;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		depositController = new DepositController();
+		depositController = new TransactionController();
 	}
 
 //	@Test

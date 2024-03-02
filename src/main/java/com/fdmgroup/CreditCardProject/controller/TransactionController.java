@@ -23,7 +23,7 @@ import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
 @Controller
-public class DepositController {
+public class TransactionController {
 
 	@Autowired
 	BankAccountService bankAccountService;
@@ -36,17 +36,17 @@ public class DepositController {
 
 	// temporary method to get user's 1st bank account
 	// TODO: remove when bank account page is complete
-	@GetMapping("/deposit")
+	@GetMapping("/transaction")
 	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
 		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
 				.getAccountNumber();
 		model.addAttribute("accountId", accNumber);
-		return "deposit";
+		return "transaction";
 	}
 
-	@PostMapping("/deposit")
+	@PostMapping("/transaction")
 	public String goToAccountDeposit(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
@@ -57,7 +57,7 @@ public class DepositController {
 		try {
 			if (bankAccountService.getUsernameOfAccountByAccountNumber(accountId).equals(currentUser.getUsername())) {
 				model.addAttribute("accountId", accountId);
-				return "deposit";
+				return "transaction";
 			}
 		} catch (BankAccountNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -67,13 +67,13 @@ public class DepositController {
 
 	}
 
-	@PostMapping("/deposit/confirm")
+	@PostMapping("/transaction/confirm")
 	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			@RequestParam String amount, @RequestParam String action) {
 
 		if (action.equals("withdraw")) {
 			// TODO: implement withdrawal
-			return "redirect:/deposit/" + accountId;
+			return "redirect:/transaction/" + accountId;
 		}
 
 		// make sure account belongs to logged in user
@@ -87,17 +87,17 @@ public class DepositController {
 
 			long transactionId;
 			transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
-			return "redirect:/deposit/receipt/" + transactionId;
+			return "redirect:/transaction/receipt/" + transactionId;
 
 		} catch (BankAccountNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:/deposit/" + accountId;
+			return "redirect:/transaction/" + accountId;
 		}
 
 	}
 
-	@GetMapping("/deposit/receipt/{transactionId}")
+	@GetMapping("/transaction/receipt/{transactionId}")
 	public String goToDepositReceiptPage(@PathVariable String transactionId, Model model) {
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);

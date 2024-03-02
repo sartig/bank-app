@@ -6,7 +6,7 @@
     <div th:replace="navbar :: head"></div>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/deposit.css">
+	<link rel="stylesheet" type="text/css" href="/css/transaction.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
@@ -101,7 +101,7 @@
                     <div class="page-below-title-container"></div>
                     
                     <div class="centered-box">
-						<form action="/deposit/confirm" method="post" onsubmit="return validateAmount()" id="amountForm">
+						<form action="/transaction/confirm" method="post" onsubmit="return validateAmount()" id="amountForm">
                             <label for="account" class="account">Account<br></label>
                             <div class="account-box" th:text="'Bank Account ' + ${accountId}"></div><br>
                             <input type="text" name="accountId" th:value="${accountId}" hidden>
