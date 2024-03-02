@@ -75,41 +75,50 @@ public class TransactionController {
 			// TODO: implement withdrawal
 			return "redirect:/transaction/" + accountId;
 		}
-		
-		if (action.equals("deposit")) {
-			return "redirect:/transaction/" + accountId;
-		}
 
-		// make sure account belongs to logged in user
-		try {
-			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
-				// account does not belong to user, return to dashboard
-				return "redirect:/dashboard";
+		else if (action.equals("deposit")) {
+
+			// make sure account belongs to logged in user
+			try {
+				if (!principal.getUsername()
+						.equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
+					// account does not belong to user, return to dashboard
+					return "redirect:/dashboard";
+				}
+
+				BigDecimal depositAmount = new BigDecimal(amount);
+
+				long transactionId;
+				transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
+				return "redirect:/transaction/receipt/" + transactionId;
+
+			} catch (BankAccountNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/transaction/" + accountId;
 			}
-
-			BigDecimal depositAmount = new BigDecimal(amount);
-
-			long transactionId;
-			transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
-			return "redirect:/transaction/receipt/" + transactionId;
-
-		} catch (BankAccountNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "redirect:/transaction/" + accountId;
-		}
+		} else
+			return "redirect:/dashboard";
 
 	}
 
 	@GetMapping("/transaction/receipt/{transactionId}")
-	public String goToDepositReceiptPage(@PathVariable String transactionId, Model model) {
+	public String goToDepositReceiptPage(@AuthenticationPrincipal AuthUser principal,
+			@PathVariable String transactionId, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
 			double depositAmount = transaction.getAmount().doubleValue();
-			String transactionType = "Deposit";
+			String transactionType = switch (transaction.getType()) {
+			case DEPOSIT -> "Deposit";
+			case WITHDRAWAL -> "Withdrawal";
+			case TRANSFER -> "Transfer";
+			case INVALID -> null;
+			};
 			String source = "Cash";
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);
