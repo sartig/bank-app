@@ -36,7 +36,7 @@
 
         function displayModal() {
             var amountInput = document.getElementById('amountValue');
-            var amountValue = amountInput.value;
+            var amountValue = '$' + amountInput.value;
             var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
             var accountMessage = document.querySelector('.account-box').innerText;
             
@@ -44,40 +44,43 @@
             document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
             document.getElementById('modal-account').innerText = accountMessage;
 
-            document.getElementById('modal').style.display = 'block';
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('overlay').style.display='block';
         }
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display='none';
         }
 	    
     </script>
 </head>
 <body>
     <div class="main-container">
-		
-		<!-- Modal to display after customer enters valid amount and clicks send request button -->
-                        <!-- set z-index for modal higher than overlay -->
-                        <div class="modal" id="modal" style="display: none;">
-                            
-                                <h3 class="modal-header">Transaction Confirmation</h3>
-                                
-                                <!-- change from using a form to using a div -->
-							    <div class="modal-content">
-							        <label for="account" >Account</label><br><br><span id="modal-account"></span><br><br><br>
-							        
-							        <label for="amount">Amount</label><br><br>$<span id="modal-amount"></span><br><br><br>
-							
-							        <label for="actions" class="modal-deposit-withdraw-section">Deposit/Withdraw</label><br><br><span id="modal-action"></span><br><br><br>
-							   		
-							   		
-							    </div>
-							    <div class="modal-buttons">
-									<button type="button" class="modal-confirm-button">Confirm</button>
-							    	<button type="button" class="modal-cancel-button" onclick="closeModal()">Cancel</button>
-								</div>
-                        </div>
-		
+        <div class = "overlay" id ="overlay" style="display: none;"></div>
+        <div class = "popup-container" id = "modal" style="display: none">
+            
+                <div class = "popup-header" > Transaction Confirmation </div>
+                <div class = "popup-content-box">
+                    <div class = "popup-content-title"> Account </div>
+                    <div class = "popup-content-body" id="modal-account"></div>
+                </div>
+                <div class = "popup-content-box">
+                    <div class = "popup-content-title"> Amount </div>
+                    <div class = "popup-content-body" id="modal-amount"></div>
+                </div>
+                <div class = "popup-content-box">
+                    <div class = "popup-content-title"> Deposit/Withdraw </div>
+                    <div class = "popup-content-body" id="modal-action"></div>
+                </div>
+                <div class = "popup-button-stack">
+                    <div class = "popup-button-primary"> Confirm </div>
+                    <div class = "popup-button-secondary" onclick="closeModal()"> Cancel </div>
+                </div>
+        </div>
+        
+
+
 		
 		
         <div th:replace="navbar :: body"></div>
