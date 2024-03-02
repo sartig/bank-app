@@ -55,6 +55,31 @@
 </head>
 <body>
     <div class="main-container">
+		
+		<!-- Modal to display after customer enters valid amount and clicks send request button -->
+                        <!-- set z-index for modal higher than overlay -->
+                        <div class="modal" id="modal" style="display: none;">
+                            
+                                <h3 class="modal-header">Transaction Confirmation</h3>
+                                
+                                <!-- change from using a form to using a div -->
+							    <div class="modal-content">
+							        <label for="account" >Account</label><br><br><span id="modal-account"></span><br><br><br>
+							        
+							        <label for="amount">Amount</label><br><br>$<span id="modal-amount"></span><br><br><br>
+							
+							        <label for="actions" class="modal-deposit-withdraw-section">Deposit/Withdraw</label><br><br><span id="modal-action"></span><br><br><br>
+							   		
+							   		
+							    </div>
+							    <div class="modal-buttons">
+									<button type="button" class="modal-confirm-button">Confirm</button>
+							    	<button type="button" class="modal-cancel-button" onclick="closeModal()">Cancel</button>
+								</div>
+                        </div>
+		
+		
+		
         <div th:replace="navbar :: body"></div>
 
         <div class="content">
@@ -67,28 +92,6 @@
                     </div>
                     <div class="page-below-title-container"></div>
                     <div class="centered-box">
-                        
-                        <!-- Modal to display after customer enters valid amount and clicks send request button -->
-                        <div class="modal" id="modal" style="display: none;">
-                            <div class="modal-overlay"></div>
-                            <div class="modal-content">
-                                <h3 class="modal-header">Transaction Confirmation</h3>
-							    <form action="/deposit">
-							        <label for="account" >Account</label><br><br><span id="modal-account"></span><br><br><br>
-							        
-							        <label for="amount">Amount</label><br><br>$<span id="modal-amount"></span><br><br><br>
-							
-							        <label for="actions" class="modal-deposit-withdraw-section">Deposit/Withdraw</label><br><br><span id="modal-action"></span><br><br><br>
-							    </form>
-							    
-							    <div class="modal-buttons">
-									<button type="button" class="modal-confirm-button">Confirm</button>
-							    	<button type="button" class="modal-cancel-button" onclick="closeModal()">Cancel</button>
-								</div>
-							   
-                                
-                            </div>
-                        </div>
 
 
 

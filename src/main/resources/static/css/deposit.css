@@ -350,7 +350,7 @@ button {
 
 .modal {
 	/* Popup */
-
+	z-index: 2;
 	box-sizing: border-box;
 
 	/* Auto layout */
@@ -389,6 +389,8 @@ button {
 
 .modal-content {
 	position: absolute;
+	display: flex;
+	flex-direction: column;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -403,16 +405,17 @@ button {
 	
 	/* Auto layout */
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	padding: 24px;
 	gap: 24px;
 	
-	position: absolute;
+	/*
 	width: 589px;
 	height: 471px;
 	left: 425px;
 	top: 214px;
+	*/
 	
 	/* Base/White */
 	background: #FFFFFF;
