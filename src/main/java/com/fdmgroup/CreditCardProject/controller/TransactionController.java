@@ -75,6 +75,10 @@ public class TransactionController {
 			// TODO: implement withdrawal
 			return "redirect:/transaction/" + accountId;
 		}
+		
+		if (action.equals("deposit")) {
+			return "redirect:/transaction/" + accountId;
+		}
 
 		// make sure account belongs to logged in user
 		try {
