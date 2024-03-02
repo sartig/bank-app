@@ -35,21 +35,6 @@
 	border-radius: 6px;
 }
 
-button {
-	font-family: Inter;
-	width: 150px;
-    height: 50px;
-    border-radius: 70px;
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: none;
-}
-
 .transaction-confirmation-box {
 	/* Popup */
 	box-sizing: border-box;
@@ -90,6 +75,16 @@ button {
 }
 
 .send-request-button {
+    background-color: blue;
+    color: white;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+
+
+
 	/* Button */
 
 	/* Auto layout */
@@ -427,6 +422,15 @@ button {
 }
 
 .modal-cancel-button {
+    background-color: blue;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+
+
+
 	/* Button */
 	
 	box-sizing: border-box;
@@ -507,6 +511,17 @@ button {
 }
 
 .modal-confirm-button {
+
+    background-color: blue;
+    color: white;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+
+
+
 	/* Button */
 
 	/* Auto layout */
