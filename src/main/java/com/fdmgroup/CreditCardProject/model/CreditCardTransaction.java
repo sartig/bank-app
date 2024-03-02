@@ -2,10 +2,12 @@ package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -23,13 +25,17 @@ public class CreditCardTransaction {
 	private CreditCard creditCard;
 
 	@Column(name = "date")
-	private String date; // Use String for date input from HTML
-	public java.sql.Date getSqlDate() {
-		// Convert String date to java.sql.Date
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-		LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-		return java.sql.Date.valueOf(dateTime.toLocalDate());
+//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime date;
+
+	public LocalDateTime getDate() {
+		return date;
 	}
+
+	public void setDate(LocalDateTime dateTime) {
+		this.date = dateTime;
+	}
+
 	@Column(name = "amount")
 	private BigDecimal amount;
 
@@ -50,16 +56,15 @@ public class CreditCardTransaction {
 		super();
 	}
 
-	public CreditCardTransaction(CreditCard creditCard, String date, BigDecimal amount, String storeInfo,
-			MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
-		super();
-		setCreditCard(creditCard);
-		setDate(date);
-		setAmount(amount);
-		setStoreInfo(storeInfo);
-		setMerchantCategoryCode(merchantCategoryCode);
-		setOriginalCurrencyCode(originalCurrencyCode);
-		setOriginalCurrencyAmount(originalCurrencyAmount);
+	public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
+		this.transactionId = transactionId;
+		this.creditCard = creditCard;
+		this.date = dateTime;
+		this.amount = amount;
+		this.storeInfo = storeInfo;
+		this.merchantCategoryCode = merchantCategoryCode;
+		this.originalCurrencyCode = originalCurrencyCode;
+		this.originalCurrencyAmount = originalCurrencyAmount;
 	}
 
 	public CreditCard getCreditCard() {
@@ -104,14 +109,6 @@ public class CreditCardTransaction {
 
 	public long getTransactionId() {
 		return transactionId;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public BigDecimal getAmount() {

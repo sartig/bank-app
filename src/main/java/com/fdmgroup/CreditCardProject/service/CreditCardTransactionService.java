@@ -11,6 +11,7 @@ import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CreditCardTransactionService {
@@ -36,7 +37,13 @@ public class CreditCardTransactionService {
 
 	public double getCurrencyConversionRate(String originalCurrencyCode) {
 		// Placeholder method to retrieve the currency conversion rate
+
 		// Implement your logic to fetch the conversion rate from a service or database
+
 		return 1.0; // For demonstration, return 1.0 (no conversion)
+	}
+
+	public List<CreditCardTransaction> getTransactionHistory(CreditCard creditCard) {
+		return creditCardTransactionRepository.findByCreditCardOrderByDateDesc(creditCard);
 	}
 }

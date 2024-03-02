@@ -97,26 +97,12 @@
                         <div class="head-amount">Amount</div>
                     </div>
                     <div class="transactions-body">
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
+                        <div class="body-row" th:each="transaction : ${transactionHistory}">
+                            <div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
+                            <div class="body-id" th:text="${transaction.transactionId}"></div>
+                            <div class="body-description" th:text="${transaction.storeInfo}"></div>
                             <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
-                        </div>
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
-                            <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
-                        </div>
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
-                            <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
+                            <div class="body-amount" th:text="${transaction.amount}"></div>
                         </div>
                     </div>
                 </div>

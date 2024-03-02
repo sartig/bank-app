@@ -9,6 +9,7 @@ import com.fdmgroup.CreditCardProject.service.CreditCardService;
 import com.fdmgroup.CreditCardProject.service.CreditCardTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Controller
@@ -51,7 +54,15 @@ public class CreditCardTransactionController {
     @PostMapping("/creditcard-add")
     public String processCreditCardForm(@ModelAttribute("transaction") CreditCardTransaction transaction,
                                         @RequestParam("creditCard") String creditCardAccountNumber,
-                                        RedirectAttributes redirectAttributes) {
+                                        @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime transactionDate,
+                                        RedirectAttributes redirectAttributes,
+                                        Model model) {
+
+        // Initialize the transaction object if not already done
+        if (transaction == null) {
+            transaction = new CreditCardTransaction();
+        }
+
         // Validate the transaction
         if (transaction.getOriginalCurrencyAmount() <= 0) {
             // Amount must be greater than zero
@@ -79,7 +90,11 @@ public class CreditCardTransactionController {
 
         // Calculate the amount based on the original currency amount and conversion rate
         BigDecimal amount = BigDecimal.valueOf(transaction.getOriginalCurrencyAmount() * conversionRate);
+        amount = amount.setScale(2, RoundingMode.DOWN); // Round to two decimal places
         transaction.setAmount(amount);
+
+        // Set the transaction date
+        transaction.setDate(transactionDate);
 
         // Process the transaction
         try {
@@ -89,6 +104,9 @@ public class CreditCardTransactionController {
             // Handle insufficient funds
             return "redirect:/creditcard-add?error=insufficient_funds";
         }
+
+        // Add the transaction object back to the model for the form
+        model.addAttribute("transaction", transaction);
 
         return "redirect:/creditcard-add";
     }
