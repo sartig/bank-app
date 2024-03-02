@@ -55,6 +55,9 @@
 		
 		    document.getElementById('modal').style.display = 'flex';
 		    document.getElementById('overlay').style.display = 'block';
+		    
+		    // Set amountValue to be without the $
+		    amountValue = amountValue.substring(1);
 		}
 
         function closeModal() {
