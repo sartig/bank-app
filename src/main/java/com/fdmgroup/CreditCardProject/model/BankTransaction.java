@@ -229,10 +229,10 @@ public class BankTransaction {
 			if (getAccountToId() < 0) {
 				return BankTransactionType.INVALID;
 			}
-			return BankTransactionType.WITHDRAWAL;
+			return BankTransactionType.DEPOSIT;
 		}
 		if (getAccountToId() < 0) {
-			return BankTransactionType.DEPOSIT;
+			return BankTransactionType.WITHDRAWAL;
 		}
 		return BankTransactionType.INVALID;
 	}

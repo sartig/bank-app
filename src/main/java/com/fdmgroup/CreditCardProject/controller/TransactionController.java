@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -23,7 +24,7 @@ import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
 @Controller
-public class DepositController {
+public class TransactionController {
 
 	@Autowired
 	BankAccountService bankAccountService;
@@ -36,17 +37,17 @@ public class DepositController {
 
 	// temporary method to get user's 1st bank account
 	// TODO: remove when bank account page is complete
-	@GetMapping("/deposit")
+	@GetMapping("/transaction")
 	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
 		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
 				.getAccountNumber();
 		model.addAttribute("accountId", accNumber);
-		return "deposit";
+		return "transaction";
 	}
 
-	@PostMapping("/deposit")
+	@PostMapping("/transaction")
 	public String goToAccountDeposit(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
@@ -57,7 +58,7 @@ public class DepositController {
 		try {
 			if (bankAccountService.getUsernameOfAccountByAccountNumber(accountId).equals(currentUser.getUsername())) {
 				model.addAttribute("accountId", accountId);
-				return "deposit";
+				return "transaction";
 			}
 		} catch (BankAccountNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -67,45 +68,72 @@ public class DepositController {
 
 	}
 
-	@PostMapping("/deposit/confirm")
+	@PostMapping("/transaction/confirm")
 	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			@RequestParam String amount, @RequestParam String action) {
 
-		if (action.equals("withdraw")) {
-			// TODO: implement withdrawal
-			return "redirect:/deposit/" + accountId;
-		}
-
-		// make sure account belongs to logged in user
 		try {
 			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
 				// account does not belong to user, return to dashboard
 				return "redirect:/dashboard";
 			}
-
-			BigDecimal depositAmount = new BigDecimal(amount);
-
-			long transactionId;
-			transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
-			return "redirect:/deposit/receipt/" + transactionId;
-
 		} catch (BankAccountNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:/deposit/" + accountId;
 		}
+
+		if (action.equals("withdraw")) {
+
+			try {
+				long transactionId;
+				transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
+				return "redirect:/transaction/" + transactionId;
+			} catch (BankAccountNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/dashboard";
+			} catch (InsufficientBalanceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/dashboard";
+			}
+		}
+
+		else if (action.equals("deposit")) {
+
+			// make sure account belongs to logged in user
+			try {
+
+				long transactionId;
+				transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
+				return "redirect:/transaction/receipt/" + transactionId;
+			} catch (BankAccountNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/dashboard/";
+			}
+		} else
+			return "redirect:/dashboard";
 
 	}
 
-	@GetMapping("/deposit/receipt/{transactionId}")
-	public String goToDepositReceiptPage(@PathVariable String transactionId, Model model) {
+	@GetMapping("/transaction/receipt/{transactionId}")
+	public String goToDepositReceiptPage(@AuthenticationPrincipal AuthUser principal,
+			@PathVariable String transactionId, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
 			double depositAmount = transaction.getAmount().doubleValue();
-			String transactionType = "Deposit";
+			String transactionType = switch (transaction.getType()) {
+			case DEPOSIT -> "Deposit";
+			case WITHDRAWAL -> "Withdrawal";
+			case TRANSFER -> "Transfer";
+			case INVALID -> null;
+			};
 			String source = "Cash";
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);
