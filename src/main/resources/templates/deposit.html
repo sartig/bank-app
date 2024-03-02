@@ -35,22 +35,34 @@
         }
 
         function displayModal() {
-            var amountInput = document.getElementById('amountValue');
-            var amountValue = '$' + amountInput.value;
-            var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
-            var accountMessage = document.querySelector('.account-box').innerText;
-            
-            document.getElementById('modal-amount').innerText = amountValue;
-            document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
-            document.getElementById('modal-account').innerText = accountMessage;
-
-            document.getElementById('modal').style.display = 'flex';
-            document.getElementById('overlay').style.display='block';
-        }
+		    var amountInput = document.getElementById('amountValue');
+		    var amountValue = parseFloat(amountInput.value).toFixed(2);
+		    
+		    // Update to display valid inputs as 2 decimal places
+		    if (!amountValue.includes('.')) {
+		        amountValue += '.00'; 
+		    } else if (amountValue.split('.')[1].length === 1) {
+		        amountValue += '0';
+		    }
+		    amountValue = '$' + amountValue;
+		    
+		    var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
+		    var accountMessage = document.querySelector('.account-box').innerText;
+		    
+		    document.getElementById('modal-amount').innerText = amountValue;
+		    document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
+		    document.getElementById('modal-account').innerText = accountMessage;
+		
+		    document.getElementById('modal').style.display = 'flex';
+		    document.getElementById('overlay').style.display = 'block';
+		    
+		    // Update amountValue to a bigInteger value
+			amountValue = new BigInteger(amountValue.substring(1));
+		}
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
-            document.getElementById('overlay').style.display='none';
+            document.getElementById('overlay').style.display = 'none';
         }
 	    
     </script>
