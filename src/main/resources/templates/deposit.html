@@ -34,7 +34,7 @@
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
-        function updateModalAmount() {
+        function displayModal() {
             var amountInput = document.getElementById('amountValue');
             var amountValue = amountInput.value;
             var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
@@ -44,6 +44,11 @@
             document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
             document.getElementById('modal-account').innerText = accountMessage;
 
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
         }
     </script>
 </head>
@@ -62,12 +67,9 @@
                     <div class="page-below-title-container"></div>
                     <div class="centered-box">
                         
-                        <button type="button" class="send-request-button" onclick="if(validateAmount()) { updateModalAmount(); document.getElementById('modal-toggle').checked = true; }">Send Request</button>
-
                         <!-- Modal to display after customer enters valid amount and clicks send request button -->
-                        <input type="checkbox" id="modal-toggle" hidden>
-                        <div class="modal">
-                            <label for="modal-toggle" class="modal-overlay"></label>
+                        <div class="modal" id="modal" style="display: none;">
+                            <div class="modal-overlay" onclick="closeModal()"></div>
                             <div class="modal-content">
                                 <h3>Transaction Confirmation</h3>
 							    <form action="/deposit">
@@ -77,6 +79,7 @@
 							
 							        <label for="actions">Deposit/Withdraw</label><br><br><span id="modal-action"></span><br><br>
 							    </form>
+                                <button type="button" onclick="closeModal()">Cancel</button>
                             </div>
                         </div>
 
@@ -97,7 +100,7 @@
                                 <option value="withdraw">Withdraw</option>
                             </select>
 
-                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { updateModalAmount(); document.querySelector('.modal').style.display = 'block'; }">Send Request</button>
+                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { displayModal(); }">Send Request</button>
 
                         </form>
 

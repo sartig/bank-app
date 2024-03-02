@@ -349,13 +349,34 @@ button {
 }
 
 .modal {
-	position: fixed;
-	top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
+	/* Popup */
+
+	box-sizing: border-box;
+
+	/* Auto layout */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 24px;
+	gap: 24px;
+	
+	position: absolute;
+	width: 589px;
+	height: 471px;
+	left: 425px;
+	top: 214px;
+	
+	/* Base/White */
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+
 }
 
 .modal-overlay {
