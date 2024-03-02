@@ -22,14 +22,6 @@ public class BankAccountService {
 	@Autowired
 	private BankTransactionRepository bankTransactionRepository;
 
-	public void setBankAccountRepository(BankAccountRepository bankAccountRepository) {
-		this.bankAccountRepository = bankAccountRepository;
-	}
-
-	public void setBankTransactionRepository(BankTransactionRepository bankTransactionRepository) {
-		this.bankTransactionRepository = bankTransactionRepository;
-	}
-
 	public void createBankAccountForUser(User user) {
 
 		String bankNumber;

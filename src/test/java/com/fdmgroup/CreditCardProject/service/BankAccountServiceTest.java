@@ -6,13 +6,13 @@ import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,34 +21,33 @@ import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-class BankAccountServiceTest {
+@SpringBootTest
+public class BankAccountServiceTest {
 
-	@Mock
-	BankAccountRepository mockBankAccountRepo;
+	@MockBean
+	private BankAccountRepository mockBankAccountRepo;
 
-	@Mock
-	BankTransactionRepository mockBankTransactionRepo;
-	@Mock
-	BankAccount mockBankAccount;
-	@Mock
-	User mockUser;
-	@Mock
+	@MockBean
+	private BankTransactionRepository mockBankTransactionRepo;
+	
+	@MockBean
+	private BankAccount mockBankAccount;
+	
+	@MockBean
+	private User mockUser;
+	
+	@MockBean
 	BankTransaction mockBankTransaction;
-	private BankAccountService bankAccountService;
 
-	@BeforeEach
-	void setUp() {
-		bankAccountService = new BankAccountService();
-		bankAccountService.setBankAccountRepository(mockBankAccountRepo);
-		bankAccountService.setBankTransactionRepository(mockBankTransactionRepo);
-	}
+	@Autowired
+	private BankAccountService bankAccountService;
 
 	@Test
 	@DisplayName("Deposit with invalid account throws BankAccountNotFoundException")
 	void testDepositToAccount_InvalidAccount() {
 		when(mockBankAccountRepo.findByAccountNumber("1")).thenReturn(Optional.empty());
-		assertThrows(BankAccountNotFoundException.class, () -> bankAccountService.depositToAccount("1", 5.5));
+		assertThrows(BankAccountNotFoundException.class,
+				() -> bankAccountService.depositToAccount("1", BigDecimal.valueOf(5.5)));
 	}
 
 	@Test
@@ -56,12 +55,13 @@ class BankAccountServiceTest {
 	void testDepositToAccount_HappyPath() throws BankAccountNotFoundException {
 		when(mockBankAccountRepo.findByAccountNumber("1")).thenReturn(Optional.of(mockBankAccount));
 		when(mockBankAccount.getAccountId()).thenReturn(1L);
-		when(mockBankAccount.getCurrentBalance()).thenReturn(3.0);
-		when(mockBankTransactionRepo.save(argThat(x -> x.getAmount() == 5.5 && x.getAccountToId() == 1)))
+		when(mockBankAccount.getCurrentBalance()).thenReturn(BigDecimal.valueOf(3.0));
+		when(mockBankTransactionRepo
+				.save(argThat(x -> x.getAmount().compareTo(new BigDecimal("5.5")) == 0 && x.getAccountToId() == 1)))
 				.thenReturn(mockBankTransaction);
 
-		long id = bankAccountService.depositToAccount("1", 5.5);
-		verify(mockBankAccount).setCurrentBalance(8.5);
+		long id = bankAccountService.depositToAccount("1", BigDecimal.valueOf(5.5));
+		verify(mockBankAccount).setCurrentBalance(argThat(x -> x.doubleValue() == 8.5));
 		verify(mockBankAccount).addTransactionHistory(mockBankTransaction);
 		verify(mockBankAccountRepo).save(mockBankAccount);
 		assertEquals(id, mockBankTransaction.getTransactionId());
