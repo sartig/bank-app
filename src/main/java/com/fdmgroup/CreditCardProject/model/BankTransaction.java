@@ -98,7 +98,7 @@ public class BankTransaction {
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, Date date, BigDecimal amount, long accountToId) {
+	public BankTransaction(long accountFromId, BigDecimal amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
 		setDate(new Date());

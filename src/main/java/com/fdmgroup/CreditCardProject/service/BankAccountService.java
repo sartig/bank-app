@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -11,6 +12,7 @@ import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -32,6 +34,32 @@ public class BankAccountService {
 		BankAccount bankAccount = new BankAccount(user, bankNumber, BigDecimal.ZERO);
 		user.getBankAccounts().add(bankAccount);
 		bankAccountRepository.save(bankAccount);
+	}
+
+	public long transferBetweenAccounts(String accountFromId, String accountToId, BigDecimal amount)
+			throws BankAccountNotFoundException, InsufficientBalanceException {
+		BankAccount bankAccountFrom = bankAccountRepository.findByAccountNumber(accountFromId)
+				.orElseThrow(BankAccountNotFoundException::new);
+
+		BankAccount bankAccountTo = bankAccountRepository.findByAccountNumber(accountToId)
+				.orElseThrow(BankAccountNotFoundException::new);
+
+		if (bankAccountFrom.getCurrentBalance().compareTo(amount) < 0) {
+			throw new InsufficientBalanceException();
+		}
+
+		BankTransaction transaction = bankTransactionRepository
+				.save(new BankTransaction(bankAccountFrom.getAccountId(), amount, bankAccountTo.getAccountId()));
+		
+		BigDecimal newFromBalance = bankAccountFrom.getCurrentBalance().subtract(amount);
+		bankAccountFrom.setCurrentBalance(newFromBalance);
+		bankAccountFrom.addTransactionHistory(transaction);
+		BigDecimal newToBalance = bankAccountTo.getCurrentBalance().add(amount);
+		bankAccountTo.setCurrentBalance(newToBalance);
+		bankAccountTo.addTransactionHistory(transaction);
+		bankAccountRepository.saveAll(List.of(bankAccountFrom, bankAccountTo));
+		return transaction.getTransactionId();
+
 	}
 
 	public long depositToAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException {
