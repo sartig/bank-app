@@ -87,7 +87,7 @@ public class TransactionController {
 			try {
 				long transactionId;
 				transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
-				return "redirect:/transaction/" + transactionId;
+				return "redirect:/transaction/receipt/" + transactionId;
 			} catch (BankAccountNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
