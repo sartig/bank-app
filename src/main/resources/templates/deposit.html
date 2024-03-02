@@ -50,6 +50,7 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
+	    
     </script>
 </head>
 <body>
@@ -71,7 +72,7 @@
                         <div class="modal" id="modal" style="display: none;">
                             <div class="modal-overlay"></div>
                             <div class="modal-content">
-                                <h3>Transaction Confirmation</h3>
+                                <h3 class="modal-header">Transaction Confirmation</h3>
 							    <form action="/deposit">
 							        <label for="account" >Account</label><br><br><span id="modal-account"></span><br><br><br>
 							        
@@ -80,8 +81,11 @@
 							        <label for="actions" class="modal-deposit-withdraw-section">Deposit/Withdraw</label><br><br><span id="modal-action"></span><br><br><br>
 							    </form>
 							    
-							    <button type="button" class="modal-confirm-button">Confirm</button>
-							    <button type="button" class="modal-cancel-button" onclick="closeModal()">Cancel</button>
+							    <div class="modal-buttons">
+									<button type="button" class="modal-confirm-button">Confirm</button>
+							    	<button type="button" class="modal-cancel-button" onclick="closeModal()">Cancel</button>
+								</div>
+							   
                                 
                             </div>
                         </div>
