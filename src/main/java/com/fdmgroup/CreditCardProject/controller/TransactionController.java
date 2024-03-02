@@ -95,7 +95,7 @@ public class TransactionController {
 			} catch (InsufficientBalanceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return "redirect:/dashboard";
+				return "redirect:/transaction";
 			}
 		}
 
@@ -141,7 +141,7 @@ public class TransactionController {
 			model.addAttribute("source", source);
 			model.addAttribute("time", formattedTimestamp);
 			model.addAttribute("type", transactionType);
-			return "depositReceipt";
+			return "receipt";
 		} catch (BankTransactionNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
