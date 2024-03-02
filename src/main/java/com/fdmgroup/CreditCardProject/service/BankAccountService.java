@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -49,10 +50,15 @@ public class BankAccountService {
 		return transaction.getTransactionId();
 	}
 	
-	public long withdrawFromAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException {
+	public long withdrawFromAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException, InsufficientBalanceException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
 
+		// check if account has enough funds to withdraw
+		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
+			throw new InsufficientBalanceException();
+		}
+		
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(amount, bankAccount.getAccountId()));
 

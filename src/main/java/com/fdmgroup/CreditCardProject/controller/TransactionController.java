@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -69,35 +70,47 @@ public class TransactionController {
 
 	@PostMapping("/transaction/confirm")
 	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			@RequestParam String amount, @RequestParam String action) throws BankAccountNotFoundException {
+			@RequestParam String amount, @RequestParam String action) {
+
+		try {
+			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
+				// account does not belong to user, return to dashboard
+				return "redirect:/dashboard";
+			}
+		} catch (BankAccountNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		if (action.equals("withdraw")) {
-			// TODO: implement withdrawal
-			
-			long transactionId = this.bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
-			return "redirect:/transaction/" + transactionId;
+
+			try {
+				long transactionId;
+				transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
+				return "redirect:/transaction/" + transactionId;
+			} catch (BankAccountNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/dashboard";
+			} catch (InsufficientBalanceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "redirect:/dashboard";
+			}
 		}
 
 		else if (action.equals("deposit")) {
 
 			// make sure account belongs to logged in user
 			try {
-				if (!principal.getUsername()
-						.equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
-					// account does not belong to user, return to dashboard
-					return "redirect:/dashboard";
-				}
-
-				BigDecimal depositAmount = new BigDecimal(amount);
 
 				long transactionId;
-				transactionId = bankAccountService.depositToAccount(accountId, depositAmount);
+				transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
 				return "redirect:/transaction/receipt/" + transactionId;
-
 			} catch (BankAccountNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return "redirect:/transaction/" + accountId;
+				return "redirect:/dashboard/";
 			}
 		} else
 			return "redirect:/dashboard";
