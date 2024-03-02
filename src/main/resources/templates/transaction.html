@@ -59,6 +59,10 @@
 		    // Set amountValue to be without the $
 		    amountValue = amountValue.substring(1);
 		}
+		
+		function submitForm() {
+            document.getElementById('amountForm').submit();
+        }
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
@@ -86,7 +90,7 @@
                     <div class = "popup-content-body" id="modal-action"></div>
                 </div>
                 <div class = "popup-button-stack">
-                    <div class = "popup-button-primary"> Confirm </div>
+                    <div class = "popup-button-primary" onclick="submitForm()"> Confirm </div>
                     <div class = "popup-button-secondary" onclick="closeModal()"> Cancel </div>
                 </div>
         </div>
