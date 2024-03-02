@@ -36,11 +36,13 @@
 
         function displayModal() {
 		    var amountInput = document.getElementById('amountValue');
-		    var amountValue = parseFloat(amountInput.value).toFixed(2); // Always show 2 decimal places
+		    var amountValue = parseFloat(amountInput.value).toFixed(2);
+		    
+		    // Update to display valid inputs as 2 decimal places
 		    if (!amountValue.includes('.')) {
-		        amountValue += '.00'; // Add .00 if no decimal places present
+		        amountValue += '.00'; 
 		    } else if (amountValue.split('.')[1].length === 1) {
-		        amountValue += '0'; // Add trailing 0 if only 1 decimal place present
+		        amountValue += '0';
 		    }
 		    amountValue = '$' + amountValue;
 		    
@@ -53,6 +55,9 @@
 		
 		    document.getElementById('modal').style.display = 'flex';
 		    document.getElementById('overlay').style.display = 'block';
+		    
+		    // Update amountValue to a bigInteger value
+			amountValue = new BigInteger(amountValue.substring(1));
 		}
 
         function closeModal() {
