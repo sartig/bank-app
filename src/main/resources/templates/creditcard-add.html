@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Card Transaction Form</title>
+</head>
+<body>
+<h1>Credit Card Transaction Form</h1>
+<form action="#" th:action="@{/creditcard-add}" th:object="${transaction}" method="post">
+    <label for="creditCard">Select Credit Card:</label>
+    <select id="creditCard" name="creditCard">
+        <option th:each="card : ${user.creditCards}" th:value="${card.accountNumber}" th:text="${card.accountNumber}"></option>
+    </select><br>
+    <label for="date">Date:</label>
+    <input type="datetime-local" id="date" th:field="*{date}" required><br>
+    <label for="storeInfo">Store Info:</label>
+    <input type="text" id="storeInfo" th:field="*{storeInfo}" required><br>
+    <label for="merchantCategoryCode">Merchant Category Code:</label>
+    <input type="text" id="merchantCategoryCode" th:field="*{merchantCategoryCode}" required><br>
+    <label for="originalCurrencyCode">Original Currency Code:</label>
+    <select id="originalCurrencyCode" name="originalCurrencyCode">
+        <option value="USD">USD</option>
+        <option value="SGD">SGD</option>
+        <option value="HKD">HKD</option>
+    </select><br>
+    <label for="originalCurrencyAmount">Original Currency Amount:</label>
+    <input type="number" id="originalCurrencyAmount" th:field="*{originalCurrencyAmount}" required><br>
+    <button type="submit">Submit</button>
+</form>
+<h2><div th:if="${message}" th:text="${message}" style="color: green;"></div></h2>
+</body>
+</html>
