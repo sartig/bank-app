@@ -69,15 +69,18 @@ public class TransactionController {
 
 	@PostMapping("/transaction/confirm")
 	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			@RequestParam String amount, @RequestParam String action) {
+			@RequestParam String amount, @RequestParam String action) throws BankAccountNotFoundException {
 
 		if (action.equals("withdraw")) {
 			// TODO: implement withdrawal
-			return "redirect:/transaction/" + accountId;
+			
+			long transactionId = this.bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
+			return "redirect:/transaction/" + transactionId;
 		}
 		
 		if (action.equals("deposit")) {
-			return "redirect:/transaction/" + accountId;
+			long transactionId = this.bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
+			return "redirect:/transaction/" + transactionId;
 		}
 
 		// make sure account belongs to logged in user

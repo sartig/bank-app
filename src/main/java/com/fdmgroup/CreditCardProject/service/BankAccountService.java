@@ -48,6 +48,21 @@ public class BankAccountService {
 		bankAccountRepository.save(bankAccount);
 		return transaction.getTransactionId();
 	}
+	
+	public long withdrawFromAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException {
+		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
+				.orElseThrow(BankAccountNotFoundException::new);
+
+		BankTransaction transaction = bankTransactionRepository
+				.save(new BankTransaction(amount, bankAccount.getAccountId()));
+
+		BigDecimal currentBalance = bankAccount.getCurrentBalance();
+		BigDecimal newBalance = currentBalance.subtract(amount);
+		bankAccount.setCurrentBalance(newBalance);
+		bankAccount.addTransactionHistory(transaction);
+		bankAccountRepository.save(bankAccount);
+		return transaction.getTransactionId();
+	}
 
 	public String getUsernameOfAccountByAccountNumber(String accountNumber) throws BankAccountNotFoundException {
 		if (!isAccountNumberValid(accountNumber)) {
