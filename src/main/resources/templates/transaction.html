@@ -14,14 +14,21 @@
         function validateAmount() {
 		    var amountInput = document.getElementById('amountValue');
 		    var amountValue = amountInput.value;
+		    var isValid = /^\d+(\.\d+)?$/.test(amountValue);
+		    
+		    // 1. Verify input is in correct format and more than 0
+		    if (!isValid) {
+		        alert("Please enter a valid amount.");
+		        return false;
+		    }
 			
-			// 1. Verify input is a float and more than 0
-		    if (isNaN(parseFloat(amountValue)) || parseFloat(amountValue) <= 0) {
+			// 2. Verify input is a float and more than 0
+		    if (parseFloat(amountValue) <= 0) {
 		        alert("Amount must be more than 0.");
 		        return false;
 		    }
 		
-		    // 2. Verify input has at most 2 decimal places
+		    // 3. Verify input has at most 2 decimal places
 		    if ((amountValue.split('.')[1] || '').length > 2) {
 		        alert("Amount must have at most 2 decimal places.");
 		        return false;
