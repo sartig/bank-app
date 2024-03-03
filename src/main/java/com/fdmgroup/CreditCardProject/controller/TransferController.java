@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,12 @@ public class TransferController {
 	@Autowired
 	BankTransactionService bankTransactionService;
 
-	private Logger log = LogManager.getLogger(TransferController.class);
+	private final Logger log = LogManager.getLogger(TransferController.class);
 
 	// temporary method to get user's 1st bank account
 	// TODO: remove when bank account page is complete
 	@GetMapping("/transfer")
-	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
+	public String goToTransferPage(@AuthenticationPrincipal AuthUser principal, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
 		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
@@ -52,7 +53,7 @@ public class TransferController {
 	}
 
 	@PostMapping("/transfer")
-	public String goToAccountDeposit(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+	public String goToAccountTransfer(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
@@ -73,8 +74,13 @@ public class TransferController {
 	}
 
 	@PostMapping("/transfer/confirm")
-	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+	public String handleTransferRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			@RequestParam String amount, @RequestParam String accountTo) {
+
+		if(accountId.equals(accountTo)) {
+			// trying to transfer to same account
+			return "redirect:/dashboard";
+		}
 
 		log.info("Received transfer request from user '" + principal.getUsername() + "' for $" + amount
 				+ " from account number '" + accountId + "' to account number '" + accountTo + "'");
@@ -94,11 +100,11 @@ public class TransferController {
 				return "redirect:/dashboard";
 			}
 
-			BigDecimal depositAmount = new BigDecimal(amount);
+			BigDecimal transferAmount = new BigDecimal(amount);
 
 			long transactionId;
-			transactionId = bankAccountService.transferBetweenAccounts(accountId, accountTo, depositAmount);
-			return "redirect:/deposit/receipt/" + transactionId;
+			transactionId = bankAccountService.transferBetweenAccounts(accountId, accountTo, transferAmount);
+			return "redirect:/transfer/receipt/" + transactionId;
 
 		} catch (BankAccountNotFoundException e) {
 			log.error("Account number '" + accountId + "' does not exist.");
@@ -108,13 +114,17 @@ public class TransferController {
 			// TODO Auto-generated catch block
 			log.error("Account number '" + accountId + "' did not have enough funds for transfer.");
 			e.printStackTrace();
-		}
-		return "redirect:/transfer/" + accountId;
+		} catch (SelfReferenceException e) {
+            // should never run
+        }
+        return "redirect:/transfer/" + accountId;
 
 	}
 
 	@GetMapping("/transfer/receipt/{transactionId}")
-	public String goToDepositReceiptPage(@PathVariable String transactionId, Model model) {
+	public String goToTransferReceiptPage(@AuthenticationPrincipal AuthUser principal, @PathVariable String transactionId, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
 			Date transactionTime = transaction.getDate();

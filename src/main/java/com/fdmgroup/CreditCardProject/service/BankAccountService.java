@@ -2,6 +2,7 @@ package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
+import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -37,12 +38,18 @@ public class BankAccountService {
 	}
 
 	public long transferBetweenAccounts(String accountFromId, String accountToId, BigDecimal amount)
-			throws BankAccountNotFoundException, InsufficientBalanceException {
+			throws BankAccountNotFoundException, InsufficientBalanceException, SelfReferenceException {
 		BankAccount bankAccountFrom = bankAccountRepository.findByAccountNumber(accountFromId)
 				.orElseThrow(BankAccountNotFoundException::new);
 
 		BankAccount bankAccountTo = bankAccountRepository.findByAccountNumber(accountToId)
 				.orElseThrow(BankAccountNotFoundException::new);
+
+		if(bankAccountFrom.getAccountId() == bankAccountTo.getAccountId()) {
+			// same account
+			System.err.println("from id " + bankAccountFrom.getAccountId() + " equals to id " + bankAccountTo.getAccountId());
+			throw new SelfReferenceException();
+		}
 
 		if (bankAccountFrom.getCurrentBalance().compareTo(amount) < 0) {
 			throw new InsufficientBalanceException();
