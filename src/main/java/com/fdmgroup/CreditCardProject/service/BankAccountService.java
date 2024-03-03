@@ -47,7 +47,6 @@ public class BankAccountService {
 
 		if(bankAccountFrom.getAccountId() == bankAccountTo.getAccountId()) {
 			// same account
-			System.err.println("from id " + bankAccountFrom.getAccountId() + " equals to id " + bankAccountTo.getAccountId());
 			throw new SelfReferenceException();
 		}
 
