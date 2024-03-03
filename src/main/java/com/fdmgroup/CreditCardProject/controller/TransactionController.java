@@ -64,7 +64,6 @@ public class TransactionController {
 			e.printStackTrace();
 		}
 		return "redirect:/dashboard";
-
 	}
 
 	@PostMapping("/transaction/confirm")
