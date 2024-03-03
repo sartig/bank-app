@@ -14,14 +14,21 @@
         function validateAmount() {
 		    var amountInput = document.getElementById('amountValue');
 		    var amountValue = amountInput.value;
+		    var isValid = /^(?!0\d)\d+(\.\d+)?$/.test(amountValue);
+		    
+		    // 1. Verify input is in correct format and more than 0
+		    if (!isValid) {
+		        alert("Please enter a valid amount.");
+		        return false;
+		    }
 			
-			// 1. Verify input is a float and more than 0
-		    if (isNaN(parseFloat(amountValue)) || parseFloat(amountValue) <= 0) {
+			// 2. Verify input is a float and more than 0
+		    if (parseFloat(amountValue) <= 0) {
 		        alert("Amount must be more than 0.");
 		        return false;
 		    }
 		
-		    // 2. Verify input has at most 2 decimal places
+		    // 3. Verify input has at most 2 decimal places
 		    if ((amountValue.split('.')[1] || '').length > 2) {
 		        alert("Amount must have at most 2 decimal places.");
 		        return false;
@@ -68,6 +75,29 @@
             document.getElementById('modal').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
+        
+        // Functions for insufficient funds popup
+        function checksForError() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const error = urlParams.get('error');
+			if (error === 'insufficientFunds') {
+				showInsufficientFundsPopup();
+			}
+		}
+        function showInsufficientFundsPopup() {
+			document.getElementById('insufficient-funds-modal').style.display = 'flex';
+			document.getElementById('overlay').style.display = 'block';
+		}
+		
+		function closeInsufficientFundsPopup() {
+			document.getElementById('insufficient-funds-modal').style.display = 'none';
+			document.getElementById('overlay').style.display = 'none';
+		}
+		
+		// Call the checkForError method when the page loads
+		window.onload = function() {
+			checksForError();
+		}
 	    
     </script>
 </head>
@@ -94,7 +124,22 @@
                     <div class = "popup-button-secondary" onclick="closeModal()"> Cancel </div>
                 </div>
         </div>
+    
         
+        <!-- Insufficient funds popup -->
+        <div class = "popup-container" id = "insufficient-funds-modal" style="display: none">
+		    <div class = "popup-header">Insufficient Funds</div>
+		    <div class = "popup-content-box">
+		        <div class = "popup-content-title">Uh-oh! It seems there aren't enough funds in your bank account to process this withdrawal. 
+					Please ensure you have sufficient funds available or consider an alternative action.
+				</div>
+		    </div>
+		    <div class = "popup-button-stack">
+		        <div class = "popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transaction';">Confirm</div>
+		    </div>
+		</div>
+
+   
 		<div th:replace="navbar :: body"></div>
 
         <div class="content">
