@@ -86,12 +86,12 @@
 		}
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
-			document.getElementById('overlay').style.display = 'block';
+			document.getElementById('insufficient-funds-overlay').style.display = 'block';
 		}
 		
 		function closeInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'none';
-			document.getElementById('overlay').style.display = 'none';
+			document.getElementById('insufficient-funds-overlay').style.display = 'none';
 		}
 		
 		// Call the checkForError method when the page loads
@@ -127,15 +127,16 @@
     
         
         <!-- Insufficient funds popup -->
-        <div class = "popup-container" id = "insufficient-funds-modal" style="display: none">
-		    <div class = "popup-header">Insufficient Funds</div>
-		    <div class = "popup-content-box">
-		        <div class = "popup-content-title">Uh-oh! It seems there aren't enough funds in your bank account to process this withdrawal. 
+        <div class = "insufficient-funds-popup-overlay" id ="insufficient-funds-overlay" style="display: none;"></div>
+        <div class = "insufficient-funds-popup-container" id = "insufficient-funds-modal" style="display: none">
+		    <div class = "insufficient-funds-popup-header">Insufficient Funds</div>
+		    <div class = "insufficient-funds-popup-content-box">
+		        <div class = "insufficient-funds-popup-content-title">Uh-oh! It seems there aren't enough funds in your bank account to process this withdrawal. 
 					Please ensure you have sufficient funds available or consider an alternative action.
 				</div>
 		    </div>
-		    <div class = "popup-button-stack">
-		        <div class = "popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transaction';">Confirm</div>
+		    <div class = "insufficient-funds-popup-button-stack">
+		        <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transaction';">Confirm</div>
 		    </div>
 		</div>
 
