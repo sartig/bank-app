@@ -38,7 +38,7 @@ public class TransactionController {
 	// temporary method to get user's 1st bank account
 	// TODO: remove when bank account page is complete
 	@GetMapping("/transaction")
-	public String goToDepositPage(@AuthenticationPrincipal AuthUser principal, Model model) {
+	public String goToTransactionPage(@AuthenticationPrincipal AuthUser principal, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
 		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
@@ -61,7 +61,6 @@ public class TransactionController {
 				return "transaction";
 			}
 		} catch (BankAccountNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "redirect:/dashboard";
@@ -69,56 +68,46 @@ public class TransactionController {
 	}
 
 	@PostMapping("/transaction/confirm")
-	public String handleDepositRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+	public String handleTransactionRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			@RequestParam String amount, @RequestParam String action) {
-
 		try {
 			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
 				// account does not belong to user, return to dashboard
 				return "redirect:/dashboard";
 			}
 		} catch (BankAccountNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		if (action.equals("withdraw")) {
-
 			try {
-				long transactionId;
-				transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
+				long transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
 				return "redirect:/transaction/receipt/" + transactionId;
 			} catch (BankAccountNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return "redirect:/dashboard";
 			} catch (InsufficientBalanceException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return "redirect:/transaction";
 			}
 		}
 
 		else if (action.equals("deposit")) {
-
 			// make sure account belongs to logged in user
 			try {
-
-				long transactionId;
-				transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
+				long transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
 				return "redirect:/transaction/receipt/" + transactionId;
 			} catch (BankAccountNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return "redirect:/dashboard/";
 			}
-		} else
+		} else {
 			return "redirect:/dashboard";
-
+		}
 	}
 
 	@GetMapping("/transaction/receipt/{transactionId}")
-	public String goToDepositReceiptPage(@AuthenticationPrincipal AuthUser principal,
+	public String goToTransactionReceiptPage(@AuthenticationPrincipal AuthUser principal,
 			@PathVariable String transactionId, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
@@ -143,7 +132,6 @@ public class TransactionController {
 			model.addAttribute("type", transactionType);
 			return "receipt";
 		} catch (BankTransactionNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "redirect:/dashboard";
 		}
