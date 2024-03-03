@@ -68,6 +68,29 @@
             document.getElementById('modal').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
+        
+        // Functions for insufficient funds popup
+        function checksForError() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const error = urlParams.get('error');
+			if (error === 'insufficientFunds') {
+				showInsufficientFundsPopup();
+			}
+		}
+        function showInsufficientFundsPopup() {
+			document.getElementById('insufficient-funds-modal').style.display = 'flex';
+			document.getElementById('overlay').style.display = 'block';
+		}
+		
+		function closeInsufficientFundsPopup() {
+			document.getElementById('insufficient-funds-modal').style.display = 'none';
+			document.getElementById('overlay').style.display = 'none';
+		}
+		
+		// Call the checkForError method when the page loads
+		window.onload = function() {
+			checksForError();
+		}
 	    
     </script>
 </head>
@@ -95,6 +118,21 @@
                 </div>
         </div>
         
+        
+        <!-- Insufficient funds popup -->
+        <div class = "popup-container" id = "insufficient-funds-modal" style="display: none">
+		    <div class = "popup-header">Insufficient Funds</div>
+		    <div class = "popup-content-box">
+		        <div class = "popup-content-title">Uh-oh! It seems there aren't enough funds in your bank account to process this withdrawal. 
+					Please ensure you have sufficient funds available or consider an alternative action.
+				</div>
+		    </div>
+		    <div class = "popup-button-stack">
+		        <div class = "popup-button-primary" onclick="closeInsufficientFundsPopup()">Confirm</div>
+		    </div>
+		</div>
+
+   
 		<div th:replace="navbar :: body"></div>
 
         <div class="content">

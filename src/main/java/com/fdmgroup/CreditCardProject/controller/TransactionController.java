@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
@@ -68,7 +69,7 @@ public class TransactionController {
 
 	@PostMapping("/transaction/confirm")
 	public String handleTransactionRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			@RequestParam String amount, @RequestParam String action) {
+			@RequestParam String amount, @RequestParam String action, RedirectAttributes redirectAttributes) {
 		try {
 			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
 				// account does not belong to user, return to dashboard
@@ -87,7 +88,8 @@ public class TransactionController {
 				return "redirect:/dashboard";
 			} catch (InsufficientBalanceException e) {
 				e.printStackTrace();
-				return "redirect:/transaction";
+				redirectAttributes.addAttribute("error", "insufficientFunds");
+				return "redirect:/transaction?error=insufficientFunds";
 			}
 		}
 
