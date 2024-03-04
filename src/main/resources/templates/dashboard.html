@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div  th:replace="navbar :: head"></div>
+    <div  th:replace="~{navbar :: head}"></div>
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -45,7 +45,7 @@
 <body>
 <div class="main-container">
 
-    <div th:replace="navbar :: body"></div>
+    <div th:replace="~{navbar :: body}"></div>
 
     <div class="content" th:object="${user}">
         <div class="page-top-container"> </div>

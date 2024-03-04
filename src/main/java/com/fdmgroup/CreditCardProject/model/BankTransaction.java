@@ -93,12 +93,11 @@ public class BankTransaction {
 	 *
 	 * @param accountFromId The identifier of the account from which the transaction
 	 *                      is made.
-	 * @param date          The date of the transaction.
 	 * @param amount        The amount involved in the transaction.
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, Date date, BigDecimal amount, long accountToId) {
+	public BankTransaction(long accountFromId, BigDecimal amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
 		setDate(new Date());
@@ -109,9 +108,6 @@ public class BankTransaction {
 	/**
 	 * Parameterized constructor for BankTransaction deposit.
 	 *
-	 * @param accountFromId The identifier of the account from which the transaction
-	 *                      is made.
-	 * @param date          The date of the transaction.
 	 * @param amount        The amount involved in the transaction.
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
@@ -129,10 +125,7 @@ public class BankTransaction {
 	 *
 	 * @param accountFromId The identifier of the account from which the transaction
 	 *                      is made.
-	 * @param date          The date of the transaction.
 	 * @param amount        The amount involved in the transaction.
-	 * @param accountToId   The identifier of the account to which the transaction
-	 *                      is made.
 	 */
 	public BankTransaction(long accountFromId, BigDecimal amount) {
 		this();
@@ -234,7 +227,7 @@ public class BankTransaction {
 		if (getAccountToId() < 0) {
 			return BankTransactionType.WITHDRAWAL;
 		}
-		return BankTransactionType.INVALID;
+		return BankTransactionType.TRANSFER;
 	}
 
 }

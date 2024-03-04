@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<div th:replace="navbar :: head"></div>
+	<div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
 	<title>Bank Accounts</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -31,7 +31,7 @@
 <body>
 	<div class="main-container">
 
-		<div th:replace="navbar :: body"></div>
+		<div th:replace="~{navbar :: body}"></div>
 
 		<div class="content" th:object="${bankAccount}">
 			<div class="page-top-container"> </div>
