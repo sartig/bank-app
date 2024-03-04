@@ -37,7 +37,6 @@ public class CreditCard {
 		this.user = user;
 	}
 
-
 	/**
 	 * The account number associated with this account.
 	 */
@@ -65,13 +64,15 @@ public class CreditCard {
 	/**
 	 * The transaction history of the credit card.
 	 */
-	@OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL)
+	@ManyToMany
+	@JoinTable(name = "credit_card_transactions", joinColumns = @JoinColumn(name = "credit_card_id"), inverseJoinColumns = @JoinColumn(name = "transaction_id"))
 	private List<CreditCardTransaction> transactionHistory;
 
 	/**
 	 * The payment history of the credit card.
 	 */
-	@OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL)
+	@ManyToMany
+	@JoinTable(name = "credit_card_payments", joinColumns = @JoinColumn(name = "credit_card_id"), inverseJoinColumns = @JoinColumn(name = "payment_id"))
 	private List<BankTransaction> paymentHistory;
 
 	/**
@@ -179,8 +180,6 @@ public class CreditCard {
 		this.rewardProfile = rewardProfile;
 	}
 
-
-
 	/**
 	 * Gets the account number associated with this account.
 	 * 
@@ -225,6 +224,5 @@ public class CreditCard {
 	public long getAccountId() {
 		return accountId;
 	}
-
 
 }
