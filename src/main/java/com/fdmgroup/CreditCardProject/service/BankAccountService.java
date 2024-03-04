@@ -104,7 +104,7 @@ public class BankAccountService {
 		}
 		
 		BankTransaction transaction = bankTransactionRepository
-				.save(new BankTransaction(amount, bankAccount.getAccountId()));
+				.save(new BankTransaction(bankAccount.getAccountId(), amount));
 
 		BigDecimal currentBalance = bankAccount.getCurrentBalance();
 		BigDecimal newBalance = currentBalance.subtract(amount);

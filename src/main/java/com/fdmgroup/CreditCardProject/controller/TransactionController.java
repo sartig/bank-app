@@ -92,9 +92,7 @@ public class TransactionController {
 				request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
 				return new ModelAndView("redirect:/transaction");
 			}
-		}
-
-		else if (action.equals("deposit")) {
+		} else if (action.equals("deposit")) {
 			// make sure account belongs to logged in user
 			try {
 				long transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));

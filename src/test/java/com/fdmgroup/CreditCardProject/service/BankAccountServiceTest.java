@@ -63,7 +63,7 @@ public class BankAccountServiceTest {
         assertEquals(decimalTest, result);
     }
 
- @Test
+    @Test
     public void testGetAccountBalanceByBankAccountIdAccountNotFound() {
     	Random random = new Random();
         String longTest = random.toString();
