@@ -60,7 +60,7 @@
                             <div class="divider"></div>
                             <div class="bills">
                                 <div> Bills </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" th:text="'$' + ${creditCard.spendingLimit-creditCard.currentBalance}"></div>
                             </div>
                             <div class="minimum-payment">
                                 <div> Minimum Payment </div>
@@ -68,8 +68,23 @@
                             </div>
                             <div class="due-date">
                                 <div> Due Date </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" id = "currentDate" ></div>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', (event) => {
+                                        const currentDateElement = document.getElementById('currentDate');
+                                        const today = new Date();
+                                        const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, 1);
+                                        const dateString = nextMnth.toLocaleDateString(undefined, { // Use 'undefined' to use the browser's locale
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        });
+                                        currentDateElement.textContent = `${dateString}`;
+                                    });
+                                </script>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -97,26 +112,12 @@
                         <div class="head-amount">Amount</div>
                     </div>
                     <div class="transactions-body">
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
+                        <div class="body-row" th:each="transaction : ${transactionHistory}">
+                            <div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
+                            <div class="body-id" th:text="${transaction.transactionId}"></div>
+                            <div class="body-description" th:text="${transaction.storeInfo}"></div>
                             <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
-                        </div>
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
-                            <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
-                        </div>
-                        <div class="body-row">
-                            <div class="body-time">08 Jan, 2022 00:00</div>
-                            <div class="body-id">962296152</div>
-                            <div class="body-description">LAZADA</div>
-                            <div class="body-type">Purchase</div>
-                            <div class="body-amount">- $283.90</div>
+                            <div class="body-amount" th:text="${transaction.amount}"></div>
                         </div>
                     </div>
                 </div>

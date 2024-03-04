@@ -24,6 +24,12 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/transaction")
+    public String showTransactionForm() {
+        return "transaction";
+    }
+
+
     @GetMapping("/logout-success")
     public String logoutSuccess(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
