@@ -14,10 +14,6 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
-<<<<<<< HEAD
-
-=======
->>>>>>> b5f75b0b2a5fb6a400bd79c7549b4a71bab4b933
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

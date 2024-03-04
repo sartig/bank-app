@@ -151,7 +151,10 @@
 									</span>
 								</div>
 								<div class="body-type" th:text="${transaction.getTransactionType()}"></div>
-								<div class="body-amount" th:text="'$' + ${transaction.amount}"></div>
+								<div class="body-amount"
+								     th:text="${transaction.getTransactionType() == 'Withdraw' or transaction.accountFromId == bankAccount.accountId} ? '' + '-' + '$' + ${transaction.amount} : '$' + ${transaction.amount}"
+								     th:classappend="${(transaction.getTransactionType() == 'Withdraw' or transaction.accountFromId == bankAccount.accountId) ? 'red-color' : 'green-color'}">
+								</div>
 							</div>
 						</div>
 					</div>

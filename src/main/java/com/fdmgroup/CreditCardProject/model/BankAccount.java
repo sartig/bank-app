@@ -2,7 +2,9 @@ package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.*;
 
@@ -141,4 +143,9 @@ public class BankAccount {
 	}
 
 
+	public List<BankTransaction> getTransactionHistoryDescending() {
+		return transactionHistory.stream()
+				.sorted(Comparator.comparing(BankTransaction::getDate).reversed())
+				.collect(Collectors.toList());
+	}
 }

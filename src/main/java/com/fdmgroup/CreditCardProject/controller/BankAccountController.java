@@ -36,7 +36,7 @@ public class BankAccountController {
 		if (bankAccountNumber.length() != 0) {
 			BankAccount bankAccount = bankAccountService.getBankAccountByBankAccountNumber(selectedBankAccountNumber);
 			model.addAttribute("bankAccount", bankAccount);
-			List<BankTransaction> transactionHistory = bankAccount.getTransactionHistory();
+			List<BankTransaction> transactionHistory = bankAccount.getTransactionHistoryDescending();
 			model.addAttribute("transactionHistory",transactionHistory);
 		}
         model.addAttribute("user", currentUser);
