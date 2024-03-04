@@ -120,50 +120,41 @@
 						<div class="page-title"> Recent Transactions</div>
 					</div>
 					<div class="transactions">
-						<table>
-							<thead>
-								<div class="transactions-head">
-									<div class="head-time">Time</div>
-									<div class="head-id">Transaction ID</div>
-									<div class="head-description">Description</div>
-									<div class="head-type">Transaction Type</div>
-									<div class="head-amount">Amount</div>
-								</div>
-							</thead>
+						<div class="transactions-head">
+							<div class="head-time">Time</div>
+							<div class="head-id">Transaction ID</div>
+							<div class="head-description">Description</div>
+							<div class="head-type">Transaction Type</div>
+							<div class="head-amount">Amount</div>
+						</div>
 						<div class="transactions-body">
-							<div class="body-row">
-									<tbody>
-										<tr th:each="transaction:${transactionHistory}">
-											<td th:text="${transaction.date}"></td>
-											<td th:text="${transaction.accountFromId}"></td>
-											<td>
-											    <span th:if="${transaction.getTransactionType() == 'Deposit'}">Cash Deposit</span>
-											    <span th:if="${transaction.getTransactionType() == 'Withdraw'}">Cash Withdrawal</span>
-											    <span th:if="${transaction.getTransactionType() == 'Transfer'}">
-											        <!-- Retrieve BankAccount corresponding to accountFromId and accountToId -->
-											        <span th:with="fromAccount=${bankAccountRepo.findByAccountId(transaction.accountFromId)} , toAccount=${bankAccountRepo.findByAccountId(transaction.accountToId)}">
-											            <!-- Check if fromAccount and toAccount are not null -->
-											            <span th:if="${fromAccount != null and toAccount != null}">
-											                <!-- Compare transaction.accountFromId and transaction.accountToId with bankAccount.accountId -->
-											                <span th:if="${transaction.accountFromId == bankAccount.accountId}">
-											                    <span th:text="'Outgoing transfer to ' + toAccount.accountNumber"></span>
-											                </span>
-											                <span th:if="${transaction.accountToId == bankAccount.accountId}">
-											                    <span th:text="'Incoming transfer from ' + fromAccount.accountNumber"></span>
-											                </span>
-											            </span>
-											        </span>
-											    </span>
-											</td>
-											<td th:text="${transaction.getTransactionType()}"></td>
-											<td th:text="${transaction.amount}"></td>
-										</tr>
-									</tbody>
+							<div class="body-row" th:each="transaction:${transactionHistory}">
+								<div class="body-time" th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
+								<div class="body-id" th:text="${transaction.transactionId}"></div>
+								<div class="body-description">
+								    <span th:if="${transaction.getTransactionType() == 'Deposit'}">Cash Deposit</span>
+								    <span th:if="${transaction.getTransactionType() == 'Withdraw'}">Cash Withdrawal</span>
+								    <span th:if="${transaction.getTransactionType() == 'Transfer'}">
+								    <!-- Retrieve BankAccount corresponding to accountFromId and accountToId -->
+								    <span th:with="fromAccount=${bankAccountRepo.findByAccountId(transaction.accountFromId)} , toAccount=${bankAccountRepo.findByAccountId(transaction.accountToId)}">
+									<!-- Check if fromAccount and toAccount are not null -->
+								    <span th:if="${fromAccount != null and toAccount != null}">
+								    <!-- Compare transaction.accountFromId and transaction.accountToId with bankAccount.accountId -->
+								    <span th:if="${transaction.accountFromId == bankAccount.accountId}">
+								    	<span th:text="'Outgoing transfer to ' + toAccount.accountNumber"></span>
+								    </span>
+								    <span th:if="${transaction.accountToId == bankAccount.accountId}">
+								    	<span th:text="'Incoming transfer from ' + fromAccount.accountNumber"></span>
+								    </span>
+									</span>
+									</span>
+									</span>
 								</div>
+								<div class="body-type" th:text="${transaction.getTransactionType()}"></div>
+								<div class="body-amount" th:text="'$' + ${transaction.amount}"></div>
 							</div>
-						</table>
+						</div>
 					</div>
-				</div>
 			</div>
 </body>
 

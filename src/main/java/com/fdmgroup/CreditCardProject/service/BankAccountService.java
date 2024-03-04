@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
+<<<<<<< HEAD
 
+=======
+>>>>>>> b5f75b0b2a5fb6a400bd79c7549b4a71bab4b933
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -31,10 +34,10 @@ public class BankAccountService {
 	@Autowired
 	private UserRepository userRepository;
 
-	private static final Logger log = LogManager.getLogger(BankAccountService.class);
-	
 	@Autowired
 	private BankTransactionRepository bankTransactionRepository;
+	
+	private static final Logger log = LogManager.getLogger(BankAccountService.class);
 
 	public void createBankAccountForUser(User user) {
 
@@ -73,7 +76,7 @@ public class BankAccountService {
 		}
 		
 		BankTransaction transaction = bankTransactionRepository
-				.save(new BankTransaction(amount, bankAccount.getAccountId()));
+				.save(new BankTransaction(bankAccount.getAccountId(), amount));
 
 		BigDecimal currentBalance = bankAccount.getCurrentBalance();
 		BigDecimal newBalance = currentBalance.subtract(amount);
@@ -104,7 +107,7 @@ public class BankAccountService {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
      * Retrieves the current balance of a bank account by its unique identifier.
      * @param bankAccountId The unique identifier of the bank account.
@@ -154,3 +157,4 @@ public class BankAccountService {
 		return bankAccountRepository.findById(accountId).get().getAccountNumber();
 	}
 }
+
