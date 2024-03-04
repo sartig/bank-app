@@ -2,19 +2,20 @@ package com.fdmgroup.CreditCardProject;
 
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
+import com.fdmgroup.CreditCardProject.service.BankAccountService;
+import com.fdmgroup.CreditCardProject.service.CreditCardService;
 import com.fdmgroup.CreditCardProject.service.UserService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -32,6 +33,12 @@ public class UserControllerTest {
 
     @MockBean
     private UserService userService;
+    
+    @MockBean
+    private BankAccountService bankAccountService;
+    
+    @MockBean
+    private CreditCardService creditCardService;
 
     @Mock
     private User mockUser;
@@ -55,9 +62,13 @@ public class UserControllerTest {
     @Test
     public void testRegisterSuccess() throws Exception {
         when(userService.registerUser("newUser2", "1234")).thenReturn(true);
+        when(userService.getUserByUsername("newUser2")).thenReturn(mockUser);
         mockMvc.perform(post("/register").param("username", "newUser2").param("password", "1234").param("confirmPassword", "1234"))
                 .andExpect(status().isFound()) // Redirection status code (302)
                 .andExpect(redirectedUrl("/index"));
+        
+        verify(bankAccountService).createBankAccountForUser(mockUser);
+        verify(creditCardService).createCreditCardForUser(mockUser);
     }
 
     @Test
@@ -74,7 +85,4 @@ public class UserControllerTest {
                 .andExpect(status().isFound()) // Redirection status code (302)
                 .andExpect(redirectedUrl("/register"));
     }
-
-
-
 }

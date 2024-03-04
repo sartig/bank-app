@@ -1,7 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.*;
 
@@ -89,22 +89,53 @@ public class BankTransaction {
 	}
 
 	/**
-	 * Parameterized constructor for BankTransaction.
+	 * Parameterized constructor for BankTransaction transfer.
 	 *
 	 * @param accountFromId The identifier of the account from which the transaction
 	 *                      is made.
-	 * @param date          The date of the transaction.
 	 * @param amount        The amount involved in the transaction.
 	 * @param accountToId   The identifier of the account to which the transaction
 	 *                      is made.
 	 */
-	public BankTransaction(long accountFromId, Date date, BigDecimal amount, long accountToId) {
+	public BankTransaction(long accountFromId, BigDecimal amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
-		setDate(date);
+		setDate(new Date());
 		setAmount(amount);
 		setAccountToId(accountToId);
 	}
+	
+	/**
+	 * Parameterized constructor for BankTransaction deposit.
+	 *
+	 * @param amount        The amount involved in the transaction.
+	 * @param accountToId   The identifier of the account to which the transaction
+	 *                      is made.
+	 */
+	public BankTransaction(BigDecimal amount, long accountToId) {
+		this();
+		setDate(new Date());
+		setAmount(amount);
+		setAccountToId(accountToId);
+		setAccountFromId(-1);
+	}
+	
+	/**
+	 * Parameterized constructor for BankTransaction withdrawal.
+	 *
+	 * @param accountFromId The identifier of the account from which the transaction
+	 *                      is made.
+	 * @param amount        The amount involved in the transaction.
+	 */
+	public BankTransaction(long accountFromId, BigDecimal amount) {
+		this();
+		setAccountFromId(accountFromId);
+		setDate(new Date());
+		setAmount(amount);
+		setAccountToId(-1);
+	}
+	
+	
 
 	/**
 	 * Gets the identifier of the account to which the transaction is made.
@@ -181,5 +212,34 @@ public class BankTransaction {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+	
+	public BankTransactionType getType() {
+		// from + -1 for to = withdrawal
+		// to = -1 for from = deposit
+		// both = transfer
+		// neither = invalid
+		if (getAccountFromId() < 0) {
+			if (getAccountToId() < 0) {
+				return BankTransactionType.INVALID;
+			}
+			return BankTransactionType.DEPOSIT;
+		}
+		if (getAccountToId() < 0) {
+			return BankTransactionType.WITHDRAWAL;
+		}
+		return BankTransactionType.TRANSFER;
+	}
 
+	public String getTransactionType() {
+		switch (getType()) {
+        case DEPOSIT:
+            return "Deposit";
+        case WITHDRAWAL:
+            return "Withdrawal";
+        case TRANSFER:
+            return "Transfer";
+        default:
+            return null;
+		}
+	}
 }

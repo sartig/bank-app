@@ -1,7 +1,10 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.*;
 
@@ -41,8 +44,9 @@ public class BankAccount {
 	 /**
      * The transaction history associated with this bank account.
      */
-	@OneToMany(mappedBy = "bankAccount",cascade = CascadeType.ALL)
-	private List<BankTransaction> transactionHistory;
+	@ManyToMany
+	@JoinTable(name="bank_account_transactions", joinColumns = @JoinColumn(name="bank_account_id"), inverseJoinColumns = @JoinColumn(name="transaction_id"))
+	private List<BankTransaction> transactionHistory = new ArrayList<>();
 	
 	/**
      * The user associated with this bank account.
@@ -93,6 +97,10 @@ public class BankAccount {
 	public void setTransactionHistory(List<BankTransaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
 	}
+	
+	public void addTransactionHistory(BankTransaction transaction) {
+		getTransactionHistory().add(transaction);
+	}
 
 	/**
      * Gets the account number associated with this account.
@@ -135,4 +143,9 @@ public class BankAccount {
 	}
 
 
+	public List<BankTransaction> getTransactionHistoryDescending() {
+		return transactionHistory.stream()
+				.sorted(Comparator.comparing(BankTransaction::getDate).reversed())
+				.collect(Collectors.toList());
+	}
 }
