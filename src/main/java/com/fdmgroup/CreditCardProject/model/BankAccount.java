@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -41,8 +42,9 @@ public class BankAccount {
 	 /**
      * The transaction history associated with this bank account.
      */
-	@OneToMany(mappedBy = "bankAccount",cascade = CascadeType.ALL)
-	private List<BankTransaction> transactionHistory;
+	@ManyToMany
+	@JoinTable(name="bank_account_transactions", joinColumns = @JoinColumn(name="bank_account_id"), inverseJoinColumns = @JoinColumn(name="transaction_id"))
+	private List<BankTransaction> transactionHistory = new ArrayList<>();
 	
 	/**
      * The user associated with this bank account.
