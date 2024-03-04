@@ -43,7 +43,7 @@ public class TransactionController {
 	BankTransactionService bankTransactionService;
 
 	@PostMapping("/transaction")
-	public String goToAccountDeposit(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
+	public String goToTransactionPage(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
