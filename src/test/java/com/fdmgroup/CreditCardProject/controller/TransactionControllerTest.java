@@ -57,7 +57,7 @@ class TransactionControllerTest {
     	when(bankAccountService.isAccountNumberValid("413414311")).thenReturn(true);
         when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
 
-        String result = transactionController.goToTransactionPage(authUser, "413414311", model);
+        String result = transactionController.goToTransactionOrDashboardPage(authUser, "413414311", model);
 
         verify(model).addAttribute("user", userService.getUserByUsername("Ali"));
         verify(model).addAttribute("accountId", "413414311");
