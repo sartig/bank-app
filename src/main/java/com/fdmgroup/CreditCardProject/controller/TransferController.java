@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
@@ -70,9 +71,9 @@ public class TransferController {
 
 	@PostMapping("/transfer/confirm")
 	public String handleTransferRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			@RequestParam String amount, @RequestParam String accountTo) {
+			@RequestParam String amount, @RequestParam String accountTo, RedirectAttributes redirectAttributes) {
 
-		if(accountId.equals(accountTo)) {
+		if (accountId.equals(accountTo)) {
 			// trying to transfer to same account
 			return "redirect:/dashboard";
 		}
@@ -84,16 +85,17 @@ public class TransferController {
 		try {
 			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
 				// account does not belong to user, return to dashboard
-				log.error("User '" + principal.getUsername() + "' does now control account number '" + accountId + "'.");
+				log.error(
+						"User '" + principal.getUsername() + "' does now control account number '" + accountId + "'.");
 				return "redirect:/dashboard";
 			}
-			if (!bankAccountService.isAccountNumberValid(accountTo)) {
-				// destination account number doesn't exist, return to transfer with some
-				// message
-				// TODO: add error message and proper redirection
-				log.error("Account number '" + accountTo + "' does not exist.");
-				return "redirect:/dashboard";
-			}
+			// if (!bankAccountService.isAccountNumberValid(accountTo)) {
+			// // destination account number doesn't exist, return to transfer with some
+			// // message
+			// // TODO: add error message and proper redirection
+			// log.error("Account number '" + accountTo + "' does not exist.");
+			// return "redirect:/dashboard";
+			// }
 
 			BigDecimal transferAmount = new BigDecimal(amount);
 
@@ -105,14 +107,18 @@ public class TransferController {
 			log.error("Account number '" + accountId + "' does not exist.");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			redirectAttributes.addAttribute("error", "bankAccountNotFound");
+			return "redirect:/transfer?error=bankAccountNotFound";
 		} catch (InsufficientBalanceException e) {
 			// TODO Auto-generated catch block
 			log.error("Account number '" + accountId + "' did not have enough funds for transfer.");
 			e.printStackTrace();
+			redirectAttributes.addAttribute("error", "insufficientFunds");
+			return "redirect:/transfer?error=insufficientFunds";
 		} catch (SelfReferenceException e) {
-            // should never run
-        }
-        return "redirect:/transfer/" + accountId;
+			// should never run
+		}
+		return "redirect:/transfer/" + accountId;
 
 	}
 }

@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/transfer.css">
+    <link rel="stylesheet" type="text/css" href="/css/transaction.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
@@ -68,6 +69,34 @@
             document.getElementById('overlay').style.display='block';
         }
 
+        function checksForError() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error === 'insufficientFunds') {
+                document.getElementsByClassName('insufficient-funds-popup-content-title')[0].textContent = 
+                'Uh-oh! It seems there are not enough funds in your bank account to process this withdrawal. Please ensure you have sufficient funds available or consider an alternative action.';
+                showInsufficientFundsPopup();
+            } else if (error === 'bankAccountNotFound'){
+                document.getElementsByClassName('insufficient-funds-popup-content-title')[0].textContent = 
+                'Uh-oh! It seems the target bank account to process this transfer is not existing. Please ensure your input account is correct.';
+                showInsufficientFundsPopup();
+            }
+        }
+        function showInsufficientFundsPopup() {
+            document.getElementById('insufficient-funds-modal').style.display = 'flex';
+            document.getElementById('insufficient-funds-overlay').style.display = 'block';
+        }
+        
+        function closeInsufficientFundsPopup() {
+            document.getElementById('insufficient-funds-modal').style.display = 'none';
+            document.getElementById('insufficient-funds-overlay').style.display = 'none';
+        }
+        
+        // Call the checkForError method when the page loads
+        window.onload = function() {
+            checksForError();
+        }
+
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
             document.getElementById('overlay').style.display='none';
@@ -103,7 +132,17 @@
                 </div>
         </div>
         
-
+        <div class = "insufficient-funds-popup-overlay" id ="insufficient-funds-overlay" style="display: none;"></div>
+        <div class = "insufficient-funds-popup-container" id = "insufficient-funds-modal" style="display: none">
+            <div class = "insufficient-funds-popup-header">Insufficient Funds</div>
+            <div class = "insufficient-funds-popup-content-box">
+                <div class = "insufficient-funds-popup-content-title">
+                </div>
+            </div>
+            <div class = "insufficient-funds-popup-button-stack">
+                <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transfer';">Confirm</div>
+            </div>
+        </div>
 
 		
 		
