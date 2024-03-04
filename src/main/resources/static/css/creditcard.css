@@ -106,29 +106,35 @@ html {
     /* justify-content: space-between; */
 }
 
-
-
-
 .balance, .available-balance, .limit, .bills, .minimum-payment, .due-date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-block: 8px;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
+    letter-spacing: -0.024em;
+    color: #5B6776;
 }
 
 .hoverable:hover {
-    color: blue;
+    color: #4F46E5;
+    padding-left: 16px;
+}
+
+.hoverable {
+    color: #64748B;
+    padding-left: 16px;
 }
 
 .amount {
-    font-size: 28px;
-    font-weight: 300;
+    font-size: 24px;
+    font-weight: 600;
     line-height: 40px;
     text-align: right;
+    color: #344055;
 }
 
 .purple-button {
@@ -223,7 +229,6 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 12px;
 gap: 4px;
 width: 40px;
 height: 40px;
@@ -256,6 +261,7 @@ color: #4F46E5;
 }
 
 .plus-svg{
+    height: 18px;
     color: #fff;
 }
 
@@ -360,7 +366,7 @@ flex-direction: row;
 align-items: flex-start;
 padding: 20px 16px;
 gap: 4px;
-width: 11%;
+width: 13%;
 height: 64px;
 background: #FFFFFF;
 }
