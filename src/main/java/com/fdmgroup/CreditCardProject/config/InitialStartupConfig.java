@@ -30,9 +30,9 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 1.80);
-		initializeRewardsProfile(2L, 4);
-		initializeRewardsProfile(3L, 5);
+		initializeRewardsProfile(1L, 7);
+		initializeRewardsProfile(2L, 10);
+		initializeRewardsProfile(3L, 15);
 	}
 
 	private void initializeRewardsProfile(Long id, double conversionPercentage) {

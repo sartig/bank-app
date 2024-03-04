@@ -3,15 +3,15 @@ package com.fdmgroup.CreditCardProject.io;
 public class MccImportModel {
 	private String id;
 	private String description;
+	private String category;
 
 	public MccImportModel() {
 		super();
 	}
 
-	public MccImportModel(String id, String description) {
-		super();
-		this.id = id;
+	public MccImportModel(String id, String description, String category) {
 		this.description = description;
+		this.category = category;
 	}
 
 	public String getId() {
@@ -30,4 +30,11 @@ public class MccImportModel {
 		this.description = description;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 }

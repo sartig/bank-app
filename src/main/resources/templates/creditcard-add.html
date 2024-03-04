@@ -16,10 +16,10 @@
     <input type="datetime-local" id="date" name="date" th:value="${#temporals.format(transaction.date, 'yyyy-MM-ddTHH:mm')}" required><br>
 
 
-    <label for="storeInfo">Store Info:</label>
+    <label for="storeInfo">Store Info: (String Description)</label>
     <input type="text" id="storeInfo" th:field="*{storeInfo}" required><br>
-    <label for="merchantCategoryCode">Merchant Category Code:</label>
-    <input type="text" id="merchantCategoryCode" th:field="*{merchantCategoryCode}" required><br>
+    <label for="merchantCategoryCode">Merchant Category Code (3 or 4 Digit Number):</label>
+    <input type="text" id="merchantCategoryCode" name="merchantCategoryCode" pattern="[1-9]\d{2,3}" required><br>
     <label for="originalCurrencyCode">Original Currency Code:</label>
     <select id="originalCurrencyCode" name="originalCurrencyCode">
         <option value="USD">USD</option>
@@ -31,5 +31,13 @@
     <button type="submit">Submit</button>
 </form>
 <h2><div th:if="${message}" th:text="${message}" style="color: green;"></div></h2>
+<h2 th:if="${error}" th:text="${error}" style="color: red;"></h2>
+<h2> MCC <br>
+Card 1: 5811-5814 Food Services <br><br>
+Card 2: 3000 Airlines <br>
+3555 Hospitality <br><br>
+Card 3: 5311 Online Shopping <br>
+4121 Taxi <br><br>
+Others: 742 763 780 1771 1799 </h2>
 </body>
 </html>

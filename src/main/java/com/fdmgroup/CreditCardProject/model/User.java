@@ -35,6 +35,9 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<CreditCard> creditCards = new ArrayList<>();
 
+	@Column(name = "rewardsPoints")
+	private int rewardsPoints;
+
 	public List<CreditCard> getCreditCards() {
 		return creditCards;
 	}
@@ -45,11 +48,6 @@ public class User {
 
 	public User() {
 		super();
-	}
-
-	public User(String username, String password) {
-		setUsername(username);
-		setPassword(password);
 	}
 
 	public String getUsername() {
@@ -78,6 +76,18 @@ public class User {
 
 	public long getUserId() {
 		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public int getRewardsPoints() {
+		return rewardsPoints;
+	}
+
+	public void setRewardsPoints(int rewardsPoints) {
+		this.rewardsPoints = rewardsPoints;
 	}
 
 	@Override

@@ -50,6 +50,7 @@ public class MccImporter {
 			MerchantCategoryCode newMcc = new MerchantCategoryCode();
 			newMcc.setCategoryName(mcc.getDescription());
 			newMcc.setCategoryCode(Short.parseShort(mcc.getId()));
+			newMcc.setCategory(mcc.getCategory());
 			output.add(newMcc);
 		}
 

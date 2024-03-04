@@ -40,6 +40,7 @@ public class CreditCardService {
 		creditCard.setMonthlyDueDate((byte) 1);
 		creditCard.setSpendingLimit(BigDecimal.valueOf(5000));
 		creditCard.setCurrentBalance(BigDecimal.valueOf(5000));
+		user.setRewardsPoints(0);
 
 		// Set the reward profile for the credit card
 		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(1L)

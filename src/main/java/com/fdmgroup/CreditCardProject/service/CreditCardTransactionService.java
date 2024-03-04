@@ -31,7 +31,7 @@ public class CreditCardTransactionService {
 		}
 
 		// Update the user's balance
-		BigDecimal newBalance = creditCard.getCurrentBalance().subtract(transaction.getAmount());
+		BigDecimal newBalance = creditCard.getCurrentBalance().add(transaction.getAmount());
 		creditCard.setCurrentBalance(newBalance);
 
 		// Save the transaction

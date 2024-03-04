@@ -57,7 +57,8 @@
     },
     {
         "id": "3000",
-        "description": "United Airlines"
+        "description": "United Airlines",
+        "category": "Airlines"
     },
     {
         "id": "3001",
@@ -1841,7 +1842,8 @@
     },
     {
         "id": "3555",
-        "description": "Hotels\/motels\/inns\/resorts"
+        "description": "Hotels\/motels\/inns\/resorts",
+        "category": "Hospitality"
     },
     {
         "id": "3556",
@@ -2805,7 +2807,8 @@
     },
     {
         "id": "4121",
-        "description": "Taxicabs And Limousines"
+        "description": "Taxicabs And Limousines",
+        "category": "Taxi"
     },
     {
         "id": "4131",
@@ -3029,7 +3032,8 @@
     },
     {
         "id": "5311",
-        "description": "Department Stores"
+        "description": "Lazada",
+        "category": "Online Shopping"
     },
     {
         "id": "5331",
@@ -3205,19 +3209,23 @@
     },
     {
         "id": "5811",
-        "description": "Caterers"
+        "description": "Caterers",
+        "category": "Food Services"
     },
     {
         "id": "5812",
-        "description": "Eating Places And Restaurants"
+        "description": "Eating Places And Restaurants",
+        "category": "Food Services"
     },
     {
         "id": "5813",
-        "description": "Drinking Places (Alcoholic Beverages), Bars, Taverns, Cocktail Lounges, Nightclubs And Discotheques"
+        "description": "Drinking Places (Alcoholic Beverages), Bars, Taverns, Cocktail Lounges, Nightclubs And Discotheques",
+        "category": "Food Services"
     },
     {
         "id": "5814",
-        "description": "Fast Food Restaurants"
+        "description": "Fast Food Restaurants",
+        "category": "Food Services"
     },
     {
         "id": "5815",
