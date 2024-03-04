@@ -89,11 +89,9 @@ public class TransactionController {
 			} catch (InsufficientBalanceException e) {
 				e.printStackTrace();
 				redirectAttributes.addAttribute("error", "insufficientFunds");
-				return "redirect:/transaction?error=insufficientFunds";
+				return "redirect:/transaction";
 			}
-		}
-
-		else if (action.equals("deposit")) {
+		} else if (action.equals("deposit")) {
 			// make sure account belongs to logged in user
 			try {
 				long transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
