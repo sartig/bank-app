@@ -42,6 +42,16 @@ public class TransactionController {
 	@Autowired
 	BankTransactionService bankTransactionService;
 
+	@GetMapping("/transaction")
+	public String goToTransactionPage(@AuthenticationPrincipal AuthUser principal, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
+		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
+				.getAccountNumber();
+		model.addAttribute("accountId", accNumber);
+		return "transaction";
+	}
+
 	@PostMapping("/transaction")
 	public String goToTransactionOrDashboardPage(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
 			Model model) {
