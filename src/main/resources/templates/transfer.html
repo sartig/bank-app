@@ -77,8 +77,9 @@
                 'Uh-oh! It seems there are not enough funds in your bank account to process this withdrawal. Please ensure you have sufficient funds available or consider an alternative action.';
                 showInsufficientFundsPopup();
             } else if (error === 'bankAccountNotFound'){
+                document.getElementsByClassName('insufficient-funds-popup-header')[0].textContent = 'Invalid Account';
                 document.getElementsByClassName('insufficient-funds-popup-content-title')[0].textContent = 
-                'Uh-oh! It seems the target bank account to process this transfer is not existing. Please ensure your input account is correct.';
+                'Uh-oh! It seems the target bank account to process this transfer does not exist. Please ensure your input account is correct.';
                 showInsufficientFundsPopup();
             }
         }
@@ -140,7 +141,7 @@
                 </div>
             </div>
             <div class = "insufficient-funds-popup-button-stack">
-                <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transfer';">Confirm</div>
+                <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
             </div>
         </div>
 
