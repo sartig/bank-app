@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<div th:replace="navbar :: head"></div>
+	<div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
 	<title>Bank Accounts</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -31,7 +31,7 @@
 <body>
 	<div class="main-container">
 
-		<div th:replace="navbar :: body"></div>
+		<div th:replace="~{navbar :: body}"></div>
 
 		<div class="content" th:object="${bankAccount}">
 			<div class="page-top-container"> </div>
@@ -103,7 +103,7 @@
 -->
 						<div class="icon-button-box" onclick="document.forms['deposit-form'].submit();">
 							<div style="width:100%; text-align: center">
-								<form method="post" action="/deposit" id="deposit-form">
+								<form method="post" action="/transaction" id="deposit-form">
 									<input type="text" th:value="${bankAccount.accountNumber}" name="accountId" hidden
 										readonly>
 									<div class="icon-button-container" style="width:100%">
