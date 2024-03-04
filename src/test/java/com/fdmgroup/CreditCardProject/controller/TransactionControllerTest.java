@@ -2,6 +2,7 @@ package com.fdmgroup.CreditCardProject.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -11,7 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
@@ -22,6 +25,8 @@ import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
 
@@ -38,6 +43,9 @@ class TransactionControllerTest {
     
     @Mock
     private RedirectAttributes redirectAttributes;
+    
+    @Mock
+    private HttpServletRequest httpServletRequest;
     
     @Mock
     private Model model;
@@ -87,9 +95,14 @@ class TransactionControllerTest {
         when(authUser.getUsername()).thenReturn("Ali");
         when(bankAccountService.getUsernameOfAccountByAccountNumber(accountId)).thenReturn("Ali");
 
-        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        when(req.getParameter("accountId")).thenReturn(accountId);
+        when(req.getParameter("amount")).thenReturn(amount);
+        when(req.getParameter("action")).thenReturn(action);
+        
+        ModelAndView result = transactionController.handleTransactionRequest(authUser, req, redirectAttributes);
 
-        assertEquals("redirect:/transaction/receipt/123", result);
+        assertEquals("redirect:/transaction/receipt/123", result.getViewName());
     }
     
     @Test
@@ -101,9 +114,14 @@ class TransactionControllerTest {
         long transactionId = 123L;
         when(bankAccountService.withdrawFromAccount("413414311", new BigDecimal("100.00"))).thenReturn(transactionId);
 
-        String result = transactionController.handleTransactionRequest(authUser, "413414311", "100.00", "withdraw", redirectAttributes);
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        when(req.getParameter("accountId")).thenReturn("413414311");
+        when(req.getParameter("amount")).thenReturn("100.00");
+        when(req.getParameter("action")).thenReturn("withdraw");
+        
+        ModelAndView result = transactionController.handleTransactionRequest(authUser, req, redirectAttributes);
 
-        assertEquals("redirect:/transaction/receipt/123", result);
+        assertEquals("redirect:/transaction/receipt/123", result.getViewName());
     }
     
     @Test
@@ -117,10 +135,16 @@ class TransactionControllerTest {
 
         doThrow(new InsufficientBalanceException()).when(bankAccountService).withdrawFromAccount(accountId, new BigDecimal(amount));
 
-        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        when(req.getParameter("accountId")).thenReturn(accountId);
+        when(req.getParameter("amount")).thenReturn(amount);
+        when(req.getParameter("action")).thenReturn(action);
 
-        assertEquals("redirect:/transaction", result);
-        verify(redirectAttributes).addAttribute("error", "insufficientFunds");
+        RedirectAttributesModelMap redirectAttributes = new RedirectAttributesModelMap();
+
+        ModelAndView result = transactionController.handleTransactionRequest(authUser, req, redirectAttributes);
+        
+        assertEquals("redirect:/transaction?error=insufficientFunds", result.getViewName());
     }
 
     @Test
@@ -128,8 +152,13 @@ class TransactionControllerTest {
         when(authUser.getUsername()).thenReturn("Ali");
         when(bankAccountService.getUsernameOfAccountByAccountNumber("invalidAccountId")).thenReturn("Chris");
 
-        String result = transactionController.handleTransactionRequest(authUser, "invalidAccountId", "100.00", "withdraw", redirectAttributes);
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        when(req.getParameter("accountId")).thenReturn("invalidAccountId");
+        when(req.getParameter("amount")).thenReturn("100.00");
+        when(req.getParameter("action")).thenReturn("withdraw");
 
-        assertEquals("redirect:/dashboard", result);
+        ModelAndView result = transactionController.handleTransactionRequest(authUser, req, redirectAttributes);
+
+        assertEquals("redirect:/dashboard", result.getViewName());
     }
 }

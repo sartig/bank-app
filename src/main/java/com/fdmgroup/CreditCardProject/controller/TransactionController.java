@@ -3,8 +3,10 @@ package com.fdmgroup.CreditCardProject.controller;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
@@ -24,9 +28,11 @@ import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class TransactionController {
-
+	
 	@Autowired
 	BankAccountService bankAccountService;
 
@@ -35,18 +41,6 @@ public class TransactionController {
 
 	@Autowired
 	BankTransactionService bankTransactionService;
-
-	// temporary method to get user's 1st bank account
-	// TODO: remove when bank account page is complete
-	@GetMapping("/transaction")
-	public String goToTransactionPage(@AuthenticationPrincipal AuthUser principal, Model model) {
-		User currentUser = userService.getUserByUsername(principal.getUsername());
-		model.addAttribute("user", currentUser);
-		String accNumber = userService.getUserByUsername(principal.getUsername()).getBankAccounts().get(0)
-				.getAccountNumber();
-		model.addAttribute("accountId", accNumber);
-		return "transaction";
-	}
 
 	@PostMapping("/transaction")
 	public String goToTransactionOrDashboardPage(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
@@ -68,12 +62,18 @@ public class TransactionController {
 	}
 
 	@PostMapping("/transaction/confirm")
-	public String handleTransactionRequest(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			@RequestParam String amount, @RequestParam String action, RedirectAttributes redirectAttributes) {
+	public ModelAndView handleTransactionRequest(@AuthenticationPrincipal AuthUser principal,
+			HttpServletRequest request, RedirectAttributes redirectAttributes) {
+
+		// get request params
+		String action = request.getParameter("action");
+		String accountId = request.getParameter("accountId");
+		String amount = request.getParameter("amount");
+
 		try {
 			if (!principal.getUsername().equals(bankAccountService.getUsernameOfAccountByAccountNumber(accountId))) {
 				// account does not belong to user, return to dashboard
-				return "redirect:/dashboard";
+				return new ModelAndView("redirect:/dashboard");
 			}
 		} catch (BankAccountNotFoundException e) {
 			e.printStackTrace();
@@ -82,26 +82,27 @@ public class TransactionController {
 		if (action.equals("withdraw")) {
 			try {
 				long transactionId = bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount));
-				return "redirect:/transaction/receipt/" + transactionId;
+				return new ModelAndView("redirect:/transaction/receipt/" + transactionId);
 			} catch (BankAccountNotFoundException e) {
 				e.printStackTrace();
-				return "redirect:/dashboard";
+				return new ModelAndView("redirect:/dashboard");
 			} catch (InsufficientBalanceException e) {
-				e.printStackTrace();
-				redirectAttributes.addAttribute("error", "insufficientFunds");
-				return "redirect:/transaction";
+			    e.printStackTrace();
+			    redirectAttributes.addFlashAttribute("error", "insufficientFunds");
+			    request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+			    return new ModelAndView("redirect:/transaction?error=insufficientFunds");
 			}
 		} else if (action.equals("deposit")) {
 			// make sure account belongs to logged in user
 			try {
 				long transactionId = bankAccountService.depositToAccount(accountId, new BigDecimal(amount));
-				return "redirect:/transaction/receipt/" + transactionId;
+				return new ModelAndView("redirect:/transaction/receipt/" + transactionId);
 			} catch (BankAccountNotFoundException e) {
 				e.printStackTrace();
-				return "redirect:/dashboard/";
+				return new ModelAndView("redirect:/dashboard");
 			}
 		} else {
-			return "redirect:/dashboard";
+			return new ModelAndView("redirect:/dashboard");
 		}
 	}
 
@@ -112,6 +113,13 @@ public class TransactionController {
 		model.addAttribute("user", currentUser);
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
+			List<Long> userBankAccounts = bankAccountService.getBankAccountIdsByUsername(principal.getUsername());
+			// verify user should be able to view the transaction
+			if (!userBankAccounts.contains(transaction.getAccountFromId())
+					&& !userBankAccounts.contains(transaction.getAccountToId())) {
+				return "redirect:/dashboard";
+			}
+
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
@@ -122,7 +130,7 @@ public class TransactionController {
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
 			};
-			String source = "Cash";
+			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);
 			model.addAttribute("id", transactionId);

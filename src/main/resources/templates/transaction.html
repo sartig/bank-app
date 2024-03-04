@@ -3,7 +3,7 @@
 <head xmlns:th="http://www.thymeleaf.org">
     <title>Deposit/Withdraw</title>
     
-    <div th:replace="navbar :: head"></div>
+    <div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/transaction.css">
@@ -136,12 +136,12 @@
 				</div>
 		    </div>
 		    <div class = "insufficient-funds-popup-button-stack">
-		        <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup(); window.location.href='/transaction';">Confirm</div>
+		        <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
 		    </div>
 		</div>
 
    
-		<div th:replace="navbar :: body"></div>
+		<div th:replace="~{navbar :: body}"></div>
 
         <div class="content">
             <div class="page-top-container"></div>
