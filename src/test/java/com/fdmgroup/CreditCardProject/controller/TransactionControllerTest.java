@@ -66,7 +66,27 @@ class TransactionControllerTest {
     }
     
     @Test
-    public void testHandleTransactionRequestWithdraw() throws BankAccountNotFoundException, InsufficientBalanceException {
+    public void testHandleTransactionRequest_deposit_success() throws BankAccountNotFoundException {
+        // Setup
+        String accountId = "accountId";
+        String amount = "100.00";
+        String action = "deposit";
+
+        // Mock bank account service behavior for a successful deposit
+        long transactionId = 123L;
+        when(bankAccountService.depositToAccount(accountId, new BigDecimal(amount))).thenReturn(transactionId);
+        when(authUser.getUsername()).thenReturn("Ali");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber(accountId)).thenReturn("Ali");
+
+        // Test
+        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+
+        // Verify
+        assertEquals("redirect:/transaction/receipt/123", result);
+    }
+    
+    @Test
+    public void testHandleTransactionRequest_withdrawal_success() throws BankAccountNotFoundException, InsufficientBalanceException {
         
     	when(authUser.getUsername()).thenReturn("Ali");
 
@@ -90,6 +110,6 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/dashboard", result);
     }
-    
+
 
 }
