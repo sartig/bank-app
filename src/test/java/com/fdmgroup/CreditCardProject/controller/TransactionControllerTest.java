@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -11,12 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
@@ -29,6 +32,8 @@ import com.fdmgroup.CreditCardProject.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 class TransactionControllerTest {
 
@@ -161,4 +166,61 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/dashboard", result.getViewName());
     }
+    
+    @Test
+    public void testGoToTransactionReceiptPage_deposit() throws BankTransactionNotFoundException {
+        AuthUser principal = mock(AuthUser.class);
+        when(principal.getUsername()).thenReturn("chris");
+
+        User currentUser = new User();
+        when(userService.getUserByUsername("chris")).thenReturn(currentUser);
+
+        bankTransaction = new BankTransaction(BigDecimal.valueOf(100.0), 5563565143414625L);
+        when(bankTransactionService.getTransactionById("1")).thenReturn(bankTransaction);
+
+        List<Long> userBankAccounts = new ArrayList<>();
+        userBankAccounts.add(5563565143414625L); // Assuming user has this bank account
+        when(bankAccountService.getBankAccountIdsByUsername("chris")).thenReturn(userBankAccounts);
+
+        Model model = new ConcurrentModel();
+
+        String result = transactionController.goToTransactionReceiptPage(principal, "1", model);
+
+        assertEquals("receipt", result);
+        assertTrue(model.containsAttribute("user"));
+        assertTrue(model.containsAttribute("id"));
+        assertTrue(model.containsAttribute("amount"));
+        assertTrue(model.containsAttribute("source"));
+        assertTrue(model.containsAttribute("time"));
+        assertTrue(model.containsAttribute("type"));
+    }
+    
+    @Test
+    public void testGoToTransactionReceiptPage_withdrawal() throws BankTransactionNotFoundException {
+        AuthUser principal = mock(AuthUser.class);
+        when(principal.getUsername()).thenReturn("chris");
+
+        User currentUser = new User();
+        when(userService.getUserByUsername("chris")).thenReturn(currentUser);
+
+        bankTransaction = new BankTransaction(5563565143414625L, BigDecimal.valueOf(100.0));
+        when(bankTransactionService.getTransactionById("1")).thenReturn(bankTransaction);
+
+        List<Long> userBankAccounts = new ArrayList<>();
+        userBankAccounts.add(5563565143414625L); // Assuming user has this bank account
+        when(bankAccountService.getBankAccountIdsByUsername("chris")).thenReturn(userBankAccounts);
+
+        Model model = new ConcurrentModel();
+
+        String result = transactionController.goToTransactionReceiptPage(principal, "1", model);
+
+        assertEquals("receipt", result);
+        assertTrue(model.containsAttribute("user"));
+        assertTrue(model.containsAttribute("id"));
+        assertTrue(model.containsAttribute("amount"));
+        assertTrue(model.containsAttribute("source"));
+        assertTrue(model.containsAttribute("time"));
+        assertTrue(model.containsAttribute("type"));
+    }
+
 }
