@@ -56,8 +56,7 @@ class TransactionControllerTest {
 
     @BeforeEach
     void setUp() throws Exception {
-    	
-        MockitoAnnotations.openMocks(this);
+    	MockitoAnnotations.openMocks(this);
         User user = new User();
         user.setUsername("Ali");
         when(authUser.getUsername()).thenReturn("Ali");
@@ -66,8 +65,7 @@ class TransactionControllerTest {
 
     @Test
     public void testGoToTransactionPage() throws BankAccountNotFoundException {
-        
-    	when(bankAccountService.isAccountNumberValid("413414311")).thenReturn(true);
+        when(bankAccountService.isAccountNumberValid("413414311")).thenReturn(true);
         when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
 
         String result = transactionController.goToTransactionOrDashboardPage(authUser, "413414311", model);
@@ -96,8 +94,7 @@ class TransactionControllerTest {
     
     @Test
     public void testHandleTransactionRequest_withdrawal_success() throws BankAccountNotFoundException, InsufficientBalanceException {
-        
-    	when(authUser.getUsername()).thenReturn("Ali");
+        when(authUser.getUsername()).thenReturn("Ali");
 
         when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
 
@@ -128,8 +125,7 @@ class TransactionControllerTest {
 
     @Test
     public void testHandleTransactionRequest_accountNotFound() throws BankAccountNotFoundException {
-        
-    	when(authUser.getUsername()).thenReturn("Ali");
+        when(authUser.getUsername()).thenReturn("Ali");
         when(bankAccountService.getUsernameOfAccountByAccountNumber("invalidAccountId")).thenReturn("otherUser");
 
         String result = transactionController.handleTransactionRequest(authUser, "invalidAccountId", "100.00", "withdraw", redirectAttributes);
