@@ -24,7 +24,6 @@ public class RegistrationController {
 	@Autowired
 	private CreditCardService creditCardService;
 
-
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		model.addAttribute("user", new User());
