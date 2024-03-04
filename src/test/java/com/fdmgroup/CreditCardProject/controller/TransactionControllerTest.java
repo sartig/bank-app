@@ -43,6 +43,7 @@ class TransactionControllerTest {
 
     @BeforeEach
     void setUp() throws Exception {
+    	
         MockitoAnnotations.openMocks(this);
         User user = new User();
         user.setUsername("Ali");
@@ -66,7 +67,8 @@ class TransactionControllerTest {
     
     @Test
     public void testHandleTransactionRequestWithdraw() throws BankAccountNotFoundException, InsufficientBalanceException {
-        when(authUser.getUsername()).thenReturn("Ali");
+        
+    	when(authUser.getUsername()).thenReturn("Ali");
 
         when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
 
@@ -76,6 +78,17 @@ class TransactionControllerTest {
         String result = transactionController.handleTransactionRequest(authUser, "413414311", "100.00", "withdraw", redirectAttributes);
 
         assertEquals("redirect:/transaction/receipt/123", result);
+    }
+
+    @Test
+    public void testHandleTransactionRequest_accountNotFound() throws BankAccountNotFoundException {
+        
+    	when(authUser.getUsername()).thenReturn("Ali");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber("invalidAccountId")).thenReturn("otherUser");
+
+        String result = transactionController.handleTransactionRequest(authUser, "invalidAccountId", "100.00", "withdraw", redirectAttributes);
+
+        assertEquals("redirect:/dashboard", result);
     }
 
 }
