@@ -15,108 +15,108 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class CreditCardTransaction {
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "transactionId")
-	private long transactionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "transactionId")
+    private long transactionId;
 
-	@ManyToOne
-	@JoinColumn(name = "creditCardId")
-	private CreditCard creditCard;
+    @ManyToOne
+    @JoinColumn(name = "creditCardId")
+    private CreditCard creditCard;
 
-	@Column(name = "date")
+    @Column(name = "date")
 //	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-	private LocalDateTime date;
+    private LocalDateTime date;
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public LocalDateTime getDate() {
+        return date;
+    }
 
-	public void setDate(LocalDateTime dateTime) {
-		this.date = dateTime;
-	}
+    public void setDate(LocalDateTime dateTime) {
+        this.date = dateTime;
+    }
 
-	@Column(name = "amount")
-	private BigDecimal amount;
+    @Column(name = "amount")
+    private BigDecimal amount;
 
-	@Column(name = "storeInfo")
-	private String storeInfo;
+    @Column(name = "storeInfo")
+    private String storeInfo;
 
-	@ManyToOne
-	@JoinColumn(name = "merchantCategoryCodeId")
-	private MerchantCategoryCode merchantCategoryCode;
+    @ManyToOne
+    @JoinColumn(name = "merchantCategoryCodeId")
+    private MerchantCategoryCode merchantCategoryCode;
 
-	@Column(name = "originalCurrencyCode")
-	private String originalCurrencyCode;
+    @Column(name = "originalCurrencyCode")
+    private String originalCurrencyCode;
 
-	@Column(name = "originalCurrencyAmount")
-	private double originalCurrencyAmount;
+    @Column(name = "originalCurrencyAmount")
+    private double originalCurrencyAmount;
 
-	public CreditCardTransaction() {
-		super();
-	}
+    public CreditCardTransaction() {
+        super();
+    }
 
-	public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
-		this.transactionId = transactionId;
-		this.creditCard = creditCard;
-		this.date = dateTime;
-		this.amount = amount;
-		this.storeInfo = storeInfo;
-		this.merchantCategoryCode = merchantCategoryCode;
-		this.originalCurrencyCode = originalCurrencyCode;
-		this.originalCurrencyAmount = originalCurrencyAmount;
-	}
+    public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
+        this.transactionId = transactionId;
+        this.creditCard = creditCard;
+        this.date = dateTime;
+        this.amount = amount;
+        this.storeInfo = storeInfo;
+        this.merchantCategoryCode = merchantCategoryCode;
+        this.originalCurrencyCode = originalCurrencyCode;
+        this.originalCurrencyAmount = originalCurrencyAmount;
+    }
 
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
 
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
 
-	public String getStoreInfo() {
-		return storeInfo;
-	}
+    public String getStoreInfo() {
+        return storeInfo;
+    }
 
-	public void setStoreInfo(String storeInfo) {
-		this.storeInfo = storeInfo;
-	}
+    public void setStoreInfo(String storeInfo) {
+        this.storeInfo = storeInfo;
+    }
 
-	public MerchantCategoryCode getMerchantCategoryCode() {
-		return merchantCategoryCode;
-	}
+    public MerchantCategoryCode getMerchantCategoryCode() {
+        return merchantCategoryCode;
+    }
 
-	public void setMerchantCategoryCode(MerchantCategoryCode merchantCategoryCode) {
-		this.merchantCategoryCode = merchantCategoryCode;
-	}
+    public void setMerchantCategoryCode(MerchantCategoryCode merchantCategoryCode) {
+        this.merchantCategoryCode = merchantCategoryCode;
+    }
 
-	public String getOriginalCurrencyCode() {
-		return originalCurrencyCode;
-	}
+    public String getOriginalCurrencyCode() {
+        return originalCurrencyCode;
+    }
 
-	public void setOriginalCurrencyCode(String originalCurrencyCode) {
-		this.originalCurrencyCode = originalCurrencyCode;
-	}
+    public void setOriginalCurrencyCode(String originalCurrencyCode) {
+        this.originalCurrencyCode = originalCurrencyCode;
+    }
 
-	public double getOriginalCurrencyAmount() {
-		return originalCurrencyAmount;
-	}
+    public double getOriginalCurrencyAmount() {
+        return originalCurrencyAmount;
+    }
 
-	public void setOriginalCurrencyAmount(double originalCurrencyAmount) {
-		this.originalCurrencyAmount = originalCurrencyAmount;
-	}
+    public void setOriginalCurrencyAmount(double originalCurrencyAmount) {
+        this.originalCurrencyAmount = originalCurrencyAmount;
+    }
 
-	public long getTransactionId() {
-		return transactionId;
-	}
+    public long getTransactionId() {
+        return transactionId;
+    }
 
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
 }

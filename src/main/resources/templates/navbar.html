@@ -33,22 +33,26 @@
                         <i class="fas fa-money-bill"></i>
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="bankAccount : ${user.bankAccounts}">
-                        <div class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}">
-                            
-                        </div>
-                    </div>
-
-                    <div class="left-menu-title">
-                        <i class="far fa-credit-card"></i>
-                        <div class="left-menu-button-text">Credit Card(s)</div>
-                    </div>
-                    <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
-                        <form name="cc-form" method="post" action="/creditcard">
-                            <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
-                            <button class="left-menu-sub-button-text" th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
+                    <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}"
+                        th:onclick="|submitForm(event, '${status.index}'')|">
+                        <form method="post" action="/bankaccount">
+                            <input th:value="${bankAccount.accountNumber}" name="selectedBankAccountNumber" hidden>
+                            <button class="left-menu-sub-button-text"
+                                th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
                         </form>
                     </div>
+                </div>
+                <div class="left-menu-title">
+                    <i class="far fa-credit-card"></i>
+                    <div class="left-menu-button-text">Credit Card(s)</div>
+                </div>
+                <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}"
+                    th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
+                    <form name="cc-form" method="post" action="/creditcard">
+                        <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
+                        <button class="left-menu-sub-button-text"
+                            th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
+                    </form>
                 </div>
             </div>
             <div class="left-menu-bot">
@@ -70,14 +74,15 @@
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL
                     }
-                    
+
                     function dashboard() {
-                    	window.location.href = '/dashboard';
+                        window.location.href = '/dashboard';
                     }
                 </script>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

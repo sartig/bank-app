@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
  * @version 1.0
  * @since 2022-02-20
  */
+
 public abstract class Account {
 	/**
      * The unique identifier for the account.
