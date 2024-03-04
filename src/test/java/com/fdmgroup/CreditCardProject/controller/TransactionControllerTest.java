@@ -109,7 +109,7 @@ class TransactionControllerTest {
     @Test
     public void testHandleTransactionRequest_withdrawal_failure_insufficientBalance() throws BankAccountNotFoundException, InsufficientBalanceException {
         String accountId = "413414311";
-        String amount = "123456.00";
+        String amount = "123456.00"; // amount is more than current balance
         String action = "withdraw";
 
         when(authUser.getUsername()).thenReturn("Ali");
@@ -126,7 +126,7 @@ class TransactionControllerTest {
     @Test
     public void testHandleTransactionRequest_accountNotFound() throws BankAccountNotFoundException {
         when(authUser.getUsername()).thenReturn("Ali");
-        when(bankAccountService.getUsernameOfAccountByAccountNumber("invalidAccountId")).thenReturn("otherUser");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber("invalidAccountId")).thenReturn("Chris");
 
         String result = transactionController.handleTransactionRequest(authUser, "invalidAccountId", "100.00", "withdraw", redirectAttributes);
 
