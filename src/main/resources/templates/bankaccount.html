@@ -133,7 +133,7 @@
 								<div class="body-id" th:text="${transaction.transactionId}"></div>
 								<div class="body-description">
 								    <span th:if="${transaction.getTransactionType() == 'Deposit'}">Cash Deposit</span>
-								    <span th:if="${transaction.getTransactionType() == 'Withdraw'}">Cash Withdrawal</span>
+								    <span th:if="${transaction.getTransactionType() == 'Withdrawal'}">Cash Withdrawal</span>
 								    <span th:if="${transaction.getTransactionType() == 'Transfer'}">
 								    <!-- Retrieve BankAccount corresponding to accountFromId and accountToId -->
 								    <span th:with="fromAccount=${bankAccountRepo.findByAccountId(transaction.accountFromId)} , toAccount=${bankAccountRepo.findByAccountId(transaction.accountToId)}">
