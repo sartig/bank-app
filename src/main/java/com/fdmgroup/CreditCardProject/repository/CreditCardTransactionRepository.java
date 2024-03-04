@@ -13,6 +13,5 @@ import java.util.Optional;
 @Repository
 public interface CreditCardTransactionRepository extends JpaRepository<CreditCardTransaction, Long> {
 
-    List<CreditCardTransaction> findByCreditCardOrderByDateDesc(CreditCard creditCard);
 
 }
