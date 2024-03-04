@@ -8,7 +8,7 @@ import org.mockito.Mock;
 
 import com.fdmgroup.CreditCardProject.controller.TransactionController;
 
-class DepositControllerTest {
+class TransactionControllerTest {
 
 	@Mock
 	TransactionController transactionController;
