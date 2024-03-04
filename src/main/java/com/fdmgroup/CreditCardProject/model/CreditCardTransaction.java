@@ -25,7 +25,6 @@ public class CreditCardTransaction {
     private CreditCard creditCard;
 
     @Column(name = "date")
-//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime date;
 
     public LocalDateTime getDate() {
