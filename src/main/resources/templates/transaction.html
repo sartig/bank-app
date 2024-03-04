@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
     <script>
-        function validateAmount() {
+        function isAmountValid() {
 		    var amountInput = document.getElementById('amountValue');
 		    var amountValue = amountInput.value;
 		    var isValid = /^(?!0\d)\d+(\.\d+)?$/.test(amountValue);
@@ -154,7 +154,7 @@
                     <div class="page-below-title-container"></div>
                     
                     <div class="centered-box">
-						<form action="/transaction/confirm" method="post" onsubmit="return validateAmount()" id="amountForm">
+						<form action="/transaction/confirm" method="post" onsubmit="return isAmountValid()" id="amountForm">
                             <label for="account" class="account">Account<br></label>
                             <div class="account-box" th:text="'Bank Account ' + ${accountId}"></div><br>
                             <input type="text" name="accountId" th:value="${accountId}" hidden>
@@ -169,7 +169,7 @@
                                 <option value="withdraw">Withdraw</option>
                             </select>
 
-                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { displayModal(); }">Send Request</button>
+                            <button type="button" class="send-request-button" onclick="if(isAmountValid()) { displayModal(); }">Send Request</button>
 
                         </form>
                     </div>
