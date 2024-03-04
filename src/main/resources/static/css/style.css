@@ -174,9 +174,19 @@ html {
     transition: background-color 0.3s;
 }
 
+.purple-button:active{
+    background: #3821C0;
+}
+
 .white-button:hover {
     background-color: #F8FAFC;
 }
+
+.white-button:active{
+    background: #EFF2F6;
+}
+
+
 
 .label-styling {
     font-family: Inter, sans-serif;

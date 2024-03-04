@@ -15,7 +15,7 @@
             <div class="svg-container">
                 <img src="/svg/iconblack.svg" alt="Icon" width="350" height="350">
             </div>
-            <h2 th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}" style="color: #4F46E5; font-size: 40px;">
+            <h2 class = "tagline" th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}">
                 Welcome to FDM Bank!
             </h2>
             <h2 th:text="${logoutMessage}" style="color: #4F46E5;"></h2>
