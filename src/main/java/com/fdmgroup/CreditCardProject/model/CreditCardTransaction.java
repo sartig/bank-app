@@ -28,6 +28,7 @@ public class CreditCardTransaction {
 	@Column(name = "transactionId")
 	private long transactionId;
 
+
 	/**
 	 * The credit card associated with this transaction.
 	 */
@@ -54,10 +55,10 @@ public class CreditCardTransaction {
 	private String storeInfo;
 
 	/**
-	 * The merchant category code associated with the credit card transaction.
-	 */
+     * The merchant category code associated with the credit card transaction.
+     */
 	@ManyToOne
-	@JoinColumn(name = "merchantCategoryCodeId")
+    @JoinColumn(name = "merchantCategoryCodeId")
 	private MerchantCategoryCode merchantCategoryCode;
 
 	/**
