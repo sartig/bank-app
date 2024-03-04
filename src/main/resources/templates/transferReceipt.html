@@ -3,7 +3,7 @@
 
 <head xmlns:th="http://www.thymeleaf.org">
 	<title>Transaction Receipt</title>
-	<div th:replace="navbar :: head"></div>
+	<div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/transactionReceipt.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -14,7 +14,7 @@
 <body>
 	<div class="main-container">
 		<!-- Navbar -->
-		<div th:replace="navbar :: body"></div>
+		<div th:replace="~{navbar :: body}"></div>
 
 		<div class="content">
 			<!-- Page title -->
