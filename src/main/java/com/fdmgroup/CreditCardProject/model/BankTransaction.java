@@ -230,4 +230,16 @@ public class BankTransaction {
 		return BankTransactionType.TRANSFER;
 	}
 
+	public String getTransactionType() {
+		switch (getType()) {
+        case DEPOSIT:
+            return "Deposit";
+        case WITHDRAWAL:
+            return "Withdrawal";
+        case TRANSFER:
+            return "Transfer";
+        default:
+            return null;
+		}
+	}
 }
