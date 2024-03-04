@@ -57,7 +57,7 @@ class TransactionControllerTest {
     	when(bankAccountService.isAccountNumberValid("413414311")).thenReturn(true);
         when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
 
-        String result = transactionController.goToTransactionPage(authUser, "413414311", model);
+        String result = transactionController.goToTransactionOrDashboardPage(authUser, "413414311", model);
 
         verify(model).addAttribute("user", userService.getUserByUsername("Ali"));
         verify(model).addAttribute("accountId", "413414311");
@@ -66,7 +66,23 @@ class TransactionControllerTest {
     }
     
     @Test
-    public void testHandleTransactionRequestWithdraw() throws BankAccountNotFoundException, InsufficientBalanceException {
+    public void testHandleTransactionRequest_deposit_success() throws BankAccountNotFoundException {
+        String accountId = "accountId";
+        String amount = "100.00";
+        String action = "deposit";
+
+        long transactionId = 123L;
+        when(bankAccountService.depositToAccount(accountId, new BigDecimal(amount))).thenReturn(transactionId);
+        when(authUser.getUsername()).thenReturn("Ali");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber(accountId)).thenReturn("Ali");
+
+        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+
+        assertEquals("redirect:/transaction/receipt/123", result);
+    }
+    
+    @Test
+    public void testHandleTransactionRequest_withdrawal_success() throws BankAccountNotFoundException, InsufficientBalanceException {
         
     	when(authUser.getUsername()).thenReturn("Ali");
 
@@ -90,6 +106,5 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/dashboard", result);
     }
-    
 
 }
