@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,8 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
+import com.fdmgroup.CreditCardProject.model.BankTransaction;
+import com.fdmgroup.CreditCardProject.model.BankTransactionType;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
+import com.fdmgroup.CreditCardProject.service.BankTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
 import java.math.BigDecimal;
@@ -37,6 +41,15 @@ class TransactionControllerTest {
     
     @Mock
     private Model model;
+    
+    @Mock
+    private BankTransaction bankTransaction;
+    
+    @Mock
+    private BankTransactionService bankTransactionService;
+    
+    @Mock
+    private BankTransactionType bankTransactionType;
 
     @InjectMocks
     private TransactionController transactionController;
@@ -95,6 +108,23 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/transaction/receipt/123", result);
     }
+    
+    @Test
+    public void testHandleTransactionRequest_withdrawal_failure_insufficientBalance() throws BankAccountNotFoundException, InsufficientBalanceException {
+        String accountId = "413414311";
+        String amount = "123456.00";
+        String action = "withdraw";
+
+        when(authUser.getUsername()).thenReturn("Ali");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber(accountId)).thenReturn("Ali");
+
+        doThrow(new InsufficientBalanceException()).when(bankAccountService).withdrawFromAccount(accountId, new BigDecimal(amount));
+
+        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+
+        assertEquals("redirect:/transaction", result);
+        verify(redirectAttributes).addAttribute("error", "insufficientFunds");
+    }
 
     @Test
     public void testHandleTransactionRequest_accountNotFound() throws BankAccountNotFoundException {
@@ -106,5 +136,4 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/dashboard", result);
     }
-
 }
