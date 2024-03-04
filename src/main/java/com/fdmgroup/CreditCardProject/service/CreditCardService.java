@@ -1,14 +1,18 @@
 package com.fdmgroup.CreditCardProject.service;
 
+import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
+import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -20,6 +24,8 @@ public class CreditCardService {
 	private CreditCardRepository creditCardRepository;
 	@Autowired
 	private RewardsProfileRepository rewardsProfileRepository;
+	@Autowired
+	private CreditCardTransactionRepository creditCardTransactionRepository;
 
 	public void createCreditCardForUser(User user) throws EntityNotFoundException {
 		CreditCard creditCard = new CreditCard();
@@ -33,7 +39,7 @@ public class CreditCardService {
 		creditCard.setUser(user);
 		creditCard.setMonthlyDueDate((byte) 1);
 		creditCard.setSpendingLimit(BigDecimal.valueOf(5000));
-		creditCard.setCurrentBalance(BigDecimal.ZERO);
+		creditCard.setCurrentBalance(BigDecimal.valueOf(5000));
 
 		// Set the reward profile for the credit card
 		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(1L)
@@ -59,4 +65,6 @@ public class CreditCardService {
 	public CreditCard getCardByNumber(String number) {
 		return creditCardRepository.findByAccountNumber(number).orElseThrow(EntityNotFoundException::new);
 	}
+
+
 }
