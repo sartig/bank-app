@@ -3,6 +3,7 @@ package com.fdmgroup.CreditCardProject.controller;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -114,6 +115,13 @@ public class TransactionController {
 		model.addAttribute("user", currentUser);
 		try {
 			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
+			List<Long> userBankAccounts = bankAccountService.getBankAccountIdsByUsername(principal.getUsername());
+			// verify user should be able to view the transaction
+			if (!userBankAccounts.contains(transaction.getAccountFromId())
+					&& !userBankAccounts.contains(transaction.getAccountToId())) {
+				return "redirect:/dashboard";
+			}
+
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
@@ -124,7 +132,7 @@ public class TransactionController {
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
 			};
-			String source =  transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
+			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);
 			model.addAttribute("id", transactionId);

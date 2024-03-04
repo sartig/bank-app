@@ -161,12 +161,12 @@ public class BankAccountService {
 	 * @param username The username for which to fetch bank account IDs.
 	 * @return A list of bank account IDs associated with the specified username.
 	 */
-	public List<String> getBankAccountIdsByUsername(String username){
-		List<String> bankAccountIds = new ArrayList<>();
+	public List<Long> getBankAccountIdsByUsername(String username){
+		List<Long> bankAccountIds = new ArrayList<>();
 		Optional<User> userOptional = userRepository.findByUsername(username);
 		if(userOptional.isPresent()) {
 			for (BankAccount b:userOptional.get().getBankAccounts()) {
-				bankAccountIds.add(b.getAccountNumber());
+				bankAccountIds.add(b.getAccountId());
 			}
 		}
 		return bankAccountIds;
@@ -174,7 +174,7 @@ public class BankAccountService {
 	
 	/**
 	 * Retrieves a bank account associated with the given bank account number.
-	 * @param bankaccountNumber The bank account number for which to fetch bank account.
+	 * @param bankAccountNumber The bank account number for which to fetch bank account.
 	 * @return A bank account associated with the specified bank account number.
 	 */
 	public BankAccount getBankAccountByBankAccountNumber(String bankAccountNumber){
