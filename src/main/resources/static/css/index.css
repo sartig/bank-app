@@ -92,3 +92,9 @@ body {
     margin-bottom: 15px; /* Bottom margin */
     border-radius: 5px; /* Rounded corners */
 }
+
+.tagline{
+    color: #120563; 
+    font-size: 40px;
+    padding-top: 24px;
+}
