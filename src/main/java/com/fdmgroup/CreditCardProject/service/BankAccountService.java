@@ -149,4 +149,8 @@ public class BankAccountService {
 	public boolean isAccountNumberValid(String accountNumber) {
 		return bankAccountRepository.findByAccountNumber(accountNumber).isPresent();
 	}
+	
+	public String getBankAccountNumberbyAccountId(long accountId) {
+		return bankAccountRepository.findById(accountId).get().getAccountNumber();
+	}
 }
