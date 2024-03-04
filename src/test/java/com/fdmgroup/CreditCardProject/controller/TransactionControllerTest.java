@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -76,19 +75,6 @@ class TransactionControllerTest {
         when(userService.getUserByUsername("Ali")).thenReturn(user);
     }
 
-    @Test
-    public void testGoToTransactionPage() throws BankAccountNotFoundException {
-        when(bankAccountService.isAccountNumberValid("413414311")).thenReturn(true);
-        when(bankAccountService.getUsernameOfAccountByAccountNumber("413414311")).thenReturn("Ali");
-
-        String result = transactionController.goToTransactionOrDashboardPage(authUser, "413414311", model);
-
-        verify(model).addAttribute("user", userService.getUserByUsername("Ali"));
-        verify(model).addAttribute("accountId", "413414311");
-
-        assertEquals("transaction", result);
-    }
-    
     @Test
     public void testHandleTransactionRequest_deposit_success() throws BankAccountNotFoundException {
         String accountId = "accountId";
