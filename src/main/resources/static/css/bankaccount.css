@@ -132,6 +132,15 @@
 	color: #4F46E5;
 }
 
+.page-title {
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
 .transactions-head {
 	display: flex;
 	flex-direction: row;
