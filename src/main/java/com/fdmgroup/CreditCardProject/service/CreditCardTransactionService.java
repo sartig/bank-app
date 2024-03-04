@@ -38,7 +38,6 @@ public class CreditCardTransactionService {
 		transaction.setCreditCard(creditCard);
 		creditCard.addTransactionHistory(transaction);
 		creditCardRepository.save(creditCard);
-		creditCardTransactionRepository.save(transaction);
 	}
 
 	public double getCurrencyConversionRate(String originalCurrencyCode) {
