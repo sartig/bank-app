@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,5 +37,16 @@ public class CreditCardController {
         return "creditcard";
     }
 
+    // Temp Controller
+    @PostMapping("/paybills")
+    public String gotoPB(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber, Model model) {
+        User currentUser = userService.getUserByUsername(principal.getUsername());
+        model.addAttribute("user", currentUser);
+        CreditCard creditCard = creditCardService.getCardByNumber(creditCardNumber);
+        model.addAttribute("creditCard", creditCard);
+        List<CreditCardTransaction> transactionHistory = creditCard.getTransactionHistoryDescending();
+        model.addAttribute("transactionHistory", transactionHistory);
+        return "paybills";
+    }
 }
 

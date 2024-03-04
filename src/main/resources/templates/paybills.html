@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+    <title>Pay Bills</title>
+    
+    <div th:replace="~{navbar :: head}"></div>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/paybills.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+</head>
+<body>
+    <div class="main-container">
+        <div th:replace="~{navbar :: body}"></div>
+
+        <div class="content">
+            <div class="page-top-container"></div>
+            <div class="container">
+                <div class="content-container">
+                    <div class="title">
+                        <div class="page-title">Pay Bills</div>
+                        <div class="page-subtitle">Easily pay your credit card bills</div>
+                    </div>
+                    <div class = "horizontal-container">
+                        <div class = "bills-container">
+                            <div class = "bills-title"> Your bills </div>
+                            <div class = "bills-info">
+                                <div class = "bills-subtitle">Bills</div>
+                                <div class = "bills-body">Credit Card 2222222222222222</div>
+                            </div>
+                            <div class = "bills-info">
+                                <div class = "bills-subtitle">Bills</div>
+                                <div class = "bills-body">Credit Card 2222222222222222</div>
+                            </div>
+                            <div class = "bills-info">
+                                <div class = "bills-subtitle">Bills</div>
+                                <div class = "bills-body">Credit Card 2222222222222222</div>
+                            </div>
+                        </div>
+                        <div class = "pay-bills-form"></div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
