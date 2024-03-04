@@ -1,8 +1,6 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
 import org.apache.logging.log4j.LogManager;
@@ -12,15 +10,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
-import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
-import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.BankTransactionService;
@@ -104,7 +99,7 @@ public class TransferController {
 
 			long transactionId;
 			transactionId = bankAccountService.transferBetweenAccounts(accountId, accountTo, transferAmount);
-			return "redirect:/transfer/receipt/" + transactionId;
+			return "redirect:/transaction/receipt/" + transactionId;
 
 		} catch (BankAccountNotFoundException e) {
 			log.error("Account number '" + accountId + "' does not exist.");
@@ -119,31 +114,5 @@ public class TransferController {
         }
         return "redirect:/transfer/" + accountId;
 
-	}
-
-	@GetMapping("/transfer/receipt/{transactionId}")
-	public String goToTransferReceiptPage(@AuthenticationPrincipal AuthUser principal, @PathVariable String transactionId, Model model) {
-		User currentUser = userService.getUserByUsername(principal.getUsername());
-		model.addAttribute("user", currentUser);
-		try {
-			BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
-			Date transactionTime = transaction.getDate();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String formattedTimestamp = sdf.format(transactionTime);
-			double depositAmount = transaction.getAmount().doubleValue();
-			String transactionType = "Deposit";
-			String source = "Cash";
-			model.addAttribute("id", transactionId);
-			model.addAttribute("amount", depositAmount);
-			model.addAttribute("id", transactionId);
-			model.addAttribute("source", source);
-			model.addAttribute("time", formattedTimestamp);
-			model.addAttribute("type", transactionType);
-			return "transferReceipt";
-		} catch (BankTransactionNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "redirect:/dashboard";
-		}
 	}
 }

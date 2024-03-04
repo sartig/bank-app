@@ -234,7 +234,7 @@ public class BankTransaction {
 		if (getAccountToId() < 0) {
 			return BankTransactionType.WITHDRAWAL;
 		}
-		return BankTransactionType.INVALID;
+		return BankTransactionType.TRANSFER;
 	}
 
 }

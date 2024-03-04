@@ -103,7 +103,7 @@
 -->
 						<div class="icon-button-box" onclick="document.forms['deposit-form'].submit();">
 							<div style="width:100%; text-align: center">
-								<form method="post" action="/deposit" id="deposit-form">
+								<form method="post" action="/transaction" id="deposit-form">
 									<input type="text" th:value="${bankAccount.accountNumber}" name="accountId" hidden
 										readonly>
 									<div class="icon-button-container" style="width:100%">

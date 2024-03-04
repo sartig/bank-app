@@ -124,7 +124,7 @@ public class TransactionController {
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
 			};
-			String source = "Cash";
+			String source =  transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);
 			model.addAttribute("id", transactionId);
