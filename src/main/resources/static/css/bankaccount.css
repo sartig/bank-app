@@ -105,7 +105,6 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	padding: 12px;
 	gap: 4px;
 	width: 40px;
 	height: 40px;
@@ -130,6 +129,20 @@
 
 	/* Violet/Main - 500 */
 	color: #4F46E5;
+}
+
+.plus-svg{
+    height: 18px;
+    color: #fff;
+}
+
+.page-title {
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 .transactions-head {
@@ -236,4 +249,13 @@
 	width: 11%;
 	height: 64px;
 	background: #FFFFFF;
+}
+
+.green-color {
+    color: #2B825C;
+
+}
+
+.red-color {
+    color: #D1493D;  
 }

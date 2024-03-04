@@ -139,11 +139,7 @@ public class BankAccountService {
 		}
 		return sb.toString();
 	}
-	
-	public boolean isAccountNumberValid(String accountNumber) {
-		return bankAccountRepository.findByAccountNumber(accountNumber).isPresent();
-	}
-	
+
 	/**
      * Retrieves the current balance of a bank account by its unique identifier.
      * @param bankAccountId The unique identifier of the bank account.
@@ -185,5 +181,12 @@ public class BankAccountService {
 		return bankAccountRepository.findByAccountNumber(bankAccountNumber).get();
 	}
 
+	public boolean isAccountNumberValid(String accountNumber) {
+		return bankAccountRepository.findByAccountNumber(accountNumber).isPresent();
+	}
+	
+	public String getBankAccountNumberbyAccountId(long accountId) {
+		return bankAccountRepository.findById(accountId).get().getAccountNumber();
+	}
 }
 
