@@ -63,7 +63,7 @@ public class CreditCardTransactionController {
             transaction = new CreditCardTransaction();
         }
 
-        // Validate the transaction
+        // Validate the transaction amount to be more than 0
         if (transaction.getOriginalCurrencyAmount() <= 0) {
             // Amount must be greater than zero
             return "redirect:/creditcard-add?error=invalid_amount";
