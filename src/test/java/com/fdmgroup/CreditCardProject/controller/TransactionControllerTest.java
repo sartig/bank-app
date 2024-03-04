@@ -90,5 +90,21 @@ class TransactionControllerTest {
 
         assertEquals("redirect:/dashboard", result);
     }
+    
+    @Test
+    public void testWithdrawal_success() throws BankAccountNotFoundException, InsufficientBalanceException {
+    	long transactionId = 123L;
+        String accountId = "accountId";
+        String amount = "100.00";
+        String action = "withdraw";
+
+        when(bankAccountService.withdrawFromAccount(accountId, new BigDecimal(amount))).thenReturn(transactionId);
+        when(authUser.getUsername()).thenReturn("Ali");
+        when(bankAccountService.getUsernameOfAccountByAccountNumber(accountId)).thenReturn("Ali");
+
+        String result = transactionController.handleTransactionRequest(authUser, accountId, amount, action, redirectAttributes);
+
+        assertEquals("redirect:/transaction/receipt/123", result);
+    }
 
 }
