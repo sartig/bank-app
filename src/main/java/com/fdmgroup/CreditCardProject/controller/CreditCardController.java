@@ -31,7 +31,7 @@ public class CreditCardController {
         model.addAttribute("user", currentUser);
         CreditCard creditCard = creditCardService.getCardByNumber(creditCardNumber);
         model.addAttribute("creditCard", creditCard);
-        List<CreditCardTransaction> transactionHistory = creditCardTransactionService.getTransactionHistory(creditCard);
+        List<CreditCardTransaction> transactionHistory = creditCard.getTransactionHistoryDescending();
         model.addAttribute("transactionHistory", transactionHistory);
         return "creditcard";
     }

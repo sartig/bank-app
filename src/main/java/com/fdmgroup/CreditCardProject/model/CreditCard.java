@@ -1,7 +1,9 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.*;
 
@@ -71,6 +73,11 @@ public class CreditCard {
 	public List<CreditCardTransaction> getTransactionHistory() {
 		return transactionHistory;
 	}
+	public List<CreditCardTransaction> getTransactionHistoryDescending() {
+		return transactionHistory.stream()
+				.sorted(Comparator.comparing(CreditCardTransaction::getDate).reversed())
+				.collect(Collectors.toList());
+	}
 
 	public void setTransactionHistory(List<CreditCardTransaction> transactionHistory) {
 		this.transactionHistory = transactionHistory;
@@ -112,6 +119,7 @@ public class CreditCard {
 		return accountId;
 	}
 
+	public void addTransactionHistory(CreditCardTransaction transaction) { transactionHistory.add(transaction); }
 
 	public void setBalance(int i) {
 	}

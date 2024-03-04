@@ -51,8 +51,6 @@ public class CreditCardTransactionController {
         return "creditcard-add";
     }
 
-    @GetMapping("/payment")
-
 
     @PostMapping("/creditcard-add")
     public String processCreditCardForm(@ModelAttribute("transaction") CreditCardTransaction transaction,

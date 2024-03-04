@@ -4,6 +4,7 @@ import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class CreditCardTransactionService {
 	
 	@Autowired
 	private CreditCardTransactionRepository creditCardTransactionRepository;
+	@Autowired
+	private CreditCardRepository creditCardRepository;
+
 
 	@Transactional
 	public void processTransaction(User user, CreditCard creditCard, CreditCardTransaction transaction) throws InsufficientFundsException {
@@ -32,7 +36,8 @@ public class CreditCardTransactionService {
 
 		// Save the transaction
 		transaction.setCreditCard(creditCard);
-		creditCardTransactionRepository.save(transaction);
+		creditCard.addTransactionHistory(transaction);
+		creditCardRepository.save(creditCard);
 	}
 
 	public double getCurrencyConversionRate(String originalCurrencyCode) {
@@ -43,7 +48,4 @@ public class CreditCardTransactionService {
 		return 1.0; // For demonstration, return 1.0 (no conversion)
 	}
 
-	public List<CreditCardTransaction> getTransactionHistory(CreditCard creditCard) {
-		return creditCardTransactionRepository.findByCreditCardOrderByDateDesc(creditCard);
-	}
 }

@@ -25,7 +25,6 @@ public class CreditCardTransaction {
 	private CreditCard creditCard;
 
 	@Column(name = "date")
-//	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime date;
 
 	public LocalDateTime getDate() {
@@ -55,11 +54,11 @@ public class CreditCardTransaction {
 	@Column(name ="isPendingPayment")
 	private boolean isPendingPayment;
 
-	public CreditCardTransaction() {
-		super();
-	}
+    public CreditCardTransaction() {
+        super();
+    }
 
-	public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount, boolean isPendingPayment) {
+	public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
 		this.transactionId = transactionId;
 		this.creditCard = creditCard;
 		this.date = dateTime;
