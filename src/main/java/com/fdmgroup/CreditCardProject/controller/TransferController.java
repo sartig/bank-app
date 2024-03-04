@@ -91,6 +91,8 @@ public class TransferController {
 
 			long transactionId;
 			transactionId = bankAccountService.transferBetweenAccounts(accountId, accountTo, transferAmount);
+			log.info("Successful transfer '" + transactionId +  "' from user '" + principal.getUsername() + "' for $" + amount
+					+ " from account number '" + accountId + "' to account number '" + accountTo + "'\n");
 			return new ModelAndView("redirect:/transaction/receipt/" + transactionId);
 
 		} catch (BankAccountNotFoundException e) {
