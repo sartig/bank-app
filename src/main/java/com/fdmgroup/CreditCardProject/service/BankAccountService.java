@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
 import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class BankAccountService {
 		bankAccountRepository.save(bankAccount);
 	}
 
+	@Transactional
 	public long transferBetweenAccounts(String accountFromId, String accountToId, BigDecimal amount)
 			throws BankAccountNotFoundException, InsufficientBalanceException, SelfReferenceException {
 		BankAccount bankAccountFrom = bankAccountRepository.findByAccountNumber(accountFromId)
@@ -79,6 +81,7 @@ public class BankAccountService {
 
 	}
 
+	@Transactional
 	public long depositToAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
@@ -93,7 +96,8 @@ public class BankAccountService {
 		bankAccountRepository.save(bankAccount);
 		return transaction.getTransactionId();
 	}
-	
+
+	@Transactional
 	public long withdrawFromAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException, InsufficientBalanceException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
