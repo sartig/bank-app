@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class CreditCardTransactionService {
-	
+
 	@Autowired
 	private CreditCardTransactionRepository creditCardTransactionRepository;
 	@Autowired
@@ -38,13 +38,13 @@ public class CreditCardTransactionService {
 		transaction.setCreditCard(creditCard);
 		creditCard.addTransactionHistory(transaction);
 		creditCardRepository.save(creditCard);
-		creditCardTransactionRepository.save(transaction);
 	}
 
 	public double getCurrencyConversionRate(String originalCurrencyCode) {
+
 		// Placeholder method to retrieve the currency conversion rate
 
-		// Implement your logic to fetch the conversion rate from a service or database
+		// Implement logic to fetch the conversion rate from a service or database
 
 		return 1.0; // For demonstration, return 1.0 (no conversion)
 	}
