@@ -5,6 +5,7 @@ import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
 import com.fdmgroup.CreditCardProject.model.BankAccount;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
+import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.User;
 
 import org.apache.logging.log4j.LogManager;
@@ -95,6 +96,24 @@ public class BankAccountService {
 		bankAccount.addTransactionHistory(transaction);
 		bankAccountRepository.save(bankAccount);
 		return transaction.getTransactionId();
+	}
+
+	@Transactional
+	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException {
+
+
+		System.out.println(accountId);
+
+		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
+				.orElseThrow(BankAccountNotFoundException::new);
+		System.out.println(bankAccount.getAccountId());
+//
+//		//get the current total transactions made on the credit card
+//		BigDecimal totalTransactions = card.getSpendingLimit().subtract(card.getCurrentBalance());
+//		System.out.println("Total Transactions: " + totalTransactions);
+
+
+
 	}
 
 	@Transactional
