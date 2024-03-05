@@ -51,30 +51,29 @@
     }
     
     function checkPasswordStrength() {
-		var password = document.getElementById("password").value;
-		var strength = "Weak";
-		var color = "red";
-		
-		if (password.length >= 8) {
-			var lowercaseCount = (password.match(/[a-z]/g) || []).length;
-			var uppercaseCount = (password.match(/[A-Z]/g) || []).length;
-			var numberCount = (password.match(/[0-9]/g) || []).length;
-			var specialCharCount = (password.match(/[!@#$%^&*(),.?":{}|<>]/g) || []).length;
+        var password = document.getElementById("password").value;
+        var strength = "Weak";
+        var color = "red";
+        
+        if (password.length >= 8) {
+            var lowercaseCount = (password.match(/[a-z]/g) || []).length;
+            var uppercaseCount = (password.match(/[A-Z]/g) || []).length;
+            var numberCount = (password.match(/[0-9]/g) || []).length;
+            var specialCharCount = (password.match(/[!@#$%^&*(),.?":{}|<>]/g) || []).length;
 
-            if (lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount >= 1) {
+            if (password.length >= 8 && lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount >= 1) {
                 strength = "Strong";
                 color = "green";
-            } else if (lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 3 && specialCharCount == 0) {
+            } else if (password.length >= 8 && lowercaseCount >= 3 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount == 0) {
                 strength = "Medium";
                 color = "orange";
             }
-		}
-		
-		document.getElementById("passwordStrength").innerText = "Password Strength: " + strength;
-		document.getElementById("passwordStrength").style.color = color;
-		document.getElementById("passwordStrength").style.display = password.length > 0 ? "block" : "none";
-	}
-	
+        }
+        
+        document.getElementById("passwordStrength").innerText = "Password Strength: " + strength;
+        document.getElementById("passwordStrength").style.color = color;
+        document.getElementById("passwordStrength").style.display = password.length > 0 ? "block" : "none";
+    }
 </script>
 </body>
 </html>
