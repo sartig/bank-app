@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/bankaccount.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
@@ -65,7 +66,6 @@
                             th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
                                 Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
                                 <i class="fas fa-eye hoverable"></i>
-
                             </div>
                             
                             <div class="balance">
@@ -75,21 +75,62 @@
                         </div>
                     </div>
 
-                    <div class="credit-card-container">
-                        <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
-                            <div class="creditCard-number"
-                                th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
-                                th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
-                                Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
-                                <i class="fas fa-eye creditCard-number hoverable"></i>
-
-                            </div>
+	                <div class="credit-card-container">
+	                     <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
+	                        <div class="creditCard-number"
+	                            th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
+	                            th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
+	                            Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
+	                             <i class="fas fa-eye creditCard-number hoverable"></i>
+	                        </div>
                             <div class="balance">
                                 <div>Remaining Balance</div>
                                 <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="button-box"> 
+                    	<div class="icon-button-box" onclick="document.forms['deposit-form'].submit();">
+							<div style="width:100%; text-align: center">
+								<form method="post" action="/transaction" id="deposit-form">
+									<div class="icon-button-container" style="width:100%">
+										<div class="icon-button">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+												fill="#FFFFFF" class="w-6 h-6 plus-svg">
+												<path fill-rule="evenodd"
+													d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+													clip-rule="evenodd" />
+											</svg>
+										</div>
+									</div>
+									<div>
+										<button type="submit" class="icon-button-text">Add New Bank Account</button>
+									</div>
+								</form>
+							</div>
+						</div>
+                    	
+                    	<div class="icon-button-box" onclick="document.forms['deposit-form'].submit();">
+							<div style="width:100%; text-align: center">
+								<form method="post" action="/transaction" id="deposit-form">
+									<div class="icon-button-container" style="width:100%">
+										<div class="icon-button">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+												fill="#FFFFFF" class="w-6 h-6 plus-svg">
+												<path fill-rule="evenodd"
+													d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+													clip-rule="evenodd" />
+											</svg>
+										</div>
+									</div>
+									<div>
+										<button type="submit" class="icon-button-text">Add New Credit Card</button>
+									</div>
+								</form>
+							</div>
+						</div>
+                    </div>	
                 </div>
             </div>
         </div>
