@@ -100,10 +100,6 @@ public class BankAccountService {
 
 	@Transactional
 	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException {
-
-
-		System.out.println(accountId);
-
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
 		System.out.println(bankAccount.getAccountId());

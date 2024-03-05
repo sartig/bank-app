@@ -46,17 +46,11 @@ public class CreditCardController {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         CreditCard creditCard = creditCardService.getCardByNumber(creditCardNumber);
-
-
-
-        // test data (TODO: remove after testing)
-        BigDecimal amount = new BigDecimal(2000);
-//        bankAccountService.payBills(userId, amount, creditCard);
-
-
         model.addAttribute("creditCard", creditCard);
         List<CreditCardTransaction> transactionHistory = creditCard.getTransactionHistoryDescending();
         model.addAttribute("transactionHistory", transactionHistory);
+        List<BankAccount> bankAccounts = currentUser.getBankAccounts();
+        model.addAttribute("bankAccounts", bankAccounts);
 
         return "paybills";
     }

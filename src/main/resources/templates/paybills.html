@@ -29,11 +29,11 @@
                             <div class = "bills-title"> Your bills </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Bills</div>
-                                <div class = "bills-body">Credit Card 22222546756756722222222222</div>
+                                <div class = "bills-body" th:text="${creditCard.spendingLimit-creditCard.currentBalance}"></div>
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Minimum Payment</div>
-                                <div class = "bills-body">$123,456,789.00</div>
+                                <div class = "bills-body">$100000</div>
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Due Date</div>
@@ -44,7 +44,7 @@
                         <div class = "pay-bills-form">
                             <div class = "bills-label-container">
                                 <label for="to" class = "bills-subtitle">To</label>
-                                <div id="to" class="to-body">Credit Card 2222222222222222</div>
+                                <div id="to" class="to-body" th:text="'Credit card ' + ${creditCard.accountNumber}"></div>
                             </div>
                             <div class = "bills-label-container">
                                 <label for="amount" class = "bills-subtitle">Amount</label>
@@ -54,8 +54,7 @@
                                 <label for="from" class = "bills-subtitle">From</label>
                                 <select id="from" class="from-body">
                                     <option value="select" disabled>Select</option>
-                                    <option value="deposit">Bank Account 1</option>
-                                    <option value="withdraw">Bank account 2</option>
+                                    <option th:each="account : ${user.bankAccounts}" th:value="${account.accountNumber}" th:text="'Bank account ' + ${account.accountNumber}"></option>
                                 </select>
                             </div>
                             <div class = "send-request-button"> Send Request </div>
