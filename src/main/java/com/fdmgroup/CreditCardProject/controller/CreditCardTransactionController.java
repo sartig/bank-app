@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
@@ -99,8 +100,16 @@ public class CreditCardTransactionController {
             return "redirect:/creditcard-add?error=credit_card_not_found";
         }
 
-        // Placeholder method for currency conversion rate
-        double conversionRate = creditCardTransactionService.getCurrencyConversionRate(transaction.getOriginalCurrencyCode());
+        // Currency conversion rate
+        double conversionRate = 1;
+        if (!"USD".equals(transaction.getOriginalCurrencyCode())) {
+            try {
+                conversionRate = creditCardTransactionService.getCurrencyConversionRate(transaction.getOriginalCurrencyCode());
+                transaction.setStoreInfo(transaction.getStoreInfo() + " ("  + transaction.getOriginalCurrencyAmount() + transaction.getOriginalCurrencyCode() + ")");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         // Calculate the amount based on the original currency amount and conversion rate
         BigDecimal amount = BigDecimal.valueOf(transaction.getOriginalCurrencyAmount() * conversionRate);
@@ -112,8 +121,9 @@ public class CreditCardTransactionController {
 
         // Process the transaction
         try {
-            creditCardTransactionService.processTransaction(currentUser, selectedCreditCard, transaction);
-            redirectAttributes.addFlashAttribute("message", "Amount added successfully: " + transaction.getAmount() + transaction.getOriginalCurrencyCode());
+            creditCardTransactionService.processTransaction(selectedCreditCard, transaction);
+            redirectAttributes.addFlashAttribute("message", "Amount added successfully: " +
+                    transaction.getAmount() + "USD (" + transaction.getOriginalCurrencyAmount() + transaction.getOriginalCurrencyCode() + ")");
 
         } catch (InsufficientFundsException e) {
             // Handle insufficient funds
