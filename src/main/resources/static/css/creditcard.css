@@ -360,6 +360,10 @@ height: 64px;
 background: #FFFFFF;
 }
 
+.body-description {
+	overflow: auto;
+}
+
 .body-amount{
 display: flex;
 flex-direction: row;
