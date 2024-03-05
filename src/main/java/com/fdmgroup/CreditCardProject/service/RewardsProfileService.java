@@ -13,6 +13,6 @@ public class RewardsProfileService {
 			double conversionPercentage = selectedCreditCard.getRewardProfile().getConversionPercentage() / 100.0;
 			rewardPoints = (int) (conversionPercentage * transaction.getAmount().doubleValue());
 		}
-		return rewardPoints;
+		return -rewardPoints;
 	}
 }

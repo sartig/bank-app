@@ -31,7 +31,7 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 7, "Basic", null);
+		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES,MccCategory.TRANSPORTATION));
 		// travel card
 		initializeRewardsProfile(2L, 10, "Travel Pro", List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS));
 		// shopping card
