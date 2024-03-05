@@ -6,6 +6,7 @@
     <div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/cardsinfo.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     
@@ -24,17 +25,36 @@
                     </div>
                     
                     <div class = "horizontal-container">
-                    
-                        <div class = "credit-card-container">
-                            <div class = "cards-title"> FDM Revolution </div>
-                            
-                            <div class = "cards-info" th:each="creditCard : ${user.creditCards}">
-                                <div class = "cards-img">Insert image here</div>
-                                <div class = "cards-subtitle">Card Information</div>
-                                <div class = "cards-body">15% on Food</div>
-                            </div>
-                        </div>
-                    </div>      
+                    	<div class = "page-card-container">
+	                        <div class = "credit-card-container">
+	                        	<div class = "credit-card-title">FDM REVOLUTION</div>
+	                        	
+	                        	<div class = "cards-body-container">
+		                        	<div><img src="/svg/card1.svg" alt="Card Image"></div>
+		                            <div class = "cards-info-container">
+		                                <div class = "cards-info-header">Card Information</div>
+		                                <div class = "cards-info-body">15% on Food</div>
+		                                <div class = "cards-info-body">15% on Travel</div>
+		                            </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    
+	                    <div class = "page-card-container">
+	                        <div class = "credit-card-container">
+	                        	<div class = "credit-card-title">FDM EVOL</div>
+	                        	
+	                        	<div class = "cards-body-container">
+		                        	<div><img src="/svg/card2.svg" alt="Card Image"></div>
+		                            <div class = "cards-info-container">
+		                                <div class = "cards-info-header">Card Information</div>
+		                                <div class = "cards-info-body">15% on Food</div>
+		                                <div class = "cards-info-body">15% on Travel</div>
+		                            </div>
+	                            </div>
+	                        </div>
+	                    </div>
+                    </div>
                 </div>
             </div>
         </div>

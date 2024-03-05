@@ -5,87 +5,51 @@
     align-items: flex-start;
 }
 
-.credit-card-container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 24px;
-    gap: 24px;
-    width: 337px;
-    height: 441px;
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-}
-
-.cards-title{
-    width: 70px;
-    height: 24px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-    letter-spacing: -0.01em;
-    color: #121212;
-}
-
-.cards-info{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    width: 289px;
-    height: 83px;
-}
-
-.cards-subtitle{
-height: 24px;
-
-/* M/Regular */
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height, or 150% */
-letter-spacing: -0.01em;
-color: #344055;
-}
-
-.cards-body{
-    /* Selection/Button */
+.page-card-container{
+/* Card Container */
 
 /* Auto layout */
 display: flex;
 flex-direction: row;
-align-items: center;
-padding: 6px 0px;
+align-items: flex-start;
+gap: 24px;
 
-width: 289px;
-height: 51px;
+width: 527px;
+height: 411px;
 
-/* Shadow-1 */
-filter: drop-shadow(0px 1px 2px rgba(16, 24, 40, 0.05));
-border-radius: 6px;
 
 /* Inside auto layout */
 flex: none;
-order: 1;
-align-self: stretch;
+order: 0;
+flex-grow: 0;
+}
+
+.credit-card-container{
+/* Card Info */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 431px;
+height: 411px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
 flex-grow: 0;
 
+}
 
-/* Select */
-
-width: 289px;
-height: 24px;
-
-/* M/Regular */
+.credit-card-title{
+/* M/Semibold */
 font-family: 'Inter';
 font-style: normal;
-font-weight: 400;
+font-weight: 600;
 font-size: 16px;
 line-height: 24px;
 /* identical to box height, or 150% */
@@ -93,4 +57,143 @@ letter-spacing: -0.01em;
 
 /* Neutral/100 */
 color: #121212;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+	
+	
+/* Selection/Button */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 6px 12px;
+gap: 24px;
+
+width: 431px;
+height: 51px;
+
+/* Neutral/10
+
+FFFFFF
+*/
+background: #FFFFFF;
+/* Neutral/40
+
+Border. divider
+*/
+border: 1px solid #E2E8F0;
+/* Shadow-1 */
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 6px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+	
+}
+
+.cards-body-container{
+/* Credit Card */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding-top: 18px;
+padding-bottom: 18px;
+padding-left: 24px;
+padding-right: 10px;
+gap: 24px;
+
+
+/* Neutral/20
+
+Second base color, hover
+*/
+background: #F8FAFC;
+/* Neutral/40
+
+Border. divider
+*/
+border: 1px solid #E2E8F0;
+
+}
+
+.cards-info-container{
+/* Card Info */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 383px;
+height: 104px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+	
+}
+
+
+.cards-info-header{
+/* Card Information */
+
+width: 383px;
+height: 24px;
+
+/* L/Semibold */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+/* identical to box height, or 133% */
+letter-spacing: -0.02em;
+
+/* Neutral/100 */
+color: #121212;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.cards-info-body{
+/* Info */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 383px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+	
 }
