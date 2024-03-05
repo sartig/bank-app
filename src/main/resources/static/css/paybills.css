@@ -108,3 +108,133 @@ color: #121212;
     box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
 }
 
+.bills-label-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 572px;
+    height: 83px;
+}
+
+.to-body{
+box-sizing: border-box;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 6px 12px;
+gap: 24px;
+width: 572px;
+height: 51px;
+
+background: #EFF2F6;
+border: 1px solid #E2E8F0;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 6px;
+
+
+/* M/Regular */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+
+}
+
+.amount-body{
+    /* Selection/Button */
+box-sizing: border-box;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 6px 12px;
+gap: 24px;
+width: 572px;
+height: 51px;
+background: #FFFFFF;
+border: 1px solid #E2E8F0;
+/* Shadow-1 */
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 6px;
+/* M/Regular */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: #121212;
+}
+
+.amount-body:hover{
+    border: 1px solid #4F46E5;
+}
+
+
+.from-body{
+box-sizing: border-box;
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 6px 12px;
+gap: 24px;
+width: 572px;
+height: 51px;
+background: #FFFFFF;
+border: 1px solid #E2E8F0;
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 6px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: -0.01em;
+color: #121212;
+}
+
+.from-body:hover{
+    border: 1px solid #4F46E5;
+}
+
+.send-request-button{
+    /* Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 12px 24px;
+gap: 8px;
+width: 165px;
+height: 48px;
+margin-top: 24px;
+background: #4F46E5;
+/* Shadow-1 */
+box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+border-radius: 1000px;
+
+/* Text */
+width: 117px;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+letter-spacing: -0.02em;
+color: #FFFFFF;
+}
+
+.send-request-button:hover{
+    background: #473FCE;
+}
+
+.send-request-button:active{
+    background: #3821C0;
+}

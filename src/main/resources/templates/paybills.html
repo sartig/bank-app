@@ -23,7 +23,9 @@
                         <div class="page-title">Pay Bills</div>
                         <div class="page-subtitle">Easily pay your credit card bills</div>
                     </div>
+                    <!-- container for bills info and pay bills form  -->
                     <div class = "horizontal-container">
+                        <!-- bills info -->
                         <div class = "bills-container">
                             <div class = "bills-title"> Your bills </div>
                             <div class = "bills-info">
@@ -39,9 +41,25 @@
                                 <div class = "bills-body">22 Jan 22</div>
                             </div>
                         </div>
+                        <!-- pay bills form -->
                         <div class = "pay-bills-form">
-                            <div class = "form-subtitle"></div>
-                            <div class = "form-body"></div>
+                            <div class = "bills-label-container">
+                                <label for="to" class = "bills-subtitle">To</label>
+                                <div id="to" class="to-body">Credit Card 2222222222222222</div>
+                            </div>
+                            <div class = "bills-label-container">
+                                <label for="amount" class = "bills-subtitle">Amount</label>
+                                <input type="text" id="amount" class="amount-body">
+                            </div>
+                            <div class = "bills-label-container">
+                                <label for="from" class = "bills-subtitle">From</label>
+                                <select id="from" class="from-body">
+                                    <option value="select" disabled>Select</option>
+                                    <option value="deposit">Bank Account 1</option>
+                                    <option value="withdraw">Bank account 2</option>
+                                </select>
+                            </div>
+                            <div class = "send-request-button"> Send Request </div>
                         </div>
                     </div>      
                 </div>
