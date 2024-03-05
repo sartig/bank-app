@@ -61,10 +61,14 @@
             var numberCount = (password.match(/[0-9]/g) || []).length;
             var specialCharCount = (password.match(/[!@#$%^&*(),.?":{}|<>]/g) || []).length;
 
-            if (password.length >= 8 && lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount >= 1) {
+            if (lowercaseCount >= 2 && uppercaseCount >= 2 && numberCount >= 2 && specialCharCount >= 2) {
                 strength = "Strong";
                 color = "green";
-            } else if (password.length >= 8 && lowercaseCount >= 3 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount == 0) {
+            } else if (
+						(lowercaseCount >= 3 && uppercaseCount >= 2 && numberCount >= 2 && specialCharCount == 1) || 
+						(lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount == 1) || 
+						(lowercaseCount >= 2 && uppercaseCount >= 2 && numberCount >= 3 && specialCharCount == 1)
+			) {
                 strength = "Medium";
                 color = "orange";
             }
