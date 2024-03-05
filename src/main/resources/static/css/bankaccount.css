@@ -259,3 +259,10 @@
 .red-color {
     color: #D1493D;  
 }
+
+.button-box{
+	display:flex; 
+	flex-direction: row;
+}
+
+
