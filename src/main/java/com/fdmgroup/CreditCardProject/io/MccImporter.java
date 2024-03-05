@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fdmgroup.CreditCardProject.model.MccCategory;
 import com.fdmgroup.CreditCardProject.model.MerchantCategoryCode;
 
 public class MccImporter {
@@ -48,9 +49,9 @@ public class MccImporter {
 
 		for (MccImportModel mcc : input) {
 			MerchantCategoryCode newMcc = new MerchantCategoryCode();
-			newMcc.setCategoryName(mcc.getDescription());
-			newMcc.setCategoryCode(Short.parseShort(mcc.getId()));
-			newMcc.setCategory(mcc.getCategory());
+			newMcc.setCategoryName(mcc.getFullDescription());
+			newMcc.setCategoryCode(Long.parseLong(mcc.getMcc()));
+			newMcc.setCategory(MccCategory.valueOfLabel(mcc.getGroup().getDescription()));
 			output.add(newMcc);
 		}
 

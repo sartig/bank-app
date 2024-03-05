@@ -2,8 +2,6 @@ package com.fdmgroup.CreditCardProject.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -18,13 +16,13 @@ public class MerchantCategoryCode {
 	private String categoryName;
 
 	@Column(name = "category")
-	private String category;
+	private MccCategory category;
 
 	public MerchantCategoryCode() {
 		super();
 	}
 
-	public MerchantCategoryCode(long categoryCode, String categoryName, String category) {
+	public MerchantCategoryCode(long categoryCode, String categoryName, MccCategory category) {
 		this.categoryCode = categoryCode;
 		this.categoryName = categoryName;
 		this.category = category;
@@ -46,11 +44,11 @@ public class MerchantCategoryCode {
 		this.categoryName = categoryName;
 	}
 
-	public String getCategory() {
+	public MccCategory getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(MccCategory category) {
 		this.category = category;
 	}
 }

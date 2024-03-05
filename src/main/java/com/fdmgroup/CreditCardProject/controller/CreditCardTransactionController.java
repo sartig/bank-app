@@ -124,8 +124,8 @@ public class CreditCardTransactionController {
         model.addAttribute("transaction", transaction);
 
 //        reward points stuffs
-        String Category = merchantCategoryCodeService.getCategoryByCategoryCode(categoryCode);
-        int rewardPoints = rewardsProfileService.calculateRewardPoints(Category, selectedCreditCard, transaction);
+        MccCategory category = merchantCategoryCodeService.getCategoryByCategoryCode(categoryCode);
+        int rewardPoints = rewardsProfileService.calculateRewardPoints(category, selectedCreditCard, transaction);
         currentUser.setRewardsPoints(currentUser.getRewardsPoints() + rewardPoints);
         userService.saveUser(currentUser);
 

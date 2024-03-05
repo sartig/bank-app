@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.config;
 
 import com.fdmgroup.CreditCardProject.io.MccImporter;
+import com.fdmgroup.CreditCardProject.model.MccCategory;
 import com.fdmgroup.CreditCardProject.model.MerchantCategoryCode;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.repository.MerchantCategoryCodeRepository;
@@ -30,22 +31,28 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 7);
-		initializeRewardsProfile(2L, 10);
-		initializeRewardsProfile(3L, 15);
+		initializeRewardsProfile(1L, 7, "Basic", null);
+		// travel card
+		initializeRewardsProfile(2L, 10, "Travel Pro", List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS));
+		// shopping card
+		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS));
 	}
 
-	private void initializeRewardsProfile(Long id, double conversionPercentage) {
+	private void initializeRewardsProfile(Long id, double conversionPercentage, String name,
+			List<MccCategory> categories) {
 		if (rewardsProfileRepository.findById(id).isEmpty()) {
-			RewardsProfile rewardsProfile = new RewardsProfile(id);
+			RewardsProfile rewardsProfile = new RewardsProfile(id, name);
 			rewardsProfile.setConversionPercentage(conversionPercentage);
+			if (categories != null) {
+				rewardsProfile.setValidCategories(categories);
+			}
 			rewardsProfileRepository.save(rewardsProfile);
 		}
 	}
 
 	private void initializeMerchantCategoryCodes() {
 		List<MerchantCategoryCode> existing = merchantCategoryCodeRepository.findAll();
-		if (existing == null || existing.isEmpty()) {
+		if (existing.isEmpty()) {
 			importMerchantCategoryCodes("src/main/resources/mcc_data.json");
 		}
 	}
