@@ -42,19 +42,32 @@
                 }
             });
         });
+        
+        function displayModal() {
+		    
+		    document.getElementById('modal').style.display = 'flex';
+		    document.getElementById('overlay').style.display = 'block';
+		    
+		}
+		
+		function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display='none';
+        }
+
+        function submitForm() {
+            document.getElementById('createNewAccount').submit();
+        }
     </script>
 </head>
 
 <body>
 <div class="main-container">
 	<div class = "overlay" id ="overlay" style="display: none;"></div>
-        <div class = "popup-container" id = "modal" style="display: none">
-            
+        <div class = "create-new-bank-account-popup-container" id = "modal" style="display: none">
                 <div class = "popup-header" > Confirmation </div>
-                
-                <div class = "popup-content-box">
-                    <div class = "popup-content-title"> Add New Bank Account </div>
-                    
+                <div class = "popup-bank-account-box">
+                    <div class = "popup-bank-account-body"> Add New Bank Account? </div>  
                 </div>
                 <div class = "popup-button-stack">
                     <div class = "popup-button-primary" onclick="submitForm()"> Confirm </div>
@@ -90,15 +103,16 @@
                             </div>
                         </div>
                         <!-- new bank account button  -->
-                        <div class = "icon-button-box">
-                            <div class = "icon-button"> 
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
-                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                                  </svg>
-                            </div>
-                            <div class = "icon-button-text"> New Bank Account </div>
-                        </div>
-
+              			<form method="post" action="/dashboard/createNewBankAccount" id="createNewAccount">
+	                        <button type="button" class ="icon-button-box" onclick="displayModal();">
+	                            <div class = "icon-button"> 
+	                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+	                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+	                                  </svg>
+	                            </div>
+	                            <div class = "icon-button-text"> New Bank Account </div>
+	                        </button>
+						</form>
                     </div>
 
 	                <div class="credit-card-container">

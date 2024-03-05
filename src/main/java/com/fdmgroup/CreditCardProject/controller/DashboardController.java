@@ -31,11 +31,12 @@ public class DashboardController {
     }
     
     @PostMapping("/dashboard/createNewBankAccount")
-    public String handleNewBankAccountRequest(@AuthenticationPrincipal AuthUser principal, Model model) {
+    public String createNewBankAccountRequest(@AuthenticationPrincipal AuthUser principal, Model model) {
     	User user = userService.getUserByUsername(principal.getUsername());
+    	model.addAttribute("user", user);
 		// Create a new BankAccount for the user
 		bankAccountService.createBankAccountForUser(user);
-    	return "dashboard";
+    	return "redirect:/dashboard";
     }
 
 }
