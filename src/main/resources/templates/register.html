@@ -51,34 +51,38 @@
     }
     
     function checkPasswordStrength() {
-        var password = document.getElementById("password").value;
-        var strength = "Weak";
-        var color = "red";
-        
-        if (password.length >= 8) {
-            var lowercaseCount = (password.match(/[a-z]/g) || []).length;
-            var uppercaseCount = (password.match(/[A-Z]/g) || []).length;
-            var numberCount = (password.match(/[0-9]/g) || []).length;
-            var specialCharCount = (password.match(/[!@#$%^&*(),.?":{}|<>]/g) || []).length;
-
-            if (lowercaseCount >= 2 && uppercaseCount >= 2 && numberCount >= 2 && specialCharCount >= 2) {
-                strength = "Strong";
-                color = "green";
-            } else if (
-						(lowercaseCount >= 3 && uppercaseCount >= 2 && numberCount >= 2 && specialCharCount == 1) || 
-						(lowercaseCount >= 2 && uppercaseCount >= 3 && numberCount >= 2 && specialCharCount == 1) || 
-						(lowercaseCount >= 2 && uppercaseCount >= 2 && numberCount >= 3 && specialCharCount == 1)
-			) {
-                strength = "Medium";
-                color = "orange";
-            }
-        }
-        
-        document.getElementById("passwordStrength").innerText = "Password Strength: " + strength;
-        document.getElementById("passwordStrength").style.color = color;
-        document.getElementById("passwordStrength").style.display = password.length > 0 ? "block" : "none";
-        
-    }
+	    var password = document.getElementById("password").value;
+	    var sum = 0;
+	    var strength = "Weak";
+	    var color = "red";
+	
+	    for (var i = 0; i < password.length; i++) {
+	        var charCode = password.charCodeAt(i);
+	        
+	        if ((charCode >= 97 && charCode <= 122) || (charCode >= 48 && charCode <= 57)) {
+	            // 1. Increase sum by 1 for lowercase letter (first check) or number (second check)
+	            sum += 1;
+	        } else if (charCode >= 65 && charCode <= 90) {
+	            // 2. Incrase sum by 2 for uppercase letter
+	            sum += 2;
+	        } else {
+				// 3. Increase sum by 3 for special character
+				sum += 3
+			}
+	    }
+	
+	    if (sum >= 10) {
+	        strength = "Strong";
+	        color = "green";
+	    } else if (sum >= 7) {
+	        strength = "Medium";
+	        color = "orange";
+	    }
+	
+	    document.getElementById("passwordStrength").innerText = "Password Strength: " + strength;
+	    document.getElementById("passwordStrength").style.color = color;
+	    document.getElementById("passwordStrength").style.display = password.length > 0 ? "block" : "none";
+	}
     
     function hidePasswordStrength() {
 		document.getElementById("passwordStrength").style.display = "none";
