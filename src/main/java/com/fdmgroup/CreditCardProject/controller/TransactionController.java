@@ -130,6 +130,9 @@ public class TransactionController {
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
 			};
+			if (transactionType == null) {
+				return "redirect:/dashboard";
+			}
 			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", depositAmount);

@@ -49,19 +49,10 @@ class TransactionControllerTest {
     private RedirectAttributes redirectAttributes;
     
     @Mock
-    private HttpServletRequest httpServletRequest;
-    
-    @Mock
-    private Model model;
-    
-    @Mock
     private BankTransaction bankTransaction;
     
     @Mock
     private BankTransactionService bankTransactionService;
-    
-    @Mock
-    private BankTransactionType bankTransactionType;
 
     @InjectMocks
     private TransactionController transactionController;
