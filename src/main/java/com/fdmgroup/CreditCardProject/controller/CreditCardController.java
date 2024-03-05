@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,6 +36,12 @@ public class CreditCardController {
         model.addAttribute("transactionHistory", transactionHistory);
         return "creditcard";
     }
+    
+    @GetMapping("/cardsinfo")
+    public String goToCardinfo(@AuthenticationPrincipal AuthUser principal, Model model) {
+    	User currentUser = userService.getUserByUsername(principal.getUsername());
+    	model.addAttribute("user", currentUser);
+    	return "cardsinfo";
+    }
 
 }
-

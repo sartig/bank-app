@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pay Bills</title>
+    
+    <div th:replace="~{navbar :: head}"></div>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+</head>
+<body>
+    <div class="main-container">
+        <div th:replace="~{navbar :: body}"></div>
+
+        <div class="content" th:object="${user}">
+            <div class="page-top-container"></div>
+            <div class="container">
+                <div class="content-container">
+                    <div class="title">
+                        <div class="page-title">Credit Card Types</div>
+                        <div class="page-subtitle">Find out more about the different credit card types</div>
+                    </div>
+                    
+                    <div class = "horizontal-container">
+                    
+                        <div class = "credit-card-container">
+                            <div class = "cards-title"> FDM Revolution </div>
+                            
+                            <div class = "cards-info" th:each="creditCard : ${user.creditCards}">
+                                <div class = "cards-img">Insert image here</div>
+                                <div class = "cards-subtitle">Card Information</div>
+                                <div class = "cards-body">15% on Food</div>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
