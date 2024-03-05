@@ -22,7 +22,6 @@ import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.BankTransaction;
-import com.fdmgroup.CreditCardProject.model.BankTransactionType;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.BankTransactionService;
