@@ -54,7 +54,7 @@
                             th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
                     </form>
                 </div>
-                <div class="left-menu-button" id="dashboard-button">
+                <div class="left-menu-button" id="cardinfo-button">
                     <i class="fas fa-star"></i>
                     <div class="left-menu-button-text">Card Info</div>
                 </div>
@@ -79,6 +79,12 @@
                     function navigateToDashboard() {
                         window.location.href = '/dashboard';
                     }
+                    
+                    document.getElementById("cardinfo-button").addEventListener("click", navigateToCardinfo);
+                    function navigateToCardinfo() {
+                        window.location.href = '/cardsinfo';
+                    }
+                    
                     function logout() {
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL
@@ -86,6 +92,10 @@
 
                     function dashboard() {
                         window.location.href = '/dashboard';
+                    }
+                    
+                    function cardinfo() {
+                        window.location.href = '/cardsinfo';
                     }
                 </script>
             </div>
