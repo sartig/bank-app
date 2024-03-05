@@ -1,8 +1,6 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
-import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -27,7 +24,7 @@ public class CreditCardService {
 	@Autowired
 	private CreditCardTransactionRepository creditCardTransactionRepository;
 
-	public void createCreditCardForUser(User user) throws EntityNotFoundException {
+	public void createCreditCardForUser(User user,long setSpendingLimit, long setCurrentBalance,long setRewardProfileId) throws EntityNotFoundException {
 		CreditCard creditCard = new CreditCard();
 
 		String creditNumber;
@@ -38,11 +35,12 @@ public class CreditCardService {
 		creditCard.setAccountNumber(creditNumber);
 		creditCard.setUser(user);
 		creditCard.setMonthlyDueDate((byte) 1);
-		creditCard.setSpendingLimit(BigDecimal.valueOf(5000));
-		creditCard.setCurrentBalance(BigDecimal.valueOf(5000));
+		creditCard.setSpendingLimit(BigDecimal.valueOf(setSpendingLimit));
+		creditCard.setCurrentBalance(BigDecimal.valueOf(setCurrentBalance));
+		user.setRewardsPoints(0);
 
 		// Set the reward profile for the credit card
-		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(1L)
+		RewardsProfile rewardsProfile = rewardsProfileRepository.findById(setRewardProfileId)
 				.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
 		creditCard.setRewardProfile(rewardsProfile);
 		user.getCreditCards().add(creditCard);
