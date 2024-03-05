@@ -1,8 +1,6 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
-import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Random;

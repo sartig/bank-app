@@ -41,20 +41,27 @@
                                 th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
                         </form>
                     </div>
-                
-                <div class="left-menu-title">
-                    <i class="far fa-credit-card"></i>
-                    <div class="left-menu-button-text">Credit Card(s)</div>
+                    <div class="left-menu-title">
+                        <i class="far fa-credit-card"></i>
+                        <div class="left-menu-button-text">Credit Card(s)</div>
+                    </div>
+                    <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}"
+                        th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
+                        <form name="cc-form" method="post" action="/creditcard">
+                            <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
+                            <button class="left-menu-sub-button-text"
+                                th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
+                        </form>
+                    </div>
+                    <div class="left-menu-button" id="dashboard-button">
+                        <i class="fas fa-star"></i>
+                        <div class="left-menu-button-text">Card Info</div>
+                    </div>
+                    <div class="left-menu-button" id="dashboard-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div class="left-menu-button-text">Rewards</div>
+                    </div>
                 </div>
-                <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}"
-                    th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
-                    <form name="cc-form" method="post" action="/creditcard">
-                        <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
-                        <button class="left-menu-sub-button-text"
-                            th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
-                    </form>
-                </div>
-            </div>
             </div>
             <div class="left-menu-bot">
                 <div class="left-menu-text">
