@@ -1,5 +1,6 @@
 package com.fdmgroup.CreditCardProject.service;
 
+import com.fdmgroup.CreditCardProject.controller.CreditCardController;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
@@ -8,8 +9,10 @@ import com.fdmgroup.CreditCardProject.model.BankTransaction;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.User;
 
+import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +32,10 @@ public class BankAccountService {
 
 	@Autowired
 	private BankAccountRepository bankAccountRepository;
-	
+
+	@Autowired
+	private CreditCardRepository creditCardRepository;
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -100,13 +106,20 @@ public class BankAccountService {
 
 	@Transactional
 	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException {
+		log.info(accountId);
+		log.info(amount);
+		log.info(card.getAccountId());
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
-		System.out.println(bankAccount.getAccountId());
-//
-//		//get the current total transactions made on the credit card
-//		BigDecimal totalTransactions = card.getSpendingLimit().subtract(card.getCurrentBalance());
-//		System.out.println("Total Transactions: " + totalTransactions);
+
+		log.info("BankAccountServiceSuccess: Paying bills from {} to {}.",accountId,card.getAccountNumber());
+		card.setCurrentBalance(card.getCurrentBalance().add(amount));
+		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
+		bankAccountRepository.save(bankAccount);
+		creditCardRepository.save(card);
+		log.info("BankAccountServiceSuccess: Bills paid from {} to {}.",accountId,card.getAccountNumber());
+		log.info("BankAccountServiceSuccess: New balance of {} is {}.",accountId,bankAccount.getCurrentBalance());
+
 
 
 
@@ -157,7 +170,7 @@ public class BankAccountService {
 
 	/**
      * Retrieves the current balance of a bank account by its unique identifier.
-     * @param bankAccountId The unique identifier of the bank account.
+     * @param bankAccountNumber The unique identifier of the bank account.
      * @return The current balance of the specified bank account, or 0.0 if the account does not exist.
      */
 	public BigDecimal getAccountBalanceByBankAccountNumber(String bankAccountNumber) {

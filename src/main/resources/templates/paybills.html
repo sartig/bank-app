@@ -164,25 +164,29 @@
                                 <div class = "bills-body">22 Jan 22</div>
                             </div>
                         </div>
+                        <form action="/paybills/confirm" method="post">
                         <!-- pay bills form -->
                         <div class = "pay-bills-form">
                             <div class = "bills-label-container">
                                 <label for="to" class = "bills-subtitle">To</label>
                                 <div id="to" class="to-body" th:text="'Credit card ' + ${creditCard.accountNumber}"></div>
+                                <input type="hidden" name="to" th:value="${creditCard.accountNumber}" />
+
                             </div>
                             <div class = "bills-label-container">
-                                <label for="amount" class = "bills-subtitle">Amount</label>
-                                <input type="text" id="amount" class="amount-body">
+                                <label for="amountValue" class = "bills-subtitle">Amount</label>
+                                <input type="text" id = "amountValue" name="amountValue" class="amount-body">
                             </div>
                             <div class = "bills-label-container">
                                 <label for="from" class = "bills-subtitle">From</label>
-                                <select id="from" class="from-body">
+                                <select id="from" name="account" class="from-body">
                                     <option value="select" disabled>Select</option>
                                     <option th:each="account : ${user.bankAccounts}" th:value="${account.accountNumber}" th:text="'Bank account ' + ${account.accountNumber}"></option>
                                 </select>
                             </div>
-                            <div class = "send-request-button" onclick="displayModal();"> Send Request </div>
+                            <div class = "send-request-button" onclick="if(isAmountValid()) {submitForm(); }"> Send Request </div>
                         </div>
+                        </form>
                     </div>      
                 </div>
             </div>

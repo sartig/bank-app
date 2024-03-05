@@ -14,8 +14,6 @@
 
     <label for="date">Date:</label>
     <input type="datetime-local" id="date" name="date" th:value="${#temporals.format(transaction.date, 'yyyy-MM-ddTHH:mm')}" required><br>
-
-
     <label for="storeInfo">Store Info:</label>
     <input type="text" id="storeInfo" th:field="*{storeInfo}" required><br>
     <label for="merchantCategoryCode">Merchant Category Code:</label>
