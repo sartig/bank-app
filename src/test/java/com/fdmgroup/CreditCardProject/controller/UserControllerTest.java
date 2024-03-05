@@ -1,4 +1,4 @@
-package com.fdmgroup.CreditCardProject;
+package com.fdmgroup.CreditCardProject.controller;
 
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
