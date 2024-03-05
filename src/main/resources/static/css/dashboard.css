@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 23px;
+    padding: 10px;
     gap: 14px;
     background: #F7F8FD;
     border: 1px solid #E2E8F0;
@@ -224,3 +224,9 @@ letter-spacing: -0.02em;
 color: #79808A;
 }
 
+.dashboard-amount {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 40px;
+    text-align: right;
+}

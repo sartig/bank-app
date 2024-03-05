@@ -6,7 +6,6 @@
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="/css/transfer.css">
     <link rel="stylesheet" type="text/css" href="/css/transaction.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -99,7 +98,7 @@
                             
                             <div class="balance">
                                 <div>Balance</div>
-                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
                             </div>
                         </div>
                         <!-- new bank account button  -->
@@ -125,7 +124,7 @@
 	                        </div>
                             <div class="balance">
                                 <div>Remaining Balance</div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="dashboard-amount" th:text="'$' + ${creditCard.currentBalance}"></div>
                             </div>
                         </div>
 
