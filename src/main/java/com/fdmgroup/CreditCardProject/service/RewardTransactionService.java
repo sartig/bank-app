@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
+import com.fdmgroup.CreditCardProject.exception.ItemNotFoundException;
 import com.fdmgroup.CreditCardProject.model.RewardItem;
 import com.fdmgroup.CreditCardProject.model.RewardTransaction;
 import com.fdmgroup.CreditCardProject.model.User;
@@ -31,7 +32,9 @@ public class RewardTransactionService {
 		user.addRewardTransaction(transaction);
 		userRepository.save(user);
 		return transaction;
-
+	}
+	public RewardTransaction getTransactionById(String id) throws NumberFormatException, ItemNotFoundException {
+		return rewardTransactionRepository.findById(Long.parseLong(id)).orElseThrow(ItemNotFoundException::new);
 	}
 
 }

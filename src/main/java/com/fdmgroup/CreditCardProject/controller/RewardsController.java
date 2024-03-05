@@ -10,6 +10,8 @@ import com.fdmgroup.CreditCardProject.service.RewardItemService;
 import com.fdmgroup.CreditCardProject.service.RewardTransactionService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -66,4 +69,40 @@ public class RewardsController {
 		return "redirect:/rewards";
 	}
 
+	@GetMapping("/rewards/receipt/{transactionId}")
+	public String goToTransactionReceiptPage(@AuthenticationPrincipal AuthUser principal,
+			@PathVariable String transactionId, Model model) {
+		User currentUser = userService.getUserByUsername(principal.getUsername());
+		model.addAttribute("user", currentUser);
+
+		RewardTransaction transaction;
+		try {
+			transaction = rewardTransactionService.getTransactionById(transactionId);
+			List<RewardTransaction> userRewardTransactions = currentUser.getRewardTransactions();
+			// verify user should be able to view the transaction
+			if (!userRewardTransactions.contains(transaction)) {
+				return "redirect:/dashboard";
+			}
+
+			Date transactionTime = transaction.getDate();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String formattedTimestamp = sdf.format(transactionTime);
+			int amount = transaction.getAmount();
+
+			model.addAttribute("id", transactionId);
+			model.addAttribute("amount", amount);
+			model.addAttribute("itemName", transaction.getRewardItem().getName());
+			model.addAttribute("time", formattedTimestamp);
+			model.addAttribute("type", "Reward Points");
+			return "rewardReceipt";
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ItemNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/dashboard";
+
+	}
 }
