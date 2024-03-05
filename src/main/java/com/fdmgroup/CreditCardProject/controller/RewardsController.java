@@ -94,7 +94,7 @@ public class RewardsController {
 			model.addAttribute("itemName", transaction.getRewardItem().getName());
 			model.addAttribute("time", formattedTimestamp);
 			model.addAttribute("type", "Reward Points");
-			return "rewardReceipt";
+			return "receipt";
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
