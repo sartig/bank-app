@@ -39,7 +39,6 @@ public class BankAccountController {
 			List<BankTransaction> transactionHistory = bankAccount.getTransactionHistoryDescending();
 			model.addAttribute("transactionHistory",transactionHistory);
 		}
-		model.addAttribute("bankAccountRepo", bankAccountRepo);
         model.addAttribute("user", currentUser);
 		return "bankaccount";
 	}
