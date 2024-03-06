@@ -25,44 +25,45 @@
                         <div class="page-title">Rewards</div>
                         <div class="page-subtitle">View, redeem and enjoy your rewards</div>
                     </div>
-                    <div class = "my-points">My Reward Points: 1000 Points</div>
+                    <div class = "my-points" th:text="'My Reward Points: ' + ${user.getRewardsPoints()} + ' Points'"></div>
                 </div>
-                <div class = "rewards-container">
-                    <div class = "left-container">      
-                        <div class = "rewards-card">
-                            <img src="images/cooker.png" alt="cooker">
+                <div class = "rewards-container" >
+                        <div class = "left-container">
+                            <div th:each="reward : ${rewards}" th:if="${reward.itemId % 2 != 0}">
+                            <div class = "rewards-card">
+                                <img th:src="${reward.imageUrl}" alt="cooker">
                             <div class = "rewards-content">
-                                <div class = "rewards-title">Pressure Cooker</div>
-                                <div class = "rewards-body">Cook delicious meals in a fraction of the time with this versatile pressure cooker. It offers multiple cooking functions, including slow cooking, sautéing, and steaming.</div>
-                                <div class = "rewards-points">100 Points</div>
+                                <div class = "rewards-title" th:text="${reward.name}"></div>
+                                <div class = "rewards-body" th:text="${reward.description}"></div>
+                                <div class = "rewards-points" th:text="${reward.cost} + ' Points'"></div>
                             </div>
-                            <div class = "claim-button">Claim Now</div>
+                                <div class="claim-button">
+                                    <form th:action="@{/rewards/purchase}" method="post">
+                                        <input type="hidden" name="itemId" th:value="${reward.itemId}" />
+                                        <button type="submit">Claim Now</button>
+                                    </form>
+                                </div>
                         </div>
-                        <div class = "rewards-card">
-                            <img src="images/cooker.png" alt="cooker">
-                            <div class = "rewards-content">
-                                <div class = "rewards-title">Pressure Cooker</div>
-                                <div class = "rewards-body">Cook delicious meals in a fraction of the time with this versatile pressure cooker. It offers multiple cooking functions, including slow cooking, sautéing, and steaming.</div>
-                                <div class = "rewards-points">100 Points</div>
-                            </div>
-                            <div class = "claim-button">Claim Now</div>
-                        </div>
-
-                    </div>
-                    <div class = "right-container">
-                        <div class = "rewards-card">
-                            <img src="images/cooker.png" alt="cooker">
-                            <div class = "rewards-content">
-                                <div class = "rewards-title">Pressure Cooker</div>
-                                <div class = "rewards-body">Cook delicious meals in a fraction of the time with this versatile pressure cooker. It offers multiple cooking functions, including slow cooking, sautéing, and steaming.</div>
-                                <div class = "rewards-points">100 Points</div>
-                            </div>
-                            <div class = "claim-button">Claim Now</div>
-                        </div>
-
                     </div>
                 </div>
+                    <div class = "left-container">
+                        <div th:each="reward : ${rewards}" th:if="${reward.itemId % 2 == 0}">
+                            <div class = "rewards-card">
+                                <img th:src="${reward.imageUrl}" alt="cooker">
+                                <div class = "rewards-content">
+                                    <div class = "rewards-title" th:text="${reward.name}"></div>
+                                    <div class = "rewards-body" th:text="${reward.description}"></div>
+                                    <div class = "rewards-points" th:text="${reward.cost} + ' Points'"></div>
+                                </div>
+                                <form th:action="@{/rewards/purchase}" method="post">
+                                <input type="hidden" name="itemId" th:value="${reward.itemId}" />
+                                <div class="claim-button">Claim Now</div>
+                                </form>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 48px;
 }
 
 .left-container, .right-container{
@@ -147,4 +148,10 @@ color: #FFFFFF;
 
 .claim-button:active{
     background: #3821C0;
+}
+
+img{
+    max-width: 150px;
+    height: 145px;
+
 }
