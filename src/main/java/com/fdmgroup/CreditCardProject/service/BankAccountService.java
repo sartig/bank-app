@@ -114,7 +114,8 @@ public class BankAccountService {
 
 		log.info("BankAccountServiceSuccess: Paying bills from {} to {}.",accountId,card.getAccountNumber());
 	    // if the bank account does not have enough funds to pay the bill, throw new InsufficientFundsException("Insufficient funds")
-		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
+		if (bankAccount.getCurrentBalance().compareTo(amount) < 0 && card.getCurrentBalance().compareTo(card.getSpendingLimit())<=0) {
+			log.error("BankAccountServiceError: Insufficient funds to pay bills from {} to {}.",accountId,card.getAccountNumber());
 			throw new InsufficientBalanceException();
 		}
 		card.setCurrentBalance(card.getCurrentBalance().add(amount));
