@@ -78,8 +78,8 @@ public class CreditCardController {
     }
     // Temp Controller
     @PostMapping("/paybills/confirm")
-    public String gotoPB(@AuthenticationPrincipal AuthUser principal, Model model,
-                               @RequestParam String creditCardNumber,
+    public ModelAndView gotoPB(@AuthenticationPrincipal AuthUser principal, Model model,
+                               @RequestParam("to") String creditCardNumber,
                                @RequestParam("amountValue") String amountValue,
                                @RequestParam("account") String account,
                                HttpServletRequest request,
@@ -100,13 +100,14 @@ public class CreditCardController {
         log.info("Selected Bank Account: " + selectedBankAccount.getAccountNumber());
         try{
             bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
-            return "redirect:/dashboard";
+            return new ModelAndView("redirect:/dashboard");
         } catch (InsufficientBalanceException e) {
-            log.error("Insufficient Balance");
+            e.printStackTrace();
+            redirectAttributes.addAttribute("error", "insufficientFunds");
             request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-            return "redirect:/paybills";
+            model.addAttribute("creditCard", creditCards);
+            return new ModelAndView("redirect:/paybills");
         }
-
 
     }
 
