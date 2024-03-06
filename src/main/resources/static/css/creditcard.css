@@ -364,31 +364,10 @@ background: #FFFFFF;
     padding: 20px 16px;
     gap: 4px;
     width: 23.5%;
-    height: 64px;
     background: #FFFFFF;
     box-sizing: border-box;
 
 }
-
-.body-description::-webkit-scrollbar {
-    width: 8px;
-    background-color: transparent;
-    padding-block: 20px;
-  }
-  
-  .body-description::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  
-  .body-description::-webkit-scrollbar-track-piece {
-    background-color: transparent;
-  }
-  
-  /* Style the scroll bar thumb */
-  .body-description::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
 
 .body-amount{
 display: flex;
