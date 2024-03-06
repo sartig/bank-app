@@ -21,7 +21,7 @@ public class RewardTransaction {
 	 * The unique identifier for the transaction.
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transactionId")
 	private long transactionId;
 
@@ -46,7 +46,7 @@ public class RewardTransaction {
 	/**
 	 * The reward item that was purchased
 	 */
-	@OneToOne
+	@ManyToOne
 	private RewardItem rewardItem;
 
 	/**
