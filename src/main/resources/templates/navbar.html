@@ -67,13 +67,11 @@
                             </form>
                         </div>
                     </div>
-
                     <div class="left-menu-button" id="dashboard-button">
                         <i class="fas fa-star"></i>
                         <div class="left-menu-button-text">Card Info</div>
                     </div>
-                    
-                    <div class="left-menu-button" id="dashboard-button">
+                    <div class="left-menu-button" onclick="rewards()">
                         <i class="fas fa-shopping-bag"></i>
                         <div class="left-menu-button-text">Rewards</div>
                     </div>
@@ -101,6 +99,9 @@
 
                     function dashboard() {
                         window.location.href = '/dashboard';
+                    }
+                    function rewards() {
+                        window.location.href = '/rewards';
                     }
                 </script>
             </div>

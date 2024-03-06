@@ -45,7 +45,7 @@ public class RegistrationController {
 			bankAccountService.createBankAccountForUser(user);
 
 			// Create a new CreditCardAccount for the user
-			creditCardService.createCreditCardForUser(user);
+			creditCardService.createCreditCardForUser(user,5000,5000,1);
 
 
 			redirectAttributes.addFlashAttribute("successMessage", "Registration for " + username + " successful.");
