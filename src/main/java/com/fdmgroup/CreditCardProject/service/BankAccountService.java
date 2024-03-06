@@ -46,6 +46,7 @@ public class BankAccountService {
 
 		BankAccount bankAccount = new BankAccount(user, bankNumber, BigDecimal.ZERO);
 		user.getBankAccounts().add(bankAccount);
+		log.info("Bank Account with bank account number {} created for {}",bankNumber,user.getUsername());
 		bankAccountRepository.save(bankAccount);
 	}
 
