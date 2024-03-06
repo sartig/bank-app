@@ -131,9 +131,9 @@
                                         <div class="rewards-title" th:text="${reward.name}"></div>
                                         <div class="rewards-body" th:text="${reward.description}"></div>
                                         <div class="rewards-points" th:text="${reward.cost} + ' Points'"></div>
+                                        <div class="rewards-id" th:text="${reward.itemId}" hidden></div>
                                     </div>
                                     <div class="claim-button" onclick="showConfirmationPopup(this);">Claim Now</div>
-
                                 </div>
                             </div>
                         </div>
