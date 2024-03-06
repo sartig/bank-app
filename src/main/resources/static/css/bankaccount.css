@@ -213,7 +213,6 @@
 	flex-direction: row;
 	align-items: flex-start;
 	padding: 0px;
-	height: 64px;
 }
 
 .body-time,
@@ -224,11 +223,9 @@
 	padding: 20px 16px;
 	gap: 4px;
 	width: 21%;
-	height: 64px;
 	background: #FFFFFF;
 }
 
-.body-description,
 .body-type {
 	display: flex;
 	flex-direction: row;
@@ -236,8 +233,19 @@
 	padding: 20px 16px;
 	gap: 4px;
 	width: 23.5%;
-	height: 64px;
 	background: #FFFFFF;
+}
+
+.body-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 4px;
+    width: 23.5%;
+    background: #FFFFFF;
+    box-sizing: border-box;
+
 }
 
 .body-amount {
@@ -247,7 +255,6 @@
 	padding: 20px 16px;
 	gap: 4px;
 	width: 11%;
-	height: 64px;
 	background: #FFFFFF;
 }
 
