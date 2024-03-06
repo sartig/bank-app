@@ -335,7 +335,6 @@ display: flex;
 flex-direction: row;
 align-items: flex-start;
 padding: 0px;
-height: 64px;
 }
 
 .body-time, .body-id{
@@ -345,20 +344,51 @@ align-items: flex-start;
 padding: 20px 16px;
 gap: 4px;
 width: 21%;
-height: 64px;
 background: #FFFFFF;
 }
 
-.body-description, .body-type{
+.body-type{
     display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 20px 16px;
-gap: 4px;
-width: 23.5%;
-height: 64px;
-background: #FFFFFF;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 4px;
+    width: 23.5%;
+    background: #FFFFFF;
 }
+
+.body-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 16px;
+    gap: 4px;
+    width: 23.5%;
+    height: 64px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+
+}
+
+.body-description::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+    padding-block: 20px;
+  }
+  
+  .body-description::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .body-description::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+  
+  /* Style the scroll bar thumb */
+  .body-description::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
 
 .body-amount{
 display: flex;
@@ -367,7 +397,6 @@ align-items: flex-start;
 padding: 20px 16px;
 gap: 4px;
 width: 13%;
-height: 64px;
 background: #FFFFFF;
 }
 
