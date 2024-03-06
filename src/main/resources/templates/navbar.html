@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <script>
+        function submitBankAccountForm(event, index) {
+            event.stopPropagation();
+            var form = document.getElementsByName("ba-form")[index];
+            form.submit();
+        }
+
         function submitCreditCardForm(event, index) {
             event.stopPropagation();
             var form = document.getElementsByName("cc-form")[index];
@@ -29,29 +35,37 @@
                         <i class="fas fa-home"></i>
                         <div class="left-menu-button-text">Dashboard</div>
                     </div>
+
                     <div class="left-menu-title">
                         <i class="fas fa-money-bill"></i>
                         <div class="left-menu-button-text">Bank Account(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}"
-                        th:onclick="|submitForm(event, '${status.index}'')|">
-                        <form method="post" action="/bankaccount">
-                            <input th:value="${bankAccount.accountNumber}" name="selectedBankAccountNumber" hidden>
-                            <button class="left-menu-sub-button-text"
-                                th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
-                        </form>
+
+                    <div class="left-menu-list">
+                        <div class="left-menu-sub-button" th:each="bankAccount, status : ${user.bankAccounts}"
+                            th:onclick="|submitBankAccountForm(event, '${status.index}')|">
+                            <form name="ba-form" method="post" action="/bankaccount">
+                                <input th:value="${bankAccount.accountNumber}" name="selectedBankAccountNumber" hidden>
+                                <button class="left-menu-sub-button-text"
+                                    th:text="'************ - ' +${#strings.substring(bankAccount.accountNumber,12,16)}"></button>
+                            </form>
+                        </div>
                     </div>
+
                     <div class="left-menu-title">
                         <i class="far fa-credit-card"></i>
                         <div class="left-menu-button-text">Credit Card(s)</div>
                     </div>
-                    <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}"
-                        th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
-                        <form name="cc-form" method="post" action="/creditcard">
-                            <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
-                            <button class="left-menu-sub-button-text"
-                                th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
-                        </form>
+
+                    <div class="left-menu-list">
+                        <div class="left-menu-sub-button" th:each="creditCard, status : ${user.creditCards}"
+                            th:onclick="|submitCreditCardForm(event, '${status.index}')|">
+                            <form name="cc-form" method="post" action="/creditcard">
+                                <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
+                                <button class="left-menu-sub-button-text"
+                                    th:text="'************ - ' +${#strings.substring(creditCard.accountNumber,12,16)}"></button>
+                            </form>
+                        </div>
                     </div>
                     <div class="left-menu-button" id="dashboard-button">
                         <i class="fas fa-star"></i>

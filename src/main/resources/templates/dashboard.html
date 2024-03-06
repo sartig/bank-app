@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/css/transaction.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
@@ -39,18 +41,39 @@
                 }
             });
         });
-        function submitCreditCardForm(event, index) {
-            console.log("123")
-            event.stopPropagation();
-            var form = document.getElementsByName("cc-form")[index];
-            form.submit();
+        
+        function displayModal() {
+		    
+		    document.getElementById('modal').style.display = 'flex';
+		    document.getElementById('overlay').style.display = 'block';
+		    
+		}
+		
+		function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display='none';
+        }
+
+        function submitForm() {
+            document.getElementById('createNewAccount').submit();
         }
     </script>
 </head>
 
 <body>
 <div class="main-container">
-
+	<div class = "overlay" id ="overlay" style="display: none;"></div>
+        <div class = "create-new-bank-account-popup-container" id = "modal" style="display: none">
+                <div class = "popup-header" > Confirmation </div>
+                <div class = "popup-bank-account-box">
+                    <div class = "popup-bank-account-body"> Add New Bank Account? </div>  
+                </div>
+                <div class = "popup-bankaccount-button-stack">
+                    <div class = "popup-button-confirm" onclick="submitForm()"> Confirm </div>
+                    <div class = "popup-button-cancel" onclick="closeModal()"> Cancel </div>
+                </div>
+        </div>
+	
     <div th:replace="~{navbar :: body}"></div>
 
     <div class="content" th:object="${user}">
@@ -71,14 +94,24 @@
                             th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
                                 Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
                                 <i class="fas fa-eye hoverable"></i>
-
                             </div>
                             
                             <div class="balance">
                                 <div>Balance</div>
-                                <div class="amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
                             </div>
                         </div>
+                        <!-- new bank account button  -->
+              			<form method="post" action="/dashboard/createNewBankAccount" id="createNewAccount">
+	                        <button type="button" class ="icon-button-box" onclick="displayModal();">
+	                            <div class = "icon-button"> 
+	                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+	                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+	                                  </svg>
+	                            </div>
+	                            <div class = "icon-button-text"> New Bank Account </div>
+	                        </button>
+						</form>
                     </div>
 
                     <div class="credit-card-container">
@@ -99,9 +132,21 @@
                                 </button>
                             </form>
                         </div>
+
+                        <!-- new credit card button  -->
+                        <div class = "icon-button-box">
+                            <div class = "icon-button"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                  </svg>
+                            </div>
+                            <div class = "icon-button-text"> New Credit Card </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
