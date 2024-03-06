@@ -8,11 +8,63 @@
     <link rel="stylesheet" type="text/css" href="/css/rewards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script>
+        function closeInsufficientFundsPopup() {
+		    document.getElementById('insufficient-funds-modal').style.display = 'none';
+		    document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    history.pushState({}, document.title, window.location.pathname);
+		}
+        function showInsufficientFundsPopup() {
+			document.getElementById('insufficient-funds-modal').style.display = 'flex';
+			document.getElementById('insufficient-funds-overlay').style.display = 'block';
+		}
 
+        function showConfirmationPopup(name, cost){
+            document.getElementById('confirmation-popup').style.display = 'flex';
+			document.getElementById('insufficient-funds-overlay').style.display = 'block';
+            // var cost = document.getElementById('rewards-name');
+            // var name = document.getElementById('rewards-cost');
+            var content = document.getElementById('rewards-body');
+            document.getElementById('rewards-body').innerText = "Are you sure you want to claim '" + name + "' for " + cost + "?";
+        }
+
+        function closeConfirmationPopup(){
+            document.getElementById('confirmation-popup').style.display = 'none';
+		    document.getElementById('insufficient-funds-overlay').style.display = 'none';
+        }
+
+        //validate points, if points enough, show confirmation popup, else show insufficient popup
+    </script>
 </head>
 
 <body>
 <div class="main-container">
+    <!-- insufficient points popup  -->
+    <div class = "insufficient-funds-popup-overlay" id ="insufficient-funds-overlay" style="display: none;"></div>
+    <div class = "insufficient-funds-popup-container" id = "insufficient-funds-modal" style="display: none">
+        <div class = "insufficient-funds-popup-header">Insufficient Points</div>
+        <div class = "insufficient-funds-popup-content-box">
+            <div class = "insufficient-funds-popup-content-title">Uh-oh! It seems you don't have enough reward points to claim this reward. 
+                You can either claim another item or earn more points.
+            </div>
+        </div>
+        <div class = "insufficient-funds-popup-button-stack">
+            <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
+        </div>
+    </div>
+
+    <!-- confirmation popup  -->
+    <div class = "insufficient-funds-popup-container" id ="confirmation-popup" style="display: none">
+        <div class = "insufficient-funds-popup-header">Redeem Rewards Confirmation</div>
+        <div class = "insufficient-funds-popup-content-box">
+            <div class = "insufficient-funds-popup-content-title" id = "rewards-body">
+            </div>
+        </div>
+        <div class = "insufficient-funds-popup-button-stack">
+            <div class = "insufficient-funds-popup-button-primary" onclick="closeConfirmationPopup();">Confirm</div>
+        </div>
+    </div>
+
 
     <div th:replace="~{navbar :: body}"></div>
 
@@ -32,21 +84,19 @@
                             <div th:each="reward : ${rewards}" th:if="${reward.itemId % 2 != 0}">
                             <div class = "rewards-card">
                                 <img th:src="${reward.imageUrl}" alt="cooker">
-                            <div class = "rewards-content">
-                                <div class = "rewards-title" th:text="${reward.name}"></div>
-                                <div class = "rewards-body" th:text="${reward.description}"></div>
-                                <div class = "rewards-points" th:text="${reward.cost} + ' Points'"></div>
-                            </div>
-                                <div class="claim-button">
-                                    <form th:action="@{/rewards/purchase}" method="post">
-                                        <input type="hidden" name="itemId" th:value="${reward.itemId}" />
-                                        <button type="submit">Claim Now</button>
-                                    </form>
+                                <div class = "rewards-content">
+                                    <div class = "rewards-title" th:text="${reward.name}" id = "rewards-name"></div>
+                                    <div class = "rewards-body" th:text="${reward.description}"></div>
+                                    <div class = "rewards-points" th:text="${reward.cost} + ' Points'" id ="rewards-cost"></div>
                                 </div>
+                                <form th:action="@{/rewards/purchase}" method="post">
+                                <input type="hidden" name="itemId" th:value="${reward.itemId}" />
+                                    <div class="claim-button" onclick="showConfirmationPopup('${reward.name}', '${reward.cost}');">Claim Now</div>
+                                </form>
+                            </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                    <div class = "left-container">
+                    <div class = "right-container">
                         <div th:each="reward : ${rewards}" th:if="${reward.itemId % 2 == 0}">
                             <div class = "rewards-card">
                                 <img th:src="${reward.imageUrl}" alt="cooker">
