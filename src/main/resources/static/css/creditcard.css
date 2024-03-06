@@ -378,8 +378,3 @@ gap: 4px;
 width: 13%;
 background: #FFFFFF;
 }
-
-/* Change for increase on row's height for overflow */
-.body-description {
-	overflow: auto;
-}
