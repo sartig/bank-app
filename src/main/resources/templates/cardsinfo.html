@@ -26,14 +26,13 @@
                     
                     <div class = "horizontal-container">
                     	<div class = "page-card-container">
-	                        <div class = "credit-card-container">
-	                        	<div class = "credit-card-title" th:each="rewardsProfiles : ${rewardsProfiles}"
-	                        	th:text=${rewardsProfiles.name}></div>
+	                        <div class = "credit-card-container" th:each="rewardsProfile : ${rewardsProfiles}">
+	                        	<div class = "credit-card-title" th:text=${rewardsProfile.name}></div>
 	                        	<div class = "cards-body-container">
 		                        	<div><img src="/svg/card1.svg" alt="Card Image"></div>
 		                            <div class = "cards-info-container">
 		                                <div class = "cards-info-header">Card Information</div>
-		                                <div class = "cards-info-body" th:text="${rewardsProfiles.conversionPercentage} + ' on ' + ${rewardsProfiles.description}"></div>
+		                                <div class = "cards-info-body" th:text="${rewardsProfile.conversionPercentage} + '% on ' + ${rewardsProfile.description}"></div>
 		                            </div>
 	                            </div>
 	                        </div>
