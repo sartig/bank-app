@@ -5,8 +5,8 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 /**
- * Represents a bank transaction, extending the base class Transaction. This
- * class is used to model transactions between bank accounts.
+ * Represents a reward transaction. This
+ * class is used to model transactions where reward points are used to purchase items.
  *
  * @author Danny
  * @version 1.0
@@ -50,7 +50,7 @@ public class RewardTransaction {
 	private RewardItem rewardItem;
 
 	/**
-	 * Default constructor for BankTransaction. Creates an instance with default
+	 * Default constructor for RewardTransaction. Creates an instance with default
 	 * values.
 	 */
 	public RewardTransaction() {
