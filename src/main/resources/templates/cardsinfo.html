@@ -29,7 +29,9 @@
 	                        <div class = "credit-card-container" th:each="rewardsProfile : ${rewardsProfiles}">
 	                        	<div class = "credit-card-title" th:text=${rewardsProfile.name}></div>
 	                        	<div class = "cards-body-container">
-		                        	<div><img src="/svg/card1.svg" alt="Card Image"></div>
+									<div><img th:src="@{'/svg/card' + ${rewardsProfile.rewardProfileId} + '.svg'}" alt="Card Image"></div>
+
+		                        	<!-- <div><img src="/svg/card1.svg" alt="Card Image"></div> -->
 		                            <div class = "cards-info-container">
 		                                <div class = "cards-info-header">Card Information</div>
 		                                <div class = "cards-info-body" th:text="${rewardsProfile.conversionPercentage} + '% on ' + ${rewardsProfile.description}"></div>
