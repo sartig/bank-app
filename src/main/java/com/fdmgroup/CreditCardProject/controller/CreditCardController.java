@@ -99,6 +99,7 @@ public class CreditCardController {
         BigDecimal bgamount = new BigDecimal(amountValue);
         log.info("Selected Bank Account: " + selectedBankAccount.getAccountNumber());
         try{
+
             bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
             return new ModelAndView("redirect:/dashboard");
         } catch (InsufficientBalanceException e) {
