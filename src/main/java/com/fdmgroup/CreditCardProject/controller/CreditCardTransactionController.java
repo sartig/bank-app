@@ -1,13 +1,12 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
-import com.fdmgroup.CreditCardProject.model.AuthUser;
-import com.fdmgroup.CreditCardProject.model.CreditCard;
-import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
-import com.fdmgroup.CreditCardProject.model.User;
-import com.fdmgroup.CreditCardProject.service.CreditCardService;
-import com.fdmgroup.CreditCardProject.service.CreditCardTransactionService;
-import com.fdmgroup.CreditCardProject.service.UserService;
+import com.fdmgroup.CreditCardProject.model.*;
+import com.fdmgroup.CreditCardProject.repository.MerchantCategoryCodeRepository;
+import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
+import com.fdmgroup.CreditCardProject.service.*;
+import jakarta.persistence.EntityNotFoundException;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
@@ -33,6 +33,13 @@ public class CreditCardTransactionController {
     private UserService userService;
     @Autowired
     private CreditCardTransactionService creditCardTransactionService;
+    @Autowired
+    private RewardsProfileService rewardsProfileService;
+    @Autowired
+    private MerchantCategoryCodeRepository merchantCategoryCodeRepository;
+    @Autowired
+    private MerchantCategoryCodeService merchantCategoryCodeService;
+
 
     @GetMapping("/creditcard-add")
     public String showCreditCardForm(Model model) {
@@ -55,6 +62,7 @@ public class CreditCardTransactionController {
     public String processCreditCardForm(@ModelAttribute("transaction") CreditCardTransaction transaction,
                                         @RequestParam("creditCard") String creditCardAccountNumber,
                                         @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime transactionDate,
+                                        @RequestParam("merchantCategoryCode") String merchantCategoryCodeStr,
                                         RedirectAttributes redirectAttributes,
                                         Model model) {
 
@@ -63,11 +71,18 @@ public class CreditCardTransactionController {
             transaction = new CreditCardTransaction();
         }
 
-        // Validate the transaction amount to be more than 0
-        if (transaction.getOriginalCurrencyAmount() <= 0) {
-            // Amount must be greater than zero
-            return "redirect:/creditcard-add?error=invalid_amount";
-        }
+        // Parse merchantCategoryCodeStr to integer
+            long categoryCode = Long.parseLong(merchantCategoryCodeStr);
+
+            // Check if the category code is valid
+
+            if (!isValidCategoryCode(categoryCode)) {
+                redirectAttributes.addFlashAttribute("error", "Invalid merchant category code");
+                return "redirect:/creditcard-add";
+            }
+
+            // Set the category code
+            transaction.getMerchantCategoryCode().setCategoryCode(categoryCode);
 
         // Get the authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -85,21 +100,31 @@ public class CreditCardTransactionController {
             return "redirect:/creditcard-add?error=credit_card_not_found";
         }
 
-        // Placeholder method for currency conversion rate
-        double conversionRate = creditCardTransactionService.getCurrencyConversionRate(transaction.getOriginalCurrencyCode());
+        // Currency conversion rate
+        double conversionRate = 1;
+        if (!"USD".equals(transaction.getOriginalCurrencyCode())) {
+            try {
+                conversionRate = creditCardTransactionService.getCurrencyConversionRate(transaction.getOriginalCurrencyCode());
+                transaction.setStoreInfo(transaction.getStoreInfo() + " ("  + transaction.getOriginalCurrencyAmount() + transaction.getOriginalCurrencyCode() + ")");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         // Calculate the amount based on the original currency amount and conversion rate
         BigDecimal amount = BigDecimal.valueOf(transaction.getOriginalCurrencyAmount() * conversionRate);
         amount = amount.setScale(2, RoundingMode.DOWN); // Round to two decimal places
+        amount = amount.negate();
         transaction.setAmount(amount);
-
         // Set the transaction date
         transaction.setDate(transactionDate);
 
         // Process the transaction
         try {
-            creditCardTransactionService.processTransaction(currentUser, selectedCreditCard, transaction);
-            redirectAttributes.addFlashAttribute("message", "Amount added successfully: " + transaction.getAmount() + transaction.getOriginalCurrencyCode());
+            creditCardTransactionService.processTransaction(selectedCreditCard, transaction);
+            redirectAttributes.addFlashAttribute("message", "Amount added successfully: " +
+                    transaction.getAmount() + "USD (" + transaction.getOriginalCurrencyAmount() + transaction.getOriginalCurrencyCode() + ")");
+
         } catch (InsufficientFundsException e) {
             // Handle insufficient funds
             return "redirect:/creditcard-add?error=insufficient_funds";
@@ -108,7 +133,17 @@ public class CreditCardTransactionController {
         // Add the transaction object back to the model for the form
         model.addAttribute("transaction", transaction);
 
+//        reward points stuffs
+        MccCategory category = merchantCategoryCodeService.getCategoryByCategoryCode(categoryCode);
+        int rewardPoints = rewardsProfileService.calculateRewardPoints(category, selectedCreditCard, transaction);
+        currentUser.setRewardsPoints(currentUser.getRewardsPoints() + rewardPoints);
+        userService.saveUser(currentUser);
+
         return "redirect:/creditcard-add";
     }
 
+    private boolean isValidCategoryCode(long categoryCode) {
+        // Check if the categoryCode is valid (e.g., if it exists in your database)
+        return merchantCategoryCodeRepository.existsByCategoryCode(categoryCode);
+    }
 }
