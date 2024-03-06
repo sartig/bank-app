@@ -105,7 +105,7 @@ public class BankAccountService {
 	}
 
 	@Transactional
-	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException {
+	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException {
 		log.info(accountId);
 		log.info(amount);
 		log.info(card.getAccountId());
@@ -113,6 +113,10 @@ public class BankAccountService {
 				.orElseThrow(BankAccountNotFoundException::new);
 
 		log.info("BankAccountServiceSuccess: Paying bills from {} to {}.",accountId,card.getAccountNumber());
+	    // if the bank account does not have enough funds to pay the bill, throw new InsufficientFundsException("Insufficient funds")
+		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
+			throw new InsufficientBalanceException();
+		}
 		card.setCurrentBalance(card.getCurrentBalance().add(amount));
 		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
 		bankAccountRepository.save(bankAccount);

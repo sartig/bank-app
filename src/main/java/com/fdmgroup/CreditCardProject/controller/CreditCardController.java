@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.controller;
 import com.fdmgroup.CreditCardProject.config.SecurityConfig;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.*;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.CreditCardService;
@@ -72,16 +73,13 @@ public class CreditCardController {
     }
     // Temp Controller
     @PostMapping("/paybills/confirm")
-    public String gotoPB(@AuthenticationPrincipal AuthUser principal, Model model,@RequestParam("to") String creditCardNumber, @RequestParam("amountValue") String amountValue, @RequestParam("account") String account) throws BankAccountNotFoundException {
+    public String gotoPB(@AuthenticationPrincipal AuthUser principal, Model model,@RequestParam("to") String creditCardNumber, @RequestParam("amountValue") String amountValue, @RequestParam("account") String account) throws BankAccountNotFoundException, InsufficientBalanceException {
 
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         model.addAttribute("creditCard", creditCardNumber);
         model.addAttribute("amountValue", amountValue);
         model.addAttribute("account", account);
-        log.info("Amount Value: " + amountValue);
-        log.info("Credit Card: " + creditCardNumber);
-        log.info("Account: " + account);
         CreditCard creditCard = creditCardService.getCardByNumber(creditCardNumber);
         List<BankAccount> bankAccounts = currentUser.getBankAccounts();
         BankAccount selectedBankAccount = currentUser.getBankAccounts().stream()
@@ -90,9 +88,6 @@ public class CreditCardController {
                 .orElseThrow(BankAccountNotFoundException::new);
         BigDecimal bgamount = new BigDecimal(amountValue);
         log.info("Selected Bank Account: " + selectedBankAccount.getAccountNumber());
-//        System.out.println(selectedBankAccount.getAccountNumber());
-//        System.out.println(bgamount);
-//        System.out.println(creditCardNumber);
         bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCard);
 
         return "redirect:/dashboard";

@@ -51,8 +51,8 @@
 		    }
 		    amountValue = '$' + amountValue;
 		    
-		    var selectedAction = document.querySelector('.deposit-or-withdraw-options').value;
-		    var accountMessage = document.querySelector('.account-box').innerText;
+		    var selectedAction = document.querySelector('.from-body').value;
+		    var accountMessage = document.querySelector('.bills-label-container').innerText;
 		    
 		    document.getElementById('modal-amount').innerText = amountValue;
 		    document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
@@ -66,7 +66,7 @@
 		}
 		
 		function submitForm() {
-            document.getElementById('amountForm').submit();
+            document.getElementById('paybill').submit();
         }
 
         function closeModal() {
@@ -164,7 +164,7 @@
                                 <div class = "bills-body">22 Jan 22</div>
                             </div>
                         </div>
-                        <form action="/paybills/confirm" method="post">
+                        <form action="/paybills/confirm" method="post" onsubmit="return isAmountValid()" id="paybill">
                         <!-- pay bills form -->
                         <div class = "pay-bills-form">
                             <div class = "bills-label-container">
@@ -183,8 +183,8 @@
                                     <option value="select" disabled>Select</option>
                                     <option th:each="account : ${user.bankAccounts}" th:value="${account.accountNumber}" th:text="'Bank account ' + ${account.accountNumber}"></option>
                                 </select>
+                                <div class = "send-request-button" onclick="if(isAmountValid()) {displayModal(); }"> Send Request </div>
                             </div>
-                            <div class = "send-request-button" onclick="if(isAmountValid()) {submitForm(); }"> Send Request </div>
                         </div>
                         </form>
                     </div>      
