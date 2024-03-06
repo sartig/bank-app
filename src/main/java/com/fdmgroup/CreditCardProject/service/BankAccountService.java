@@ -186,7 +186,12 @@ public class BankAccountService {
 	}
 	
 	public String getBankAccountNumberbyAccountId(long accountId) {
-		return bankAccountRepository.findById(accountId).get().getAccountNumber();
+		Optional<BankAccount> bankAccountOptional = bankAccountRepository.findById(accountId);
+		if (bankAccountOptional.isPresent()) {
+			return bankAccountRepository.findById(accountId).get().getAccountNumber();
+		}else {
+			return "-1";
+		}
 	}
 }
 
