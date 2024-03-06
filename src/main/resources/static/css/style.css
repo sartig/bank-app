@@ -46,7 +46,6 @@ html {
 
 .content-container {
     width: 1044px;
-    height: calc(100vh - 85px);
 }
 
 .title {
