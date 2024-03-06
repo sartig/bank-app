@@ -139,6 +139,8 @@ public class BankAccountService {
 		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
 			throw new InsufficientBalanceException();
 		}
+
+
 		
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(bankAccount.getAccountId(), amount));

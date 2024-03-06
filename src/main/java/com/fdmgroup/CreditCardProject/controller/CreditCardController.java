@@ -3,10 +3,7 @@ import com.fdmgroup.CreditCardProject.config.SecurityConfig;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.*;
-import com.fdmgroup.CreditCardProject.service.BankAccountService;
-import com.fdmgroup.CreditCardProject.service.CreditCardService;
-import com.fdmgroup.CreditCardProject.service.CreditCardTransactionService;
-import com.fdmgroup.CreditCardProject.service.UserService;
+import com.fdmgroup.CreditCardProject.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +38,9 @@ public class CreditCardController {
     private UserService userService;
     @Autowired
     private CreditCardTransactionService creditCardTransactionService;
+
+    @Autowired
+    private BankTransactionService bankTransactionService;
 
     @PostMapping("/creditcard")
     public String gotoCreditCard(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber, Model model) {
@@ -79,19 +79,15 @@ public class CreditCardController {
     // Temp Controller
     @PostMapping("/paybills/confirm")
     public ModelAndView gotoPB(@AuthenticationPrincipal AuthUser principal, Model model,
-                               @RequestParam("to") String creditCardNumber,
-                               @RequestParam("amountValue") String amountValue,
-                               @RequestParam("account") String account,
                                HttpServletRequest request,
                                RedirectAttributes redirectAttributes) throws BankAccountNotFoundException, InsufficientBalanceException {
 
+        String creditCardNumber = request.getParameter("creditCardNumber");
+        String account = request.getParameter("account");
+        String amountValue = request.getParameter("amountValue");
+
         User currentUser = userService.getUserByUsername(principal.getUsername());
-        model.addAttribute("user", currentUser);
-        model.addAttribute("creditCard", creditCardNumber);
-        model.addAttribute("amountValue", amountValue);
-        model.addAttribute("account", account);
         CreditCard creditCards = creditCardService.getCardByNumber(creditCardNumber);
-        List<BankAccount> bankAccounts = currentUser.getBankAccounts();
         BankAccount selectedBankAccount = currentUser.getBankAccounts().stream()
                 .filter(bankAccount -> bankAccount.getAccountNumber().equals(account))
                 .findFirst()
@@ -99,7 +95,6 @@ public class CreditCardController {
         BigDecimal bgamount = new BigDecimal(amountValue);
         log.info("Selected Bank Account: " + selectedBankAccount.getAccountNumber());
         try{
-
             bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
             return new ModelAndView("redirect:/dashboard");
         } catch (InsufficientBalanceException e) {
@@ -107,7 +102,7 @@ public class CreditCardController {
             redirectAttributes.addAttribute("error", "insufficientFunds");
             request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
             model.addAttribute("creditCard", creditCards);
-            return new ModelAndView("redirect:/paybills");
+            return new ModelAndView("redirect:/paybills?error=insufficientFunds");
         }
 
     }

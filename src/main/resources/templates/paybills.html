@@ -170,7 +170,7 @@
                             <div class = "bills-label-container">
                                 <label for="to" class = "bills-subtitle">To</label>
                                 <div id="to" class="to-body" th:text="'Credit Card ' + ${creditCard.accountNumber}"></div>
-                                <input type="hidden" name="to" th:value="${creditCard.accountNumber}" />
+                                <input type="hidden" name="creditCardNumber" th:value="${creditCard.accountNumber}" />
 
                             </div>
                             <div class = "bills-label-container">
