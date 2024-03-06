@@ -156,7 +156,7 @@ img{
 
 }
 
-.insufficient-funds-popup-overlay{
+.overlay{
 	position:absolute;
 	width: 100%;
 	height: 100%;
@@ -284,3 +284,69 @@ img{
 	order: 0;
 	flex-grow: 0;
 }
+
+.popup-button-secondary{
+	/* Button */
+
+
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 12px 24px;
+	gap: 8px;
+	
+	width: 107px;
+	height: 48px;
+	
+	/* Neutral/10
+	
+	FFFFFF
+	*/
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 1000px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+	
+	width: 59px;
+	height: 24px;
+	
+	/* L/Semibold */
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 24px;
+	/* identical to box height, or 133% */
+	letter-spacing: -0.02em;
+	
+	/* Neutral/70 */
+	color: #79808A;
+}
+
+.insufficient-funds-popup-button-primary:hover{
+	background: #473FCE;
+}
+
+.popup-button-secondary:hover{
+	background: #E2E8F0;
+}
+
+.insufficient-funds-popup-button-primary:active{
+	background: #3821C0;
+}
+
+.popup-button-secondary:active{
+	background: #EFF2F6;
+}
+

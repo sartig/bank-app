@@ -11,26 +11,33 @@
     <script>
         function closeInsufficientFundsPopup() {
 		    document.getElementById('insufficient-funds-modal').style.display = 'none';
-		    document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    document.getElementById('overlay').style.display = 'none';
 		    history.pushState({}, document.title, window.location.pathname);
 		}
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
-			document.getElementById('insufficient-funds-overlay').style.display = 'block';
+			document.getElementById('overlay').style.display = 'block';
 		}
 
-        function showConfirmationPopup(name, cost){
+        function showConfirmationPopup(button) {
+            console.log("Button clicked:", button);
             document.getElementById('confirmation-popup').style.display = 'flex';
-			document.getElementById('insufficient-funds-overlay').style.display = 'block';
-            // var cost = document.getElementById('rewards-name');
-            // var name = document.getElementById('rewards-cost');
-            var content = document.getElementById('rewards-body');
-            document.getElementById('rewards-body').innerText = "Are you sure you want to claim '" + name + "' for " + cost + "?";
+            document.getElementById('overlay').style.display = 'block';
+
+            // Find the parent rewards card element
+            var rewardsCard = button.closest('.rewards-card');
+
+            // Extract the name and cost
+            var rewardsName = rewardsCard.querySelector('.rewards-title').textContent;
+            var rewardsCost = rewardsCard.querySelector('.rewards-points').textContent;
+
+            // Populate the confirmation popup with the name and cost of the product
+            document.getElementById('rewards-body').innerText = "Are you sure you want to claim '" + rewardsName + "' for " + rewardsCost + "?";
         }
 
         function closeConfirmationPopup(){
             document.getElementById('confirmation-popup').style.display = 'none';
-		    document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    document.getElementById('overlay').style.display = 'none';
         }
 
         //validate points, if points enough, show confirmation popup, else show insufficient popup
@@ -40,7 +47,7 @@
 <body>
 <div class="main-container">
     <!-- insufficient points popup  -->
-    <div class = "insufficient-funds-popup-overlay" id ="insufficient-funds-overlay" style="display: none;"></div>
+    <div class = "overlay" id ="overlay" style="display: none;"></div>
     <div class = "insufficient-funds-popup-container" id = "insufficient-funds-modal" style="display: none">
         <div class = "insufficient-funds-popup-header">Insufficient Points</div>
         <div class = "insufficient-funds-popup-content-box">
@@ -62,6 +69,7 @@
         </div>
         <div class = "insufficient-funds-popup-button-stack">
             <div class = "insufficient-funds-popup-button-primary" onclick="closeConfirmationPopup();">Confirm</div>
+            <div class = "popup-button-secondary" onclick="closeConfirmationPopup();">Cancel</div>
         </div>
     </div>
 
@@ -91,7 +99,7 @@
                                 </div>
                                 <form th:action="@{/rewards/purchase}" method="post">
                                 <input type="hidden" name="itemId" th:value="${reward.itemId}" />
-                                    <div class="claim-button" onclick="showConfirmationPopup('${reward.name}', '${reward.cost}');">Claim Now</div>
+                                    <div class="claim-button" onclick="showConfirmationPopup(this);">Claim Now</div>
                                 </form>
                             </div>
                             </div>
