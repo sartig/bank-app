@@ -19,11 +19,8 @@ import java.util.List;
 public class CreditCardController {
     @Autowired
     private CreditCardService creditCardService;
-
     @Autowired
     private UserService userService;
-    @Autowired
-    private CreditCardTransactionService creditCardTransactionService;
 
     @PostMapping("/creditcard")
     public String gotoCreditCard(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber, Model model) {
