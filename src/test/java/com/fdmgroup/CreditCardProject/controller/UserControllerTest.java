@@ -68,7 +68,7 @@ public class UserControllerTest {
                 .andExpect(redirectedUrl("/index"));
         
         verify(bankAccountService).createBankAccountForUser(mockUser);
-        verify(creditCardService).createCreditCardForUser(mockUser);
+        verify(creditCardService).createCreditCardForUser(mockUser,5000,5000,1);
     }
 
     @Test
