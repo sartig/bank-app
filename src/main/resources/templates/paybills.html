@@ -51,12 +51,12 @@
 		    }
 		    amountValue = '$' + amountValue;
 		    
-		    var selectedAction = document.querySelector('.from-body').value;
-		    var accountMessage = document.querySelector('.to-body').innerText;
+		    var fromBankAccount = document.querySelector('.from-body').value;
+		    var toCreditCard = document.querySelector('.to-body').innerText;
 		    
 		    document.getElementById('modal-amount').innerText = amountValue;
-		    document.getElementById('modal-action').innerText = capitalizeFirstLetter(selectedAction);
-		    document.getElementById('modal-account').innerText = accountMessage;
+		    document.getElementById('modal-action').innerText = 'Bank Account ' + fromBankAccount;
+		    document.getElementById('modal-account').innerText = toCreditCard;
 		
 		    document.getElementById('modal').style.display = 'flex';
 		    document.getElementById('overlay').style.display = 'block';
@@ -169,7 +169,7 @@
                         <div class = "pay-bills-form">
                             <div class = "bills-label-container">
                                 <label for="to" class = "bills-subtitle">To</label>
-                                <div id="to" class="to-body" th:text="'Credit card ' + ${creditCard.accountNumber}"></div>
+                                <div id="to" class="to-body" th:text="'Credit Card ' + ${creditCard.accountNumber}"></div>
                                 <input type="hidden" name="to" th:value="${creditCard.accountNumber}" />
 
                             </div>
@@ -181,7 +181,7 @@
                                 <label for="from" class = "bills-subtitle">From</label>
                                 <select id="from" name="account" class="from-body">
                                     <option value="select" disabled>Select</option>
-                                    <option th:each="account : ${user.bankAccounts}" th:value="${account.accountNumber}" th:text="'Bank account ' + ${account.accountNumber}"></option>
+                                    <option th:each="account : ${user.bankAccounts}" th:value="${account.accountNumber}" th:text="'Bank Account ' + ${account.accountNumber}"></option>
                                 </select>
                                 <div class = "send-request-button" onclick="if(isAmountValid()) {displayModal(); }"> Send Request </div>
                             </div>
