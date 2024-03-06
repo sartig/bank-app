@@ -2,9 +2,12 @@ package com.fdmgroup.CreditCardProject.controller;
 import com.fdmgroup.CreditCardProject.model.AuthUser;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
+import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.CreditCardService;
 import com.fdmgroup.CreditCardProject.service.CreditCardTransactionService;
+import com.fdmgroup.CreditCardProject.service.RewardItemService;
+import com.fdmgroup.CreditCardProject.service.RewardsProfileService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +25,8 @@ public class CreditCardController {
     private CreditCardService creditCardService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RewardsProfileService rewardsProfileService;
 
     @PostMapping("/creditcard")
     public String gotoCreditCard(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber, Model model) {
@@ -37,7 +42,10 @@ public class CreditCardController {
     @GetMapping("/cardsinfo")
     public String goToCardinfo(@AuthenticationPrincipal AuthUser principal, Model model) {
     	User currentUser = userService.getUserByUsername(principal.getUsername());
+    	List<RewardsProfile> rewardsProfiles = rewardsProfileService.getAllTypes();
     	model.addAttribute("user", currentUser);
+    	model.addAttribute("rewardsProfiles", rewardsProfiles);
+
     	return "cardsinfo";
     }
 

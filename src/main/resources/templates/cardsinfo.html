@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Pay Bills</title>
+    <title>Cards Information</title>
     
     <div th:replace="~{navbar :: head}"></div>
 	<meta charset="UTF-8">
@@ -18,7 +18,7 @@
         <div class="content" th:object="${user}">
             <div class="page-top-container"></div>
             <div class="container">
-                <div class="content-container">
+                <div class="content-container" th:object=${rewardsProfiles}>
                     <div class="title">
                         <div class="page-title">Credit Card Types</div>
                         <div class="page-subtitle">Find out more about the different credit card types</div>
@@ -27,20 +27,19 @@
                     <div class = "horizontal-container">
                     	<div class = "page-card-container">
 	                        <div class = "credit-card-container">
-	                        	<div class = "credit-card-title">FDM REVOLUTION</div>
-	                        	
+	                        	<div class = "credit-card-title" th:each="rewardsProfiles : ${rewardsProfiles}"
+	                        	th:text=${rewardsProfiles.name}></div>
 	                        	<div class = "cards-body-container">
 		                        	<div><img src="/svg/card1.svg" alt="Card Image"></div>
 		                            <div class = "cards-info-container">
 		                                <div class = "cards-info-header">Card Information</div>
-		                                <div class = "cards-info-body">15% on Food</div>
-		                                <div class = "cards-info-body">15% on Travel</div>
+		                                <div class = "cards-info-body" th:text="${rewardsProfiles.conversionPercentage} + ' on ' + ${rewardsProfiles.description}"></div>
 		                            </div>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    
-	                    <div class = "page-card-container">
+	                    <!-- <div class = "page-card-container">
 	                        <div class = "credit-card-container">
 	                        	<div class = "credit-card-title">FDM EVOL</div>
 	                        	
@@ -53,9 +52,9 @@
 		                            </div>
 	                            </div>
 	                        </div>
-	                    </div>
+	                    </div> -->
                     </div>
-                    
+                   <!--  
                     <div class = "horizontal-container">
                     	<div class = "page-card-container">
 	                        <div class = "credit-card-container">
@@ -86,7 +85,7 @@
 	                            </div>
 	                        </div>
 	                    </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
