@@ -114,18 +114,23 @@
 						</form>
                     </div>
 
-	                <div class="credit-card-container">
-	                     <div class="credit-card-info" th:each="creditCard : ${user.creditCards}">
-	                        <div class="creditCard-number"
-	                            th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
-	                            th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
-	                            Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
-	                             <i class="fas fa-eye creditCard-number hoverable"></i>
-	                        </div>
-                            <div class="balance">
-                                <div>Remaining Balance</div>
-                                <div class="dashboard-amount" th:text="'$' + ${creditCard.currentBalance}"></div>
-                            </div>
+                    <div class="credit-card-container">
+                        <div class="credit-card-info" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
+                            <form name="cc-form" method="post" action="/creditcard">
+                                <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
+                                <div class="creditCard-number"
+                                    th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
+                                    th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
+                                    Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
+                                    <i class="fas fa-eye creditCard-number hoverable"></i>
+                                </div>
+                                <button class="dashboard-card-button">
+                                    <div class="balance">
+                                        <div>Remaining Balance</div>
+                                        <div class="dashboard-amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                    </div>
+                                </button>
+                            </form>
                         </div>
 
                         <!-- new credit card button  -->

@@ -123,7 +123,7 @@ public class TransactionController {
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
-			double depositAmount = transaction.getAmount().doubleValue();
+			double amount = transaction.getAmount().doubleValue();
 			String transactionType = switch (transaction.getType()) {
 			case DEPOSIT -> "Deposit";
 			case WITHDRAWAL -> "Withdrawal";
@@ -135,8 +135,7 @@ public class TransactionController {
 			}
 			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
-			model.addAttribute("amount", depositAmount);
-			model.addAttribute("id", transactionId);
+			model.addAttribute("amount", amount);
 			model.addAttribute("source", source);
 			model.addAttribute("time", formattedTimestamp);
 			model.addAttribute("type", transactionType);

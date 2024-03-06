@@ -1,13 +1,8 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
