@@ -10,37 +10,49 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <script>
         function closeInsufficientFundsPopup() {
-		    document.getElementById('insufficient-funds-modal').style.display = 'none';
-		    document.getElementById('overlay').style.display = 'none';
-		    history.pushState({}, document.title, window.location.pathname);
-		}
+            document.getElementById('insufficient-funds-modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            history.pushState({}, document.title, window.location.pathname);
+        }
+
         function showInsufficientFundsPopup() {
-			document.getElementById('insufficient-funds-modal').style.display = 'flex';
-			document.getElementById('overlay').style.display = 'block';
-		}
+            document.getElementById('insufficient-funds-modal').style.display = 'flex';
+            document.getElementById('overlay').style.display = 'block';
+        }
 
         function showConfirmationPopup(button) {
-            console.log("Button clicked:", button);
-            document.getElementById('confirmation-popup').style.display = 'flex';
-            document.getElementById('overlay').style.display = 'block';
 
             // Find the parent rewards card element
             var rewardsCard = button.closest('.rewards-card');
-
             // Extract the name and cost
             var rewardsName = rewardsCard.querySelector('.rewards-title').textContent;
             var rewardsCost = rewardsCard.querySelector('.rewards-points').textContent;
 
-            // Populate the confirmation popup with the name and cost of the product
-            document.getElementById('rewards-body').innerText = "Are you sure you want to claim '" + rewardsName + "' for " + rewardsCost + "?";
+            var myPoints = document.querySelector('.my-points').innerText;
+            myPoints = parseInt(myPoints.split(' ')[3]); // Extract the points as an integer
+            if (myPoints >= parseInt(rewardsCost)) {
+                document.getElementById('confirmation-popup').style.display = 'flex';
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('rewards-body').innerText = "Are you sure you want to claim '" + rewardsName + "' for " + rewardsCost + "?";
+            } else {
+                document.getElementById('insufficient-funds-modal').style.display = 'flex';
+                document.getElementById('overlay').style.display = 'block';
+            }
+
         }
 
-        function closeConfirmationPopup(){
+        function closeConfirmationPopup() {
             document.getElementById('confirmation-popup').style.display = 'none';
-		    document.getElementById('overlay').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
 
-        //validate points, if points enough, show confirmation popup, else show insufficient popup
+
+        function submitPurchaseForm() {
+            var form = document.getElementById('purchase-form');
+            form.action = "/rewards/purchase";
+            form.submit();
+        }
+
     </script>
 </head>
 
@@ -68,8 +80,8 @@
             </div>
         </div>
         <div class = "insufficient-funds-popup-button-stack">
-            <div class = "insufficient-funds-popup-button-primary" onclick="closeConfirmationPopup();">Confirm</div>
-            <div class = "popup-button-secondary" onclick="closeConfirmationPopup();">Cancel</div>
+            <div class="insufficient-funds-popup-button-primary" onclick="submitPurchaseForm();">Confirm</div>
+            <div class="popup-button-secondary" onclick="closeConfirmationPopup();">Cancel</div>
         </div>
     </div>
 
@@ -97,8 +109,8 @@
                                     <div class = "rewards-body" th:text="${reward.description}"></div>
                                     <div class = "rewards-points" th:text="${reward.cost} + ' Points'" id ="rewards-cost"></div>
                                 </div>
-                                <form th:action="@{/rewards/purchase}" method="post">
-                                <input type="hidden" name="itemId" th:value="${reward.itemId}" />
+                                <form id="purchase-form" method="post">
+                                    <input type="hidden" name="itemId" th:value="${reward.itemId}" />
                                     <div class="claim-button" onclick="showConfirmationPopup(this);">Claim Now</div>
                                 </form>
                             </div>
@@ -129,3 +141,12 @@
 </body>
 
 </html>
+<!--<div class="body-id">-->
+<!--    <a th:href="@{/transaction/receipt/{id}(id=${transaction.transactionId})}">-->
+<!--        <span th:text="${transaction.transactionId}"></span>-->
+<!--    </a>-->
+<!--</div>-->
+
+<!--    .body-id a {-->
+<!--        text-decoration: none;-->
+<!--    }-->

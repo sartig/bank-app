@@ -21,7 +21,7 @@ public class RewardTransaction {
 	 * The unique identifier for the transaction.
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "transactionId")
 	private long transactionId;
 
