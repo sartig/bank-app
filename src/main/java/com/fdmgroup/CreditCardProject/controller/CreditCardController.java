@@ -1,6 +1,8 @@
 package com.fdmgroup.CreditCardProject.controller;
 import com.fdmgroup.CreditCardProject.config.SecurityConfig;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.ExcessPaymentException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.model.*;
 import com.fdmgroup.CreditCardProject.service.*;
@@ -12,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -64,8 +63,6 @@ public class CreditCardController {
         return "creditcard";
     }
 
-
-
     @PostMapping("/paybills")
     public String gotoPaybills(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber, Model model){
         User currentUser = userService.getUserByUsername(principal.getUsername());
@@ -93,19 +90,33 @@ public class CreditCardController {
                 .findFirst()
                 .orElseThrow(BankAccountNotFoundException::new);
         BigDecimal bgamount = new BigDecimal(amountValue);
-        log.info("Selected Bank Account: " + selectedBankAccount.getAccountNumber());
         try{
-            bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
-            return new ModelAndView("redirect:/dashboard");
+            long transactionID = bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
+            return new ModelAndView("redirect:/paybills/paybills_receipt/" + transactionID);
         } catch (InsufficientBalanceException e) {
             e.printStackTrace();
             redirectAttributes.addAttribute("error", "insufficientFunds");
             request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
             model.addAttribute("creditCard", creditCards);
             return new ModelAndView("redirect:/paybills?error=insufficientFunds");
+        } catch (ExcessPaymentException e) {
+            e.printStackTrace();
+            redirectAttributes.addAttribute("error", "excessiveFunds");
+            request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+            model.addAttribute("creditCard", creditCards);
+            return new ModelAndView("redirect:/paybills?error=excessiveFunds");
         }
 
     }
+    @GetMapping("/paybills/paybills_receipt/{transactionId}")
+    public String gotoPBReceipt(@AuthenticationPrincipal AuthUser principal, @PathVariable String transactionId, Model model) throws BankTransactionNotFoundException {
+        User currentUser = userService.getUserByUsername(principal.getUsername());
+        model.addAttribute("user", currentUser);
+        BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
+        model.addAttribute("transaction", transaction);
+        return "paybills_receipt";
+    }
+
 
 }
 

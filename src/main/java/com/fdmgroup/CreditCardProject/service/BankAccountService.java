@@ -2,12 +2,10 @@ package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.controller.CreditCardController;
 import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
+import com.fdmgroup.CreditCardProject.exception.ExcessPaymentException;
 import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
 import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
-import com.fdmgroup.CreditCardProject.model.BankAccount;
-import com.fdmgroup.CreditCardProject.model.BankTransaction;
-import com.fdmgroup.CreditCardProject.model.CreditCard;
-import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.model.*;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +20,7 @@ import com.fdmgroup.CreditCardProject.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -105,26 +104,47 @@ public class BankAccountService {
 	}
 
 	@Transactional
-	public void payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException {
-		log.info(accountId);
-		log.info(amount);
-		log.info(card.getAccountId());
+	public long payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException, ExcessPaymentException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
-
-		log.info("BankAccountServiceSuccess: Paying bills from {} to {}.",accountId,card.getAccountNumber());
 	    // if the bank account does not have enough funds to pay the bill, throw new InsufficientFundsException("Insufficient funds")
-		if (bankAccount.getCurrentBalance().compareTo(amount) < 0 && card.getCurrentBalance().compareTo(card.getSpendingLimit())<=0) {
+		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
 			log.error("BankAccountServiceError: Insufficient funds to pay bills from {} to {}.",accountId,card.getAccountNumber());
 			throw new InsufficientBalanceException();
 		}
-		card.setCurrentBalance(card.getCurrentBalance().add(amount));
+
+		BigDecimal currentTotal = card.getSpendingLimit().subtract(card.getCurrentBalance());
+		if (currentTotal.compareTo(amount)<=0){
+			log.error("BankAccountServiceError: Excess payment to {}.",card.getAccountNumber());
+			throw new ExcessPaymentException();
+		}
+		LocalDateTime date = LocalDateTime.now();
+		// set up bank transaction
+		MerchantCategoryCode MerchantCategoryCode = new MerchantCategoryCode(5712, "Financial Institutions", MccCategory.UNCATEGORIZED);
+
+		// processing the transaction between the bank account and the credit card
+		BankTransaction transaction = bankTransactionRepository
+				.save(new BankTransaction(bankAccount.getAccountId(), amount));
+		transaction.setCreditCard(card);
+		transaction.setBankAccount(bankAccount);
+
+		// saving credit card transaction
+		CreditCardTransaction creditCardTransaction = new CreditCardTransaction(transaction.getTransactionId(), card, date, amount, "Credit Card Payment", MerchantCategoryCode,"USD",amount.doubleValue());
+
+		// updating the bank account and credit card
 		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
+		bankAccount.addTransactionHistory(transaction);
+
+		// updating the credit card
+		card.setCurrentBalance(card.getCurrentBalance().add(amount));
+		card.addTransactionHistory(creditCardTransaction);
+
+		// saving the changes
 		bankAccountRepository.save(bankAccount);
 		creditCardRepository.save(card);
 		log.info("BankAccountServiceSuccess: Bills paid from {} to {}.",accountId,card.getAccountNumber());
 		log.info("BankAccountServiceSuccess: New balance of {} is {}.",accountId,bankAccount.getCurrentBalance());
-
+		return transaction.getTransactionId();
 
 
 
@@ -139,9 +159,6 @@ public class BankAccountService {
 		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
 			throw new InsufficientBalanceException();
 		}
-
-
-		
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(bankAccount.getAccountId(), amount));
 

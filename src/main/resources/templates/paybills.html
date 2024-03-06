@@ -80,8 +80,23 @@
 			const error = urlParams.get('error');
 			if (error === 'insufficientFunds') {
 				showInsufficientFundsPopup();
-			}
+			}else if (error === 'excessiveFunds') {
+                showExcessiveFundsPopup();
+            }
 		}
+
+        function showExcessiveFundsPopup() {
+            document.getElementById('excessive-funds-modal').style.display = 'flex';
+            document.getElementById('excessive-funds-overlay').style.display = 'block';
+
+		}
+
+		function closeExcessiveFundsPopup() {
+            document.getElementById('excessive-funds-modal').style.display = 'none';
+            document.getElementById('excessive-funds-overlay').style.display = 'none';
+            history.pushState({}, document.title, window.location.pathname);
+		}
+
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
 			document.getElementById('insufficient-funds-overlay').style.display = 'block';
@@ -135,6 +150,20 @@
                  <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
              </div>
          </div>
+        <!-- Excessive funds popup -->
+        <div class = "excessive-funds-popup-overlay" id ="excessive-funds-overlay" style="display: none;"></div>
+        <div class = "excessive-funds-popup-container" id = "excessive-funds-modal" style="display: none">
+            <div class = "excessive-funds-popup-header">Excessive Funds</div>
+            <div class = "excessive-funds-popup-content-box">
+                <div class = "excessive-funds-popup-content-title">Uh-oh! It seems you are trying to pay more than you need to.
+                    Please ensure you have entered the correct amount or consider an alternative action.
+                </div>
+            </div>
+            <div class = "excessive-funds-popup-button-stack">
+                <div class = "excessive-funds-popup-button-primary" onclick="closeExcessiveFundsPopup();">Confirm</div>
+            </div>
+        </div>
+
 
         <div th:replace="~{navbar :: body}"></div>
 
