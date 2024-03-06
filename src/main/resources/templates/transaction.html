@@ -84,16 +84,18 @@
 				showInsufficientFundsPopup();
 			}
 		}
+		
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
 			document.getElementById('insufficient-funds-overlay').style.display = 'block';
 		}
 		
 		function closeInsufficientFundsPopup() {
-			document.getElementById('insufficient-funds-modal').style.display = 'none';
-			document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    document.getElementById('insufficient-funds-modal').style.display = 'none';
+		    document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    history.pushState({}, document.title, window.location.pathname);
 		}
-		
+
 		// Call the checkForError method when the page loads
 		window.onload = function() {
 			checksForError();
@@ -105,7 +107,6 @@
     <div class="main-container">
         <div class = "overlay" id ="overlay" style="display: none;"></div>
         <div class = "popup-container" id = "modal" style="display: none">
-            
                 <div class = "popup-header" > Transaction Confirmation </div>
                 <div class = "popup-content-box">
                     <div class = "popup-content-title"> Account </div>

@@ -132,28 +132,24 @@
 								<div class="body-time" th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
 								<div class="body-id" th:text="${transaction.transactionId}"></div>
 								<div class="body-description">
-								    <span th:if="${transaction.getTransactionType() == 'Deposit'}">Cash Deposit</span>
-								    <span th:if="${transaction.getTransactionType() == 'Withdrawal'}">Cash Withdrawal</span>
-								    <span th:if="${transaction.getTransactionType() == 'Transfer'}">
-								    <!-- Retrieve BankAccount corresponding to accountFromId and accountToId -->
-								    <span th:with="fromAccount=${bankAccountRepo.findByAccountId(transaction.accountFromId)} , toAccount=${bankAccountRepo.findByAccountId(transaction.accountToId)}">
-									<!-- Check if fromAccount and toAccount are not null -->
-								    <span th:if="${fromAccount != null and toAccount != null}">
-								    <!-- Compare transaction.accountFromId and transaction.accountToId with bankAccount.accountId -->
-								    <span th:if="${transaction.accountFromId == bankAccount.accountId}">
-								    	<span th:text="'Outgoing transfer to ' + toAccount.accountNumber"></span>
+									<!-- Case for Deposit -->
+								    <span th:if="${transaction.accountFromId == -1}">Cash Deposit</span>
+								    <!-- Case for Withdrawal -->
+								    <span th:if="${transaction.accountToId == -1}">Cash Withdrawal</span>
+								    <!-- Case for Incoming Transfer -->
+								    <span th:if="${#strings.toString(transaction.accountFromId) == bankAccount.accountNumber and transaction.accountToId != -1}">
+								    	<span th:text="'Outgoing transfer to ' + ${transaction.accountToId}"></span>
 								    </span>
-								    <span th:if="${transaction.accountToId == bankAccount.accountId}">
-								    	<span th:text="'Incoming transfer from ' + fromAccount.accountNumber"></span>
+								    <!-- Case for Outgoing Transfer -->
+								    <span th:if="${#strings.toString(transaction.accountToId) == bankAccount.accountNumber and transaction.accountFromId != -1}">
+								    	<span th:text="'Incoming transfer from ' + ${transaction.accountFromId}"></span>
 								    </span>
-									</span>
-									</span>
-									</span>
+								    
 								</div>
 								<div class="body-type" th:text="${transaction.getTransactionType()}"></div>
 								<div class="body-amount"
-								     th:text="${transaction.getTransactionType() == 'Withdraw' or transaction.accountFromId == bankAccount.accountId} ? '' + '-' + '$' + ${transaction.amount} : '$' + ${transaction.amount}"
-								     th:classappend="${(transaction.getTransactionType() == 'Withdraw' or transaction.accountFromId == bankAccount.accountId) ? 'red-color' : 'green-color'}">
+								     th:text="${transaction.accountToId == -1 or #strings.toString(transaction.accountFromId) == bankAccount.accountNumber} ? '' + '-' + '$' + ${transaction.amount} : '$' + ${transaction.amount}"
+								     th:classappend="${(transaction.accountToId == -1 or #strings.toString(transaction.accountFromId) == bankAccount.accountNumber) ? 'red-color' : 'green-color'}">
 								</div>
 							</div>
 						</div>

@@ -1,4 +1,4 @@
-package com.fdmgroup.CreditCardProject;
+package com.fdmgroup.CreditCardProject.controller;
 
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.UserRepository;
@@ -68,7 +68,7 @@ public class UserControllerTest {
                 .andExpect(redirectedUrl("/index"));
         
         verify(bankAccountService).createBankAccountForUser(mockUser);
-        verify(creditCardService).createCreditCardForUser(mockUser);
+        verify(creditCardService).createCreditCardForUser(mockUser,5000,5000,1);
     }
 
     @Test

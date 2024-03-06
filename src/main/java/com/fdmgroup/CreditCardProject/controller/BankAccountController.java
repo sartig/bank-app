@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fdmgroup.CreditCardProject.model.*;
 import com.fdmgroup.CreditCardProject.service.CreditCardService;
@@ -36,7 +37,12 @@ public class BankAccountController {
 			BankAccount bankAccount = bankAccountService.getBankAccountByBankAccountNumber(selectedBankAccountNumber);
 			model.addAttribute("bankAccount", bankAccount);
 			List<BankTransaction> transactionHistory = bankAccount.getTransactionHistoryDescending();
-			model.addAttribute("transactionHistory",transactionHistory);
+			List<BankTransaction> modifiedTransactionHistory = transactionHistory.stream().map(transaction -> {transaction.setAccountFromId(Long.parseLong(
+					bankAccountService.getBankAccountNumberbyAccountId(transaction.getAccountFromId())));
+			transaction.setAccountToId(Long.parseLong(bankAccountService.getBankAccountNumberbyAccountId(transaction.getAccountToId())));
+			return transaction;
+			}).collect(Collectors.toList());
+			model.addAttribute("transactionHistory",modifiedTransactionHistory);
 		}
         model.addAttribute("user", currentUser);
 		return "bankaccount";

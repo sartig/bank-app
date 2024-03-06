@@ -28,12 +28,18 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@Column(name = "bankAccount")
 	private List<BankAccount> bankAccounts = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<CreditCard> creditCards = new ArrayList<>();
+
+	@Column(name = "rewardsPoints")
+	private int rewardsPoints;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<RewardTransaction> rewardTransactions = new ArrayList<>();
 
 	public List<CreditCard> getCreditCards() {
 		return creditCards;
@@ -45,11 +51,6 @@ public class User {
 
 	public User() {
 		super();
-	}
-
-	public User(String username, String password) {
-		setUsername(username);
-		setPassword(password);
 	}
 
 	public String getUsername() {
@@ -80,6 +81,30 @@ public class User {
 		return userId;
 	}
 
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public int getRewardsPoints() {
+		return rewardsPoints;
+	}
+
+	public void setRewardsPoints(int rewardsPoints) {
+		this.rewardsPoints = rewardsPoints;
+	}
+
+	public List<RewardTransaction> getRewardTransactions() {
+		return rewardTransactions;
+	}
+
+	public void setRewardTransactions(List<RewardTransaction> rewardTransactions) {
+		this.rewardTransactions = rewardTransactions;
+	}
+
+	public void addRewardTransaction(RewardTransaction rewardTransaction) {
+		rewardTransactions.add(rewardTransaction);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(userId, password, username);
@@ -94,8 +119,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return userId == other.userId && Objects.equals(password, other.password) && Objects.equals(username, other.username);
+		return userId == other.userId && Objects.equals(password, other.password)
+				&& Objects.equals(username, other.username);
 	}
-
 
 }

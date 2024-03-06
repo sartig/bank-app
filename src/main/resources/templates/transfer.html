@@ -91,6 +91,7 @@
         function closeInsufficientFundsPopup() {
             document.getElementById('insufficient-funds-modal').style.display = 'none';
             document.getElementById('insufficient-funds-overlay').style.display = 'none';
+		    history.pushState({}, document.title, window.location.pathname);
         }
         
         // Call the checkForError method when the page loads

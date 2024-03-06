@@ -87,10 +87,10 @@ public class TransactionController {
 				e.printStackTrace();
 				return new ModelAndView("redirect:/dashboard");
 			} catch (InsufficientBalanceException e) {
-				e.printStackTrace();
-				redirectAttributes.addAttribute("error", "insufficientFunds");
-				request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-				return new ModelAndView("redirect:/transaction");
+			    e.printStackTrace();
+			    redirectAttributes.addFlashAttribute("error", "insufficientFunds");
+			    request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+			    return new ModelAndView("redirect:/transaction?error=insufficientFunds");
 			}
 		} else if (action.equals("deposit")) {
 			// make sure account belongs to logged in user
@@ -123,17 +123,19 @@ public class TransactionController {
 			Date transactionTime = transaction.getDate();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String formattedTimestamp = sdf.format(transactionTime);
-			double depositAmount = transaction.getAmount().doubleValue();
+			double amount = transaction.getAmount().doubleValue();
 			String transactionType = switch (transaction.getType()) {
 			case DEPOSIT -> "Deposit";
 			case WITHDRAWAL -> "Withdrawal";
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
 			};
+			if (transactionType == null) {
+				return "redirect:/dashboard";
+			}
 			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
 			model.addAttribute("id", transactionId);
-			model.addAttribute("amount", depositAmount);
-			model.addAttribute("id", transactionId);
+			model.addAttribute("amount", amount);
 			model.addAttribute("source", source);
 			model.addAttribute("time", formattedTimestamp);
 			model.addAttribute("type", transactionType);
