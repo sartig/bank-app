@@ -222,11 +222,11 @@
                             <div class = "bills-title"> Your bills </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Bills</div>
-                                <div class = "bills-body" th:text="${creditCard.spendingLimit-creditCard.currentBalance}"></div>
+                                <div class = "bills-body" th:text="'$' + ${creditCard.spendingLimit-creditCard.currentBalance}"></div>
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Minimum Payment</div>
-                                <div class = "bills-body" th:text="${0.1*(creditCard.spendingLimit-creditCard.currentBalance)}"></div>
+                                <div class = "bills-body" th:text="'$' + ${#numbers.formatDecimal(0.1*(creditCard.spendingLimit-creditCard.currentBalance),1,2)}"></div>
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Due Date</div>

@@ -64,7 +64,7 @@
                             </div>
                             <div class="minimum-payment">
                                 <div> Minimum Payment 10% Payment </div>
-                                <div class="amount" th:text="'$' + ${0.1*(creditCard.spendingLimit-creditCard.currentBalance)}"></div>
+                                <div class="amount" th:text="'$' + ${#numbers.formatDecimal(0.1*(creditCard.spendingLimit-creditCard.currentBalance),1,2)}"></div>
                             </div>
                             <div class="due-date">
                                 <div> Due Date </div>

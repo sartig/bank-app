@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -111,7 +112,7 @@ public class BankAccountService {
 		}
 
 		// If below minimum payment throw error
-		BigDecimal minimumPayment = currentTotal.multiply(new BigDecimal("0.1"));
+		BigDecimal minimumPayment = currentTotal.multiply(new BigDecimal("0.1").setScale(2, RoundingMode.DOWN));
 		if (amount.compareTo(minimumPayment) < 0) {
 			log.error("BankAccountServiceError: Payment to {} is below minimum payment.",card.getAccountNumber());
 			throw new BelowMinimumPayment();
