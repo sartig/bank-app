@@ -158,18 +158,21 @@
                 <div class="info-container">
 
                     <div class="bank-account-container">
-                        <div class="bank-account-info" th:each="bankAccount : ${user.bankAccounts}">
-                            <div class="bankaccount-number"
-                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
-                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
-                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
-                                <i class="fas fa-eye hoverable"></i>
-                            </div>
-                            
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
-                            </div>
+                        <div class="bank-account-info" th:each="bankAccount, status : ${user.bankAccounts}"
+                            th:onclick="|submitBankAccountForm(event, '${status.index}')|">
+                            <form name="ba-form" method="post" action="/bankaccount">
+	                            <div class="bankaccount-number"
+	                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
+	                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
+	                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+	                                <i class="fas fa-eye hoverable"></i>
+	                            </div>
+                             <button class="dashboard-card-button">
+	                            <div class="balance">
+	                                <div>Balance</div>
+	                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+	                            </button>
+                            </form>
                         </div>
                         <!-- new bank account button  -->
               			<form method="post" action="/dashboard/createNewBankAccount" id="createNewAccount">
