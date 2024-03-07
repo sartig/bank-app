@@ -211,3 +211,7 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+.password-strength{
+    font-size: 12px;
+}
