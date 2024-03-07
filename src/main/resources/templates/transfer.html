@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
     <script>
-        function validateAmount() {
+        function isAmountValid() {
 		    var amountInput = document.getElementById('amountValue');
 		    var amountValue = amountInput.value;
 		    var isValid = /^(?!0\d)\d+(\.\d+)?$/.test(amountValue);
@@ -183,7 +183,7 @@
                             <label for="actions">To</label><br>
                             <input type="text" id="actions" class="amount-box" placeholder="Input 16-digit account code" required>
 
-                            <button type="button" class="send-request-button" onclick="if(validateAmount()) { displayModal(); }">Send Request</button>
+                            <button type="button" class="send-request-button" onclick="if(isAmountValid()) { displayModal(); }">Send Request</button>
 
                         </form>
 

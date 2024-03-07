@@ -22,13 +22,7 @@
 		        return false;
 		    }
 			
-			// 2. Verify input is a float and more than 0
-		    if (parseFloat(amountValue) <= 0) {
-		        alert("Amount must be more than 0.");
-		        return false;
-		    }
-		
-		    // 3. Verify input has at most 2 decimal places
+			// 2. Verify input has at most 2 decimal places
 		    if ((amountValue.split('.')[1] || '').length > 2) {
 		        alert("Amount must have at most 2 decimal places.");
 		        return false;
