@@ -38,12 +38,11 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION), "Transportation and Miscellaneous Stores");
-		// travel card
-		initializeRewardsProfile(2L, 10, "Travel Pro",
+		initializeRewardsProfile(1L, 7, "FDM REVOLUTION", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION), "Transportation and Miscellaneous Stores");
+		initializeRewardsProfile(2L, 10, "FDM EVOL",
 				List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS), "Airlines, Car Rent and Hotels");
-		// shopping card
-		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS ), "Clothing and Retail Outlet");
+		initializeRewardsProfile(3L, 12, "FDM SIGNATURE", List.of(MccCategory.AIRLINES,MccCategory.PERSONAL_SERVICES, MccCategory.BUSINESS_SERVICES ), "Airlines, Personal and Business Services");
+		initializeRewardsProfile(4L, 15, "FDM LADY'S CARD", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS ), "Clothing and Retail Outlet");
 	}
 
 	private void initializeRewardsProfile(Long id, double conversionPercentage, String name,
