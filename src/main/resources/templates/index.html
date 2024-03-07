@@ -41,12 +41,12 @@
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>Welcome Back!</h1>
-                    <p>Enter your details to use all of site features</p>
+                    <p>Enter your details to use all of the site features</p>
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1 >Welcome to FDM Bank</h1>
-                    <p th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}">Register with your details to use all of site features</p>
+                    <p th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}">Register with your details to use all of the site features</p>
                     <p class="tagline" th:if="${not #strings.isEmpty(logoutMessage)}" th:text="${logoutMessage}"></p>
                     <p class="tagline" th:if="${not #strings.isEmpty(successMessage)}" th:text="${successMessage}"></p>
                     <button class="hidden" id="register">Sign Up</button>
