@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<!--    <div th:replace="navbar :: head"></div>-->
     <meta charset="UTF-8">
-    <title>Index Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Login/Register</title>
 </head>
+
 <body>
-<div class="container">
-        <div class="content">
-            <div class="svg-container">
-                <img src="/svg/iconblack.svg" alt="Icon" width="350" height="350">
-            </div>
-            <h2 class = "tagline" th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}">
-                Welcome to FDM Bank!
-            </h2>
-            <h2 th:text="${logoutMessage}" style="color: #4F46E5;"></h2>
-            <h2 th:text="${logoutMessage2}" style="color: #080325;"></h2>
-            <h2 th:text="${successMessage}" style="color: #4F46E5;"></h2>
-            <h2 th:text="${successMessage2}" style="color: #080325;"></h2>
-            <div class="action-buttons">
-                <a href="login"><button class="purple-button">Login</button></a>
-                <a href="register"><button class="white-button">Sign Up</button></a>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="post" action="register" th:object="${user}">
+                <h1>Sign Up</h1>
+                <h2 th:if="${unsuccessfulMessage}" style="color: orange;" th:text="${unsuccessfulMessage}"></h2>
+                <input type="text" name="username" placeholder="Username" required>
+                <div class = "input-container">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <i id = "togglePassword" class="fa-solid fa-eye" onclick="togglePasswordVisibility('password', 'togglePassword')"></i>
+                </div>
+                <div class = "input-container">
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+                    <i id = "toggleConfirmPassword" class="fa-solid fa-eye" onclick="togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword')"></i>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form method="post" action="login">
+                <h1>Sign In</h1>
+                <h2 class="error" th:if="${param.error}" th:text="${param.error}"></h2>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1 th:if="${#strings.isEmpty(logoutMessage) and #strings.isEmpty(successMessage)}">
+                        Welcome to FDM Bank</h1>
+                    <p>Register with your details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
             </div>
         </div>
-</div>
-
+    </div>
 </body>
-</html>
+<script src="/js/index.js"></script>
 
-<!--    <div th:replace="navbar :: body"></div>-->
+</html>
