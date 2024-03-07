@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
 
     Optional <CreditCard> findByAccountNumber(String accountNumber);
+
 }

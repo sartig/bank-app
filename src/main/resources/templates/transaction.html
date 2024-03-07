@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head xmlns:th="http://www.thymeleaf.org">
     <title>Deposit/Withdraw</title>
     
@@ -16,19 +15,13 @@
 		    var amountValue = amountInput.value;
 		    var isValid = /^(?!0\d)\d+(\.\d+)?$/.test(amountValue);
 		    
-		    // 1. Verify input is in correct format and more than 0
+		    // 1. Verify input is in correct format
 		    if (!isValid) {
 		        alert("Please enter a valid amount.");
 		        return false;
 		    }
 			
-			// 2. Verify input is a float and more than 0
-		    if (parseFloat(amountValue) <= 0) {
-		        alert("Amount must be more than 0.");
-		        return false;
-		    }
-		
-		    // 3. Verify input has at most 2 decimal places
+			// 2. Verify input has at most 2 decimal places
 		    if ((amountValue.split('.')[1] || '').length > 2) {
 		        alert("Amount must have at most 2 decimal places.");
 		        return false;
@@ -84,7 +77,7 @@
 				showInsufficientFundsPopup();
 			}
 		}
-		
+
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
 			document.getElementById('insufficient-funds-overlay').style.display = 'block';
@@ -140,6 +133,7 @@
 		        <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
 		    </div>
 		</div>
+
 
    
 		<div th:replace="~{navbar :: body}"></div>

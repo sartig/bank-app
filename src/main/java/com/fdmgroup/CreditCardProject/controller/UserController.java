@@ -21,7 +21,7 @@ public class UserController {
     }
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login";
+        return "redirect:/index";
     }
 
     @GetMapping("/logout-success")
@@ -30,5 +30,4 @@ public class UserController {
         redirectAttributes.addFlashAttribute("logoutMessage2", "See you again!");
         return "redirect:/index";
     }
-
 }
