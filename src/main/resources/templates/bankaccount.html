@@ -130,7 +130,11 @@
 						<div class="transactions-body">
 							<div class="body-row" th:each="transaction:${transactionHistory}">
 								<div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
-								<div class="body-id" th:text="${transaction.transactionId}"></div>
+								<div class="body-id">
+								    <a th:href="${transaction.creditCard} ? @{/paybills/paybills_receipt/{id}(id=${transaction.transactionId})} : @{/transaction/receipt/{id}(id=${transaction.transactionId})}">
+								        <span th:text="${transaction.transactionId}"></span>
+								    </a>
+								</div>
 								<div class="body-description">
 									<!-- Case for credit card payment -->
 									<span th:if="${transaction.creditCard}" th:text="'Payment to ' + ${transaction.creditCard.accountNumber}"></span>
@@ -163,4 +167,3 @@
 </body>
 
 </html>
-

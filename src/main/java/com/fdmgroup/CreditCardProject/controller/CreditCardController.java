@@ -38,6 +38,9 @@ public class CreditCardController {
 
 	@Autowired
 	private BankTransactionService bankTransactionService;
+	
+	@Autowired
+    private RewardsProfileService rewardsProfileService;
 
 	@PostMapping("/creditcard")
 	public String gotoCreditCard(@AuthenticationPrincipal AuthUser principal, @RequestParam String creditCardNumber,
@@ -136,5 +139,15 @@ public class CreditCardController {
 		model.addAttribute("destination", transaction.getAccountToId());
 		return "paybills_receipt";
 	}
+	
+	@GetMapping("/cardsinfo")
+    public String goToCardinfo(@AuthenticationPrincipal AuthUser principal, Model model) {
+    	User currentUser = userService.getUserByUsername(principal.getUsername());
+    	List<RewardsProfile> rewardsProfiles = rewardsProfileService.getAllTypes();
+    	model.addAttribute("user", currentUser);
+    	model.addAttribute("rewardsProfiles", rewardsProfiles);
+
+    	return "cardsinfo";
+    }
 
 }
