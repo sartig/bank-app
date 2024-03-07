@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
-import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Random;
 
 @Service
@@ -25,9 +23,6 @@ public class CreditCardService {
 	private CreditCardRepository creditCardRepository;
 	@Autowired
 	private RewardsProfileRepository rewardsProfileRepository;
-
-	@Autowired
-	private CreditCardTransactionRepository creditCardTransactionRepository;
 	
 	private final Logger log = LogManager.getLogger(CreditCardService.class);
 
@@ -71,9 +66,5 @@ public class CreditCardService {
 	
 	public CreditCard getCardByNumber(String number) {
 		return creditCardRepository.findByAccountNumber(number).orElseThrow(EntityNotFoundException::new);
-	}
-
-	public List<CreditCard> getAllCreditCardByUser(User user) {
-		return creditCardRepository.findAllByUser(user);
 	}
 }

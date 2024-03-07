@@ -42,7 +42,7 @@ public class DashboardController {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         List<RewardsProfile> rewardsProfiles = rewardsProfileService.getAllTypes();
-    	List<CreditCard> userCreditCards = creditCardService.getAllCreditCardByUser(currentUser);
+    	List<CreditCard> userCreditCards = currentUser.getCreditCards();
     	List<RewardsProfile> registeredRewardsProfiles = new ArrayList<>();
     	for (CreditCard cc:userCreditCards) {
     		if(!registeredRewardsProfiles.contains(cc.getRewardProfile())) {
