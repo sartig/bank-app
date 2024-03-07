@@ -161,6 +161,11 @@
 	color: #64748B;
 }
 
+.hoverable:hover {
+    color: #4F46E5;
+    cursor: pointer;
+}
+
 .head-time,
 .head-id {
 	width: 21%;

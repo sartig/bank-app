@@ -122,14 +122,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 0px;
 	width: 541px;
 
 }
 
 .popup-bank-account-body,
 .popup-creditcard-account-body {
-	height: 51px;
+	/* height: 51px; */
 
 	/* M/Regular */
 	font-family: 'Inter';
@@ -262,7 +261,7 @@ Border. divider
 	flex-direction: row;
 	align-items: center;
 	padding: 6px 12px;
-	gap: 24px;
+	/* gap: 24px; */
 
 	height: 51px;
 
@@ -282,7 +281,14 @@ Border. divider
 
 	/* Inside auto layout */
 	flex: none;
-	order: 1;
 	align-self: stretch;
 	flex-grow: 0;
+}
+
+.popup-creditcard-account-box2 {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 541px;
+	padding-top: 24px;
 }
