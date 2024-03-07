@@ -109,6 +109,10 @@
 	flex-grow: 0;
 }
 
+.send-request-button:hover{
+	background: #473FCE;
+}
+
 .account {
 	/* Account */
 

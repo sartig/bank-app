@@ -243,6 +243,22 @@ Border. divider
 	color: #79808A;
 }
 
+.popup-button-confirm:hover{
+	background: #473FCE;
+}
+
+.popup-button-cancel:hover{
+	background: #E2E8F0;
+}
+
+.popup-button-confirm:active{
+	background: #3821C0;
+}
+
+.popup-button-cancel:active{
+	background: #EFF2F6;
+}
+
 .dashboard-amount {
 	font-size: 28px;
 	font-weight: 300;
