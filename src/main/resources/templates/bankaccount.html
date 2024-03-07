@@ -130,7 +130,11 @@
 						<div class="transactions-body">
 							<div class="body-row" th:each="transaction:${transactionHistory}">
 								<div class="body-time" th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
-								<div class="body-id" th:text="${transaction.transactionId}"></div>
+								<div class="body-id">
+								    <a th:href="@{/transaction/receipt/{id}(id=${transaction.transactionId})}">
+								        <span th:text="${transaction.transactionId}"></span>
+								    </a>
+								</div>
 								<div class="body-description">
 									<!-- Case for Deposit -->
 								    <span th:if="${transaction.accountFromId == -1}">Cash Deposit</span>
@@ -159,4 +163,3 @@
 </body>
 
 </html>
-
