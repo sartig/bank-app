@@ -49,8 +49,8 @@ public class CreditCardService {
 				.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
 		creditCard.setRewardProfile(rewardsProfile);
 		user.getCreditCards().add(creditCard);
-		log.info("Credit Card with Credit Card Number {}, spending limit of ${} & current balance of ${} is created by {}.",
-				creditCard.getAccountNumber(),String.format("%,.2f", creditCard.getSpendingLimit()), String.format("%,.2f", creditCard.getCurrentBalance()),user.getUsername());
+		log.info("Credit Card with Credit Card Number {}, rewardProfileId of {}, spending limit of ${} & current balance of ${} is created by {}.",
+				creditCard.getAccountNumber(),creditCard.getRewardProfile().getRewardProfileId(),String.format("%,.2f", creditCard.getSpendingLimit()), String.format("%,.2f", creditCard.getCurrentBalance()),user.getUsername());
 		creditCardRepository.save(creditCard);
 	}
 
