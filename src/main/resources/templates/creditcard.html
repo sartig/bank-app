@@ -60,29 +60,47 @@
                             <div class="divider"></div>
                             <div class="bills">
                                 <div> Bills </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" th:text="'$' + ${creditCard.spendingLimit-creditCard.currentBalance}"></div>
                             </div>
                             <div class="minimum-payment">
-                                <div> Minimum Payment </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div> Minimum Payment 10% Payment </div>
+                                <div class="amount" th:text="'$' + ${#numbers.formatDecimal(0.1*(creditCard.spendingLimit-creditCard.currentBalance),1,2)}"></div>
                             </div>
                             <div class="due-date">
                                 <div> Due Date </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" id = "currentDate" ></div>
+                                <div id="dueDayOfMonth" th:text="${creditCard.monthlyDueDate}" hidden></div>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', (event) => {
+                                        const currentDateElement = document.getElementById('currentDate');
+                                        const today = new Date();
+                                        const dueDayOfMonth = document.getElementById('dueDayOfMonth').innerText;
+                                        const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, dueDayOfMonth);
+                                        const dateString = nextMnth.toLocaleDateString(undefined, { // Use 'undefined' to use the browser's locale
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        });
+                                        currentDateElement.textContent = `${dateString}`;
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pay Bills icon Button -->
-                <div class = "icon-button-box">
-                    <div class = "icon-button"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
-                            <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                          </svg>
+                <form method="post" action="/paybills" id="paybills-form">
+                    <input type="text" th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden readonly>
+                    <div class = "icon-button-box" onclick="document.forms['paybills-form'].submit();">
+                        <div class = "icon-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+                                <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class = "icon-button-text"> Pay bills </div>
                     </div>
-                    <div class = "icon-button-text"> Pay bills </div>
-                </div>
+                </form>
 
                 <!-- Transactions -->
                 <div class="title">
@@ -101,8 +119,8 @@
                             <div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
                             <div class="body-id" th:text="${transaction.transactionId}"></div>
                             <div class="body-description" th:text="${transaction.storeInfo}"></div>
-                            <div class="body-type">Purchase</div>
-                            <div class="body-amount" th:text="${transaction.amount}"
+                            <div class="body-type" th:text="${transaction.amount < 0 ? 'Purchase' : 'Payment'}" ></div>
+                            <div class="body-amount" th:text="${transaction.amount} >=0 ? '$' + ${transaction.amount} : ${#strings.replace(transaction.amount,'-','-$')}"
                                  th:style="${transaction.amount >= 0 ? 'color: #2B825C' : 'color: #D1493D'}"></div>
                         </div>
                     </div>

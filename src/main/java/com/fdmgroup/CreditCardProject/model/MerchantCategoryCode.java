@@ -28,6 +28,7 @@ public class MerchantCategoryCode {
 		this.category = category;
 	}
 
+
 	public long getCategoryCode() {
 		return categoryCode;
 	}

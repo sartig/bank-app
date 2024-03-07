@@ -13,6 +13,7 @@ public enum MccCategory {
 	BUSINESS_SERVICES("Business Services"), REPAIR_SERVICES("Repair services"),
 	ENTERTAINMENT_SERVICES("Entertainment services"), PROFESSIONAL_SERVICES("Professional services"),
 	MEMBER_ORGS("Membership оrganizations"), GOVT_SERVICES("Government Services");
+//	FINANCIAL_SERVICES("Financial Services");
 
 	public final String label;
 

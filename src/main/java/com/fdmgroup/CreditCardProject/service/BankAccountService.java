@@ -1,23 +1,18 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
-import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
-import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
-import com.fdmgroup.CreditCardProject.model.BankAccount;
-import com.fdmgroup.CreditCardProject.model.BankTransaction;
-import com.fdmgroup.CreditCardProject.model.User;
+import com.fdmgroup.CreditCardProject.exception.*;
+import com.fdmgroup.CreditCardProject.model.*;
 
+import com.fdmgroup.CreditCardProject.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
-import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
-import com.fdmgroup.CreditCardProject.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +23,10 @@ public class BankAccountService {
 
 	@Autowired
 	private BankAccountRepository bankAccountRepository;
-	
+
+	@Autowired
+	private CreditCardRepository creditCardRepository;
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -98,6 +96,56 @@ public class BankAccountService {
 	}
 
 	@Transactional
+	public long payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException, ExcessPaymentException, BelowMinimumPayment {
+		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
+				.orElseThrow(BankAccountNotFoundException::new);
+	    // if the bank account does not have enough funds to pay the bill, throw new InsufficientFundsException("Insufficient funds")
+		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
+			log.error("BankAccountServiceError: Insufficient funds to pay bills from {} to {}.",accountId,card.getAccountNumber());
+			throw new InsufficientBalanceException();
+		}
+
+		BigDecimal currentTotal = card.getSpendingLimit().subtract(card.getCurrentBalance());
+		if (currentTotal.compareTo(amount)<=0){
+			log.error("BankAccountServiceError: Excess payment to {}.",card.getAccountNumber());
+			throw new ExcessPaymentException();
+		}
+
+		// If below minimum payment throw error
+		BigDecimal minimumPayment = currentTotal.multiply(new BigDecimal("0.1").setScale(2, RoundingMode.DOWN));
+		if (amount.compareTo(minimumPayment) < 0) {
+			log.error("BankAccountServiceError: Payment to {} is below minimum payment.",card.getAccountNumber());
+			throw new BelowMinimumPayment();
+		}
+		// processing the transaction between the bank account and the credit card
+		BankTransaction transaction = bankTransactionRepository
+				.save(new BankTransaction(bankAccount.getAccountId(), amount));
+		transaction.setAccountToId(Long.parseLong(String.valueOf(card.getAccountNumber())));
+		transaction.setAccountFromId(Long.parseLong(String.valueOf(bankAccount.getAccountNumber())));
+		transaction.setCreditCard(card);
+
+
+		// updating the bank account and credit card
+		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
+		bankAccount.addTransactionHistory(transaction);
+
+		// updating the credit card
+		card.setCurrentBalance(card.getCurrentBalance().add(amount));
+		card.addPaymentHistory(transaction);
+
+		// saving the changes
+		bankAccountRepository.save(bankAccount);
+		creditCardRepository.save(card);
+
+		log.info("BankAccountServiceSuccess: Bills paid from {} to {}.",accountId,card.getAccountNumber());
+		log.info("BankAccountServiceSuccess: New balance of {} is {}.",accountId,bankAccount.getCurrentBalance());
+		return transaction.getTransactionId();
+
+
+
+	}
+
+	@Transactional
 	public long withdrawFromAccount(String accountId, BigDecimal amount) throws BankAccountNotFoundException, InsufficientBalanceException {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
@@ -106,7 +154,6 @@ public class BankAccountService {
 		if (bankAccount.getCurrentBalance().compareTo(amount) < 0) {
 			throw new InsufficientBalanceException();
 		}
-		
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(bankAccount.getAccountId(), amount));
 
@@ -142,7 +189,7 @@ public class BankAccountService {
 
 	/**
      * Retrieves the current balance of a bank account by its unique identifier.
-     * @param bankAccountId The unique identifier of the bank account.
+     * @param bankAccountNumber The unique identifier of the bank account.
      * @return The current balance of the specified bank account, or 0.0 if the account does not exist.
      */
 	public BigDecimal getAccountBalanceByBankAccountNumber(String bankAccountNumber) {
