@@ -96,7 +96,7 @@ public class CreditCardController {
 		try {
 			long transactionID = bankAccountService.payBills(selectedBankAccount.getAccountNumber(), bgamount,
 					creditCards);
-			return new ModelAndView("redirect:/paybills/paybills_receipt/" + transactionID);
+			return new ModelAndView("redirect:/paybills/receipt/" + transactionID);
 
 		} catch (InsufficientBalanceException e) {
 			e.printStackTrace();
