@@ -204,7 +204,7 @@
                     </div>
 
                     <div class="credit-card-container">
-                        <div class="credit-card-info" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}'')|">
+                        <div class="credit-card-info" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}')|">
                             <form name="cc-form" method="post" action="/creditcard">
                                 <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
                                 <div class="creditCard-number"
