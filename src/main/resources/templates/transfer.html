@@ -23,13 +23,7 @@
 		        return false;
 		    }
 			
-			// 2. Verify input is a float and more than 0
-		    if (parseFloat(amountValue) <= 0) {
-		        alert("Amount must be more than 0.");
-		        return false;
-		    }
-		
-		    // 3. Verify input has at most 2 decimal places
+			// 2. Verify input has at most 2 decimal places
 		    if ((amountValue.split('.')[1] || '').length > 2) {
 		        alert("Amount must have at most 2 decimal places.");
 		        return false;
@@ -37,12 +31,12 @@
 
             var accountValue = document.getElementById('actions').value;
             var parsedAccount = accountValue.replace(/[^\d]/g,"");
-            // 4. Verify account input has 16 numbers
+            // 3. Verify account input has 16 numbers
             if (parsedAccount.length != 16) {
                 alert("Account number format is invalid");
                 return false;
             }
-            // 5. Verify account input is different from own account
+            // 4. Verify account input is different from own account
             if (parsedAccount === document.getElementById('hidden-account-number').value) {
                 alert("Please input a different destination account");
                 return false;
