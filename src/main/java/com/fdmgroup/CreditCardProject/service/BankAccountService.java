@@ -107,7 +107,7 @@ public class BankAccountService {
 		}
 
 		BigDecimal currentTotal = card.getSpendingLimit().subtract(card.getCurrentBalance());
-		if (currentTotal.compareTo(amount)<=0){
+		if (currentTotal.compareTo(amount)<0){
 			log.error("BankAccountServiceError: Excess payment to {}.",card.getAccountNumber());
 			throw new ExcessPaymentException();
 		}
@@ -129,6 +129,10 @@ public class BankAccountService {
 		// updating the bank account and credit card
 		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
 		bankAccount.addTransactionHistory(transaction);
+
+		// bill to be charged according to 1st of each month
+			// anything paid after 1st of the month will be charged to the next month
+
 
 		// updating the credit card
 		card.setCurrentBalance(card.getCurrentBalance().add(amount));
