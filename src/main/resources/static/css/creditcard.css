@@ -104,7 +104,7 @@ html {
     /* justify-content: space-between; */
 }
 
-.balance, .available-balance, .limit, .bills, .minimum-payment, .due-date {
+.balance, .available-balance, .limit, .bills, .minimum-payment, .due-date,.card-type {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
