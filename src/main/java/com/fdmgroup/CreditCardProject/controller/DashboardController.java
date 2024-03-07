@@ -78,7 +78,8 @@ public class DashboardController {
     	long rewardProfileIdValue = Long.parseLong(rewardProfileId);
     	
 		// Create a new Credit Card for the user
-		creditCardService.createCreditCardForUser(user, spendingLimitValue,0,rewardProfileIdValue);
+		creditCardService.createCreditCardForUser(user, spendingLimitValue,spendingLimitValue,rewardProfileIdValue);
+		
     	return "redirect:/dashboard";
     }
 
