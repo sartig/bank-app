@@ -92,14 +92,26 @@
             document.getElementById('overlay').style.display='none';
         }
 
-
+		function isUserCardFull(){
+			 var rewardProfileId = document.getElementById('rewardProfileId');
+			 var rewardProfileIdValue = rewardProfileId.value;
+			
+			if (rewardProfileIdValue === '') {
+	        	alert("You can no longer register for a new card as you have cards of all reward profiles available.");
+	        	return true;
+	    }
+	    		return false;
+		}
+		
 
         function submitBankForm() {
             document.getElementById('createNewAccount').submit();
         }
         
         function submitCardForm() {
-            document.getElementById('createNewCard').submit();
+           	if(!isUserCardFull()){ 
+           		document.getElementById('createNewCard').submit();
+           	}
         }
         
     </script>
@@ -126,7 +138,7 @@
                 <form method="post" action="/dashboard/createNewCreditCard" id="createNewCard">
                 <div class = "popup-creditcard-account-box">
                     <div class = "popup-content-title"> Credit Card Type </div>  
-                    <select class="card-types-options" name="rewardProfileId" placeholder="Select Credit Card Type">
+                    <select class="card-types-options" name="rewardProfileId" id="rewardProfileId">
                         <th:block th:each="rewardsProfile : ${rewardsProfiles}">
 						    <option th:value="${rewardsProfile.getRewardProfileId()}" 
 						            th:text="${registeredRewardsProfiles.contains(rewardsProfile) ? (rewardsProfile.getName() + ' (You already have a card of this reward profile.)') : rewardsProfile.getName()}"
@@ -141,7 +153,7 @@
                 </div>
                 </form>
                 <div class = "popup-creditcard-button-stack">
-                    <div class = "popup-button-confirm" onclick="if(isAmountValid()) { submitCardForm(); }"> Confirm </div>
+                    <div type="button" class = "popup-button-confirm" onclick="if(isAmountValid()) {submitCardForm();}"> Confirm </div>
                     <div class = "popup-button-cancel" onclick="closeCardModal()"> Cancel </div>
                 </div>
            
@@ -179,7 +191,7 @@
                         </div>
                         <!-- new bank account button  -->
               			<form method="post" action="/dashboard/createNewBankAccount" id="createNewAccount">
-	                        <button type="button" class ="icon-button-box" onclick="displayBankModal();">
+	                        <button type="button" class ="icon-button-box" onclick="if(){displayBankModal();}">
 	                            <div class = "icon-button"> 
 	                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
 	                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
