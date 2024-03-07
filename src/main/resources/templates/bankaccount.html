@@ -129,25 +129,29 @@
 						</div>
 						<div class="transactions-body">
 							<div class="body-row" th:each="transaction:${transactionHistory}">
-								<div class="body-time" th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
+								<div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
 								<div class="body-id">
-								    <a th:href="@{/transaction/receipt/{id}(id=${transaction.transactionId})}">
+								    <a th:href="${transaction.creditCard} ? @{/paybills/receipt/{id}(id=${transaction.transactionId})} : @{/transaction/receipt/{id}(id=${transaction.transactionId})}">
 								        <span th:text="${transaction.transactionId}"></span>
 								    </a>
 								</div>
 								<div class="body-description">
-									<!-- Case for Deposit -->
-								    <span th:if="${transaction.accountFromId == -1}">Cash Deposit</span>
-								    <!-- Case for Withdrawal -->
-								    <span th:if="${transaction.accountToId == -1}">Cash Withdrawal</span>
-								    <!-- Case for Incoming Transfer -->
-								    <span th:if="${#strings.toString(transaction.accountFromId) == bankAccount.accountNumber and transaction.accountToId != -1}">
-								    	<span th:text="'Outgoing transfer to ' + ${transaction.accountToId}"></span>
-								    </span>
-								    <!-- Case for Outgoing Transfer -->
-								    <span th:if="${#strings.toString(transaction.accountToId) == bankAccount.accountNumber and transaction.accountFromId != -1}">
-								    	<span th:text="'Incoming transfer from ' + ${transaction.accountFromId}"></span>
-								    </span>
+									<!-- Case for credit card payment -->
+									<span th:if="${transaction.creditCard}" th:text="'Payment to ' + ${transaction.creditCard.accountNumber}"></span>
+									<span th:unless="${transaction.creditCard}">
+										<!-- Case for Deposit -->
+										<span th:if="${transaction.accountFromId == -1}">Cash Deposit</span>
+										<!-- Case for Withdrawal -->
+										<span th:if="${transaction.accountToId == -1}">Cash Withdrawal</span>
+										<!-- Case for Incoming Transfer -->
+										<span th:if="${#strings.toString(transaction.accountFromId) == bankAccount.accountNumber and transaction.accountToId != -1}">
+											<span th:text="'Outgoing transfer to ' + ${transaction.accountToId}"></span>
+										</span>
+										<!-- Case for Outgoing Transfer -->
+										<span th:if="${#strings.toString(transaction.accountToId) == bankAccount.accountNumber and transaction.accountFromId != -1}">
+											<span th:text="'Incoming transfer from ' + ${transaction.accountFromId}"></span>
+										</span>
+									</span>
 								    
 								</div>
 								<div class="body-type" th:text="${transaction.getTransactionType()}"></div>

@@ -75,7 +75,7 @@ public class SecurityConfig {
     public AuthenticationFailureHandler authenticationFailureHandler() {
         return (request, response, exception) -> {
             String errorMessage = "Login Fail. Invalid username or password. Please try again.";
-            response.sendRedirect("/login?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8));
+            response.sendRedirect("/index?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8));
         };
     }
 

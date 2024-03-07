@@ -5,12 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fdmgroup.CreditCardProject.exception.InsufficientFundsException;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.CreditCardTransaction;
-import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
@@ -23,8 +21,6 @@ import java.net.URL;
 @Service
 public class CreditCardTransactionService {
 
-	@Autowired
-	private CreditCardTransactionRepository creditCardTransactionRepository;
 	@Autowired
 	private CreditCardRepository creditCardRepository;
 

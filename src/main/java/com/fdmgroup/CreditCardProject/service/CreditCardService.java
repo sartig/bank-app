@@ -3,7 +3,6 @@ package com.fdmgroup.CreditCardProject.service;
 import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
-import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
+import com.fdmgroup.CreditCardProject.repository.CreditCardTransactionRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,6 +25,7 @@ public class CreditCardService {
 	private CreditCardRepository creditCardRepository;
 	@Autowired
 	private RewardsProfileRepository rewardsProfileRepository;
+
 	@Autowired
 	private CreditCardTransactionRepository creditCardTransactionRepository;
 	
