@@ -67,7 +67,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="left-menu-button" id="dashboard-button">
+                    <div class="left-menu-button" id="cardinfo-button">
                         <i class="fas fa-star"></i>
                         <div class="left-menu-button-text">Card Info</div>
                     </div>
@@ -76,6 +76,7 @@
                         <div class="left-menu-button-text">Rewards</div>
                     </div>
                 </div>
+
             </div>
             <div class="left-menu-bot">
                 <div class="left-menu-text">
@@ -92,6 +93,12 @@
                     function navigateToDashboard() {
                         window.location.href = '/dashboard';
                     }
+                    
+                    document.getElementById("cardinfo-button").addEventListener("click", navigateToCardinfo);
+                    function navigateToCardinfo() {
+                        window.location.href = '/cardsinfo';
+                    }
+                    
                     function logout() {
                         // Perform logout action
                         window.location.href = '/logout'; // Redirect to logout URL
@@ -100,6 +107,11 @@
                     function dashboard() {
                         window.location.href = '/dashboard';
                     }
+
+                    function cardinfo() {
+                    	window.location.href = '/cardsinfo';
+                    }
+                    
                     function rewards() {
                         window.location.href = '/rewards';
                     }

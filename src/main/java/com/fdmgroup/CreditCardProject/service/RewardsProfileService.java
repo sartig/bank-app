@@ -24,7 +24,7 @@ public class RewardsProfileService {
 		return -rewardPoints;
 	}
 	
-	public List<RewardsProfile> findAll(){
-		return rewardsProfileRepository.findAll();
+	public List<RewardsProfile> getAllTypes() {
+		return rewardProfileRepository.findAll();
 	}
 }
