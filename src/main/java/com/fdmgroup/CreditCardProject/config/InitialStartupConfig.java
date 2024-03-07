@@ -38,12 +38,12 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION), "Food");
+		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION), "Transportation and Miscellaneous Stores");
 		// travel card
 		initializeRewardsProfile(2L, 10, "Travel Pro",
-				List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS), "Transportation");
+				List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS), "Airlines, Car Rent and Hotels");
 		// shopping card
-		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS), "Retail and Online Shopping");
+		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS ), "Clothing and Retail Outlet");
 	}
 
 	private void initializeRewardsProfile(Long id, double conversionPercentage, String name,
