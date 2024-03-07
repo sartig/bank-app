@@ -101,10 +101,10 @@ html {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 
-.balance, .available-balance, .limit, .bills, .minimum-payment, .due-date {
+.balance, .available-balance, .limit, .bills, .minimum-payment, .due-date,.card-type {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -120,6 +120,7 @@ html {
 .hoverable:hover {
     color: #4F46E5;
     padding-left: 16px;
+    cursor: pointer;
 }
 
 .hoverable {

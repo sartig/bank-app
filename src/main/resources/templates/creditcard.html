@@ -57,6 +57,10 @@
                                 <div> Limit </div>
                                 <div class="amount" th:text="'$' + ${creditCard.spendingLimit}"></div>
                             </div>
+                            <div class="card-type">
+                                <div> Credit Card Type </div>
+                                <div class="amount" th:text="${creditCard.getRewardProfile().getName()}"></div>
+                            </div>
                             <div class="divider"></div>
                             <div class="bills">
                                 <div> Bills </div>
@@ -109,7 +113,7 @@
                 <div class="transactions">
                     <div class="transactions-head">  
                         <div class="head-time">Time</div>
-                        <div class="head-id">Transactions ID</div>
+                        <div class="head-id">Transaction ID</div>
                         <div class="head-description">Description</div>
                         <div class="head-type">Transaction Type</div>
                         <div class="head-amount">Amount</div>
