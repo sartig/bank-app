@@ -12,6 +12,32 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:inline="javascript">
+        function isAmountValid() {
+		    var amountInput = document.getElementById('amountValue');
+		    var amountValue = amountInput.value;
+		    var isValid = /^(?!0\d)\d+(\.\d+)?$/.test(amountValue);
+		    
+		    // 1. Verify input is in correct format and more than 0
+		    if (!isValid) {
+		        alert("Please enter a valid amount.");
+		        return false;
+		    }
+			
+			// 2. Verify input is a float and more than 0
+		    if (parseFloat(amountValue) <= 0) {
+		        alert("Amount must be more than 0.");
+		        return false;
+		    }
+		
+		    // 3. Verify input has at most 2 decimal places
+		    if ((amountValue.split('.')[1] || '').length > 2) {
+		        alert("Amount must have at most 2 decimal places.");
+		        return false;
+		    }
+
+		    return true;
+		}
+		
         $(document).ready(function() {
             $(document).on("click", ".bankaccount-number i", function() {
                 var iconElementBank = $(this);
@@ -42,36 +68,95 @@
             });
         });
         
-        function displayModal() {
+        function displayBankModal() {
 		    
-		    document.getElementById('modal').style.display = 'flex';
+		    document.getElementById('bankModal').style.display = 'flex';
 		    document.getElementById('overlay').style.display = 'block';
 		    
 		}
-		
-		function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+
+		function closeBankModal() {
+            document.getElementById('bankModal').style.display = 'none';
             document.getElementById('overlay').style.display='none';
         }
 
-        function submitForm() {
+		function displayCardModal() {
+		    
+		    document.getElementById('cardModal').style.display = 'flex';
+		    document.getElementById('overlay').style.display = 'block';
+		    
+		}
+
+		function closeCardModal() {
+            document.getElementById('cardModal').style.display = 'none';
+            document.getElementById('overlay').style.display='none';
+        }
+
+		function isUserCardFull(){
+			 var rewardProfileId = document.getElementById('rewardProfileId');
+			 var rewardProfileIdValue = rewardProfileId.value;
+			
+			if (rewardProfileIdValue === '') {
+	        	alert("You can no longer register for a new card as you have cards of all reward profiles available.");
+	        	return true;
+	    }
+	    		return false;
+		}
+		
+
+        function submitBankForm() {
             document.getElementById('createNewAccount').submit();
         }
+        
+        function submitCardForm() {
+           	if(!isUserCardFull()){ 
+           		document.getElementById('createNewCard').submit();
+           	}
+        }
+        
     </script>
 </head>
 
 <body>
 <div class="main-container">
 	<div class = "overlay" id ="overlay" style="display: none;"></div>
-        <div class = "create-new-bank-account-popup-container" id = "modal" style="display: none">
+        <div class = "create-new-bank-account-popup-container" id = "bankModal" style="display: none">
                 <div class = "popup-header" > Confirmation </div>
                 <div class = "popup-bank-account-box">
                     <div class = "popup-bank-account-body"> Add New Bank Account? </div>  
                 </div>
                 <div class = "popup-bankaccount-button-stack">
-                    <div class = "popup-button-confirm" onclick="submitForm()"> Confirm </div>
-                    <div class = "popup-button-cancel" onclick="closeModal()"> Cancel </div>
+                    <div class = "popup-button-confirm" onclick="submitBankForm()"> Confirm </div>
+                    <div class = "popup-button-cancel" onclick="closeBankModal()"> Cancel </div>
                 </div>
+        </div>
+        
+        <div class = "overlay" id ="overlay" style="display: none;"></div>
+        <div class = "create-new-creditcard-account-popup-container" id = "cardModal" style="display: none">
+        	
+                <div class = "popup-header" > Create New Credit Card </div>
+                <form method="post" action="/dashboard/createNewCreditCard" id="createNewCard">
+                <div class = "popup-creditcard-account-box">
+                    <div class = "popup-content-title"> Credit Card Type </div>  
+                    <select class="card-types-options" name="rewardProfileId" id="rewardProfileId">
+                        <th:block th:each="rewardsProfile : ${rewardsProfiles}">
+						    <option th:value="${rewardsProfile.getRewardProfileId()}" 
+						            th:text="${registeredRewardsProfiles.contains(rewardsProfile) ? (rewardsProfile.getName() + ' (You already have a card of this reward profile.)') : rewardsProfile.getName()}"
+						            th:attr="disabled=${registeredRewardsProfiles.contains(rewardsProfile) ? 'disabled' : null}">
+						    </option>
+						</th:block>
+                    </select>
+                </div>
+                <div class = "popup-creditcard-account-box">
+                    <div class = "popup-creditcard-account-body"> Credit Card Limit </div>
+                    <input type="text" class="spendinglimit-input" id="amountValue" name="spendingLimit" placeholder="$0.00"><br>  
+                </div>
+                </form>
+                <div class = "popup-creditcard-button-stack">
+                    <div type="button" class = "popup-button-confirm" onclick="if(isAmountValid()) {submitCardForm();}"> Confirm </div>
+                    <div class = "popup-button-cancel" onclick="closeCardModal()"> Cancel </div>
+                </div>
+           
         </div>
 	
     <div th:replace="~{navbar :: body}"></div>
@@ -88,22 +173,26 @@
                 <div class="info-container">
 
                     <div class="bank-account-container">
-                        <div class="bank-account-info" th:each="bankAccount : ${user.bankAccounts}">
-                            <div class="bankaccount-number"
-                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
-                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
-                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
-                                <i class="fas fa-eye hoverable"></i>
-                            </div>
-                            
-                            <div class="balance">
-                                <div>Balance</div>
-                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
-                            </div>
+                        <div class="bank-account-info" th:each="bankAccount, status : ${user.bankAccounts}"
+                            th:onclick="|submitBankAccountForm(event, '${status.index}')|">
+                            <form name="ba-form" method="post" action="/bankaccount">
+	                            <div class="bankaccount-number"
+	                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
+	                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
+	                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+	                                <i class="fas fa-eye hoverable"></i>
+	                            </div>
+                                <input name="selectedBankAccountNumber" th:value="${bankAccount.accountNumber}" hidden>
+                             <button class="dashboard-card-button">
+	                            <div class="balance">
+	                                <div>Balance</div>
+	                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+	                            </button>
+                            </form>
                         </div>
                         <!-- new bank account button  -->
               			<form method="post" action="/dashboard/createNewBankAccount" id="createNewAccount">
-	                        <button type="button" class ="icon-button-box" onclick="displayModal();">
+	                        <button type="button" class ="icon-button-box" onclick="displayBankModal();">
 	                            <div class = "icon-button"> 
 	                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
 	                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
@@ -134,15 +223,16 @@
                         </div>
 
                         <!-- new credit card button  -->
-                        <div class = "icon-button-box">
-                            <div class = "icon-button"> 
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
-                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                                  </svg>
-                            </div>
-                            <div class = "icon-button-text"> New Credit Card </div>
-                        </div>
-
+                        
+	                    <button type="button" class ="icon-button-box" onclick="if(!isUserCardFull()){displayCardModal();}">
+	                    	<div class = "icon-button"> 
+	                        	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 plus-svg">
+	                                    <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+	                            </svg>
+	                        </div>
+	                        <div class = "icon-button-text"> New Credit Card </div>
+	                   </button>
+						
                     </div>
                 </div>
             </div>

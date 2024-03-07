@@ -5,6 +5,9 @@ import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
 import jakarta.persistence.EntityNotFoundException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,8 @@ public class CreditCardService {
 	private CreditCardRepository creditCardRepository;
 	@Autowired
 	private RewardsProfileRepository rewardsProfileRepository;
+	
+	private final Logger log = LogManager.getLogger(CreditCardService.class);
 
 	public void createCreditCardForUser(User user,long setSpendingLimit, long setCurrentBalance,long setRewardProfileId) throws EntityNotFoundException {
 		CreditCard creditCard = new CreditCard();
@@ -41,6 +46,8 @@ public class CreditCardService {
 				.orElseThrow(() -> new EntityNotFoundException("RewardsProfile not found"));
 		creditCard.setRewardProfile(rewardsProfile);
 		user.getCreditCards().add(creditCard);
+		log.info("Credit Card with Credit Card Number {}, rewardProfileId of {}, spending limit of ${} & current balance of ${} is created by {}.",
+				creditCard.getAccountNumber(),creditCard.getRewardProfile().getRewardProfileId(),String.format("%,.2f", creditCard.getSpendingLimit()), String.format("%,.2f", creditCard.getCurrentBalance()),user.getUsername());
 		creditCardRepository.save(creditCard);
 	}
 
@@ -60,6 +67,4 @@ public class CreditCardService {
 	public CreditCard getCardByNumber(String number) {
 		return creditCardRepository.findByAccountNumber(number).orElseThrow(EntityNotFoundException::new);
 	}
-
-
 }

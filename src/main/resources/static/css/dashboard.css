@@ -69,7 +69,8 @@
         color: #fff;
     }
     
- .create-new-bank-account-popup-container{
+ .create-new-bank-account-popup-container,
+ .create-new-creditcard-account-popup-container{
 	/* Popup */
 	z-index: 3;
 	box-sizing: border-box;
@@ -108,8 +109,17 @@
 	
 }
 
+.popup-creditcard-account-box{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0px;
+	width: 541px;
+	
+}
 
-.popup-bank-account-body{
+.popup-bank-account-body.
+.popup-creditcard-account-body{
 	height: 51px;
 	
 	/* M/Regular */
@@ -125,7 +135,8 @@
 	color: #121212;
 }
 
-.popup-bankaccount-button-stack{
+.popup-bankaccount-button-stack,
+.popup-creditcard-button-stack{
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -144,7 +155,7 @@ height: 24px;
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 6px 24px;
+padding: 12px 24px;
 gap: 8px;
 
 /* Violet/Main - 500 */
@@ -183,7 +194,7 @@ flex-grow: 0;
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 6px 24px;
+padding: 12px 24px;
 gap: 8px;
 
 width: 107px;
@@ -229,4 +240,40 @@ color: #79808A;
     font-weight: 300;
     line-height: 40px;
     text-align: right;
+}
+
+.card-types-options,
+.spendinglimit-input {
+	/* Selection/Button */
+
+	box-sizing: border-box;
+	
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 6px 12px;
+	gap: 24px;
+	
+	height: 51px;
+	
+	/* Neutral/10
+	
+	FFFFFF
+	*/
+	background: #FFFFFF;
+	/* Neutral/40
+	
+	Border. divider
+	*/
+	border: 1px solid #E2E8F0;
+	/* Shadow-1 */
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	border-radius: 6px;
+	
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	align-self: stretch;
+	flex-grow: 0;
 }
