@@ -120,6 +120,7 @@ html {
 .hoverable:hover {
     color: #4F46E5;
     padding-left: 16px;
+    cursor: pointer;
 }
 
 .hoverable {
