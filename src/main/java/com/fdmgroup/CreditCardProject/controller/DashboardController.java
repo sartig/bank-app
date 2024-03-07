@@ -6,6 +6,7 @@ import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.repository.RewardsProfileRepository;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
 import com.fdmgroup.CreditCardProject.service.CreditCardService;
+import com.fdmgroup.CreditCardProject.service.RewardsProfileService;
 import com.fdmgroup.CreditCardProject.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,13 +36,13 @@ public class DashboardController {
     private CreditCardService creditCardService;
     
     @Autowired
-    private RewardsProfileRepository rewardsProfileRepository;
+    private RewardsProfileService rewardsProfileService;
     
     @GetMapping("/dashboard")
     public String goToDashboard(@AuthenticationPrincipal AuthUser principal, Model model) {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
-        List<RewardsProfile> rewardsProfiles = rewardsProfileRepository.findAll();
+        List<RewardsProfile> rewardsProfiles = rewardsProfileService.findAll();
     	model.addAttribute("rewardsProfiles", rewardsProfiles);
         return "dashboard";
     }
