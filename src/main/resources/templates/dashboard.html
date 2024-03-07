@@ -128,8 +128,11 @@
                     <div class = "popup-content-title"> Credit Card Type </div>  
                     <select class="card-types-options" name="rewardProfileId" placeholder="Select Credit Card Type">
                         <th:block th:each="rewardsProfile : ${rewardsProfiles}">
-                        	<option th:value="${rewardsProfile.getRewardProfileId()}" th:text="${rewardsProfile.getName()}"></option>
-                        </th:block>
+						    <option th:value="${rewardsProfile.getRewardProfileId()}" 
+						            th:text="${registeredRewardsProfiles.contains(rewardsProfile) ? (rewardsProfile.getName() + ' (You already have a card of this reward profile.)') : rewardsProfile.getName()}"
+						            th:attr="disabled=${registeredRewardsProfiles.contains(rewardsProfile) ? 'disabled' : null}">
+						    </option>
+						</th:block>
                     </select>
                 </div>
                 <div class = "popup-creditcard-account-box">

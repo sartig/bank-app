@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import com.fdmgroup.CreditCardProject.model.AuthUser;
+import com.fdmgroup.CreditCardProject.model.CreditCard;
 import com.fdmgroup.CreditCardProject.model.RewardsProfile;
 import com.fdmgroup.CreditCardProject.model.User;
 import com.fdmgroup.CreditCardProject.service.BankAccountService;
@@ -10,6 +11,7 @@ import com.fdmgroup.CreditCardProject.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,18 @@ public class DashboardController {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         List<RewardsProfile> rewardsProfiles = rewardsProfileService.getAllTypes();
+    	List<CreditCard> userCreditCards = creditCardService.getAllCreditCardByUser(currentUser);
+    	List<RewardsProfile> registeredRewardsProfiles = new ArrayList<>();
+    	for (RewardsProfile rp:rewardsProfiles) {
+    		for (CreditCard cc:userCreditCards) {
+    			while(!registeredRewardsProfiles.contains(cc.getRewardProfile())) {
+    				registeredRewardsProfiles.add(rp);
+    			}
+    			break;
+    		}
+    	}
     	model.addAttribute("rewardsProfiles", rewardsProfiles);
+    	model.addAttribute("registeredRewardsProfiles", registeredRewardsProfiles);
         return "dashboard";
     }
     

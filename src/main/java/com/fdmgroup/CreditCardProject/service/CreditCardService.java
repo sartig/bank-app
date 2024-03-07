@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -71,5 +72,7 @@ public class CreditCardService {
 		return creditCardRepository.findByAccountNumber(number).orElseThrow(EntityNotFoundException::new);
 	}
 
-
+	public List<CreditCard> getAllCreditCardByUser(User user) {
+		return creditCardRepository.findAllByUser(user);
+	}
 }
