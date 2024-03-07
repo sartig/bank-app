@@ -267,3 +267,6 @@
 	display:flex; 
 	flex-direction: row;
 }
+.body-id a {
+	text-decoration: none;
+}
