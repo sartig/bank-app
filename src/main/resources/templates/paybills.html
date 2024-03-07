@@ -123,7 +123,8 @@
             document.addEventListener('DOMContentLoaded', (event) => {
             const currentDateElement = document.getElementById('currentDate');
             const today = new Date();
-            const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, 1);
+            const dueDayOfMonth = document.getElementById('dueDayOfMonth').innerText;
+            const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, dueDayOfMonth);
             const dateString = nextMnth.toLocaleDateString(undefined, { // Use 'undefined' to use the browser's locale
                 year: 'numeric',
                 month: 'long',
@@ -231,6 +232,7 @@
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Due Date</div>
                                 <div class = "bills-body" id="currentDate"></div>
+                                <div id="dueDayOfMonth" th:text="${creditCard.monthlyDueDate}" hidden></div>
                                 <script>
                                     setDate();
                                 </script>
