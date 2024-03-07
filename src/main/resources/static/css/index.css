@@ -24,6 +24,7 @@ body{
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    margin-bottom: 150px;
 }
 
 .container p{
@@ -232,4 +233,10 @@ body{
     padding: 12px;
     position: inherit;
     font-weight: 600px;
+}
+
+.logo{
+    position: relative;
+    top: 90px;
+    z-index: 6;
 }

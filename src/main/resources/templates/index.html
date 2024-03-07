@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <img src="/svg/circlelogo.svg" alt="circle logo" class ="logo">
     <div class="container" id="container" th:classappend="${signUpActive} ? 'active' : ''">
         <div class="form-container sign-up">
             <form method="post" action="register" th:object="${user}">
