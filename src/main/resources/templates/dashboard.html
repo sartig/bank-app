@@ -174,19 +174,20 @@
 
                     <div class="bank-account-container">
                         <div class="bank-account-info" th:each="bankAccount, status : ${user.bankAccounts}"
-                            th:onclick="|submitBankAccountForm(event, '${status.index}')|">
+                            th:onclick="|submitBankAccountForm(event, '${status.index}'')|">
                             <form name="ba-form" method="post" action="/bankaccount">
-	                            <div class="bankaccount-number"
-	                            th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
-	                            th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
-	                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
-	                                <i class="fas fa-eye hoverable"></i>
-	                            </div>
                                 <input name="selectedBankAccountNumber" th:value="${bankAccount.accountNumber}" hidden>
-                             <button class="dashboard-card-button">
-	                            <div class="balance">
-	                                <div>Balance</div>
-	                                <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+                                <div class="bankaccount-number"
+	                                th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
+	                                th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
+	                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
+	                                <i class="fas fa-eye bankaccount-number hoverable"></i>
+	                            </div>
+                                <button class="dashboard-card-button">
+	                                <div class="balance">
+	                                    <div>Balance</div>
+	                                    <div class="dashboard-amount" th:text="'$' + ${bankAccount.currentBalance}"></div>
+                                    </div>
 	                            </button>
                             </form>
                         </div>
@@ -204,7 +205,8 @@
                     </div>
 
                     <div class="credit-card-container">
-                        <div class="credit-card-info" th:each="creditCard, status : ${user.creditCards}" th:onclick="|submitcreditCardForm(event, '${status.index}')|">
+                        <div class="credit-card-info" th:each="creditCard, status : ${user.creditCards}" 
+                            th:onclick="|submitcreditCardForm(event, '${status.index}')|">
                             <form name="cc-form" method="post" action="/creditcard">
                                 <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
                                 <div class="creditCard-number"
