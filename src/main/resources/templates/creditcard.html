@@ -58,9 +58,8 @@
                                 <div class="amount" th:text="'$' + ${creditCard.spendingLimit}"></div>
                             </div>
                             <div class="card-type">
-                                <div> Benefits </div>
-                                <div class="amount" th:text="${creditCard.getRewardProfile().getConversionPercentage()} + '% on ' +
-                                ${creditCard.getRewardProfile().getDescription()}"></div>
+                                <div> Credit Card Type </div>
+                                <div class="amount" th:text="${creditCard.getRewardProfile().getName()}"></div>
                             </div>
                             <div class="divider"></div>
                             <div class="bills">
