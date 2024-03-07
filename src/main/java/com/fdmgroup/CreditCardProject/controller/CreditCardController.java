@@ -122,7 +122,7 @@ public class CreditCardController {
 
 	}
 
-	@GetMapping("/paybills/paybills_receipt/{transactionId}")
+	@GetMapping("/paybills/receipt/{transactionId}")
 	public String gotoPBReceipt(@AuthenticationPrincipal AuthUser principal, @PathVariable String transactionId,
 			Model model) throws BankTransactionNotFoundException {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
