@@ -1,22 +1,16 @@
 package com.fdmgroup.CreditCardProject.service;
 
 import com.fdmgroup.CreditCardProject.controller.CreditCardController;
-import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
-import com.fdmgroup.CreditCardProject.exception.ExcessPaymentException;
-import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
-import com.fdmgroup.CreditCardProject.exception.SelfReferenceException;
+import com.fdmgroup.CreditCardProject.exception.*;
 import com.fdmgroup.CreditCardProject.model.*;
 
-import com.fdmgroup.CreditCardProject.repository.CreditCardRepository;
+import com.fdmgroup.CreditCardProject.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.CreditCardProject.repository.BankAccountRepository;
-import com.fdmgroup.CreditCardProject.repository.BankTransactionRepository;
-import com.fdmgroup.CreditCardProject.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -34,6 +28,9 @@ public class BankAccountService {
 
 	@Autowired
 	private CreditCardRepository creditCardRepository;
+
+	@Autowired
+	private CreditCardTransactionRepository creditCardTransactionRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -104,7 +101,7 @@ public class BankAccountService {
 	}
 
 	@Transactional
-	public long payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException, ExcessPaymentException {
+	public long payBills(String accountId, BigDecimal amount, CreditCard card) throws BankAccountNotFoundException, InsufficientBalanceException, ExcessPaymentException, BelowMinimumPayment {
 		BankAccount bankAccount = bankAccountRepository.findByAccountNumber(accountId)
 				.orElseThrow(BankAccountNotFoundException::new);
 	    // if the bank account does not have enough funds to pay the bill, throw new InsufficientFundsException("Insufficient funds")
@@ -118,18 +115,19 @@ public class BankAccountService {
 			log.error("BankAccountServiceError: Excess payment to {}.",card.getAccountNumber());
 			throw new ExcessPaymentException();
 		}
-		LocalDateTime date = LocalDateTime.now();
-		// set up bank transaction
-		MerchantCategoryCode MerchantCategoryCode = new MerchantCategoryCode(5712, "Financial Institutions", MccCategory.UNCATEGORIZED);
 
+		// If below minimum payment throw error
+		BigDecimal minimumPayment = currentTotal.multiply(new BigDecimal("0.1"));
+		if (amount.compareTo(minimumPayment) < 0) {
+			log.error("BankAccountServiceError: Payment to {} is below minimum payment.",card.getAccountNumber());
+			throw new BelowMinimumPayment();
+		}
 		// processing the transaction between the bank account and the credit card
 		BankTransaction transaction = bankTransactionRepository
 				.save(new BankTransaction(bankAccount.getAccountId(), amount));
-		transaction.setCreditCard(card);
-		transaction.setBankAccount(bankAccount);
+		transaction.setAccountToId(Long.parseLong(String.valueOf(card.getAccountNumber())));
+		transaction.setAccountFromId(Long.parseLong(String.valueOf(bankAccount.getAccountNumber())));
 
-		// saving credit card transaction
-		CreditCardTransaction creditCardTransaction = new CreditCardTransaction(transaction.getTransactionId(), card, date, amount, "Credit Card Payment", MerchantCategoryCode,"USD",amount.doubleValue());
 
 		// updating the bank account and credit card
 		bankAccount.setCurrentBalance(bankAccount.getCurrentBalance().subtract(amount));
@@ -137,11 +135,12 @@ public class BankAccountService {
 
 		// updating the credit card
 		card.setCurrentBalance(card.getCurrentBalance().add(amount));
-		card.addTransactionHistory(creditCardTransaction);
+		card.addPaymentHistory(transaction);
 
 		// saving the changes
 		bankAccountRepository.save(bankAccount);
 		creditCardRepository.save(card);
+
 		log.info("BankAccountServiceSuccess: Bills paid from {} to {}.",accountId,card.getAccountNumber());
 		log.info("BankAccountServiceSuccess: New balance of {} is {}.",accountId,bankAccount.getCurrentBalance());
 		return transaction.getTransactionId();

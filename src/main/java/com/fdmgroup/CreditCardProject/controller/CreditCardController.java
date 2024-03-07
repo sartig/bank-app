@@ -1,9 +1,6 @@
 package com.fdmgroup.CreditCardProject.controller;
 import com.fdmgroup.CreditCardProject.config.SecurityConfig;
-import com.fdmgroup.CreditCardProject.exception.BankAccountNotFoundException;
-import com.fdmgroup.CreditCardProject.exception.BankTransactionNotFoundException;
-import com.fdmgroup.CreditCardProject.exception.ExcessPaymentException;
-import com.fdmgroup.CreditCardProject.exception.InsufficientBalanceException;
+import com.fdmgroup.CreditCardProject.exception.*;
 import com.fdmgroup.CreditCardProject.model.*;
 import com.fdmgroup.CreditCardProject.service.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +17,9 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -89,22 +89,32 @@ public class CreditCardController {
                 .filter(bankAccount -> bankAccount.getAccountNumber().equals(account))
                 .findFirst()
                 .orElseThrow(BankAccountNotFoundException::new);
+
         BigDecimal bgamount = new BigDecimal(amountValue);
         try{
             long transactionID = bankAccountService.payBills(selectedBankAccount.getAccountNumber(),bgamount,creditCards);
             return new ModelAndView("redirect:/paybills/paybills_receipt/" + transactionID);
+
         } catch (InsufficientBalanceException e) {
             e.printStackTrace();
             redirectAttributes.addAttribute("error", "insufficientFunds");
             request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
             model.addAttribute("creditCard", creditCards);
             return new ModelAndView("redirect:/paybills?error=insufficientFunds");
+
         } catch (ExcessPaymentException e) {
             e.printStackTrace();
             redirectAttributes.addAttribute("error", "excessiveFunds");
             request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
             model.addAttribute("creditCard", creditCards);
             return new ModelAndView("redirect:/paybills?error=excessiveFunds");
+
+        } catch (BelowMinimumPayment e) {
+            e.printStackTrace();
+            redirectAttributes.addAttribute("error", "belowMinimumPayment");
+            request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+            model.addAttribute("creditCard", creditCards);
+            return new ModelAndView("redirect:/paybills?error=belowMinimumPayment");
         }
 
     }
@@ -113,7 +123,15 @@ public class CreditCardController {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
         BankTransaction transaction = bankTransactionService.getTransactionById(transactionId);
-        model.addAttribute("transaction", transaction);
+        Date date = transaction.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        double amount = transaction.getAmount().doubleValue();
+        model.addAttribute("time", sdf.format(date));
+        model.addAttribute("amount", amount);
+        model.addAttribute("type", "Credit Card Payment");
+        model.addAttribute("id", transactionId);
+        model.addAttribute("source", transaction.getAccountFromId());
+        model.addAttribute("destination", transaction.getAccountToId());
         return "paybills_receipt";
     }
 

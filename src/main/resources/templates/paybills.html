@@ -82,6 +82,8 @@
 				showInsufficientFundsPopup();
 			}else if (error === 'excessiveFunds') {
                 showExcessiveFundsPopup();
+            }else if (error === 'belowMinimumPayment') {
+                showMinPaymentPopup();
             }
 		}
 
@@ -96,6 +98,16 @@
             document.getElementById('excessive-funds-overlay').style.display = 'none';
             history.pushState({}, document.title, window.location.pathname);
 		}
+		function showMinPaymentPopup() {
+		    document.getElementById('min-payment-modal').style.display = 'flex';
+		    document.getElementById('min-payment-overlay').style.display = 'block';
+        }
+
+        function closeMinPaymentPopup() {
+            document.getElementById('min-payment-modal').style.display = 'none';
+            document.getElementById('min-payment-overlay').style.display = 'none';
+            history.pushState({}, document.title, window.location.pathname);
+        }
 
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
@@ -105,8 +117,23 @@
 		function closeInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'none';
 			document.getElementById('insufficient-funds-overlay').style.display = 'none';
+			history.pushState({}, document.title, window.location.pathname);
 		}
-		
+		function setDate(){
+            document.addEventListener('DOMContentLoaded', (event) => {
+            const currentDateElement = document.getElementById('currentDate');
+            const today = new Date();
+            const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, 1);
+            const dateString = nextMnth.toLocaleDateString(undefined, { // Use 'undefined' to use the browser's locale
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            currentDateElement.textContent = `${dateString}`;
+        });
+		}
+
+
 		// Call the checkForError method when the page loads
 		window.onload = function() {
 			checksForError();
@@ -163,6 +190,19 @@
                 <div class = "excessive-funds-popup-button-primary" onclick="closeExcessiveFundsPopup();">Confirm</div>
             </div>
         </div>
+        <!-- Min Payment popup -->
+        <div class = "min-payment-popup-overlay" id ="min-payment-overlay" style="display: none;"></div>
+        <div class = "min-payment-popup-container" id = "min-payment-modal" style="display: none">
+            <div class = "min-payment-popup-header">Minimum Payment</div>
+            <div class = "min-payment-popup-content-box">
+                <div class = "min-payment-popup-content-title">Uh-oh! It seems you are trying to pay less than the minimum payment required.
+                    Please ensure you have entered the correct amount or consider an alternative action.
+                </div>
+            </div>
+            <div class = "min-payment-popup-button-stack">
+                <div class = "min-payment-popup-button-primary" onclick="closeMinPaymentPopup();">Confirm</div>
+            </div>
+        </div>
 
 
         <div th:replace="~{navbar :: body}"></div>
@@ -186,11 +226,14 @@
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Minimum Payment</div>
-                                <div class = "bills-body">$100000</div>
+                                <div class = "bills-body" th:text="${0.1*(creditCard.spendingLimit-creditCard.currentBalance)}"></div>
                             </div>
                             <div class = "bills-info">
                                 <div class = "bills-subtitle">Due Date</div>
-                                <div class = "bills-body">22 Jan 22</div>
+                                <div class = "bills-body" id="currentDate"></div>
+                                <script>
+                                    setDate();
+                                </script>
                             </div>
                         </div>
                         <form action="/paybills/confirm" method="post" onsubmit="return isAmountValid()" id="paybill">

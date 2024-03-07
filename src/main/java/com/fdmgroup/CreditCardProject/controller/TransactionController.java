@@ -129,6 +129,7 @@ public class TransactionController {
 			case WITHDRAWAL -> "Withdrawal";
 			case TRANSFER -> "Transfer";
 			case INVALID -> null;
+			case PAYMENT -> "Credit Card Payment";
 			};
 			if (transactionType == null) {
 				return "redirect:/dashboard";

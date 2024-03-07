@@ -212,12 +212,18 @@ public class BankTransaction {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-	
+
+
+
+
 	public BankTransactionType getType() {
 		// from + -1 for to = withdrawal
 		// to = -1 for from = deposit
 		// both = transfer
 		// neither = invalid
+		if(getCreditCard() != null) {
+			return BankTransactionType.PAYMENT;
+		}
 		if (getAccountFromId() < 0) {
 			if (getAccountToId() < 0) {
 				return BankTransactionType.INVALID;

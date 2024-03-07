@@ -439,6 +439,7 @@ color: #FFFFFF;
 .popup-button-secondary:active{
 	background: #EFF2F6;
 }
+.min-payment-popup-overlay,
 .excessive-funds-popup-overlay,
 .insufficient-funds-popup-overlay{
 	position:absolute;
@@ -447,7 +448,7 @@ color: #FFFFFF;
 	background: rgba(0, 0, 0, 0.48);
 	z-index: 2;
 }
-
+.min-payment-popup-container,
 .excessive-funds-popup-container,
 .insufficient-funds-popup-container{
 	/* Popup */
@@ -477,6 +478,7 @@ color: #FFFFFF;
 	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
 	border-radius: 6px;
 }
+.min-payment-popup-header,
 .excessive-funds-popup-header,
 .insufficient-funds-popup-header{
 	display: flex;
@@ -490,6 +492,7 @@ color: #FFFFFF;
 	text-align: center;
 	letter-spacing: -0.024em;
 }
+.min-payment-popup-content-box,
 .excessive-funds-popup-content-box,
 .insufficient-funds-popup-content-box{
 	display: flex;
@@ -499,6 +502,7 @@ color: #FFFFFF;
 	width: 541px;
 	height: 75px;
 }
+.min-payment-popup-content-title,
 .excessive-funds-popup-content-title,
 .insufficient-funds-popup-content-title{
 	/* Account */
@@ -517,6 +521,7 @@ color: #FFFFFF;
 	/* Neutral/90 */
 	color: #344055;
 }
+.min-payment-popup-content-body,
 .excessive-funds-popup-content-body,
 .insufficient-funds-popup-button-stack{
 	display: flex;
@@ -529,6 +534,7 @@ color: #FFFFFF;
 	width: 247px;
 	height: 48px;
 }
+.min-payment-popup-button-primary,
 .excessive-funds-popup-button-primary,
 .insufficient-funds-popup-button-primary{
 	/* Button */
@@ -569,10 +575,13 @@ color: #FFFFFF;
 	order: 0;
 	flex-grow: 0;
 }
+.min-payment-popup-button-primary:hover,
 .excessive-funds-popup-button-primary:hover,
 .insufficient-funds-popup-button-primary:hover{
     background: #473FCE;
 }
+
+.min-payment-popup-button-primary:active,
 .excessive-funds-popup-button-primary:active,
 .insufficient-funds-popup-button-primary:active{
     background: #3821C0;

@@ -121,4 +121,7 @@ public class CreditCard {
 
 	public void addTransactionHistory(CreditCardTransaction transaction) { transactionHistory.add(transaction); }
 
+    public void addPaymentHistory(BankTransaction transaction) {
+		paymentHistory.add(transaction);
+    }
 }

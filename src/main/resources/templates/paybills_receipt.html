@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<head xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title>Transaction Receipt</title>
     <div th:replace="~{navbar :: head}"></div>
     <meta charset="UTF-8">
@@ -43,8 +43,8 @@
                         Description
                     </div>
                     <div class="transaction-form-content">
-                        <span th:if="${source}" th:text="${source}"></span>
-                        <span th:if="${itemName}" th:text="${itemName}"></span>
+                        <span th:if="${source}" th:text="'Bank account used:  '+${source}"></span><br>
+                        <span th:if="${destination}" th:text="'For Payment of Credit Card: '+ ${destination}"></span>
                     </div>
                     <div class="transaction-form-title">
                         Transaction Type

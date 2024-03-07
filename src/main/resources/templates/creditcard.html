@@ -60,15 +60,28 @@
                             <div class="divider"></div>
                             <div class="bills">
                                 <div> Bills </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" th:text="'$' + ${creditCard.spendingLimit-creditCard.currentBalance}"></div>
                             </div>
                             <div class="minimum-payment">
-                                <div> Minimum Payment </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div> Minimum Payment 10% Payment </div>
+                                <div class="amount" th:text="'$' + ${0.1*(creditCard.spendingLimit-creditCard.currentBalance)}"></div>
                             </div>
                             <div class="due-date">
                                 <div> Due Date </div>
-                                <div class="amount" th:text="'$' + ${creditCard.currentBalance}"></div>
+                                <div class="amount" id = "currentDate" ></div>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', (event) => {
+                                        const currentDateElement = document.getElementById('currentDate');
+                                        const today = new Date();
+                                        const nextMnth =  new Date(today.getFullYear(), today.getMonth() + 1, 1);
+                                        const dateString = nextMnth.toLocaleDateString(undefined, { // Use 'undefined' to use the browser's locale
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        });
+                                        currentDateElement.textContent = `${dateString}`;
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
