@@ -101,7 +101,7 @@ html {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 
 .balance, .available-balance, .limit, .bills, .minimum-payment, .due-date {
