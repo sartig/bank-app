@@ -37,27 +37,27 @@
 		    return true;
 		}
 
-        function toggleBankAccountNumber(event) {
+        function toggleBankAccountNumber(event, index) {
             event.stopPropagation();
-            var accountNumberElement = document.getElementById("bankaccount-number");
+            var accountNumberElement = document.getElementById("bankaccount-number"+index);
             var fullAccountNumber = accountNumberElement.getAttribute("data-full-account-number");
             var lastFourDigits = accountNumberElement.getAttribute("data-last-four-digits");
             if (accountNumberElement.innerText.trim() === fullAccountNumber) {
-                accountNumberElement.innerHTML = ("Bank Account ************ - " + lastFourDigits + ' <i onclick="toggleBankAccountNumber(event)" class="fas fa-eye bankaccount-number hoverable"></i>');
+                accountNumberElement.innerHTML = ("Bank Account ************ - " + lastFourDigits + ' <i onclick="toggleBankAccountNumber(event,' +index + ')" class="fas fa-eye bankaccount-number hoverable"></i>');
             } else {
-                accountNumberElement.innerHTML = (fullAccountNumber + ' <i onclick="toggleBankAccountNumber(event)" class="fas fa-eye-slash bankaccount-number hoverable"></i>');
+                accountNumberElement.innerHTML = (fullAccountNumber + ' <i onclick="toggleBankAccountNumber(event,' +index + ')" class="fas fa-eye-slash bankaccount-number hoverable"></i>');
             }
         }
 
-        function toggleCreditCardNumber(event) {
+        function toggleCreditCardNumber(event, index) {
             event.stopPropagation();
-            var creditCardElement = document.getElementById("creditCard-number");
+            var creditCardElement = document.getElementById("creditCard-number"+index);
             var fullCreditCard = creditCardElement.getAttribute("data-full-credit-number");
             var lastFourDigits = creditCardElement.getAttribute("data-last-four-digits-credit");
             if (creditCardElement.innerText.trim() === fullCreditCard) {
-                creditCardElement.innerHTML = ("Credit Card ************ - " + lastFourDigits + ' <i onclick="toggleCreditCardNumber(event)" class="fas fa-eye creditCard-number hoverable"></i>');
+                creditCardElement.innerHTML = ("Credit Card ************ - " + lastFourDigits + ' <i onclick="toggleCreditCardNumber(event,' +index + ')" class="fas fa-eye creditCard-number hoverable"></i>');
             } else {
-                creditCardElement.innerHTML = (fullCreditCard + ' <i onclick="toggleCreditCardNumber(event)" class="fas fa-eye-slash creditCard-number hoverable"></i>');
+                creditCardElement.innerHTML = (fullCreditCard + ' <i onclick="toggleCreditCardNumber(event,' + index + ')" class="fas fa-eye-slash creditCard-number hoverable"></i>');
             }
         }
         
@@ -170,11 +170,11 @@
                             th:onclick="|submitBankAccountForm(event, '${status.index}')|">
                             <form name="ba-form" method="post" action="/bankaccount">
                                 <input name="selectedBankAccountNumber" th:value="${bankAccount.accountNumber}" hidden>
-                                <div class="bankaccount-number" id="bankaccount-number"
+                                <div class="bankaccount-number" th:id="'bankaccount-number' + ${status.index}"
 	                                th:data-full-account-number="'Bank Account ' + ${bankAccount.accountNumber}"
 	                                th:data-last-four-digits="${#strings.substring(bankAccount.accountNumber, 12, 16)}">
 	                                Bank Account ************ - [[${#strings.substring(bankAccount.accountNumber, 12, 16)}]]
-	                                <i onclick="toggleBankAccountNumber(event)" class="fas fa-eye bankaccount-number hoverable"></i>
+	                                <i th:onclick="|toggleBankAccountNumber(event, '${status.index}')|" class="fas fa-eye bankaccount-number hoverable"></i>
 	                            </div>
                                 <button class="dashboard-card-button">
 	                                <div class="balance">
@@ -202,11 +202,11 @@
                             th:onclick="|submitCreditCardForm(event, '${status.index}')|">
                             <form name="cc-form" method="post" action="/creditcard">
                                 <input th:value="${creditCard.accountNumber}" name="creditCardNumber" hidden>
-                                <div class="creditCard-number" id="creditCard-number"
+                                <div class="creditCard-number" th:id="'creditCard-number'+${status.index}"
                                     th:data-full-credit-number="'Credit Card ' + ${creditCard.accountNumber}"
                                     th:data-last-four-digits-credit="${#strings.substring(creditCard.accountNumber, 12, 16)}">
                                     Credit Card ************ - [[${#strings.substring(creditCard.accountNumber, 12, 16)}]]
-                                    <i onclick="toggleCreditCardNumber(event)" class="fas fa-eye creditCard-number hoverable"></i>
+                                    <i th:onclick="|toggleCreditCardNumber(event,'${status.index}')|" class="fas fa-eye creditCard-number hoverable"></i>
                                 </div>
                                 <button class="dashboard-card-button">
                                     <div class="balance">
