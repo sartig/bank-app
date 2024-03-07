@@ -1,20 +1,17 @@
 package com.fdmgroup.CreditCardProject.service;
 
-import com.fdmgroup.CreditCardProject.controller.CreditCardController;
 import com.fdmgroup.CreditCardProject.exception.*;
 import com.fdmgroup.CreditCardProject.model.*;
 
 import com.fdmgroup.CreditCardProject.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,9 +25,6 @@ public class BankAccountService {
 
 	@Autowired
 	private CreditCardRepository creditCardRepository;
-
-	@Autowired
-	private CreditCardTransactionRepository creditCardTransactionRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -127,6 +121,7 @@ public class BankAccountService {
 				.save(new BankTransaction(bankAccount.getAccountId(), amount));
 		transaction.setAccountToId(Long.parseLong(String.valueOf(card.getAccountNumber())));
 		transaction.setAccountFromId(Long.parseLong(String.valueOf(bankAccount.getAccountNumber())));
+		transaction.setCreditCard(card);
 
 
 		// updating the bank account and credit card

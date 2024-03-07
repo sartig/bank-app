@@ -1,8 +1,8 @@
 package com.fdmgroup.CreditCardProject.controller;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,9 +120,9 @@ public class TransactionController {
 				return "redirect:/dashboard";
 			}
 
-			Date transactionTime = transaction.getDate();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String formattedTimestamp = sdf.format(transactionTime);
+			LocalDateTime transactionTime = transaction.getDate();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			String formattedTimestamp = dtf.format(transactionTime);
 			double amount = transaction.getAmount().doubleValue();
 			String transactionType = switch (transaction.getType()) {
 			case DEPOSIT -> "Deposit";

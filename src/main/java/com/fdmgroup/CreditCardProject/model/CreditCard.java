@@ -1,6 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,10 +42,10 @@ public class CreditCard {
 	private BigDecimal spendingLimit;
 
 	@OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL)
-	private List<CreditCardTransaction> transactionHistory;
+	private List<CreditCardTransaction> transactionHistory = new ArrayList<>();;
 
 	@OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL)
-	private List<BankTransaction> paymentHistory;
+	private List<BankTransaction> paymentHistory = new ArrayList<>();
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private RewardsProfile rewardProfile;
