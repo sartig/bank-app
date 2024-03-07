@@ -1,7 +1,7 @@
 package com.fdmgroup.CreditCardProject.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
@@ -36,7 +36,7 @@ public class BankTransaction {
 	 * The date of the transaction.
 	 */
 	@Column(name = "date")
-	private Date date;
+	private LocalDateTime date;
 
 	/**
 	 * The amount involved in the transaction.
@@ -100,7 +100,7 @@ public class BankTransaction {
 	public BankTransaction(long accountFromId, BigDecimal amount, long accountToId) {
 		this();
 		setAccountFromId(accountFromId);
-		setDate(new Date());
+		setDate(LocalDateTime.now());
 		setAmount(amount);
 		setAccountToId(accountToId);
 	}
@@ -114,7 +114,7 @@ public class BankTransaction {
 	 */
 	public BankTransaction(BigDecimal amount, long accountToId) {
 		this();
-		setDate(new Date());
+		setDate(LocalDateTime.now());
 		setAmount(amount);
 		setAccountToId(accountToId);
 		setAccountFromId(-1);
@@ -130,7 +130,7 @@ public class BankTransaction {
 	public BankTransaction(long accountFromId, BigDecimal amount) {
 		this();
 		setAccountFromId(accountFromId);
-		setDate(new Date());
+		setDate(LocalDateTime.now());
 		setAmount(amount);
 		setAccountToId(-1);
 	}
@@ -182,7 +182,7 @@ public class BankTransaction {
 	 * 
 	 * @return The date.
 	 */
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
@@ -191,7 +191,7 @@ public class BankTransaction {
 	 * 
 	 * @param date The date to set.
 	 */
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -212,12 +212,18 @@ public class BankTransaction {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-	
+
+
+
+
 	public BankTransactionType getType() {
 		// from + -1 for to = withdrawal
 		// to = -1 for from = deposit
 		// both = transfer
 		// neither = invalid
+		if(getCreditCard() != null) {
+			return BankTransactionType.PAYMENT;
+		}
 		if (getAccountFromId() < 0) {
 			if (getAccountToId() < 0) {
 				return BankTransactionType.INVALID;
@@ -238,6 +244,8 @@ public class BankTransaction {
             return "Withdrawal";
         case TRANSFER:
             return "Transfer";
+        case PAYMENT:
+        	return "Credit Card Payment";
         default:
             return null;
 		}

@@ -50,16 +50,17 @@ public class CreditCardTransaction {
         super();
     }
 
-    public CreditCardTransaction(long transactionId, CreditCard creditCard, LocalDateTime dateTime, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
+    public CreditCardTransaction(long transactionId, CreditCard creditCard, BigDecimal amount, String storeInfo, MerchantCategoryCode merchantCategoryCode, String originalCurrencyCode, double originalCurrencyAmount) {
         this.transactionId = transactionId;
         this.creditCard = creditCard;
-        this.date = dateTime;
+        this.date = LocalDateTime.now();
         this.amount = amount;
         this.storeInfo = storeInfo;
         this.merchantCategoryCode = merchantCategoryCode;
         this.originalCurrencyCode = originalCurrencyCode;
         this.originalCurrencyAmount = originalCurrencyAmount;
     }
+
 
     public CreditCard getCreditCard() {
         return creditCard;

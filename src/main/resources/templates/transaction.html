@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head xmlns:th="http://www.thymeleaf.org">
     <title>Deposit/Withdraw</title>
     
@@ -78,7 +77,7 @@
 				showInsufficientFundsPopup();
 			}
 		}
-		
+
         function showInsufficientFundsPopup() {
 			document.getElementById('insufficient-funds-modal').style.display = 'flex';
 			document.getElementById('insufficient-funds-overlay').style.display = 'block';
@@ -134,6 +133,7 @@
 		        <div class = "insufficient-funds-popup-button-primary" onclick="closeInsufficientFundsPopup();">Confirm</div>
 		    </div>
 		</div>
+
 
    
 		<div th:replace="~{navbar :: body}"></div>
