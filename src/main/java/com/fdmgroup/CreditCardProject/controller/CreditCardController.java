@@ -52,7 +52,6 @@ public class CreditCardController {
 		List<CreditCardTransaction> transactionHistory = creditCard.getTransactionHistoryDescending();
 		List<BankTransaction> paymentHistory = creditCard.getPaymentHistory();
 		for (BankTransaction bt : paymentHistory) {
-			System.out.println("adding bank transaction " + bt.getTransactionId() + " to credit card transaction history");
 			CreditCardTransaction cct = new CreditCardTransaction(bt.getTransactionId(), null, bt.getAmount(),
 					"Credit card payment from account " + bt.getAccountFromId(), null, null, 0.0);
 			cct.setDate(bt.getDate());
