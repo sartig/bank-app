@@ -42,7 +42,7 @@ public class DashboardController {
     public String goToDashboard(@AuthenticationPrincipal AuthUser principal, Model model) {
         User currentUser = userService.getUserByUsername(principal.getUsername());
         model.addAttribute("user", currentUser);
-        List<RewardsProfile> rewardsProfiles = rewardsProfileService.findAll();
+        List<RewardsProfile> rewardsProfiles = rewardsProfileService.getAllTypes();
     	model.addAttribute("rewardsProfiles", rewardsProfiles);
         return "dashboard";
     }

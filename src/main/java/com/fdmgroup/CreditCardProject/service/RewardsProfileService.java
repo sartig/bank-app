@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class RewardsProfileService {
 
 	@Autowired
-	private RewardsProfileRepository rewardsProfileRepository;
+	RewardsProfileRepository rewardProfileRepository;
 	
 	public int calculateRewardPoints(MccCategory category, CreditCard selectedCreditCard, CreditCardTransaction transaction) {
 		int rewardPoints = 0;
@@ -24,7 +24,7 @@ public class RewardsProfileService {
 		return -rewardPoints;
 	}
 	
-	public List<RewardsProfile> findAll(){
-		return rewardsProfileRepository.findAll();
+	public List<RewardsProfile> getAllTypes() {
+		return rewardProfileRepository.findAll();
 	}
 }

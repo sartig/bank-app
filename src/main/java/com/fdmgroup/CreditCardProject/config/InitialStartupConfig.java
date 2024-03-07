@@ -38,22 +38,23 @@ public class InitialStartupConfig {
 	}
 
 	private void initializeRewardsProfiles() {
-		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION));
+		initializeRewardsProfile(1L, 7, "Basic", List.of(MccCategory.MISC_STORES, MccCategory.TRANSPORTATION), "Food");
 		// travel card
 		initializeRewardsProfile(2L, 10, "Travel Pro",
-				List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS));
+				List.of(MccCategory.AIRLINES, MccCategory.CAR_RENT, MccCategory.HOTELS), "Transportation");
 		// shopping card
-		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS));
+		initializeRewardsProfile(3L, 15, "Star Shopper", List.of(MccCategory.CLOTHING, MccCategory.RETAIL_OUTLETS), "Retail and Online Shopping");
 	}
 
 	private void initializeRewardsProfile(Long id, double conversionPercentage, String name,
-			List<MccCategory> categories) {
+			List<MccCategory> categories, String description) {
 		if (rewardsProfileRepository.findById(id).isEmpty()) {
 			RewardsProfile rewardsProfile = new RewardsProfile(id, name);
 			rewardsProfile.setConversionPercentage(conversionPercentage);
 			if (categories != null) {
 				rewardsProfile.setValidCategories(categories);
 			}
+			rewardsProfile.setDescription(description);
 			rewardsProfileRepository.save(rewardsProfile);
 		}
 	}
