@@ -57,6 +57,11 @@
                                 <div> Limit </div>
                                 <div class="amount" th:text="'$' + ${creditCard.spendingLimit}"></div>
                             </div>
+                            <div class="card-type">
+                                <div> Benefits </div>
+                                <div class="amount" th:text="${creditCard.getRewardProfile().getConversionPercentage()} + '% on ' +
+                                ${creditCard.getRewardProfile().getDescription()}"></div>
+                            </div>
                             <div class="divider"></div>
                             <div class="bills">
                                 <div> Bills </div>
@@ -119,7 +124,7 @@
                             <div class="body-time" th:text="${#temporals.format(transaction.date, 'yyyy-MM-dd HH:mm')}"></div>
                             <div class="body-id" th:text="${transaction.transactionId}"></div>
                             <div class="body-description" th:text="${transaction.storeInfo}"></div>
-                            <div class="body-type">Purchase</div>
+                            <div class="body-type" th:text="${transaction.amount < 0 ? 'Purchase' : 'Payment'}" ></div>
                             <div class="body-amount" th:text="${transaction.amount} >=0 ? '$' + ${transaction.amount} : ${#strings.replace(transaction.amount,'-','-$')}"
                                  th:style="${transaction.amount >= 0 ? 'color: #2B825C' : 'color: #D1493D'}"></div>
                         </div>
