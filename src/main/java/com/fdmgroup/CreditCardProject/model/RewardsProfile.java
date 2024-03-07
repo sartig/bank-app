@@ -33,6 +33,9 @@ public class RewardsProfile {
 	@Column(name = "conversionPercentage")
 	private double conversionPercentage;
 
+	@Column(name = "description")
+	private String description;
+	
 	@ElementCollection
 	@Convert(converter = MccCategoryConverter.class)
 	private List<MccCategory> validCategories;
@@ -74,4 +77,11 @@ public class RewardsProfile {
 		return rewardProfileId;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
