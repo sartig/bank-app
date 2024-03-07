@@ -27,7 +27,8 @@ public class RegistrationController {
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		model.addAttribute("user", new User());
-		return "register";
+		model.addAttribute("signUpActive", true);
+		return "index";
 	}
 
 	@PostMapping("/register")
@@ -35,7 +36,8 @@ public class RegistrationController {
 
 		if (!password.equals(confirmPassword)) {
 			redirectAttributes.addFlashAttribute("unsuccessfulMessage", "Passwords do not match. Please try again.");
-			return "redirect:/register";
+			redirectAttributes.addFlashAttribute("signUpActive", true);
+			return "redirect:/index";
 		}
 
 		if (userService.registerUser(username, password)) {
@@ -57,6 +59,4 @@ public class RegistrationController {
 			return "redirect:/register";
 		}
 	}
-
-
 }

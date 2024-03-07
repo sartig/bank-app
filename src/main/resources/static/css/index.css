@@ -215,3 +215,21 @@ body{
 .password-strength{
     font-size: 12px;
 }
+
+.error-message{
+    color: #D1493D;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tagline{
+    font-weight: 600;
+}
+
+.error{
+    font-size: 16px;
+    color: #D1493D;
+    padding: 12px;
+    position: inherit;
+    font-weight: 600px;
+}
