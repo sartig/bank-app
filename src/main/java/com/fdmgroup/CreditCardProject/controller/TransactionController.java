@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class TransactionController {
-	
+
 	@Autowired
 	BankAccountService bankAccountService;
 
@@ -43,8 +43,8 @@ public class TransactionController {
 	BankTransactionService bankTransactionService;
 
 	@PostMapping("/transaction")
-	public String goToTransactionOrDashboardPage(@AuthenticationPrincipal AuthUser principal, @RequestParam String accountId,
-			Model model) {
+	public String goToTransactionOrDashboardPage(@AuthenticationPrincipal AuthUser principal,
+			@RequestParam String accountId, Model model) {
 		User currentUser = userService.getUserByUsername(principal.getUsername());
 		model.addAttribute("user", currentUser);
 		if (!bankAccountService.isAccountNumberValid(accountId)) {
@@ -87,10 +87,10 @@ public class TransactionController {
 				e.printStackTrace();
 				return new ModelAndView("redirect:/dashboard");
 			} catch (InsufficientBalanceException e) {
-			    e.printStackTrace();
-			    redirectAttributes.addFlashAttribute("error", "insufficientFunds");
-			    request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-			    return new ModelAndView("redirect:/transaction?error=insufficientFunds");
+				e.printStackTrace();
+				redirectAttributes.addFlashAttribute("error", "insufficientFunds");
+				request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+				return new ModelAndView("redirect:/transaction?error=insufficientFunds");
 			}
 		} else if (action.equals("deposit")) {
 			// make sure account belongs to logged in user
@@ -134,7 +134,15 @@ public class TransactionController {
 			if (transactionType == null) {
 				return "redirect:/dashboard";
 			}
-			String source = transactionType.equals("Transfer") ? "Transfer" : "Cash " + transactionType;
+			String source = null;
+			if (transactionType.equals("Transfer")) {
+				source = "Transfer from "
+						+ bankAccountService.getBankAccountNumberbyAccountId(transaction.getAccountFromId()) + " to "
+						+ bankAccountService.getBankAccountNumberbyAccountId(transaction.getAccountToId());
+			} else {
+
+				source = "Cash " + transactionType;
+			}
 			model.addAttribute("id", transactionId);
 			model.addAttribute("amount", amount);
 			model.addAttribute("source", source);
